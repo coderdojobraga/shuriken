@@ -1,0 +1,73 @@
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  padding: 5rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+}
+
+.title,
+.typing {
+  text-align: center;
+}
+
+.typing {
+  line-height: 1.5;
+  font-size: 1.5rem;
+  font-family:
+    Menlo,
+    Monaco,
+    Lucida Console,
+    Liberation Mono,
+    DejaVu Sans Mono,
+    Bitstream Vera Sans Mono,
+    Courier New,
+    monospace;
+  box-shadow: 0.6em 0 0 #ccc;
+  margin: 2rem 1rem;
+  width: 15ch;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-animation: caret 0.5s step-end infinite alternate, type 5s steps(15, end);
+  animation: caret 0.5s step-end infinite alternate, type 5s steps(15, end);
+}
+
+@-webkit-keyframes type {
+  0% {
+    width: 0;
+  }
+}
+
+@keyframes type {
+  0% {
+    width: 0;
+  }
+}
+
+@-webkit-keyframes caret {
+  50% {
+    box-shadow: 0.6em 0 0 transparent;
+  }
+}
+
+@keyframes caret {
+  50% {
+    box-shadow: 0.6em 0 0 transparent;
+  }
+}

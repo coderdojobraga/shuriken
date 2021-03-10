@@ -1,0 +1,43 @@
+{
+  "name": "shuriken",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "develop": "npm-run-all dev",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "npm-run-all lint:*",
+    "lint:js": "eslint --fix . --ignore-path .gitignore",
+    "lint:css": "stylelint --fix './**/*.{css,js}' --ignore-path .gitignore",
+    "fmt": "npm-run-all format",
+    "format": "prettier --write . --ignore-path .gitignore",
+    "test": "npm-run-all test:*",
+    "test:lint": "npm-run-all test:lint:*",
+    "test:lint:js": "eslint . --ignore-path .gitignore",
+    "test:lint:css": "stylelint './**/*.{css,js}' --ignore-path .gitignore",
+    "test:format": "prettier --check . --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "next": "10.0.8",
+    "next-plugin-yaml": "^1.0.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
+    "stylelint": "^13.12.0",
+    "stylelint-a11y": "^1.2.3",
+    "stylelint-config-css-modules": "^2.2.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^21.0.0"
+  }
+}
