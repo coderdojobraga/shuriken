@@ -1,12 +1,19 @@
 [contributing]: CONTRIBUTING.md
 [code_of_conduct]: CODE_OF_CONDUCT.md
 [license]: LICENSE.txt
+[vercel-status]: http://therealsujitk-vercel-badge.vercel.app/?app=coderdojobraga
+[deploy-url]: https://coderdojobraga.vercel.app
+[style-status]: https://github.com/coderdojobraga/shuriken/actions/workflows/style.yml/badge.svg
+[style-workflow]: https://github.com/coderdojobraga/shuriken/actions/workflows/style.yml
 
 # shuriken
 
 > :star: **shuri**ken + bok**ken**
 
-Platform support API for managing session registrations and recording ninja
+[![Vercel][vercel-status]][deploy-url]
+[![CI Style][style-status]][style-workflow]
+
+Platform support API for managing session registrations and recording ninjas'
 progress.
 
 ## :rocket: Getting Started
@@ -22,7 +29,7 @@ The following software is required to be installed on your system:
 
 We recommend using [asdf version
 manager](https://asdf-vm.com/#/core-manage-asdf?id=install) to install and
-manage all the programming languages requirements.
+manage all the programming languages' requirements.
 
 ### :gear: Setup
 
@@ -74,7 +81,7 @@ You can use these resources to learn more about the technologies this project
 uses.
 
 - [Getting Started with React](https://reactjs.org/docs/getting-started.html)
-- [Learn Next.js](https://nextjs.org/learn).
+- [Learn Next.js](https://nextjs.org/learn)
 - [Next.js Documentation](https://nextjs.org/docs)
 
 ## :handshake: Contributing

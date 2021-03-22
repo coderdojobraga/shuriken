@@ -38,6 +38,7 @@
     "stylelint-a11y": "^1.2.3",
     "stylelint-config-css-modules": "^2.2.0",
     "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-standard": "^21.0.0"
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-prettier": "^1.2.0"
   }
 }
