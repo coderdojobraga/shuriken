@@ -13,6 +13,9 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to Shuriken</h1>
         <p className={styles.typing}>Comming soon...</p>
+        <a href="/login" className={styles.button}>
+          Go to login
+        </a>
       </main>
     </div>
   );
