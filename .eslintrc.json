@@ -17,6 +17,17 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["~/styles", "./styles"],
+          ["~/components", "./components"],
+          ["~/layouts", "./components/layouts"],
+          ["~/lib", "./lib"]
+        ],
+        "extensions": [".js"]
+      }
     }
   },
   "parserOptions": {
