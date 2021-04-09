@@ -1,4 +1,4 @@
-import { Avatar, Image, Menu, Typography, Space } from "antd";
+import { Avatar, Image, Menu, Space, Typography } from "antd";
 import {
   CalendarOutlined,
   TrophyOutlined,
@@ -25,7 +25,7 @@ export const navbar = [
 ];
 
 function Navbar({ selected }) {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <Menu selectedKeys={[selected]} mode="horizontal">
@@ -56,9 +56,7 @@ function Navbar({ selected }) {
             </LinkTo>
           }
         >
-          <Menu.Item>
-            <LinkTo href="/api/auth/logout">logout</LinkTo>
-          </Menu.Item>
+          <Menu.Item onClick={logout}>Logout</Menu.Item>
         </Menu.SubMenu>
       ) : null}
     </Menu>

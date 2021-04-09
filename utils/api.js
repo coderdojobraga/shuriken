@@ -1,7 +1,9 @@
 import axios from "redaxios";
 
 const API = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   responseType: "json",
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json",
   },
@@ -30,7 +32,7 @@ export async function getCurrentUser() {
 }
 
 export async function logout() {
-  const response = await API.post("/api/auth/logout");
+  const response = await API.delete("/api/auth/sign_out");
 
   return response.data;
 }

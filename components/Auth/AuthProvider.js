@@ -24,8 +24,8 @@ export function AuthProvider({ children }) {
 
     api
       .login({ email, password })
-      .then(() => {
-        api.getCurrentUser().then((user) => setUser(user));
+      .then((user) => {
+        setUser(user);
         router.push("/profile");
       })
       .catch((error) => setErrors(error?.data?.errors))
@@ -37,8 +37,8 @@ export function AuthProvider({ children }) {
 
     api
       .sign_up({ email, password, role })
-      .then(() => {
-        api.getCurrentUser().then((user) => setUser(user));
+      .then((user) => {
+        setUser(user);
         router.push("/profile");
       })
       .catch((error) => setErrors(error?.data?.errors))
@@ -47,6 +47,7 @@ export function AuthProvider({ children }) {
 
   function logout() {
     api.logout().then(() => setUser(undefined));
+    router.push("/");
   }
 
   // Make the provider update only when it should
