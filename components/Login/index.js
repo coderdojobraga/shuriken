@@ -24,6 +24,7 @@ function LoginForm() {
       onFinish={onFinish}
     >
       <Title>Iniciar sessão</Title>
+
       <Form.Item
         name="email"
         rules={[
@@ -35,6 +36,7 @@ function LoginForm() {
       >
         <Input prefix={<MailOutlined />} placeholder="Email" type="email" />
       </Form.Item>
+
       <Form.Item
         name="password"
         rules={[
@@ -49,14 +51,14 @@ function LoginForm() {
           placeholder="Palavra-passe"
         />
       </Form.Item>
+
       <div className={styles["double-column"]}>
         <Form.Item name="remember" valuePropName="checked" noStyle>
           <Checkbox>Lembrar-me</Checkbox>
         </Form.Item>
-
-        <Link className={styles["login-form-forgot"]} href="">
-          Esqueci-me da palavra-passe
-        </Link>
+        <Text>
+          <Link href="">Esqueci-me da palavra-passe</Link>
+        </Text>
       </div>
 
       <Form.Item
@@ -73,6 +75,7 @@ function LoginForm() {
           Iniciar sessão
         </Button>
       </Form.Item>
+
       <Text>
         Ainda não tens uma conta? <Link href="/signup">Regista-te aqui</Link>
       </Text>
