@@ -25,9 +25,9 @@ export function withoutAuth(WrappedComponent) {
       }
     }
 
-    if (isLoading || user) {
-      return <LoadingLayout />;
-    }
+    // if (isLoading || user) {
+    //   return <LoadingLayout />;
+    // }
 
     return <WrappedComponent {...props} />;
   };
