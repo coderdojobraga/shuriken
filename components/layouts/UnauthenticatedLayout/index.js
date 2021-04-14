@@ -1,6 +1,5 @@
 import React from "react";
-import { Layout, Grid, Col } from "antd";
-import Image from "next/image";
+import { Layout } from "antd";
 
 import styles from "./style.module.css";
 

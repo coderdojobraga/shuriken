@@ -1,7 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class ShurikenDocument extends Document {
-
   render() {
     return (
       <Html lang="pt-pt">
