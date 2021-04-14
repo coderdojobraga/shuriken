@@ -1,8 +1,8 @@
 [contributing]: CONTRIBUTING.md
 [code_of_conduct]: CODE_OF_CONDUCT.md
 [license]: LICENSE.txt
-[vercel-status]: http://therealsujitk-vercel-badge.vercel.app/?app=coderdojobraga
-[deploy-url]: https://coderdojobraga.vercel.app
+[vercel-status]: http://therealsujitk-vercel-badge.vercel.app/?app=coderdojo-braga
+[deploy-url]: https://coderdojo-braga.vercel.app
 [style-status]: https://github.com/coderdojobraga/shuriken/actions/workflows/style.yml/badge.svg
 [style-workflow]: https://github.com/coderdojobraga/shuriken/actions/workflows/style.yml
 

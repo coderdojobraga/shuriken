@@ -1,12 +1,12 @@
 import { Layout } from "antd";
 import { useRouter } from "next/router";
-import Navbar from "../Navbar";
+import Navbar from "~/components/Navbar";
 
 import styles from "./style.module.css";
 
 const { Header, Content, Footer } = Layout;
 
-function BaseLayout({ children }) {
+function ContentLayout({ children }) {
   const router = useRouter();
 
   const { route } = router;
@@ -16,7 +16,9 @@ function BaseLayout({ children }) {
       <Header className={styles.navbar}>
         <Navbar selected={route} />
       </Header>
-      <Content className={styles.content}>{children}</Content>
+      <Content className={styles.content}>
+        <div className={styles.main}>{children}</div>
+      </Content>
       <Footer className={styles.footer}>
         CoderDojo Braga &copy; {new Date().getFullYear()}
       </Footer>
@@ -24,4 +26,4 @@ function BaseLayout({ children }) {
   );
 }
 
-export default BaseLayout;
+export default ContentLayout;

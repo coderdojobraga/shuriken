@@ -4,8 +4,9 @@ import {
   TrophyOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import LinkTo from "../utils/LinkTo";
-import { useAuth } from "../Auth";
+import LinkTo from "~/components/utils/LinkTo";
+import { useAuth } from "~/components/Auth";
+import * as USER from "~/lib/utils/user";
 
 import styles from "./style.module.css";
 
@@ -23,6 +24,17 @@ export const navbar = [
     protected: true,
   },
 ];
+
+const getUserProfileUrl = (user) => {
+  switch (user.role) {
+    case USER.TYPES.GUARDIAN:
+      return `/guardian/${user.guardian_id}`;
+    case USER.TYPES.MENTOR:
+      return `/mentor/${user.mentor_id}`;
+    case USER.TYPES.NINJA:
+      return `/ninja/${user.ninja_id}`;
+  }
+};
 
 function Navbar({ selected }) {
   const { user, logout } = useAuth();
@@ -47,8 +59,9 @@ function Navbar({ selected }) {
       {user ? (
         <Menu.SubMenu
           className={styles.avatar}
+          key="profile"
           title={
-            <LinkTo href="/profile">
+            <LinkTo href={getUserProfileUrl(user)}>
               <Space>
                 <Avatar src={user?.photo} icon={<UserOutlined />} />
                 <Typography.Text>{`${user.first_name} ${user.last_name}`}</Typography.Text>
@@ -56,7 +69,9 @@ function Navbar({ selected }) {
             </LinkTo>
           }
         >
-          <Menu.Item onClick={logout}>Logout</Menu.Item>
+          <Menu.Item key="logout" onClick={logout}>
+            Logout
+          </Menu.Item>
         </Menu.SubMenu>
       ) : null}
     </Menu>
