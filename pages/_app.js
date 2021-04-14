@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import { ConfigProvider } from "antd";
 import ptPT from "antd/lib/locale/pt_PT";
 import { AuthProvider } from "~/components/Auth";
+import Head from "next/head";
 
 function Shuriken({ Component, pageProps }) {
   const typeTemplate = "Não é um ${type} válido";
@@ -58,6 +59,9 @@ function Shuriken({ Component, pageProps }) {
   return (
     <AuthProvider>
       <ConfigProvider form={{ validateMessages }} locale={ptPT}>
+        <Head>
+          <title>CoderDojo Braga</title>
+        </Head>
         <Component {...pageProps} />
       </ConfigProvider>
     </AuthProvider>
