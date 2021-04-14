@@ -1,4 +1,3 @@
-import React from "react";
 import { Form, Input, Button, Checkbox, Typography } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import { useAuth } from "~/components/Auth";
