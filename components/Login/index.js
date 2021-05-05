@@ -46,8 +46,8 @@ function Login() {
 
       <Form.Item
         className={styles.button}
-        validateStatus={errors.detail && "error"}
-        help={errors.detail && "Autenticação inválida"}
+        validateStatus={errors?.detail && "error"}
+        help={errors?.detail && "Autenticação inválida"}
       >
         <Button
           type="primary"
