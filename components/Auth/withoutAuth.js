@@ -1,13 +1,12 @@
 import { useRouter } from "next/router";
 import { useAuth } from "./useAuth";
 import * as USER from "~/lib/utils/user";
-import LoadingLayout from "~/layouts/LoadingLayout";
 
 export function withoutAuth(WrappedComponent) {
   // eslint-disable-next-line react/display-name
   return (props) => {
     const router = useRouter();
-    const { user, isLoading } = useAuth();
+    const { user } = useAuth();
 
     if (user) {
       switch (user.role) {
@@ -23,10 +22,6 @@ export function withoutAuth(WrappedComponent) {
         default:
           router.replace("/register");
       }
-    }
-
-    if (isLoading || user) {
-      return <LoadingLayout />;
     }
 
     return <WrappedComponent {...props} />;
