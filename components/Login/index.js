@@ -53,7 +53,7 @@ function Login() {
           type="primary"
           htmlType="submit"
           loading={isLoading}
-          className={styles.fullwidth}
+          className={styles.submit}
         >
           Iniciar sessão
         </Button>
