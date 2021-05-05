@@ -1,14 +1,7 @@
-.login-form-button {
-  width: 100%;
-}
-
-.double-column {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
 .button {
   margin-bottom: 15px;
+}
+
+.fullwidth {
+  width: 100%;
 }

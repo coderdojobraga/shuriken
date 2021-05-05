@@ -1,12 +1,12 @@
 import { withoutAuth } from "~/components/Auth";
-import UnauthenticatedLayout from "~/components/layouts/UnauthenticatedLayout";
+import AuthenticationLayout from "~/components/layouts/AuthenticationLayout";
 import LoginForm from "~/components/Login";
 
 function Login() {
   return (
-    <UnauthenticatedLayout>
+    <AuthenticationLayout>
       <LoginForm />
-    </UnauthenticatedLayout>
+    </AuthenticationLayout>
   );
 }
 

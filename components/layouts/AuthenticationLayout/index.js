@@ -2,8 +2,9 @@ import { Layout } from "antd";
 
 import styles from "./style.module.css";
 
-function UnauthenticatedLayout({ children }) {
-  const { Content } = Layout;
+const { Content } = Layout;
+
+function AuthenticationLayout({ children }) {
   return (
     <Layout>
       <Content className={styles.content}>
@@ -11,7 +12,7 @@ function UnauthenticatedLayout({ children }) {
           <img
             className={styles.logo}
             src="/img/logo.svg"
-            alt="CoderDojo Logo"
+            alt="Logo of CoderDojo Braga"
           />
           <div className={styles.form}>{children}</div>
         </div>
@@ -20,4 +21,4 @@ function UnauthenticatedLayout({ children }) {
   );
 }
 
-export default UnauthenticatedLayout;
+export default AuthenticationLayout;
