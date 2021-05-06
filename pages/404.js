@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { Button, Layout, Result } from "antd";
 
 import styles from "~/styles/404.module.css";
@@ -6,6 +7,8 @@ import styles from "~/styles/404.module.css";
 const { Content } = Layout;
 
 export default function NotFound() {
+  const router = useRouter();
+
   return (
     <Layout>
       <Content className={styles.content}>
@@ -22,8 +25,8 @@ export default function NotFound() {
           }
           subTitle="Erro 404"
           extra={
-            <Button href="/" type="primary">
-              Página Inicial
+            <Button onClick={() => router.back()} type="primary">
+              Voltar
             </Button>
           }
         />
