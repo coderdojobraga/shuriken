@@ -1,0 +1,21 @@
+.menu {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  background-color: #fff;
+}
+
+.menu * {
+  max-width: 100%;
+}
+
+.primary {
+  height: max-content;
+  flex-grow: 1;
+}
+
+.secondary {
+ height: max-content;
+ padding-bottom: 10px;
+}

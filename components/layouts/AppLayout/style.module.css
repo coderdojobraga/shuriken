@@ -1,0 +1,6 @@
+.content {
+  background-color: #fff;
+  height: 100vh;
+  overflow: auto;
+  padding: 50px;
+}
