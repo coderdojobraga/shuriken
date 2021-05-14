@@ -5,11 +5,16 @@ import styles from "./style.module.css";
 
 const { Content, Sider } = Layout;
 
-function AppLayout({ children }) {
+function AppLayout({ children, hidePrimaryMenu }) {
   return (
     <Layout hasSider>
       <Sider breakpoint="lg" width="256">
-        <AppMenu />
+        <AppMenu
+          avatarSrc=""
+          name="To be replaced"
+          type="champion"
+          hidePrimaryMenu={hidePrimaryMenu}
+        />
       </Sider>
       <Content className={styles.content}>{children}</Content>
     </Layout>

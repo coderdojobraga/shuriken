@@ -4,7 +4,7 @@ import SignupForm from "~/components/Signup";
 
 function Register() {
   return (
-    <AppLayout>
+    <AppLayout hidePrimaryMenu>
       <SignupForm />
     </AppLayout>
   );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu } from "antd";
+import { Menu, Avatar, Typography } from "antd";
 import {
   HomeOutlined,
   SettingOutlined,
@@ -11,10 +11,12 @@ import {
 } from "@ant-design/icons";
 
 import styles from "./style.module.css";
+import Image from "next/image";
 
-const { SubMenu } = Menu;
+const { SubMenu, Item } = Menu;
+const { Text, Title } = Typography;
 
-function AppMenu() {
+function AppMenu({ hidePrimaryMenu, avatarSrc, name, type }) {
   // These states and handlers are needed in order to sync both menus.
   // Without this, each menu would behave independently
   const [primarySelectedKeys, setPrimarySelectedKeys] = useState(["main"]);
@@ -36,23 +38,50 @@ function AppMenu() {
         selectedKeys={primarySelectedKeys}
         className={styles.primary}
       >
-        <Menu.Item key="main" icon={<HomeOutlined />}>
-          Painel Principal
-        </Menu.Item>
-        <SubMenu key="users" icon={<UserOutlined />} title="Utilizadores">
-          <Menu.Item key="ninjas">Ninjas</Menu.Item>
-          <Menu.Item key="mentors">Mentores</Menu.Item>
-          <Menu.Item key="guardians">Guardiões</Menu.Item>
-        </SubMenu>
-        <Menu.Item key="events" icon={<CalendarOutlined />}>
-          Eventos
-        </Menu.Item>
-        <Menu.Item key="files" icon={<FileOutlined />}>
-          Ficheiros
-        </Menu.Item>
-        <Menu.Item key="badges" icon={<StarOutlined />}>
-          Crachás
-        </Menu.Item>
+        <div className={styles.logo}>
+          <Image
+            src={"/img/logo-lettering.png"}
+            alt="Logótipo CoderDojo"
+            width={200}
+            height={58}
+          />
+        </div>
+        {!hidePrimaryMenu && (
+          <>
+            <div className={styles.user}>
+              <Avatar
+                src={avatarSrc}
+                size="large"
+                alt="Avatar"
+                icon={<UserOutlined />}
+                className={styles.avatar}
+              />
+              <Title level={5}>{name}</Title>
+              <Text type="secondary">{type}</Text>
+            </div>
+            <Item key="main" icon={<HomeOutlined />}>
+              Painel Principal
+            </Item>
+            {type === "champion" && (
+              <SubMenu key="users" icon={<UserOutlined />} title="Utilizadores">
+                <Item key="ninjas">Ninjas</Item>
+                <Item key="mentors">Mentores</Item>
+                <Item key="guardians">Guardiões</Item>
+              </SubMenu>
+            )}
+            <Item key="events" icon={<CalendarOutlined />}>
+              Eventos
+            </Item>
+            <Item key="files" icon={<FileOutlined />}>
+              Ficheiros
+            </Item>
+            {type === "ninja" && (
+              <Item key="badges" icon={<StarOutlined />}>
+                Crachás
+              </Item>
+            )}
+          </>
+        )}
       </Menu>
       <Menu
         onClick={handleClickSecondary}
@@ -60,12 +89,12 @@ function AppMenu() {
         selectedKeys={secondarySelectedKeys}
         className={styles.secondary}
       >
-        <Menu.Item key="config" icon={<SettingOutlined />}>
+        <Item key="config" icon={<SettingOutlined />}>
           Configurações
-        </Menu.Item>
-        <Menu.Item key="logout" icon={<LogoutOutlined />}>
+        </Item>
+        <Item key="logout" icon={<LogoutOutlined />}>
           Sair
-        </Menu.Item>
+        </Item>
       </Menu>
     </div>
   );
