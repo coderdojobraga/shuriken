@@ -9,14 +9,17 @@ import {
   FileOutlined,
   StarOutlined,
 } from "@ant-design/icons";
+import Image from "next/image";
+import { useAuth } from "../Auth";
 
 import styles from "./style.module.css";
-import Image from "next/image";
 
 const { SubMenu, Item } = Menu;
 const { Text, Title } = Typography;
 
-function AppMenu({ hidePrimaryMenu, avatarSrc, name, type }) {
+function AppMenu({ hidePrimaryMenu, avatarSrc, name, type, collapsed }) {
+  const { logout } = useAuth();
+
   // These states and handlers are needed in order to sync both menus.
   // Without this, each menu would behave independently
   const [primarySelectedKeys, setPrimarySelectedKeys] = useState(["main"]);
@@ -39,12 +42,21 @@ function AppMenu({ hidePrimaryMenu, avatarSrc, name, type }) {
         className={styles.primary}
       >
         <div className={styles.logo}>
-          <Image
-            src={"/img/logo-lettering.png"}
-            alt="Logótipo CoderDojo"
-            width={200}
-            height={58}
-          />
+          {collapsed ? (
+            <Image
+              src={"/img/logo.svg"}
+              alt="Logótipo CoderDojo"
+              width={200}
+              height={200}
+            />
+          ) : (
+            <Image
+              src={"/img/logo-lettering.png"}
+              alt="Logótipo CoderDojo"
+              width={200}
+              height={58}
+            />
+          )}
         </div>
         {!hidePrimaryMenu && (
           <>
@@ -56,8 +68,8 @@ function AppMenu({ hidePrimaryMenu, avatarSrc, name, type }) {
                 icon={<UserOutlined />}
                 className={styles.avatar}
               />
-              <Title level={5}>{name}</Title>
-              <Text type="secondary">{type}</Text>
+              {!collapsed && <Title level={5}>{name}</Title>}
+              {!collapsed && <Text type="secondary">{type}</Text>}
             </div>
             <Item key="main" icon={<HomeOutlined />}>
               Painel Principal
@@ -92,7 +104,7 @@ function AppMenu({ hidePrimaryMenu, avatarSrc, name, type }) {
         <Item key="config" icon={<SettingOutlined />}>
           Configurações
         </Item>
-        <Item key="logout" icon={<LogoutOutlined />}>
+        <Item key="logout" icon={<LogoutOutlined />} onClick={logout}>
           Sair
         </Item>
       </Menu>

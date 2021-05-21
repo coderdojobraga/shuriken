@@ -1,0 +1,14 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emoji {
+  font-size: 50px;
+}
+
+.avatar {
+  margin-top: 50px;
+  margin-bottom: 15px;
+}

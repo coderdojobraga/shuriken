@@ -1,11 +1,11 @@
 import { withoutAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
-import SignupForm from "~/components/Signup";
+import RegisterForm from "~/components/Register";
 
 function Register() {
   return (
     <AppLayout hidePrimaryMenu>
-      <SignupForm />
+      <RegisterForm />
     </AppLayout>
   );
 }
