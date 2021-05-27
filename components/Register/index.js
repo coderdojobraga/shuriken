@@ -34,12 +34,7 @@ function Register() {
   const { Title } = Typography;
   const { user, errors, isLoading } = useAuth();
 
-  console.log(user);
-
   const onFinish = (e) => {
-    console.log(e);
-    console.log(e.photo?.file);
-
     api
       .registerMentor({
         user_id: user.id,
@@ -72,7 +67,6 @@ function Register() {
             Basta preencheres o formulário abaixo para terminares o registo
           </Title>
         </Col>
-        {/* </div> */}
       </Row>
 
       {/* <Row justify="center">

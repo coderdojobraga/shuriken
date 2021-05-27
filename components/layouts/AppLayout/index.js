@@ -7,7 +7,7 @@ import styles from "./style.module.css";
 
 const { Content, Sider } = Layout;
 
-function AppLayout({ children, hidePrimaryMenu }) {
+function AppLayout({ children, hidePrimaryMenu = false }) {
   const [isMobile, setMobile] = useState();
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [collapsed, setCollapsed] = useState();
