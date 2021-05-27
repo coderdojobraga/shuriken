@@ -9,18 +9,20 @@ export function withoutAuth(WrappedComponent) {
     const { user } = useAuth();
 
     if (user) {
-      switch (user.role) {
-        case USER.TYPES.GUARDIAN:
-          router.replace(`/profile/${user.role}/${user.guadian_id}`);
-          break;
-        case USER.TYPES.NINJA:
-          router.replace(`/profile/${user.role}/${user.ninja_id}`);
-          break;
-        case USER.TYPES.MENTOR:
-          router.replace(`/profile/${user.role}/${user.mentor_id}`);
-          break;
-        default:
-          router.replace("/register");
+      if (user.registered) {
+        switch (user.role) {
+          case USER.TYPES.GUARDIAN:
+            router.replace(`/profile/${user.role}/${user.guadian_id}`);
+            break;
+          case USER.TYPES.NINJA:
+            router.replace(`/profile/${user.role}/${user.ninja_id}`);
+            break;
+          case USER.TYPES.MENTOR:
+            router.replace(`/profile/${user.role}/${user.mentor_id}`);
+            break;
+        }
+      } else {
+        router.replace("/register");
       }
     }
 

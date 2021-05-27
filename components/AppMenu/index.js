@@ -10,15 +10,15 @@ import {
   StarOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
-import { useAuth } from "../Auth";
+import { useAuth } from "~/components/Auth";
 
 import styles from "./style.module.css";
 
 const { SubMenu, Item } = Menu;
 const { Text, Title } = Typography;
 
-function AppMenu({ hidePrimaryMenu, avatarSrc, name, type, collapsed }) {
-  const { logout } = useAuth();
+function AppMenu({ hidePrimaryMenu, collapsed }) {
+  const { user, logout } = useAuth();
 
   // These states and handlers are needed in order to sync both menus.
   // Without this, each menu would behave independently
@@ -41,40 +41,46 @@ function AppMenu({ hidePrimaryMenu, avatarSrc, name, type, collapsed }) {
         selectedKeys={primarySelectedKeys}
         className={styles.primary}
       >
-        <div className={styles.logo}>
-          {collapsed ? (
+        {collapsed ? (
+          <div className={styles.logo_collapsed}>
             <Image
               src={"/img/logo.svg"}
               alt="Logótipo CoderDojo"
               width={200}
               height={200}
             />
-          ) : (
+          </div>
+        ) : (
+          <div className={styles.logo}>
             <Image
               src={"/img/logo-lettering.png"}
               alt="Logótipo CoderDojo"
               width={200}
               height={58}
             />
-          )}
-        </div>
+          </div>
+        )}
         {!hidePrimaryMenu && (
           <>
             <div className={styles.user}>
               <Avatar
-                src={avatarSrc}
+                src={user.photo}
                 size="large"
                 alt="Avatar"
                 icon={<UserOutlined />}
                 className={styles.avatar}
               />
-              {!collapsed && <Title level={5}>{name}</Title>}
-              {!collapsed && <Text type="secondary">{type}</Text>}
+              {!collapsed && (
+                <Title level={5}>
+                  {`${user.first_name} ${user.last_name}`}
+                </Title>
+              )}
+              {!collapsed && <Text type="secondary">{user.role}</Text>}
             </div>
             <Item key="main" icon={<HomeOutlined />}>
               Painel Principal
             </Item>
-            {type === "champion" && (
+            {user.role === "champion" && (
               <SubMenu key="users" icon={<UserOutlined />} title="Utilizadores">
                 <Item key="ninjas">Ninjas</Item>
                 <Item key="mentors">Mentores</Item>
@@ -87,7 +93,7 @@ function AppMenu({ hidePrimaryMenu, avatarSrc, name, type, collapsed }) {
             <Item key="files" icon={<FileOutlined />}>
               Ficheiros
             </Item>
-            {type === "ninja" && (
+            {user.role === "ninja" && (
               <Item key="badges" icon={<StarOutlined />}>
                 Crachás
               </Item>

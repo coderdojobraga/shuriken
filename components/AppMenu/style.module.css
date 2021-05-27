@@ -4,6 +4,12 @@
   margin-left: 20px;
 }
 
+.logo_collapsed {
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+}
+
 .user {
   display: flex;
   flex-direction: column;

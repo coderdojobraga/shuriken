@@ -58,13 +58,7 @@ function AppLayout({ children, hidePrimaryMenu }) {
         onClick={() => setDrawerVisible(true)}
       />
       <ResponsiveSider hidePrimaryMenu={hidePrimaryMenu}>
-        <AppMenu
-          collapsed={collapsed}
-          avatarSrc=""
-          name="Miguel Brandão"
-          type="champion"
-          hidePrimaryMenu={hidePrimaryMenu}
-        />
+        <AppMenu collapsed={collapsed} hidePrimaryMenu={hidePrimaryMenu} />
       </ResponsiveSider>
       <Content className={styles.content}>{children}</Content>
     </Layout>

@@ -1,4 +1,4 @@
-import { withoutAuth } from "~/components/Auth";
+import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import RegisterForm from "~/components/Register";
 
@@ -10,4 +10,4 @@ function Register() {
   );
 }
 
-export default withoutAuth(Register);
+export default withAuth(Register);

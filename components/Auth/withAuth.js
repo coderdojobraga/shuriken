@@ -12,6 +12,11 @@ export function withAuth(WrappedComponent) {
       return null;
     }
 
+    if (router.pathname !== "/register" && !user.registered) {
+      router.replace("/register");
+      return null;
+    }
+
     return <WrappedComponent {...props} />;
   };
 }

@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/accessible-emoji */ // FIxed in emoji component
+import { useRouter } from "next/router";
 import {
   Typography,
   Form,
@@ -8,12 +9,12 @@ import {
   DatePicker,
   Upload,
   Space,
-  Avatar,
   Row,
   Col,
 } from "antd";
-import { UploadOutlined, UserOutlined } from "@ant-design/icons";
+import { UploadOutlined } from "@ant-design/icons";
 import { useAuth } from "~/components/Auth";
+import * as api from "~/lib/utils/api.js";
 import Emoji from "../Emoji";
 
 import styles from "./style.module.css";
@@ -28,24 +29,38 @@ const CountrySelect = () => (
   </Select>
 );
 
-const normFile = (e) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e && e.fileList;
-};
-
 function Register() {
+  const router = useRouter();
   const { Title } = Typography;
-  const { errors, isLoading } = useAuth();
+  const { user, errors, isLoading } = useAuth();
+
+  console.log(user);
 
   const onFinish = (e) => {
     console.log(e);
+    console.log(e.photo?.file);
+
+    api
+      .registerMentor({
+        user_id: user.id,
+        first_name: e.first_name,
+        last_name: e.last_name,
+        mobile: e.mobile,
+        photo: e.photo?.file,
+        // birtday,
+        major: e.major,
+      })
+      .then(() => router.push("/dashboard"));
   };
 
   return (
     <>
-      <Row justify="center" align="middle" gutter={12}>
+      <Row
+        justify="center"
+        align="middle"
+        gutter={12}
+        className={styles.header}
+      >
         <Col>
           <Emoji label="Party Popper Emoji" className={styles.emoji}>
             🎉
@@ -60,15 +75,23 @@ function Register() {
         {/* </div> */}
       </Row>
 
-      <Row justify="center">
-        <Avatar size={70} icon={<UserOutlined />} className={styles.avatar} />
-      </Row>
+      {/* <Row justify="center">
+        <Avatar
+          size={70}
+          icon={<UserOutlined />}
+        />
+      </Row> */}
 
       <Row justify="center">
         <Col xs={24} md={20} xl={15} xxl={10}>
-          <Form name="signup" onFinish={onFinish} layout="vertical">
+          <Form
+            name="signup"
+            onFinish={onFinish}
+            layout="vertical"
+            className={styles.form}
+          >
             <Form.Item
-              name="name"
+              name="first_name"
               label="Nome"
               rules={[
                 {
@@ -81,7 +104,7 @@ function Register() {
             </Form.Item>
 
             <Form.Item
-              name="surname"
+              name="last_name"
               label="Apelido"
               rules={[
                 {
@@ -93,7 +116,7 @@ function Register() {
               <Input placeholder="Apelido" type="text" />
             </Form.Item>
             <Form.Item
-              name="phone"
+              name="mobile"
               label="Telemóvel"
               rules={[
                 {
@@ -128,7 +151,7 @@ function Register() {
             </Form.Item>
 
             <Form.Item
-              name="course"
+              name="major"
               label="Curso"
               rules={[
                 {
@@ -141,22 +164,34 @@ function Register() {
             </Form.Item>
 
             <Form.Item
-              name="avatar"
+              name="photo"
               label="Foto de perfil"
               valuePropName="avatar"
-              getValueFromEvent={normFile}
+              // getValueFromEvent={normFile}
             >
               <Upload
                 name="avatar"
+                accept="image/png, image/jpeg"
+                beforeUpload={() => {
+                  // Prevent upload
+                  return false;
+                }}
                 listType="picture"
                 multiple={false}
+                maxCount={1}
                 showUploadList={{
                   showDownloadIcon: false,
                   showPreviewIcon: false,
                   showRemoveIcon: true,
                 }}
               >
-                <Button icon={<UploadOutlined />}>Upload</Button>
+                {/* <input
+                type="file"
+                id="avatar"
+                name="avatar"
+                accept="image/png, image/jpeg"
+              /> */}
+                <Button icon={<UploadOutlined />}>Selecionar</Button>
               </Upload>
             </Form.Item>
 
