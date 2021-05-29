@@ -8,25 +8,25 @@ import styles from "./style.module.css";
 const { Content, Sider } = Layout;
 
 function AppLayout({ children, hidePrimaryMenu = false }) {
-  const [isMobile, setMobile] = useState();
+  const [isMobile, setMobile] = useState(false);
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [collapsed, setCollapsed] = useState();
 
-  const handleResize = () => {
-    if (window.innerWidth < 576 && !isMobile) setMobile(true);
-    else if (window.innerWidth >= 576 && isMobile) setMobile(false);
-  };
-
   useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 576) setMobile(true);
+      else if (window.innerWidth >= 576) {
+        setMobile(false);
+        setDrawerVisible(false);
+      }
+    });
+    // check if viewport is mobile on first load
     if (window.innerWidth < 576) setMobile(true);
     else {
       setMobile(false);
       setDrawerVisible(false);
     }
   }, []);
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-  });
 
   const ResponsiveSider = ({ children }) => {
     if (isMobile) {
@@ -50,13 +50,15 @@ function AppLayout({ children, hidePrimaryMenu = false }) {
   };
   return (
     <Layout hasSider={true}>
-      <Button
-        size="large"
-        type="link"
-        icon={<MenuOutlined />}
-        className={styles.button}
-        onClick={() => setDrawerVisible(true)}
-      />
+      {isMobile && (
+        <Button
+          size="large"
+          type="link"
+          icon={<MenuOutlined />}
+          className={styles.button}
+          onClick={() => setDrawerVisible(true)}
+        />
+      )}
       <ResponsiveSider hidePrimaryMenu={hidePrimaryMenu}>
         <AppMenu collapsed={collapsed} hidePrimaryMenu={hidePrimaryMenu} />
       </ResponsiveSider>

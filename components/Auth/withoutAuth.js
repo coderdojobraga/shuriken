@@ -20,6 +20,9 @@ export function withoutAuth(WrappedComponent) {
           case USER.TYPES.MENTOR:
             router.replace(`/profile/${user.role}/${user.mentor_id}`);
             break;
+          case USER.TYPES.ORGANIZER:
+            router.replace(`/profile/${user.role}/${user.organizer_id}`);
+            break;
         }
       } else {
         router.replace("/register");
