@@ -1,0 +1,48 @@
+.logo {
+  width: 60%;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.logo_collapsed {
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 35px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.avatar {
+  margin-bottom: 5px;
+}
+
+.menu {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  background-color: #fff;
+}
+
+.menu * {
+  max-width: 100%;
+}
+
+.primary {
+  height: max-content;
+  flex-grow: 1;
+}
+
+.secondary {
+  height: max-content;
+  padding-bottom: 10px;
+}

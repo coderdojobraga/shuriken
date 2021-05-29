@@ -1,0 +1,17 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emoji {
+  font-size: 50px;
+}
+
+.header {
+  margin-bottom: 50px;
+}
+
+.form {
+  margin-top: 15px;
+}
