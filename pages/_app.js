@@ -11,7 +11,7 @@ function Shuriken({ Component, pageProps }) {
     // You can use '${name}' in these string to replace with the field name
     default: "Erro de validação",
     required: "Este campo é obrigatório",
-    enum: "Tem de pertencar a [${enum}]",
+    enum: "Tem de pertencer a [${enum}]",
     whitespace: "Não pode estar vazio",
     date: {
       format: "O formato não é válido",

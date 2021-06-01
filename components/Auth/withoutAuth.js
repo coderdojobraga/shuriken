@@ -27,6 +27,8 @@ export function withoutAuth(WrappedComponent) {
       } else {
         router.replace("/register");
       }
+
+      return null;
     }
 
     return <WrappedComponent {...props} />;

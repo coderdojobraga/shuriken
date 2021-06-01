@@ -26,7 +26,7 @@ export function AuthProvider({ children }) {
       .login({ email, password })
       .then((user) => {
         setUser(user);
-        router.push("/profile");
+        router.push("/dashboard");
       })
       .catch((error) => setErrors(error?.data?.errors))
       .finally(() => setLoading(false));
