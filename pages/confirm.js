@@ -114,6 +114,11 @@ const Confirm = ({ status }) => {
     return null;
   }
 
+  if (status == "info" && user.verified) {
+    router.push("/register");
+    return null;
+  }
+
   return (
     <AppLayout hidePrimaryMenu>
       <Result
