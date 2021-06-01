@@ -1,4 +1,4 @@
-import ErrorPage from "~/components/ErrorPage";
+import ErrorPage from "~/layouts/ErrorPage";
 
 export default function InternalServerError() {
   return (
