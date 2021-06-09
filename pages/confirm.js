@@ -52,6 +52,25 @@ const SuccessActions = () => {
   const router = useRouter();
 
   return (
+    <>
+      <Button onClick={() => router.back()} key="back">
+        Voltar
+      </Button>
+      <Button
+        onClick={() => router.push("/dashboard")}
+        key="home"
+        type="primary"
+      >
+        Página Inicial
+      </Button>
+    </>
+  );
+};
+
+const RegisterActions = () => {
+  const router = useRouter();
+
+  return (
     <Button onClick={() => router.replace("/register")} type="primary">
       Finalizar Registo
     </Button>
@@ -92,9 +111,10 @@ const Confirm = ({ status }) => {
   const messages = {
     success: {
       subject: "Verificação bem sucedida",
-      description:
-        "Obrigado por verificares o teu email. Termina o teu registo, por favor.",
-      actions: <SuccessActions />,
+      description: `Obrigado por verificares o teu email. ${
+        user?.registered ? "" : "Termina o teu registo, por favor."
+      }`,
+      actions: user?.registered ? <SuccessActions /> : <RegisterActions />,
     },
     info: {
       subject: "Informação",
