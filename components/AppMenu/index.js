@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { Menu, Avatar, Typography } from "antd";
 import {
@@ -19,12 +20,15 @@ const { Text, Title } = Typography;
 
 function AppMenu({ hidePrimaryMenu, collapsed }) {
   const { user, logout } = useAuth();
+  const router = useRouter();
+  const { pathname } = router;
 
   // These states and handlers are needed in order to sync both menus.
   // Without this, each menu would behave independently
-  const [primarySelectedKeys, setPrimarySelectedKeys] = useState(["main"]);
+  const [primarySelectedKeys, setPrimarySelectedKeys] = useState([pathname]);
   const [secondarySelectedKeys, setSecondarySelectedKeys] = useState([]);
   const handleClickPrimary = ({ key }) => {
+    router.push(key);
     setPrimarySelectedKeys([key]);
     setSecondarySelectedKeys([]);
   };
@@ -77,24 +81,28 @@ function AppMenu({ hidePrimaryMenu, collapsed }) {
               )}
               {!collapsed && <Text type="secondary">{user.role}</Text>}
             </div>
-            <Item key="main" icon={<HomeOutlined />}>
+            <Item key="/dashboard" icon={<HomeOutlined />}>
               Painel Principal
             </Item>
             {user.role === "champion" && (
-              <SubMenu key="users" icon={<UserOutlined />} title="Utilizadores">
-                <Item key="ninjas">Ninjas</Item>
-                <Item key="mentors">Mentores</Item>
-                <Item key="guardians">Guardiões</Item>
+              <SubMenu
+                key="/users"
+                icon={<UserOutlined />}
+                title="Utilizadores"
+              >
+                <Item key="/ninjas">Ninjas</Item>
+                <Item key="/mentors">Mentores</Item>
+                <Item key="/guardians">Guardiões</Item>
               </SubMenu>
             )}
-            <Item key="events" icon={<CalendarOutlined />}>
+            <Item key="/events" icon={<CalendarOutlined />}>
               Eventos
             </Item>
-            <Item key="files" icon={<FileOutlined />}>
+            <Item key="/files" icon={<FileOutlined />}>
               Ficheiros
             </Item>
             {user.role === "ninja" && (
-              <Item key="badges" icon={<StarOutlined />}>
+              <Item key="/badges" icon={<StarOutlined />}>
                 Crachás
               </Item>
             )}
@@ -107,7 +115,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }) {
         selectedKeys={secondarySelectedKeys}
         className={styles.secondary}
       >
-        <Item key="config" icon={<SettingOutlined />}>
+        <Item key="/settings" icon={<SettingOutlined />}>
           Configurações
         </Item>
         <Item key="logout" icon={<LogoutOutlined />} onClick={logout}>
