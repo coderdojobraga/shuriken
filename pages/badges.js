@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Empty, Row, Col } from "antd";
+import { Col, Empty, Row, Typography } from "antd";
 import AppLayout from "~/components/layouts/AppLayout";
 import { withAuth } from "~/components/Auth";
 import Badge from "~/components/Badge";
@@ -11,6 +11,8 @@ const breakpoins = {
   xl: 8,
   xxl: 6,
 };
+
+const { Title } = Typography;
 
 function Badges() {
   const [badges, setBadges] = useState([]);
@@ -27,7 +29,8 @@ function Badges() {
 
   return (
     <AppLayout>
-      <Row justify="space-around" align="middle">
+      <Title level={2}>Os meus Crachás</Title>
+      <Row justify="space-between" align="middle">
         {badges.length !== 0 ? (
           badges.map((badge) => (
             <Col key={badge.id} {...breakpoins}>

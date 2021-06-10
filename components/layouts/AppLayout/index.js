@@ -12,20 +12,18 @@ function AppLayout({ children, hidePrimaryMenu = false }) {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [collapsed, setCollapsed] = useState();
 
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      if (window.innerWidth < 576) setMobile(true);
-      else if (window.innerWidth >= 576) {
-        setMobile(false);
-        setDrawerVisible(false);
-      }
-    });
-    // check if viewport is mobile on first load
+  const setUpViewport = () => {
     if (window.innerWidth < 576) setMobile(true);
-    else {
+    else if (window.innerWidth >= 576) {
       setMobile(false);
       setDrawerVisible(false);
     }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", setUpViewport);
+    // check if viewport is mobile on first load
+    setUpViewport();
   }, []);
 
   const ResponsiveSider = ({ children }) => {
@@ -43,11 +41,12 @@ function AppLayout({ children, hidePrimaryMenu = false }) {
       );
     }
     return (
-      <Sider breakpoint="lg" width={256} onCollapse={setCollapsed}>
+      <Sider breakpoint="xl" width={256} onCollapse={setCollapsed}>
         {children}
       </Sider>
     );
   };
+
   return (
     <Layout hasSider={true}>
       {isMobile && (
