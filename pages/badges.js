@@ -30,23 +30,30 @@ function Badges() {
   return (
     <AppLayout>
       <Title level={2}>Os meus Crachás</Title>
-      <Row justify="space-between" align="middle">
-        {badges.length !== 0 ? (
-          badges.map((badge) => (
+      {badges.length !== 0 ? (
+        <Row justify="start" align="middle">
+          {badges.map((badge) => (
             <Col key={badge.id} {...breakpoins}>
               <Badge {...badge} />
             </Col>
-          ))
-        ) : isLoading ? (
-          [...Array(8).keys()].map((key) => (
-            <Col key={key} {...breakpoins}>
+          ))}
+        </Row>
+      ) : isLoading ? (
+        [...Array(8).keys()].map((key) => (
+          <Row key={key} justify="start" align="middle">
+            <Col {...breakpoins}>
               <Badge loading />
             </Col>
-          ))
-        ) : (
-          <Empty description="No Badges" image={Empty.PRESENTED_IMAGE_SIMPLE} />
-        )}
-      </Row>
+          </Row>
+        ))
+      ) : (
+        <Row justify="center" align="middle">
+          <Empty
+            description="Sem crachás ainda"
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+          />
+        </Row>
+      )}
     </AppLayout>
   );
 }
