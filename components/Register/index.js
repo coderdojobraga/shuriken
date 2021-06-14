@@ -161,11 +161,10 @@ function Register() {
               name="photo"
               label="Foto de perfil"
               valuePropName="avatar"
-              // getValueFromEvent={normFile}
             >
               <Upload
                 name="avatar"
-                accept="image/png, image/jpeg"
+                accept="image/*"
                 beforeUpload={() => {
                   // Prevent upload
                   return false;
