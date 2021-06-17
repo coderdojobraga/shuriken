@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Button, Card, Grid, Modal, Space } from "antd";
+import { Button, Card, Descriptions, Grid, Modal, Space } from "antd";
+import {
+  CalendarOutlined,
+  ClockCircleOutlined,
+  EnvironmentOutlined,
+  HomeOutlined,
+} from "@ant-design/icons";
 import EventInfo from "~/components/Event/EventInfo";
 
 import styles from "./style.module.css";
@@ -9,6 +15,8 @@ const { useBreakpoint } = Grid;
 function Event({ event, collapsed = true }) {
   const [isPopupVisible, setPopupVisible] = useState(false);
   const screens = useBreakpoint();
+
+  const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
 
   const title =
     event.title ||
@@ -26,6 +34,7 @@ function Event({ event, collapsed = true }) {
         title={title}
         onOk={() => setPopupVisible(false)}
         onCancel={() => setPopupVisible(false)}
+        width={1000}
       >
         <EventInfo {...event} />
       </Modal>
@@ -43,8 +52,66 @@ function Event({ event, collapsed = true }) {
         className={styles.card}
         style={collapsed ? { maxWidth: 460 } : null}
       >
-        <Space align="end" direction="horizontal" wrap={screens.xs}>
-          <EventInfo {...event} />
+        <Space
+          align="end"
+          direction="horizontal"
+          wrap={(screens.sm && !screens.md) || screens.xs}
+        >
+          {collapsed ? (
+            <Descriptions size="small" column={1} layout="horizontal">
+              <Descriptions.Item
+                labelStyle={labelStyle}
+                label={
+                  <span>
+                    <HomeOutlined /> Turma
+                  </span>
+                }
+              >
+                {event.team.name}
+              </Descriptions.Item>
+              <Descriptions.Item
+                labelStyle={labelStyle}
+                label={
+                  <span>
+                    <CalendarOutlined /> Data
+                  </span>
+                }
+              >
+                {new Date(event.start_time).toLocaleString("pt", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </Descriptions.Item>
+              <Descriptions.Item
+                labelStyle={labelStyle}
+                label={
+                  <span>
+                    <EnvironmentOutlined /> Localização
+                  </span>
+                }
+                span={1}
+              >
+                {event.location.name}
+              </Descriptions.Item>
+              <Descriptions.Item
+                labelStyle={labelStyle}
+                label={
+                  <span>
+                    <ClockCircleOutlined /> Hora
+                  </span>
+                }
+              >
+                {new Date(event.start_time).toLocaleString("pt", {
+                  hour: "numeric",
+                  minute: "numeric",
+                })}
+              </Descriptions.Item>
+            </Descriptions>
+          ) : (
+            <EventInfo {...event} />
+          )}
           <Button type="primary">Inscrever</Button>
         </Space>
       </Card>

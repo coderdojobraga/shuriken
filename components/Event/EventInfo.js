@@ -1,38 +1,21 @@
 import { Descriptions } from "antd";
 import {
+  AlignLeftOutlined,
   CalendarOutlined,
   ClockCircleOutlined,
   EnvironmentOutlined,
   HomeOutlined,
 } from "@ant-design/icons";
 
-function EventInfo({ start_time, location, team }) {
+function EventInfo({ start_time, end_time, location, team, notes }) {
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
 
   return (
-    <Descriptions layout="horizontal">
-      <Descriptions.Item
-        labelStyle={labelStyle}
-        label={
-          <span>
-            <HomeOutlined /> Turma
-          </span>
-        }
-        span={24}
-      >
-        {team.name}
-      </Descriptions.Item>
-      <Descriptions.Item
-        labelStyle={labelStyle}
-        label={
-          <span>
-            <EnvironmentOutlined /> Localização
-          </span>
-        }
-        span={24}
-      >
-        {location.name}
-      </Descriptions.Item>
+    <Descriptions
+      column={{ xs: 1, sm: 1, md: 1, lg: 7, xl: 7, xxl: 7 }}
+      size="small"
+      layout="horizontal"
+    >
       <Descriptions.Item
         labelStyle={labelStyle}
         label={
@@ -40,7 +23,7 @@ function EventInfo({ start_time, location, team }) {
             <CalendarOutlined /> Data
           </span>
         }
-        span={24}
+        span={2}
       >
         {new Date(start_time).toLocaleString("pt", {
           weekday: "long",
@@ -53,15 +36,63 @@ function EventInfo({ start_time, location, team }) {
         labelStyle={labelStyle}
         label={
           <span>
-            <ClockCircleOutlined /> Hora
+            <EnvironmentOutlined /> Localização
           </span>
         }
-        span={24}
+        span={5}
+      >
+        {location.name}
+      </Descriptions.Item>
+      <Descriptions.Item
+        labelStyle={labelStyle}
+        label={
+          <span>
+            <ClockCircleOutlined /> Início
+          </span>
+        }
+        span={2}
       >
         {new Date(start_time).toLocaleString("pt", {
           hour: "numeric",
           minute: "numeric",
         })}
+      </Descriptions.Item>
+
+      <Descriptions.Item
+        labelStyle={labelStyle}
+        label={
+          <span>
+            <ClockCircleOutlined /> Fim
+          </span>
+        }
+        span={5}
+      >
+        {new Date(end_time).toLocaleString("pt", {
+          hour: "numeric",
+          minute: "numeric",
+        })}
+      </Descriptions.Item>
+      <Descriptions.Item
+        labelStyle={labelStyle}
+        label={
+          <span>
+            <HomeOutlined /> Turma
+          </span>
+        }
+        span={2}
+      >
+        {team.name}
+      </Descriptions.Item>
+      <Descriptions.Item
+        labelStyle={labelStyle}
+        label={
+          <span>
+            <AlignLeftOutlined /> Notas
+          </span>
+        }
+        span={5}
+      >
+        {notes}
       </Descriptions.Item>
     </Descriptions>
   );
