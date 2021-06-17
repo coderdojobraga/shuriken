@@ -14,16 +14,11 @@ import {
 } from "antd";
 import moment from "moment";
 import { UploadOutlined } from "@ant-design/icons";
-import AppLayout from "~/components/layouts/AppLayout";
 import { useAuth, withAuth } from "~/components/Auth";
+import AppLayout from "~/components/layouts/AppLayout";
+import { getBase64 } from "~/lib/utils/images";
 
 const { Title } = Typography;
-
-function getBase64(img, callback) {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result));
-  reader.readAsDataURL(img);
-}
 
 const Section = ({ title }) => (
   <Divider orientation="left">
@@ -86,13 +81,11 @@ function Settings() {
             <Upload
               accept="image/*"
               maxCount={1}
-              onChange={(info) => {
-                if (info.file.status === "done") {
-                  getBase64(info.file.originFileObj, (imageUrl) =>
-                    setAvatar(imageUrl)
-                  );
-                }
+              beforeUpload={(file) => {
+                getBase64(file, (imageUrl) => setAvatar(imageUrl));
+                return false;
               }}
+              onRemove={() => setAvatar(user.photo)}
             >
               <Button icon={<UploadOutlined />}>Upload</Button>
             </Upload>
@@ -101,7 +94,7 @@ function Settings() {
         <Section title="Informações Pessoais" />
         <Row gutter={24}>
           <Col {...breakpoints}>
-            <Form.Item name="user[first_name]" label="Name">
+            <Form.Item name="user[first_name]" label="Nome">
               <Input defaultValue={user.first_name} />
             </Form.Item>
           </Col>
