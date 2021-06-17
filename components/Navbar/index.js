@@ -27,11 +27,11 @@ export const navbar = [
 
 const getUserProfileUrl = (user) => {
   switch (user.role) {
-    case USER.TYPES.GUARDIAN:
+    case USER.ROLES.GUARDIAN:
       return `/guardian/${user.guardian_id}`;
-    case USER.TYPES.MENTOR:
+    case USER.ROLES.MENTOR:
       return `/mentor/${user.mentor_id}`;
-    case USER.TYPES.NINJA:
+    case USER.ROLES.NINJA:
       return `/ninja/${user.ninja_id}`;
   }
 };
