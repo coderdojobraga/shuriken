@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Col, Empty, Row, Typography } from "antd";
+import { Col, Empty, Row, Space, Typography } from "antd";
 import AppLayout from "~/components/layouts/AppLayout";
 import { withAuth } from "~/components/Auth";
 import Badge from "~/components/Badge";
@@ -29,22 +29,29 @@ function Badges() {
 
   return (
     <AppLayout>
-      <Title level={2}>Os meus Crachás</Title>
-      <Row justify="space-between" align="middle">
+      <Title level={2}>Os Meus Crachás</Title>
+      <Row justify="start" align="middle">
         {badges.length !== 0 ? (
           badges.map((badge) => (
             <Col key={badge.id} {...breakpoins}>
-              <Badge {...badge} />
+              <Space>
+                <Badge {...badge} />
+              </Space>
             </Col>
           ))
         ) : isLoading ? (
           [...Array(8).keys()].map((key) => (
             <Col key={key} {...breakpoins}>
-              <Badge loading />
+              <Space>
+                <Badge loading />
+              </Space>
             </Col>
           ))
         ) : (
-          <Empty description="No Badges" image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          <Empty
+            description="Sem Crachás"
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+          />
         )}
       </Row>
     </AppLayout>
