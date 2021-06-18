@@ -14,6 +14,41 @@ const breakpoins = {
 
 const { Title } = Typography;
 
+const Content = ({ isLoading, badges }) => {
+  if (isLoading) {
+    return (
+      <Row justify="center" align="middle">
+        {[...Array(8).keys()].map((key) => (
+          <Col key={key} {...breakpoins}>
+            <Badge loading />
+          </Col>
+        ))}
+      </Row>
+    );
+  }
+
+  if (badges.length === 0) {
+    return (
+      <Row justify="center" align="middle">
+        <Empty
+          description="Sem crachás ainda"
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+        />
+      </Row>
+    );
+  }
+
+  return (
+    <Row justify="start" align="middle">
+      {badges.map((badge) => (
+        <Col key={badge.id} {...breakpoins}>
+          <Badge {...badge} />
+        </Col>
+      ))}
+    </Row>
+  );
+};
+
 function Badges() {
   const [badges, setBadges] = useState([]);
   const [isLoading, setLoading] = useState(false);
@@ -30,30 +65,7 @@ function Badges() {
   return (
     <AppLayout>
       <Title level={2}>Os meus Crachás</Title>
-      {badges.length !== 0 ? (
-        <Row justify="start" align="middle">
-          {badges.map((badge) => (
-            <Col key={badge.id} {...breakpoins}>
-              <Badge {...badge} />
-            </Col>
-          ))}
-        </Row>
-      ) : isLoading ? (
-        [...Array(8).keys()].map((key) => (
-          <Row key={key} justify="start" align="middle">
-            <Col {...breakpoins}>
-              <Badge loading />
-            </Col>
-          </Row>
-        ))
-      ) : (
-        <Row justify="center" align="middle">
-          <Empty
-            description="Sem crachás ainda"
-            image={Empty.PRESENTED_IMAGE_SIMPLE}
-          />
-        </Row>
-      )}
+      <Content isLoading={isLoading} badges={badges} />
     </AppLayout>
   );
 }

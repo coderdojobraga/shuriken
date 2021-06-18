@@ -76,7 +76,7 @@ function Badge() {
                         (ninja.belt !== BELT.LEVELS.WHITE && ninja.belt) || null
                       }
                     >
-                      {belt.PT[ninja.belt]}
+                      {BELT.PT[ninja.belt]}
                     </Tag>
                   }
                 />
