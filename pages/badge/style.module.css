@@ -1,0 +1,13 @@
+.badge {
+  max-width: 300px;
+  margin-right: 40px;
+}
+
+.nobelt {
+  background: #fff;
+  border-style: dashed;
+}
+
+.belt {
+  text-transform: capitalize;
+}
