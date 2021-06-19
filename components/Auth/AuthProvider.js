@@ -50,6 +50,16 @@ export function AuthProvider({ children }) {
     router.push("/");
   }
 
+  function edit_user(values) {
+    setLoading(true);
+
+    api
+      .editUser(values)
+      .then((user) => setUser(user))
+      .catch((error) => setErrors(error?.data?.errors))
+      .finally(() => setLoading(false));
+  }
+
   // Make the provider update only when it should
   const values = useMemo(
     () => ({
@@ -59,6 +69,7 @@ export function AuthProvider({ children }) {
       login,
       sign_up,
       logout,
+      edit_user,
     }),
     // eslint-disable-next-line
     [user, isLoading, errors]

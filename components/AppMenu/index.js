@@ -33,6 +33,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }) {
     setSecondarySelectedKeys([]);
   };
   const handleClickSecondary = ({ key }) => {
+    router.push(key);
     setPrimarySelectedKeys([]);
     setSecondarySelectedKeys([key]);
   };
