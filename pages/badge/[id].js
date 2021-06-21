@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Avatar, Card, Col, List, Row, Skeleton, Tag, Typography } from "antd";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
+import LinkTo from "~/components/utils/LinkTo";
 import * as api from "~/lib/utils/api";
 import * as BELT from "~/lib/utils/belt";
 
@@ -62,24 +63,27 @@ function Badge() {
             loading={isLoadingNinjas}
             renderItem={(ninja) => (
               <List.Item>
-                <List.Item.Meta
-                  avatar={<Avatar size={64} src={ninja.photo} />}
-                  title={`${ninja.first_name} ${ninja.last_name}`}
-                  description={
-                    <Tag
-                      className={
-                        ninja.belt === BELT.LEVELS.NO_BELT
-                          ? styles.nobelt
-                          : styles.belt
-                      }
-                      color={
-                        (ninja.belt !== BELT.LEVELS.WHITE && ninja.belt) || null
-                      }
-                    >
-                      {BELT.PT[ninja.belt]}
-                    </Tag>
-                  }
-                />
+                <LinkTo href={`/profile/ninja/${ninja.id}`}>
+                  <List.Item.Meta
+                    avatar={<Avatar size={64} src={ninja.photo} />}
+                    title={`${ninja.first_name} ${ninja.last_name}`}
+                    description={
+                      <Tag
+                        className={
+                          ninja.belt === BELT.LEVELS.NO_BELT
+                            ? styles.nobelt
+                            : styles.belt
+                        }
+                        color={
+                          (ninja.belt !== BELT.LEVELS.WHITE && ninja.belt) ||
+                          null
+                        }
+                      >
+                        {BELT.PT[ninja.belt]}
+                      </Tag>
+                    }
+                  />
+                </LinkTo>
               </List.Item>
             )}
           />
