@@ -12,7 +12,7 @@ import { useState } from "react";
 
 const { Meta } = Card;
 
-function Document({ id, title, description, document }) {
+function Document({ id, title, description, document, editable = false }) {
   const [isEditing, setEditing] = useState(false);
   const [doc, setDoc] = useState({ title, description });
   const [info, setInfo] = useState({ title, description });
@@ -28,7 +28,13 @@ function Document({ id, title, description, document }) {
     <Card
       style={{ width: 300, margin: 16 }}
       actions={
-        isEditing
+        !editable
+          ? [
+              <LinkTo key="download" target="_blank" href={document}>
+                <DownloadOutlined />
+              </LinkTo>,
+            ]
+          : isEditing
           ? [
               <CloseOutlined
                 key="close"

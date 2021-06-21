@@ -64,7 +64,7 @@ function Badges() {
 
   return (
     <AppLayout>
-      <Title level={2}>Os meus Crachás</Title>
+      <Title level={2}>Os Meus Crachás</Title>
       <Content isLoading={isLoading} badges={badges} />
     </AppLayout>
   );

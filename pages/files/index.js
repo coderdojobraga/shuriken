@@ -32,7 +32,7 @@ function Files() {
       </Row>
       <Row justify="start" align="top">
         {files.map((file) => (
-          <Document key={file.id} {...file} />
+          <Document key={file.id} editable {...file} />
         ))}
       </Row>
     </AppLayout>
