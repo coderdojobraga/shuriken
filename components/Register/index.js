@@ -1,23 +1,30 @@
 /* eslint-disable jsx-a11y/accessible-emoji */ // FIxed in emoji component
 import { useRouter } from "next/router";
 import {
-  Typography,
+  Avatar,
+  Button,
+  Col,
+  DatePicker,
   Form,
   Input,
-  Button,
-  Select,
-  DatePicker,
-  Upload,
-  Space,
   Row,
-  Col,
+  Select,
+  Space,
+  Typography,
+  Upload,
 } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-import { useAuth } from "~/components/Auth";
+import {
+  MinusCircleOutlined,
+  PlusOutlined,
+  UploadOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import * as api from "~/lib/utils/api.js";
-import Emoji from "../Emoji";
+import { getBase64 } from "~/lib/utils/images";
+import Emoji from "~/components/Emoji";
 
 import styles from "./style.module.css";
+import { useState } from "react";
 
 const { Option } = Select;
 
@@ -32,20 +39,20 @@ const CountrySelect = () => (
 function Register() {
   const router = useRouter();
   const { Title } = Typography;
-  const { user, errors, isLoading } = useAuth();
+  const [isLoading, setLoading] = useState(false);
+  const [errors, setErrors] = useState();
+  const [avatar, setAvatar] = useState(null);
+  const [socials] = useState(["Codewars", "GitHub", "GitLab", "Scratch"]);
 
-  const onFinish = (e) => {
+  const onFinish = (values) => {
+    setLoading(true);
     api
-      .registerMentor({
-        user_id: user.id,
-        first_name: e.first_name,
-        last_name: e.last_name,
-        mobile: e.mobile,
-        photo: e.photo?.file,
-        // birtday,
-        major: e.major,
+      .registerUser(values)
+      .then(() => {
+        router.push("/dashboard");
       })
-      .then(() => router.push("/dashboard"));
+      .catch((error) => setErrors(error?.data?.errors))
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -69,12 +76,9 @@ function Register() {
         </Col>
       </Row>
 
-      {/* <Row justify="center">
-        <Avatar
-          size={70}
-          icon={<UserOutlined />}
-        />
-      </Row> */}
+      <Row justify="center">
+        <Avatar src={avatar} size={70} icon={<UserOutlined />} />
+      </Row>
 
       <Row justify="center">
         <Col xs={24} md={20} xl={15} xxl={10}>
@@ -85,7 +89,7 @@ function Register() {
             className={styles.form}
           >
             <Form.Item
-              name="first_name"
+              name="user[first_name]"
               label="Nome"
               rules={[
                 {
@@ -98,7 +102,7 @@ function Register() {
             </Form.Item>
 
             <Form.Item
-              name="last_name"
+              name="user[last_name]"
               label="Apelido"
               rules={[
                 {
@@ -110,7 +114,7 @@ function Register() {
               <Input placeholder="Apelido" type="text" />
             </Form.Item>
             <Form.Item
-              name="mobile"
+              name="user[mobile]"
               label="Telemóvel"
               rules={[
                 {
@@ -128,7 +132,7 @@ function Register() {
             </Form.Item>
 
             <Form.Item
-              name="birthday"
+              name="user[birthday]"
               label="Data de nascimento"
               rules={[
                 {
@@ -145,7 +149,7 @@ function Register() {
             </Form.Item>
 
             <Form.Item
-              name="major"
+              name="user[major]"
               label="Curso"
               rules={[
                 {
@@ -158,18 +162,18 @@ function Register() {
             </Form.Item>
 
             <Form.Item
-              name="photo"
+              name="user[photo]"
               label="Foto de perfil"
               valuePropName="avatar"
             >
               <Upload
                 name="avatar"
                 accept="image/*"
-                beforeUpload={() => {
-                  // Prevent upload
+                beforeUpload={(file) => {
+                  getBase64(file, (imageUrl) => setAvatar(imageUrl));
                   return false;
                 }}
-                listType="picture"
+                onRemove={() => setAvatar(null)}
                 multiple={false}
                 maxCount={1}
                 showUploadList={{
@@ -178,39 +182,55 @@ function Register() {
                   showRemoveIcon: true,
                 }}
               >
-                {/* <input
-                type="file"
-                id="avatar"
-                name="avatar"
-                accept="image/png, image/jpeg"
-              /> */}
                 <Button icon={<UploadOutlined />}>Selecionar</Button>
               </Upload>
             </Form.Item>
 
-            <Form.Item name="socialmedia" label="Redes Sociais" rules={[{}]}>
-              <Space direction="vertical" style={{ width: "100%" }}>
-                <Input
-                  addonBefore="GitHub"
-                  placeholder="coderdojo"
-                  type="text"
-                />
-                <Input
-                  addonBefore="GitLab"
-                  placeholder="coderdojo"
-                  type="text"
-                />
-                <Input
-                  addonBefore="Scratch"
-                  placeholder="coderdojo"
-                  type="text"
-                />
-                <Input
-                  addonBefore="Codewars"
-                  placeholder="coderdojo"
-                  type="text"
-                />
-              </Space>
+            <Form.Item name="user[socials]" label="Redes Sociais">
+              <Form.List name="user[socials]" label="Redes Sociais">
+                {(fields, { add, remove }) => (
+                  <Space direction="vertical" style={{ width: "100%" }}>
+                    {fields.map((field) => (
+                      <Space key={field.key} align="baseline">
+                        <Form.Item {...field} name={[field.name, "name"]}>
+                          <Select
+                            placeholder="Rede Social"
+                            style={{ width: 130 }}
+                          >
+                            {socials.map((item) => (
+                              <Option
+                                key={item}
+                                value={item.toLocaleLowerCase()}
+                              >
+                                {item}
+                              </Option>
+                            ))}
+                          </Select>
+                        </Form.Item>
+                        <Form.Item {...field} name={[field.name, "username"]}>
+                          <Input placeholder="Username" />
+                        </Form.Item>
+                        <MinusCircleOutlined
+                          onClick={() => {
+                            remove(field.name);
+                          }}
+                        />
+                      </Space>
+                    ))}
+
+                    <Form.Item>
+                      <Button
+                        type="dashed"
+                        onClick={() => add()}
+                        block
+                        icon={<PlusOutlined />}
+                      >
+                        Adicionar Rede Social
+                      </Button>
+                    </Form.Item>
+                  </Space>
+                )}
+              </Form.List>
             </Form.Item>
 
             <Form.Item

@@ -1,17 +1,19 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import Image from "next/image";
 import { Menu, Avatar, Typography } from "antd";
 import {
-  HomeOutlined,
-  SettingOutlined,
-  LogoutOutlined,
-  UserOutlined,
   CalendarOutlined,
   FileOutlined,
+  HomeOutlined,
+  LogoutOutlined,
+  SettingOutlined,
   StarOutlined,
+  UserAddOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
-import Image from "next/image";
 import { useAuth } from "~/components/Auth";
+import * as USER from "~/lib/utils/user";
 
 import styles from "./style.module.css";
 
@@ -80,7 +82,12 @@ function AppMenu({ hidePrimaryMenu, collapsed }) {
                   {`${user.first_name} ${user.last_name}`}
                 </Title>
               )}
-              {!collapsed && <Text type="secondary">{user.role}</Text>}
+              {!collapsed && (
+                <Text type="secondary">
+                  {(user.role === USER.ROLES.GUARDIAN && "Guardião") ||
+                    user.role}
+                </Text>
+              )}
             </div>
             <Item key="/dashboard" icon={<HomeOutlined />}>
               Painel Principal
@@ -102,7 +109,12 @@ function AppMenu({ hidePrimaryMenu, collapsed }) {
             <Item key="/files" icon={<FileOutlined />}>
               Ficheiros
             </Item>
-            {user.role === "ninja" && (
+            {user.role === USER.ROLES.GUARDIAN && (
+              <Item key="/ninjas" icon={<UserAddOutlined />}>
+                Ninjas
+              </Item>
+            )}
+            {user.role === USER.ROLES.NINJA && (
               <Item key="/badges" icon={<StarOutlined />}>
                 Crachás
               </Item>
