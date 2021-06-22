@@ -12,12 +12,14 @@ import {
   notification,
 } from "antd";
 import { ClockCircleOutlined, UserOutlined } from "@ant-design/icons";
+import moment from "moment";
 import Badge from "~/components/Badge";
 import Document from "~/components/Document";
-import moment from "moment";
+import LinkTo from "~/components/utils/LinkTo";
 import * as api from "~/lib/utils/api";
 import * as BELT from "~/lib/utils/belt";
 import * as USER from "~/lib/utils/user";
+import * as SOCIAL from "~/lib/utils/social";
 
 import styles from "./style.module.css";
 
@@ -35,7 +37,7 @@ function Profile({ id, type }) {
       .then((response) => setInfo(response.data))
       .catch((error) => notification["error"](error.data?.errors));
 
-    if (type == USER.TYPES.NINJA) {
+    if (type == USER.ROLES.NINJA) {
       api
         .getNinjaBadges(id)
         .then((response) => setBadges(response.data))
@@ -85,6 +87,20 @@ function Profile({ id, type }) {
                 </Tag>
               </Col>
             ) : null}
+
+            <Col span={24}>
+              <Space style={{ fontSize: 30 }}>
+                {info?.socials?.map((social) => (
+                  <LinkTo
+                    key={social.id}
+                    target="_blank"
+                    href={`${SOCIAL.URLS[social.name]}/${social.username}`}
+                  >
+                    {SOCIAL.ICONS[social.name]}
+                  </LinkTo>
+                ))}
+              </Space>
+            </Col>
           </Row>
         </Space>
       </Row>
@@ -106,24 +122,26 @@ function Profile({ id, type }) {
             </Timeline.Item>
           </Timeline>
         </TabPane>
-        <TabPane tab="Crachás" key="2">
-          {badges.length == 0 ? (
-            <Empty
-              description="Sem Crachás"
-              image={Empty.PRESENTED_IMAGE_SIMPLE}
-            />
-          ) : (
-            <Row justify="start" align="middle">
-              {badges.map((badge) => (
-                <Col key={badge.id} {...{ xs: 24, md: 12, xl: 8, xxl: 6 }}>
-                  <Space>
-                    <Badge {...badge} />
-                  </Space>
-                </Col>
-              ))}
-            </Row>
-          )}
-        </TabPane>
+        {type === USER.ROLES.NINJA && (
+          <TabPane tab="Crachás" key="2">
+            {badges.length == 0 ? (
+              <Empty
+                description="Sem Crachás"
+                image={Empty.PRESENTED_IMAGE_SIMPLE}
+              />
+            ) : (
+              <Row justify="start" align="middle">
+                {badges.map((badge) => (
+                  <Col key={badge.id} {...{ xs: 24, md: 12, xl: 8, xxl: 6 }}>
+                    <Space>
+                      <Badge {...badge} />
+                    </Space>
+                  </Col>
+                ))}
+              </Row>
+            )}
+          </TabPane>
+        )}
         <TabPane tab="Projetos" key="3">
           {projects.length == 0 ? (
             <Empty
