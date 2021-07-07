@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@landing": ["landing"],
       "~/styles/*": ["styles/*"],
       "~/components/*": ["components/*"],
       "~/layouts/*": ["components/layouts/*"],
