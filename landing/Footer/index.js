@@ -1,22 +1,42 @@
+import {
+  FacebookOutlined,
+  GithubOutlined,
+  InstagramOutlined,
+  TwitterOutlined,
+} from "@ant-design/icons";
+
+import social from "~/data/social.json";
+
+const ICONS = {
+  facebook: <FacebookOutlined />,
+  instagram: <InstagramOutlined />,
+  twitter: <TwitterOutlined />,
+  github: <GithubOutlined />,
+};
+
 const Footer = () => (
-  <footer class="bg-blue-500 text-white py-8 mt-16">
-    <div class="container mx-auto flex flex-col items-center">
-      <ul class="flex  flex-row items-center gap-2 sm:gap-6 m-5">
-        <li class="cursor-pointer hover:text-blue-100">Currículo</li>
-        <span class="text-black">|</span>
-        <li class="cursor-pointer hover:text-blue-100">Projetos</li>
-        <span class="text-black">|</span>
-        <li class="cursor-pointer hover:text-blue-100">Equipa</li>
-        <span class="text-black">|</span>
-        <li class="cursor-pointer hover:text-blue-100">Sessões</li>
+  <footer className="bg-primary text-white py-8">
+    <div className="container mx-auto flex flex-col items-center">
+      <ul className="flex flex-row items-center divide-x divide-black">
+        <li className="cursor-pointer px-4 hover:text-purple-700">Currículo</li>
+        <li className="cursor-pointer px-4 hover:text-purple-700">Projetos</li>
+        <li className="cursor-pointer px-4 hover:text-purple-700">Equipa</li>
+        <li className="cursor-pointer px-4 hover:text-purple-700">Sessões</li>
       </ul>
-      <div class="flex flex-row items-center gap-12 m-5">
-        <img src="img/social/facebook.svg" />
-        <img src="img/social/instagram.svg" />
-        <img src="img/social/twitter.svg" />
-        <img src="img/social/github.svg" />
+      <div className="flex flex-row items-center gap-12 m-5">
+        {social.map(({ key, base_url, username }) => (
+          <a
+            key={key}
+            href={`${base_url}/${username}`}
+            className="text-2xl hover:text-purple-700"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {ICONS[key]}
+          </a>
+        ))}
       </div>
-      <p class="m-5">&copy; 2021 CoderDojo Braga.</p>
+      <p className="m-5">&copy; 2021 CoderDojo Braga.</p>
     </div>
   </footer>
 );

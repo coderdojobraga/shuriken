@@ -7,7 +7,8 @@
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:@next/next/recommended"
   ],
   "env": {
     "browser": true,
@@ -21,12 +22,14 @@
     "import/resolver": {
       "alias": {
         "map": [
-          ["~/styles", "./styles"],
+          ["@landing", "./landing"],
           ["~/components", "./components"],
+          ["~/data", "./data"],
           ["~/layouts", "./components/layouts"],
-          ["~/lib", "./lib"]
+          ["~/lib", "./lib"],
+          ["~/styles", "./styles"]
         ],
-        "extensions": [".js"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   },

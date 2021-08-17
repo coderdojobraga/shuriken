@@ -2,11 +2,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@landing": ["landing"],
-      "~/styles/*": ["styles/*"],
+      "@landing": ["landing/index.js"],
       "~/components/*": ["components/*"],
+      "~/data/*": ["data/*"],
       "~/layouts/*": ["components/layouts/*"],
-      "~/lib/*": ["lib/*"]
+      "~/lib/*": ["lib/*"],
+      "~/styles/*": ["styles/*"]
     }
   }
 }
