@@ -16,8 +16,8 @@ const ICONS = {
 
 const Footer = () => (
   <footer className="bg-dark text-white">
-    <div className="container mx-auto p-3">
-      <div className="grid md:grid-cols-3 items-center">
+    <div className="container mx-auto">
+      <div className="grid md:grid-cols-3 items-center mx-12">
         <div className="flex flex-row justify-center order-last md:justify-start md:order-first">
           <p>&copy; 2021 CoderDojo Braga.</p>
         </div>

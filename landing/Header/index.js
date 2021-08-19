@@ -8,8 +8,8 @@ function Header() {
   const [isDrawerVisible, setVisibleDrawer] = useState(false);
 
   return (
-    <header>
-      <nav className="container mx-auto flex items-center p-3 mt-4">
+    <header className="container mx-auto">
+      <nav className="flex flex-row justify-between items-center mx-2 lg:mx-12 py-3 mt-4">
         <div className="py-2">
           <img
             className="w-48"
@@ -17,7 +17,7 @@ function Header() {
             alt="CoderDojo Braga Logo"
           />
         </div>
-        <ul className="hidden md:flex flex-1 justify-end items-center gap-12 text-black text-sm uppercase">
+        <ul className="hidden md:flex items-center gap-12 text-black text-sm uppercase">
           <li className="cursor-pointer hover:text-primary">Currículo</li>
           <li className="cursor-pointer hover:text-primary">Projetos</li>
           <li className="cursor-pointer hover:text-primary">Equipa</li>
