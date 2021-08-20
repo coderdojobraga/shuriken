@@ -11,10 +11,10 @@ const Hero = () => (
       </div>
       <div className="flex flex-col sm:flex-row gap-12 -mt-4">
         <button className="bg-primary text-white rounded-3xl px-4 py-2 transform duration-300 hover:bg-purple-600">
-          Quero ser Mentor
-        </button>
-        <button className="bg-gray-100 text-black rounded-3xl px-4 py-2 transform duration-300 hover:bg-gray-200">
           Quero ser Ninja
+        </button>
+        <button className="bg-dark text-white rounded-3xl px-4 py-2 transform duration-300 hover:bg-gray-800">
+          Quero ser Mentor
         </button>
       </div>
     </div>

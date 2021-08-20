@@ -21,12 +21,6 @@ const Footer = () => (
         <div className="flex flex-row justify-center order-last md:justify-start md:order-first">
           <p>&copy; 2021 CoderDojo Braga.</p>
         </div>
-        {/* <ul className="flex flex-row items-center divide-x divide-black">
-        <li className="cursor-pointer px-4 hover:text-primary">Currículo</li>
-        <li className="cursor-pointer px-4 hover:text-primary">Projetos</li>
-        <li className="cursor-pointer px-4 hover:text-primary">Equipa</li>
-        <li className="cursor-pointer px-4 hover:text-primary">Sessões</li>
-      </ul> */}
         <div className="flex flex-row justify-center items-center gap-12 m-5">
           {social.map(({ key, base_url, username }) => (
             <a
