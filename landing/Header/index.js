@@ -11,16 +11,22 @@ function Header() {
     <header className="container mx-auto">
       <nav className="flex flex-row justify-between items-center mx-2 lg:mx-12 xl:mx-20 py-3 mt-4">
         <div className="py-2">
-          <img
-            className="w-48"
-            src="/img/logo-lettering.png"
-            alt="CoderDojo Braga Logo"
-          />
+          <a href="/">
+            <img
+              className="w-48"
+              src="/img/logo-lettering.png"
+              alt="CoderDojo Braga Logo"
+            />
+          </a>
         </div>
         <ul className="hidden md:flex items-center gap-12 text-black text-sm uppercase">
           <li className="cursor-pointer hover:text-primary">Currículo</li>
           <li className="cursor-pointer hover:text-primary">Projetos</li>
-          <li className="cursor-pointer hover:text-primary">Equipa</li>
+          <li className="cursor-pointer hover:text-primary">
+            <a href="team">
+              Equipa
+            </a>
+          </li>
           {user ? (
             <li className="text-bold">
               Hello, {user.first_name} {user.last_name}
@@ -53,7 +59,11 @@ function Header() {
             <ul className="flex flex-col items-center text-xl gap-6 uppercase">
               <li className="cursor-pointer hover:text-primary">Currículo</li>
               <li className="cursor-pointer hover:text-primary">Projetos</li>
-              <li className="cursor-pointer hover:text-primary">Equipa</li>
+              <li className="cursor-pointer hover:text-primary">
+                <a href="./team.js">
+                  Equipa
+                </a>
+              </li>
             </ul>
           </Drawer>
         </div>
