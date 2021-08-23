@@ -1,6 +1,6 @@
 import { MessageFilled } from "@ant-design/icons";
 
-export default function DesignMarketing({ }) {
+export default function DesignMarketing() {
     return (
         <section className="mt-12 bg-primary overflow-hidden">
             <div className="mb-20 container mx-auto">
