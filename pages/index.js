@@ -102,7 +102,7 @@ const Home = () => (
         </section>
       </div>
     </div>
-    <Footer bgColor="dark" fgColor="white"/>
+    <Footer bgColor="dark" fgColor="white" />
   </>
 );
 
