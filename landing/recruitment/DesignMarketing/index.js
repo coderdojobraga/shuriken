@@ -55,6 +55,7 @@ export default function DesignMarketing({ }) {
                             crescido nos últimos anos e poder ajudá-lo a chegar ainda mais longe.
                             Integrar a equipa de Comunicação e Marketing do Dojo tem-me permitido ganhar
                             experiência prática na minha área e aprender imenso com os restantes mentores e voluntários.
+
                         </p>
                         <h1 className="font-semibold text-white text-right text-7xl">
                             "
