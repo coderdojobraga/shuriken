@@ -6,7 +6,7 @@
     "stylelint-prettier/recommended",
     "stylelint-config-prettier",
     "stylelint-config-css-modules"
-],
+  ],
   "rules": {
     "prettier/prettier": true,
     "at-rule-no-unknown": [
