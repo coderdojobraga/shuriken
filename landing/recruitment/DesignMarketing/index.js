@@ -51,10 +51,19 @@ export default function DesignMarketing({ }) {
                             "
                         </h1>
                         <p className="text-white text-2xl leading-relaxed mt-4 mb-4">
+<<<<<<< HEAD
                             É realmente fantástico fazer parte de um projeto que tanto tem
                             crescido nos últimos anos e poder ajudá-lo a chegar ainda mais longe.
                             Integrar a equipa de Comunicação e Marketing do Dojo tem-me permitido ganhar
                             experiência prática na minha área e aprender imenso com os restantes mentores e voluntários.
+=======
+                             Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. Curabitur aliquam dui id mattis accumsan.
+                            Nullam a ornare lorem, nec fermentum lorem.
+                            is an open source project we wanted to continue this movement
+                            too. You can give this version a try to feel the design and also
+                            test the quality of the code!
+>>>>>>> 2bb327960d36bc60c7a9ce6fa74d252c2ba7b71b
                         </p>
                         <h1 className="font-semibold text-white text-right text-7xl">
                             "
