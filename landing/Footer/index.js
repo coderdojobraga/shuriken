@@ -14,8 +14,8 @@ const ICONS = {
   github: <GithubOutlined />,
 };
 
-const Footer = () => (
-  <footer className="bg-dark text-white">
+const Footer = ({ bgColor, fgColor }) => (
+  <footer className={`bg-${bgColor} text-${fgColor}`}>
     <div className="container mx-auto">
       <div className="grid md:grid-cols-3 items-center mx-12">
         <div className="flex flex-row justify-center order-last md:justify-start md:order-first">
