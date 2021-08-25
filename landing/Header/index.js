@@ -59,7 +59,7 @@ function Header() {
               <li className="cursor-pointer hover:text-primary">Currículo</li>
               <li className="cursor-pointer hover:text-primary">Projetos</li>
               <li className="cursor-pointer hover:text-primary">
-                <a href="./team">Equipa</a>
+                <Link href="/team">Equipa</Link>
               </li>
             </ul>
           </Drawer>
