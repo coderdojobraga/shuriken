@@ -1,6 +1,6 @@
 import { Header, Member, Footer } from "@landing";
 
-import team from "data/team.json";
+import team from "~/data/team.json";
 
 export default function Team() {
   return (
