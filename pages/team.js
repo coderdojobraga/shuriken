@@ -40,7 +40,7 @@ export default function Team() {
             <div className="inline-flex rounded-md shadow">
               <a
                 href=""
-                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-purple-600"
+                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-3xl text-white bg-primary hover:bg-purple-600"
               >
                 Saber Mais
               </a>
