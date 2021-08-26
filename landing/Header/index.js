@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import { Drawer } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import { useAuth } from "~/components/Auth";
@@ -11,9 +12,11 @@ function Header() {
     <header className="container mx-auto">
       <nav className="flex flex-row justify-between items-center mx-2 lg:mx-12 py-3 mt-4">
         <div className="py-2">
-          <img
-            className="w-48"
-            src="/img/logo-lettering.png"
+          <Image
+            layout="fixed"
+            width={208}
+            height={65}
+            src="/img/logo-lettering-dark.svg"
             alt="CoderDojo Braga Logo"
           />
         </div>
