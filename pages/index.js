@@ -7,7 +7,7 @@ const Home = () => (
     <Header />
     <Hero />
     <div className="container mx-auto">
-      <section className="relative mx-2 lg:mx-12 md:mt-28">
+      <section className="relative mx-2 lg:mx-12 xl:mx-20 md:mt-28">
         <div className="container w-11/12 sm:w-10/12 lg:w-4/6 flex flex-col items-start my-8 py-2">
           <h2 className="text-2xl sm:text-3xl font-semibold py-2">
             <span className="text-purple-500 text-2xl sm:text-3xl mr-1">|</span>
@@ -23,7 +23,7 @@ const Home = () => (
       </section>
     </div>
     <div className="container mx-auto">
-      <section className="relative mx-2 lg:mx-12 my-12 flex justify-end text-white">
+      <section className="relative mx-2 lg:mx-12 xl:mx-20 my-12 flex justify-end text-white">
         <div className="container w-11/12 sm:w-10/12 lg:w-4/6 flex flex-col items-end my-8 py-2">
           <h2 className="text-2xl sm:text-3xl text-white font-semibold py-2 gap-1">
             Como funciona o Dojo?
@@ -46,7 +46,7 @@ const Home = () => (
     </div>
 
     <div className="container mx-auto">
-      <section className="relative mx-2 lg:mx-12 py-5">
+      <section className="relative mx-2 lg:mx-12 xl:mx-20 py-5">
         <div className="flex flex-col items-start my-8 lg:my-12 md:mt-0">
           <h2 className="text-white text-2xl sm:text-3xl font-semibold py-2">
             <span className="text-purple-500 text-2xl sm:text-3xl mr-1">|</span>
@@ -85,7 +85,7 @@ const Home = () => (
     </div>
     <div className="bg-dark">
       <div className="container mx-auto">
-        <section className="relative mx-2 lg:mx-12 text-white py-10">
+        <section className="relative mx-2 lg:mx-12 xl:mx-20 text-white py-10">
           <div className="container mx-auto">
             <hr className="py-2 mx-auto w-6/12 lg:w-3/12 border-purple-500 h-8/12 text-center text-2xl" />
             <div className="mx-auto text-center w-9/12 md:w-8/12 m-4 text-2xl">
