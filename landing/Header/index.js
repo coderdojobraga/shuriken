@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import { Drawer } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import { useAuth } from "~/components/Auth";
@@ -21,6 +22,9 @@ function Header() {
           <li className="cursor-pointer hover:text-primary">Currículo</li>
           <li className="cursor-pointer hover:text-primary">Projetos</li>
           <li className="cursor-pointer hover:text-primary">Equipa</li>
+          <li className="cursor-pointer hover:text-primary">
+            <Link href="recruitment">Recrutamento</Link>
+          </li>
           {user ? (
             <li className="text-bold">
               Hello, {user.first_name} {user.last_name}
