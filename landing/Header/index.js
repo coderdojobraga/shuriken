@@ -9,7 +9,7 @@ function Header() {
 
   return (
     <header className="container mx-auto">
-      <nav className="flex flex-row justify-between items-center mx-2 lg:mx-12 py-3 mt-4">
+      <nav className="flex flex-row justify-between items-center mx-2 lg:mx-12 xl:mx-20 py-3 mt-4">
         <div className="py-2">
           <img
             className="w-48"
