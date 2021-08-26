@@ -27,7 +27,7 @@ export default function DesignMarketing({}) {
             <a
               href=""
               className="mt-4 inline-block text-primary 
-                                       font-bold px-6 py-4 rounded outline-none
+                                       font-bold px-6 py-4 rounded-3xl outline-none
                                        mr-1 mb-1 bg-white uppercase text-sm shadow
                                        hover:bg-purple-100 hover:text-primary"
             >

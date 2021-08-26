@@ -25,7 +25,7 @@ export default function Developer({}) {
             <a
               href=""
               className="mt-4 inline-block text-white
-                                       font-bold px-6 py-4 rounded outline-none
+                                       font-bold px-6 py-4 rounded-3xl outline-none
                                        mr-1 mb-1 bg-primary uppercase text-sm shadow
                                        hover:bg-purple-600 hover:text-white"
             >
@@ -34,7 +34,7 @@ export default function Developer({}) {
             <a
               href=""
               className="mt-4 inline-block text-white 
-                                       font-bold px-6 py-4 rounded outline-none
+                                       font-bold px-6 py-4 rounded-3xl outline-none
                                        mr-1 mb-1 bg-primary uppercase text-sm shadow
                                        hover:bg-purple-600 hover:text-white"
             >

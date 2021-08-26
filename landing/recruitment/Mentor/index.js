@@ -25,7 +25,7 @@ export default function Mentor() {
             <a
               href=""
               className="mt-4 inline-block text-white
-                                       font-bold px-6 py-4 rounded outline-none
+                                       font-bold px-6 py-4 rounded-3xl outline-none
                                        mr-1 mb-1 bg-primary uppercase text-sm shadow
                                        hover:bg-purple-600 hover:text-white"
             >
@@ -36,7 +36,7 @@ export default function Mentor() {
             <img
               alt="Mentores do Dojo"
               src="img/mentor.jpg"
-              className="shadow-lg"
+              className="shadow-2xl rounded-2xl"
             />
           </div>
         </div>
