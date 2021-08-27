@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Drawer } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import { useAuth } from "~/components/Auth";
+import Link from "next/link";
 
 function Header() {
   const { user } = useAuth();
@@ -24,6 +25,9 @@ function Header() {
           <li className="cursor-pointer hover:text-primary">Currículo</li>
           <li className="cursor-pointer hover:text-primary">Projetos</li>
           <li className="cursor-pointer hover:text-primary">Equipa</li>
+          <li className="cursor-pointer hover:text-primary">
+            <Link href="/blog"> Blog </Link>
+          </li>
           {user ? (
             <li className="text-bold">
               Hello, {user.first_name} {user.last_name}
@@ -57,6 +61,9 @@ function Header() {
               <li className="cursor-pointer hover:text-primary">Currículo</li>
               <li className="cursor-pointer hover:text-primary">Projetos</li>
               <li className="cursor-pointer hover:text-primary">Equipa</li>
+              <li className="cursor-pointer hover:text-primary">
+                <Link href="/blog"> Blog </Link>
+              </li>
             </ul>
           </Drawer>
         </div>
