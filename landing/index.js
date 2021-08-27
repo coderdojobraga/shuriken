@@ -7,4 +7,4 @@ import Feature from "./blog/Feature";
 import Pagination from "./blog/Pagination";
 import Topic from "./blog/Topic";
 
-export { Footer, Header, Hero, Entry, Author, Feature, Pagination, Topic};
+export { Footer, Header, Hero, Entry, Author, Feature, Pagination, Topic };
