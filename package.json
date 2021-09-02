@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "develop": "npm-run-all dev",
-    "dev": "next dev",
-    "build": "next build",
+    "develop": "npm-run-all less start-dev-server",
+    "start-dev-server": "next dev",
+    "build": "npm-run-all less start-build",
+    "start-build": "next build",
     "start": "next start",
+    "less": "lessc --js styles/antd-theme.less styles/antd-theme.css",
     "lint": "npm-run-all lint:*",
     "lint:js": "eslint --fix . --ignore-path .gitignore",
     "lint:css": "stylelint --fix './**/*.{css,js}' --ignore-path .gitignore",
@@ -21,6 +23,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.6.3",
     "antd": "^4.16.12",
+    "less": "^4.1.1",
     "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
