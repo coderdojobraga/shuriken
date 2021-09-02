@@ -2,6 +2,7 @@ import { Form, Input, Button, Typography } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import { useAuth } from "~/components/Auth";
 import Link from "next/link";
+import Koi from "../Koi";
 
 import styles from "./style.module.css";
 
@@ -15,6 +16,8 @@ function Login() {
 
   return (
     <Form name="login" onFinish={onFinish}>
+      <Koi />
+
       <Title>Iniciar sessão</Title>
 
       <Form.Item

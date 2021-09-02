@@ -1,0 +1,27 @@
+@media (min-width: 1030px) {
+  .fishesHolder {
+    height: 100%;
+    position: relative;
+  }
+
+  .fishesHolder .fish-float {
+    position: absolute;
+  }
+
+  .fishesHolder .fish-wrapper {
+    display: block;
+    position: relative;
+  }
+
+  .fishesHolder .fish-fin {
+    z-index: -1;
+  }
+
+  .fishesHolder .fish-shadow {
+    position: absolute;
+    width: 60px;
+    height: 121px;
+    transform-origin: 30px 34px;
+    background-image: url("/koi/shadow.png");
+  }
+}

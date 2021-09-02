@@ -1,4 +1,5 @@
 import { Layout } from "antd";
+import Koi from "~/components/Koi";
 
 import styles from "./style.module.css";
 
@@ -8,6 +9,7 @@ function AuthenticationLayout({ children }) {
   return (
     <Layout>
       <Content className={styles.content}>
+        <Koi />
         <div className={styles.main}>
           <img
             className={styles.logo}
