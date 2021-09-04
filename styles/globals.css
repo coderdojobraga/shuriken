@@ -1,4 +1,4 @@
-@import "~styles/antd-theme.css";
+@import "~/styles/antd-theme.css";
 
 @tailwind base;
 @tailwind components;
