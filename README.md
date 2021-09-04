@@ -84,6 +84,20 @@ uses.
 - [Learn Next.js](https://nextjs.org/learn)
 - [Next.js Documentation](https://nextjs.org/docs)
 
+## :warning: Dirty hacks you should be aware of
+
+Through no fault of your own (of course :wink:), the following hacks (or, as we prefer to call them: unconventional programming techniques) made their way into our code. **If you want to potentially save yourself some hours of bug hunting**, we recommend you read this section.
+
+### :arrow_right: Ant Design theme customization
+
+This project uses [Ant Design](https://ant.design/) for the styling of its authenticated pages.
+
+Unfortunately for us, Ant requires LESS support for theme customization and NextJS doesn't support it.
+
+To solve this, we adapted the npm scripts to always compile the necessary LESS files before starting a build or a development server. This means that any changes made the the Ant theme will trigger a build in a development server; you have to restart it to see the effects.
+
+For more information refer to [PR #30](https://github.com/coderdojobraga/shuriken/pull/30).
+
 ## :handshake: Contributing
 
 Please read [CONTRIBUTING][contributing] and [CODE_OF_CONDUCT][code_of_conduct]
