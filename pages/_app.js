@@ -1,9 +1,9 @@
-import "~/styles/globals.css";
-
+import Head from "next/head";
 import { ConfigProvider } from "antd";
 import ptPT from "antd/lib/locale/pt_PT";
 import { AuthProvider } from "~/components/Auth";
-import Head from "next/head";
+
+import "~/styles/globals.css";
 
 function Shuriken({ Component, pageProps }) {
   const typeTemplate = "Não é um ${type} válido";

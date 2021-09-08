@@ -1,20 +1,22 @@
 .logo {
-  width: 60%;
+  width: 90%;
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 5%;
+  cursor: pointer;
 }
 
 .logo_collapsed {
   width: 60%;
   margin: auto;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .user {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   padding-top: 50px;
   padding-bottom: 35px;
   text-align: center;
@@ -26,9 +28,9 @@
 }
 
 .menu {
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh;
   overflow: auto;
   background-color: #fff;
 }
@@ -38,8 +40,8 @@
 }
 
 .primary {
-  height: max-content;
   flex-grow: 1;
+  height: max-content;
 }
 
 .secondary {

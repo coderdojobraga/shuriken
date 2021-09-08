@@ -16,10 +16,10 @@ import moment from "moment";
 import Badge from "~/components/Badge";
 import Document from "~/components/Document";
 import LinkTo from "~/components/utils/LinkTo";
-import * as api from "~/lib/utils/api";
-import * as BELT from "~/lib/utils/belt";
-import * as USER from "~/lib/utils/user";
-import * as SOCIAL from "~/lib/utils/social";
+import * as api from "~/lib/api";
+import * as BELT from "~/lib/belt";
+import * as USER from "~/lib/user";
+import * as SOCIAL from "~/lib/social";
 
 import styles from "./style.module.css";
 

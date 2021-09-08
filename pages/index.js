@@ -70,7 +70,7 @@ const Home = () => (
               </h3>
               <h4 className="text-gray-400 text-lg">Tomás Campos</h4>
             </div>
-            <div className="hidden lg:inline-flex flex flex-col items-center">
+            <div className="hidden lg:inline-flex flex-col items-center">
               <div className="rounded-2xl bg-purple-500 p-1 mb-4">
                 <div className="relative w-96 h-72">
                   <Image
@@ -94,7 +94,7 @@ const Home = () => (
       <div className="container mx-auto">
         <section className="relative mx-2 lg:mx-12 xl:mx-20 text-white py-10">
           <div className="container mx-auto">
-            <hr className="py-2 mx-auto w-6/12 lg:w-3/12 border-purple-500 h-8/12 text-center text-2xl" />
+            <hr className="py-2 mx-auto w-6/12 lg:w-3/12 border-purple-500 text-center" />
             <div className="mx-auto text-center w-9/12 md:w-8/12 m-4 text-2xl">
               O CoderDojo Braga pretende dar a todas as crianças e jovens da
               região minhota a oportunidade de aprenderem a programar num

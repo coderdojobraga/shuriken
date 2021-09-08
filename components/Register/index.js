@@ -19,8 +19,8 @@ import {
   UploadOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import * as api from "~/lib/utils/api.js";
-import { getBase64 } from "~/lib/utils/images";
+import * as api from "~/lib/api";
+import { getBase64 } from "~/lib/images";
 import Emoji from "~/components/Emoji";
 
 import styles from "./style.module.css";

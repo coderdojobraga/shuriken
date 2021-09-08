@@ -5,6 +5,8 @@
 [deploy-url]: https://coderdojo-braga.vercel.app
 [style-status]: https://github.com/coderdojobraga/shuriken/actions/workflows/style.yml/badge.svg
 [style-workflow]: https://github.com/coderdojobraga/shuriken/actions/workflows/style.yml
+[figma-landing]: https://www.figma.com/file/vrq1JmgubKLKgsLQf1D6Bl
+[figma-shuriken]: https://www.figma.com/file/1phER5eukGFC5p9tFGnfk7/SEI
 
 # shuriken
 
@@ -12,6 +14,8 @@
 
 [![Vercel][vercel-status]][deploy-url]
 [![CI Style][style-status]][style-workflow]
+[![Design Shuriken](https://img.shields.io/badge/figma-shuriken-F24E1E?style=flat&logo=figma&logoColor=F24E1E)][figma-shuriken]
+[![Design Landing](https://img.shields.io/badge/figma-landing-F24E1E?style=flat&logo=figma&logoColor=F24E1E)][figma-landing]
 
 Platform support API for managing session registrations and recording ninjas'
 progress.
