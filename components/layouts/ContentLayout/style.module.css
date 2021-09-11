@@ -1,12 +1,12 @@
 .navbar {
-  background: none;
   padding: 0;
   margin: 0;
+  background: none;
 }
 
 .content {
-  padding: 50px;
   min-height: calc(100vh - 135px);
+  padding: 50px;
 }
 
 .main {

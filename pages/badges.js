@@ -3,7 +3,7 @@ import { Col, Empty, Row, Typography } from "antd";
 import AppLayout from "~/components/layouts/AppLayout";
 import { withAuth } from "~/components/Auth";
 import Badge from "~/components/Badge";
-import * as api from "~/lib/utils/api";
+import * as api from "~/lib/api";
 
 const breakpoins = {
   xs: 24,

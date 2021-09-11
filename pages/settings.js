@@ -14,9 +14,9 @@ import {
 } from "antd";
 import moment from "moment";
 import { UploadOutlined } from "@ant-design/icons";
+import { getBase64 } from "~/lib/images";
 import { useAuth, withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
-import { getBase64 } from "~/lib/utils/images";
 
 const { Title } = Typography;
 

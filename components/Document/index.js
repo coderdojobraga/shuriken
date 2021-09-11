@@ -6,7 +6,7 @@ import {
   PaperClipOutlined,
   SaveOutlined,
 } from "@ant-design/icons";
-import * as api from "~/lib/utils/api.js";
+import * as api from "~/lib/api.js";
 import LinkTo from "~/components/utils/LinkTo";
 import { useState } from "react";
 

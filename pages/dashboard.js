@@ -4,7 +4,7 @@ import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import Event from "~/components/Event";
 import Badge from "~/components/Badge";
-import * as api from "~/lib/utils/api";
+import * as api from "~/lib/api";
 
 import styles from "~/styles/Dashboard.module.css";
 

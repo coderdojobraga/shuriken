@@ -3,7 +3,7 @@ import { Typography, Row } from "antd";
 import AppLayout from "~/components/layouts/AppLayout";
 import { withAuth } from "~/components/Auth";
 import Event from "~/components/Event";
-import * as api from "~/lib/utils/api";
+import * as api from "~/lib/api";
 
 import styles from "~/styles/Dashboard.module.css";
 

@@ -3,7 +3,7 @@ import { Button, Col, Row, Typography } from "antd";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import Document from "~/components/Document";
-import * as api from "~/lib/utils/api.js";
+import * as api from "~/lib/api.js";
 import LinkTo from "~/components/utils/LinkTo";
 
 const { Title } = Typography;

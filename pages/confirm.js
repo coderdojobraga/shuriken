@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { Result, Button } from "antd";
 import { useAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
-import * as api from "~/lib/utils/api";
+import * as api from "~/lib/api";
 
 export async function getServerSideProps({ query }) {
   const { token } = query;

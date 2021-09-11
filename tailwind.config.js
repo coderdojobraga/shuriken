@@ -12,10 +12,6 @@ module.exports = {
         dark: "#343434",
         orange: "#ed684aff",
       },
-      backgroundImage: () => ({
-        "yin-yang-curve": "url('/img/bg-yin-yang-curve.png')",
-        "yin-yang-curve-xl": "url('/img/bg-yin-yang-curve-xl.png')",
-      }),
     },
   },
   variants: {
