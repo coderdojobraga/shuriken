@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Typography, Row } from "antd";
+import { Typography, Col, Row } from "antd";
 import AppLayout from "~/components/layouts/AppLayout";
 import { withAuth } from "~/components/Auth";
 import Event from "~/components/Event";
@@ -22,9 +22,11 @@ function Events() {
   return (
     <AppLayout>
       <Title level={2}>Eventos</Title>
-      <Row className={styles.row} align="top" justify="space-between">
+      <Row className={styles.row} align="top" justify="start" gutter={[16, 16]}>
         {events.map((info) => (
-          <Event key={info.id} event={info} />
+          <Col key={info.id}>
+            <Event event={info} />
+          </Col>
         ))}
       </Row>
     </AppLayout>

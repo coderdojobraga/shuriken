@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Avatar, Card, Col, List, Row, Skeleton, Tag, Typography } from "antd";
+import { useBadge } from "~/hooks/badges";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import LinkTo from "~/components/utils/LinkTo";
-import * as api from "~/lib/api";
 import * as BELT from "~/lib/belt";
 
 import styles from "./style.module.css";
@@ -14,53 +13,38 @@ const { Title, Text } = Typography;
 function Badge() {
   const router = useRouter();
   const { id } = router.query;
-  const [isLoadingBadge, setLoadingBadge] = useState(false);
-  const [isLoadingNinjas, setLoadingNinjas] = useState(false);
-  const [badge, setBadge] = useState({});
-  const [ninjas, setNinjas] = useState([]);
-
-  useEffect(() => {
-    setLoadingBadge(true);
-    api
-      .getBadge(id)
-      .then((response) => setBadge(response.data))
-      .catch(() => {})
-      .finally(() => setLoadingBadge(false));
-
-    setLoadingNinjas(true);
-    api
-      .getBadgeNinjas(id)
-      .then((response) => setNinjas(response.data))
-      .catch(() => {})
-      .finally(() => setLoadingNinjas(false));
-  }, [id]);
+  const { data: badge, isLoading } = useBadge(id, ["ninjas"]);
 
   return (
     <AppLayout>
       <Row justify="start">
         <Col {...{ xs: 24, md: 12, xl: 8, xxl: 8 }}>
           <Card
-            loading={isLoadingBadge}
+            loading={isLoading}
             className={styles.badge}
             bordered={false}
             cover={
-              isLoadingBadge ? (
+              isLoading ? (
                 <Skeleton.Image />
               ) : (
-                <img alt={badge.description} src={badge.image} />
+                <img
+                  className={styles.image}
+                  alt={badge?.description}
+                  src={badge?.image}
+                />
               )
             }
           >
-            <Title level={3}>{badge.name}</Title>
-            <Text>{badge.description}</Text>
+            <Title level={3}>{badge?.name}</Title>
+            <Text>{badge?.description}</Text>
           </Card>
         </Col>
         <Col {...{ xs: 24, md: 12, xl: 16, xxl: 16 }}>
           <List
             header={<Title level={2}>Ninjas</Title>}
             itemLayout="horizontal"
-            dataSource={ninjas}
-            loading={isLoadingNinjas}
+            dataSource={badge?.ninjas}
+            loading={isLoading}
             renderItem={(ninja) => (
               <List.Item>
                 <LinkTo href={`/profile/ninja/${ninja.id}`}>

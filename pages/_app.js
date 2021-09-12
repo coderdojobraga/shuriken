@@ -1,9 +1,13 @@
 import Head from "next/head";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { ConfigProvider } from "antd";
 import ptPT from "antd/lib/locale/pt_PT";
 import { AuthProvider } from "~/components/Auth";
 
 import "~/styles/globals.css";
+
+const queryClient = new QueryClient();
 
 function Shuriken({ Component, pageProps }) {
   const typeTemplate = "Não é um ${type} válido";
@@ -57,14 +61,17 @@ function Shuriken({ Component, pageProps }) {
   };
 
   return (
-    <AuthProvider>
+    <QueryClientProvider client={queryClient}>
       <ConfigProvider form={{ validateMessages }} locale={ptPT}>
-        <Head>
-          <title>CoderDojo Braga</title>
-        </Head>
-        <Component {...pageProps} />
+        <AuthProvider>
+          <Head>
+            <title>CoderDojo Braga</title>
+          </Head>
+          <Component {...pageProps} />)
+        </AuthProvider>
       </ConfigProvider>
-    </AuthProvider>
+      <ReactQueryDevtools position="bottom-right" />
+    </QueryClientProvider>
   );
 }
 
