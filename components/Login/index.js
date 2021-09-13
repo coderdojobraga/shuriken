@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { Form, Input, Button, Typography } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import { useAuth } from "~/components/Auth";
-import Link from "next/link";
-import Koi from "../Koi";
+import Koi from "~/components/Koi";
 
 import styles from "./style.module.css";
 
