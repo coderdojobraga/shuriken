@@ -24,7 +24,7 @@ function Header() {
           <li className="cursor-pointer hover:text-primary">Currículo</li>
           <li className="cursor-pointer hover:text-primary">Projetos</li>
           <li className="cursor-pointer hover:text-primary">
-            <Link href="team">Equipa</Link>
+            <Link href="/team">Equipa</Link>
           </li>
           {user ? (
             <li className="text-bold">
