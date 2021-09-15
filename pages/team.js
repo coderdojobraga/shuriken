@@ -11,8 +11,15 @@ export default function Team() {
           Equipa
         </h1>
         <div className="py-0.5 mx-20 mx-auto container w-6/12 lg:w-3/12 bg-primary h-8/12 text-center text-2xl" />
+        <h1 className="mx-20 font-semibold text-primary text-7xl">"</h1>
         <p className="mx-20 text-black text-3xl leading-relaxed mt-4 mb-4">
           Nada é impossível. Com a mente singularmente focada e uma resolução sincera - ichinen - o ceú e a terra podem ser movidos tal e qual como um deseja. Não existe nada que não possa ser alcançado.
+        </p>
+        <h1 className="mx-20 font-semibold text-primary text-right text-7xl">
+          "
+        </h1>
+        <p className="mx-20 text-black font-bold text-2xl leading-relaxed mb-4">
+          - Yamamoto Tsunetomo, Hagakure Kikigaki
         </p>
       </div>
       <section className="mb-20 relative">
