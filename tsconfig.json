@@ -5,6 +5,7 @@
       "@landing": ["landing/index.tsx"],
       "~/components/*": ["components/*"],
       "~/data/*": ["data/*"],
+      "~/hooks/*": ["hooks/*"],
       "~/layouts/*": ["components/layouts/*"],
       "~/lib/*": ["lib/*"],
       "~/styles/*": ["styles/*"]

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
 import { Col, Empty, Row, Typography } from "antd";
 import AppLayout from "~/components/layouts/AppLayout";
+import withCustomLayout from "~/components/layouts/withCustomLayout";
 import { withAuth } from "~/components/Auth";
+import { useBadges } from "~/hooks/badges";
 import Badge from "~/components/Badge";
-import * as api from "~/lib/api";
 
 const breakpoins = {
   xs: 24,
@@ -14,7 +14,9 @@ const breakpoins = {
 
 const { Title } = Typography;
 
-const Content = ({ isLoading, badges }) => {
+function Badges() {
+  const { data: badges, isLoading } = useBadges();
+
   if (isLoading) {
     return (
       <Row justify="center" align="middle">
@@ -47,27 +49,13 @@ const Content = ({ isLoading, badges }) => {
       ))}
     </Row>
   );
-};
-
-function Badges() {
-  const [badges, setBadges] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    api
-      .getBadges()
-      .then((response) => setBadges(response.data))
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, []);
-
-  return (
-    <AppLayout>
-      <Title level={2}>Os Meus Crachás</Title>
-      <Content isLoading={isLoading} badges={badges} />
-    </AppLayout>
-  );
 }
 
-export default withAuth(Badges);
+Badges.getLayout = (page) => (
+  <AppLayout>
+    <Title level={2}>Os Meus Crachás</Title>
+    {page}
+  </AppLayout>
+);
+
+export default withAuth(withCustomLayout(Badges));

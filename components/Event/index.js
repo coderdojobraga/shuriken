@@ -8,8 +8,6 @@ import {
 } from "@ant-design/icons";
 import EventInfo from "~/components/Event/EventInfo";
 
-import styles from "./style.module.css";
-
 const { useBreakpoint } = Grid;
 
 function Event({ event, collapsed = true }) {
@@ -49,7 +47,6 @@ function Event({ event, collapsed = true }) {
             {isPopupVisible ? "Fechar" : "Ver mais"}
           </Button>
         }
-        className={styles.card}
         style={collapsed ? { maxWidth: 460 } : null}
       >
         <Space

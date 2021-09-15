@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Space, Typography, Row } from "antd";
+import { Alert, Button, Space, Typography, Col, Row } from "antd";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import Event from "~/components/Event";
 import Badge from "~/components/Badge";
+import { useBadges } from "~/hooks/badges";
 import * as api from "~/lib/api";
 
 import styles from "~/styles/Dashboard.module.css";
@@ -12,17 +13,12 @@ const { Title, Paragraph } = Typography;
 
 function Dashboard() {
   const [events, setEvents] = useState([]);
-  const [badges, setBadges] = useState([]);
+  const { data: badges, isLoading: isLoadingBadges } = useBadges();
 
   useEffect(() => {
     api
       .getEvents()
       .then((response) => setEvents(response.data))
-      .catch(() => {});
-
-    api
-      .getBadges()
-      .then((response) => setBadges(response.data))
       .catch(() => {});
   }, []);
 
@@ -52,16 +48,21 @@ function Dashboard() {
         ) : null}
       </Row>
       <Title level={3}>Eventos</Title>
-      <Row className={styles.row} align="top" justify="space-between">
+      <Row className={styles.row} align="top" justify="start" gutter={[16, 16]}>
         {events.slice(0, 3).map((event) => (
-          <Event key={event.id} event={event} />
+          <Col key={event.id}>
+            <Event event={event} />
+          </Col>
         ))}
       </Row>
       <Title level={3}>Crachás</Title>
-      <Row className={styles.row} align="top" justify="space-between">
-        {badges.slice(0, 5).map((badge) => (
-          <Badge key={badge.id} {...badge} />
-        ))}
+      <Row className={styles.row} align="top" justify="start" gutter={[16, 16]}>
+        {badges &&
+          badges.slice(0, 5).map((badge) => (
+            <Col key={badge.id}>
+              <Badge {...badge} />
+            </Col>
+          ))}
       </Row>
     </AppLayout>
   );
