@@ -15,7 +15,7 @@ function Header() {
           <a href="/">
             <img
               className="w-48"
-              src="/img/logo-lettering.png"
+              src="/img/logo-lettering-dark.svg"
               alt="CoderDojo Braga Logo"
             />
           </a>
