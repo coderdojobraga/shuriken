@@ -7,7 +7,9 @@ export default function Member({ picture, name, role }) {
         className="shadow-lg rounded-full mx-auto max-w-32-px max-h-32-px"
       />
       <div className="p-4 text-center">
-        <p className="text-4xl sm:text-3xl md:text-2xl lg:text-xl font-bold">{name}</p>
+        <p className="text-4xl sm:text-3xl md:text-2xl lg:text-xl font-bold">
+          {name}
+        </p>
         <p className="mt-1 text-xl sm:text-lg md:text-md lg:text-sm text-purple-600 uppercase font-semibold">
           {role}
         </p>
