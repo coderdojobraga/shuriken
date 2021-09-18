@@ -1,6 +1,6 @@
-export default function Member({ picture, name, role }) {
+export default function Member({ key, picture, name, role }) {
   return (
-    <div className="w-12/12 sm:w-6/12 md:w-4/12 lg:w-3/12 xl:w-2/10 2xl:w-2/12 lg:mb-0 mb-12 mt-12 px-4 mx-auto">
+    <div key={key} className="w-12/12 sm:w-6/12 md:w-4/12 lg:w-3/12 xl:w-2/10 2xl:w-2/12 lg:mb-0 mb-12 mt-12 px-4 mx-auto">
       <img
         alt={name}
         src={`img/team/${picture}`}

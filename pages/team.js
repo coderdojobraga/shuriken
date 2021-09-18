@@ -18,7 +18,7 @@ export default function Team() {
           A equipa do CoderDojo Braga é composta por alunos voluntários de
           vários cursos dedicados e apaixonados pelo projeto e por tecnologia.
           Cada uma traz o seu contributo único para criar uma experiencia
-          incrível para os Ninjas e todos envolvidos como o projeto. Mais do que
+          incrível para os Ninjas e todos envolvidos com o projeto. Mais do que
           uma equipa, todos aqueles que decidem se envolver connosco encontram
           uma família.
         </p>
@@ -28,7 +28,7 @@ export default function Team() {
         <div className="mx-auto pt-20 container">
           <div className="mx-2 lg:mx-12 flex flex-wrap -mt-12">
             {team.map((entry) => (
-              <Member {...entry} />
+              <Member key={entry.name} {...entry} />
             ))}
           </div>
         </div>
