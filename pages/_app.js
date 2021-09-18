@@ -67,7 +67,7 @@ function Shuriken({ Component, pageProps }) {
           <Head>
             <title>CoderDojo Braga</title>
           </Head>
-          <Component {...pageProps} />)
+          <Component {...pageProps} />
         </AuthProvider>
       </ConfigProvider>
       <ReactQueryDevtools position="bottom-right" />
