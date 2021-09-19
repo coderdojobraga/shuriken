@@ -1,6 +1,6 @@
 export default function Author({ author, photo, numberPosts }) {
   return (
-    <li class="flex items-center py-1">
+    <li className="flex items-center py-1">
       <img
         src={`img/team/${photo}`}
         alt="avatar"
