@@ -10,7 +10,7 @@ export default function Author({ author, photo, numberPosts }) {
         <a href="#" className="mx-1 font-bold text-gray-700 hover:underline">
           {author}
         </a>
-        <span class="text-sm font-light text-gray-700">
+        <span className="text-sm font-light text-gray-700">
           Created {numberPosts} Posts
         </span>
       </p>
