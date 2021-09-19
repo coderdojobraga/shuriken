@@ -19,7 +19,7 @@ export default function Entry({ title, text, author, date, photo, topic }) {
         </div>
         <div class="flex items-center justify-between mt-4">
           <a href="#" class="text-primary hover:underline">
-            Read more
+            Ler mais
           </a>
           <div>
             <a href="#" class="flex items-center">
