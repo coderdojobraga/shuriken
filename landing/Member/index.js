@@ -10,9 +10,7 @@ export default function Member({ key, picture, name, role }) {
         className="shadow-lg rounded-full mx-auto w-56 h-56 md:w-48 md:h-48 object-scale-down"
       />
       <div className="p-4 text-center">
-        <p className="text-3xl md:text-2xl lg:text-xl font-bold">
-          {name}
-        </p>
+        <p className="text-3xl md:text-2xl lg:text-xl font-bold">{name}</p>
         <p className="mt-1 text-lg md:text-md lg:text-sm text-purple-600 uppercase font-semibold">
           {role}
         </p>
