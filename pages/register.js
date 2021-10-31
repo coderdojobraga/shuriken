@@ -3,7 +3,20 @@ import { useAuth, withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import RegisterForm from "~/components/Register";
 
-function Register() {
+export async function getStaticProps(context) {
+  const res = await fetch(
+    "https://raw.githubusercontent.com/coderdojobraga/bokken/main/data/pt/cities.json"
+  );
+  const cities = await res.json();
+
+  return {
+    props: {
+      cities,
+    },
+  };
+}
+
+function Register({ cities }) {
   const router = useRouter();
   const { user } = useAuth();
 
@@ -14,7 +27,7 @@ function Register() {
 
   return (
     <AppLayout hidePrimaryMenu>
-      <RegisterForm />
+      <RegisterForm cities={cities} />
     </AppLayout>
   );
 }
