@@ -19,7 +19,9 @@ import {
   UploadOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { useAuth } from "~/components/Auth";
 import * as api from "~/lib/api";
+import * as USER from "~/lib/user";
 import { getBase64 } from "~/lib/images";
 import Emoji from "~/components/Emoji";
 
@@ -36,9 +38,10 @@ const CountrySelect = () => (
   </Select>
 );
 
-function Register() {
+function Register({ cities }) {
   const router = useRouter();
   const { Title } = Typography;
+  const { user } = useAuth();
   const [isLoading, setLoading] = useState(false);
   const [errors, setErrors] = useState();
   const [avatar, setAvatar] = useState(null);
@@ -131,35 +134,39 @@ function Register() {
               />
             </Form.Item>
 
-            <Form.Item
-              name="user[birthday]"
-              label="Data de nascimento"
-              rules={[
-                {
-                  type: "date",
-                  required: false,
-                },
-              ]}
-            >
-              <DatePicker
-                allowClear
-                placeholder="Selecionar data"
-                style={{ width: "100%" }}
-              />
-            </Form.Item>
+            {user.role == USER.ROLES.MENTOR && (
+              <Form.Item
+                name="user[birthday]"
+                label="Data de nascimento"
+                rules={[
+                  {
+                    type: "date",
+                    required: false,
+                  },
+                ]}
+              >
+                <DatePicker
+                  allowClear
+                  placeholder="Selecionar data"
+                  style={{ width: "100%" }}
+                />
+              </Form.Item>
+            )}
 
-            <Form.Item
-              name="user[major]"
-              label="Curso"
-              rules={[
-                {
-                  type: "string",
-                  required: false,
-                },
-              ]}
-            >
-              <Input placeholder="Engenharia Informática" type="text" />
-            </Form.Item>
+            {user.role == USER.ROLES.MENTOR && (
+              <Form.Item
+                name="user[major]"
+                label="Curso"
+                rules={[
+                  {
+                    type: "string",
+                    required: false,
+                  },
+                ]}
+              >
+                <Input placeholder="Engenharia Informática" type="text" />
+              </Form.Item>
+            )}
 
             <Form.Item
               name="user[photo]"
@@ -185,53 +192,82 @@ function Register() {
                 <Button icon={<UploadOutlined />}>Selecionar</Button>
               </Upload>
             </Form.Item>
+            {user.role == USER.ROLES.MENTOR && (
+              <Form.Item name="user[socials]" label="Redes Sociais">
+                <Form.List name="user[socials]" label="Redes Sociais">
+                  {(fields, { add, remove }) => (
+                    <Space direction="vertical" style={{ width: "100%" }}>
+                      {fields.map((field) => (
+                        <Space key={field.key} align="baseline">
+                          <Form.Item {...field} name={[field.name, "name"]}>
+                            <Select
+                              placeholder="Rede Social"
+                              style={{ width: 130 }}
+                            >
+                              {socials.map((item) => (
+                                <Option
+                                  key={item}
+                                  value={item.toLocaleLowerCase()}
+                                >
+                                  {item}
+                                </Option>
+                              ))}
+                            </Select>
+                          </Form.Item>
+                          <Form.Item {...field} name={[field.name, "username"]}>
+                            <Input placeholder="Username" />
+                          </Form.Item>
+                          <MinusCircleOutlined
+                            onClick={() => {
+                              remove(field.name);
+                            }}
+                          />
+                        </Space>
+                      ))}
 
-            <Form.Item name="user[socials]" label="Redes Sociais">
-              <Form.List name="user[socials]" label="Redes Sociais">
-                {(fields, { add, remove }) => (
-                  <Space direction="vertical" style={{ width: "100%" }}>
-                    {fields.map((field) => (
-                      <Space key={field.key} align="baseline">
-                        <Form.Item {...field} name={[field.name, "name"]}>
-                          <Select
-                            placeholder="Rede Social"
-                            style={{ width: 130 }}
-                          >
-                            {socials.map((item) => (
-                              <Option
-                                key={item}
-                                value={item.toLocaleLowerCase()}
-                              >
-                                {item}
-                              </Option>
-                            ))}
-                          </Select>
-                        </Form.Item>
-                        <Form.Item {...field} name={[field.name, "username"]}>
-                          <Input placeholder="Username" />
-                        </Form.Item>
-                        <MinusCircleOutlined
-                          onClick={() => {
-                            remove(field.name);
-                          }}
-                        />
-                      </Space>
+                      <Form.Item>
+                        <Button
+                          type="dashed"
+                          onClick={() => add()}
+                          block
+                          icon={<PlusOutlined />}
+                        >
+                          Adicionar Rede Social
+                        </Button>
+                      </Form.Item>
+                    </Space>
+                  )}
+                </Form.List>
+              </Form.Item>
+            )}
+
+            {user.role == USER.ROLES.GUARDIAN && (
+              <Form.Item
+                name="user[city]"
+                label="Cidade"
+                rules={[
+                  {
+                    type: "string",
+                    required: false,
+                  },
+                ]}
+              >
+                <Select
+                  allowClear
+                  showSearch
+                  placeholder="Selecionar cidade"
+                  defaultValue="Braga"
+                  style={{ maxWidth: "300px" }}
+                >
+                  {cities &&
+                    cities.map((city) => (
+                      <Select.Option key={city} value={city} showSearch={true}>
+                        {city}
+                      </Select.Option>
                     ))}
-
-                    <Form.Item>
-                      <Button
-                        type="dashed"
-                        onClick={() => add()}
-                        block
-                        icon={<PlusOutlined />}
-                      >
-                        Adicionar Rede Social
-                      </Button>
-                    </Form.Item>
-                  </Space>
-                )}
-              </Form.List>
-            </Form.Item>
+                </Select>
+              </Form.Item>
+            )}
 
             <Form.Item
               validateStatus={errors && "error"}
