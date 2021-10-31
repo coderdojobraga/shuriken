@@ -10,7 +10,7 @@ import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import LinkTo from "~/components/utils/LinkTo";
 import * as api from "~/lib/api";
-import Belt from "../../components/Belt";
+import Belt from "~/components/Belt";
 
 const { Meta } = Card;
 const { Title } = Typography;
