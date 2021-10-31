@@ -10,6 +10,7 @@ import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import LinkTo from "~/components/utils/LinkTo";
 import * as api from "~/lib/api";
+import Belt from "../../components/Belt";
 
 const { Meta } = Card;
 const { Title } = Typography;
@@ -54,6 +55,7 @@ function Ninjas() {
                 avatar={<Avatar src={ninja.photo} />}
                 title={`${ninja.first_name} ${ninja.last_name}`}
               />
+              <Belt belt={ninja.belt} />
             </LinkTo>
           </Card>
         ))}

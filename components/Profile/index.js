@@ -6,7 +6,6 @@ import {
   Row,
   Space,
   Tabs,
-  Tag,
   Timeline,
   Typography,
   notification,
@@ -14,10 +13,10 @@ import {
 import { ClockCircleOutlined, UserOutlined } from "@ant-design/icons";
 import moment from "moment";
 import Badge from "~/components/Badge";
+import Belt from "~/components/Belt";
 import Document from "~/components/Document";
 import LinkTo from "~/components/utils/LinkTo";
 import * as api from "~/lib/api";
-import * as BELT from "~/lib/belt";
 import * as USER from "~/lib/user";
 import * as SOCIAL from "~/lib/social";
 
@@ -77,16 +76,8 @@ function Profile({ id, type }) {
                 {type}
               </Title>
             </Col>
-            {info.belt ? (
-              <Col span={24}>
-                <Tag
-                  className={!info.belt ? styles.nobelt : styles.capitalize}
-                  color={(info.belt !== BELT.LEVELS.WHITE && info.belt) || null}
-                >
-                  {BELT.PT[info.belt]}
-                </Tag>
-              </Col>
-            ) : null}
+
+            <Belt belt={info.belt} />
 
             <Col span={24}>
               <Space style={{ fontSize: 30 }}>
