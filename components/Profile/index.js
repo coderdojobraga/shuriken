@@ -77,7 +77,9 @@ function Profile({ id, type }) {
               </Title>
             </Col>
 
-            <Belt belt={info.belt} />
+            <Col span={24}>
+              <Belt belt={info.belt} />
+            </Col>
 
             <Col span={24}>
               <Space style={{ fontSize: 30 }}>
