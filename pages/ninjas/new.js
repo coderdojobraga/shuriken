@@ -1,14 +1,6 @@
 import { useRouter } from "next/router";
-import {
-  Button,
-  DatePicker,
-  Form,
-  Input,
-  Row,
-} from "antd";
-import {
-  SaveOutlined
-} from "@ant-design/icons";
+import { Button, DatePicker, Form, Input, Row } from "antd";
+import { SaveOutlined } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import * as api from "~/lib/api";
 
@@ -26,7 +18,6 @@ function New({ form, close }) {
     form.submit();
     close();
   };
-
 
   return (
     <>

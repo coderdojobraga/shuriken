@@ -5,14 +5,13 @@ import {
   EllipsisOutlined,
   SettingOutlined,
   PlusOutlined,
-  SaveOutlined
+  SaveOutlined,
 } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import LinkTo from "~/components/utils/LinkTo";
-import New from "./new"
+import New from "./new";
 import * as api from "~/lib/api";
-
 
 const { Meta } = Card;
 const { Title } = Typography;
@@ -26,18 +25,16 @@ function Ninjas() {
     api
       .getNinjas()
       .then((response) => setNinjas(response.data))
-      .catch(() => { });
+      .catch(() => {});
   }, []);
 
   const showPopup = () => {
     setPopupVisible(true);
   };
 
-
   const handleClose = () => {
     setPopupVisible(false);
   };
-
 
   return (
     <AppLayout>
@@ -56,7 +53,7 @@ function Ninjas() {
           footer={null}
           onCancel={handleClose}
         >
-          <New form={form} close={handleClose}/>
+          <New form={form} close={handleClose} />
         </Modal>
       </Row>
       <Row justify="space-around" gutter={[10, 10]}>
