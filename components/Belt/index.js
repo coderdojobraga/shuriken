@@ -6,16 +6,14 @@ import styles from "./style.module.css";
 function Belt({ belt }) {
   return (
     <>
-      {belt ? (
-        <Col span={24}>
-          <Tag
-            className={!belt ? styles.nobelt : styles.capitalize}
-            color={(belt !== BELT.LEVELS.WHITE && belt) || null}
-          >
-            {BELT.PT[belt]}
-          </Tag>
-        </Col>
-      ) : null}
+      <Col span={24}>
+        <Tag
+          className={!belt ? styles.nobelt : styles.capitalize}
+          color={(belt !== BELT.LEVELS.WHITE && belt) || null}
+        >
+          {BELT.PT[belt]}
+        </Tag>
+      </Col>
     </>
   );
 }
