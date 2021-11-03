@@ -47,3 +47,12 @@
 .markdown td {
     border: 1px solid black;
 }
+
+.markdown th {
+    border: 1px solid black;
+}
+
+.markdown img {
+    max-width: 100%;
+    height: auto;
+}

@@ -17,3 +17,22 @@
 .author {
     font-size: 1.5rem;
 }
+
+.authorImage {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    float: left;
+    margin-right: 0.5rem;
+}
+
+.dateWrapper {
+    margin-top: 0.5rem;
+}
+
+.calendar {
+    float: left;
+    font-size: 1.2rem;
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+}

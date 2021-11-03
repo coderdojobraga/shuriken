@@ -1,7 +1,8 @@
 ---
 title: "Build an awesome Next.js blog"
 date: "2020-10-01"
-author: "Rui Oliveira"
+author: "Vitor Lelis"
+authorImage: "../img/team/lelis.png"
 origin: "https://markdown-it.github.io/ Temporary just for debugging purposes" 
 ---
 
@@ -92,8 +93,8 @@ Ordered
 
 Start numbering with offset:
 
-57. foo
-1. bar
+1. foo
+2. bar
 
 
 ## Code
