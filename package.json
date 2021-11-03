@@ -24,12 +24,19 @@
   "dependencies": {
     "@ant-design/icons": "^4.6.4",
     "antd": "^4.16.13",
+    "fs": "^0.0.1-security",
+    "gray-matter": "^4.0.3",
     "less": "^4.1.1",
     "next": "^11.1.2",
+    "path": "^0.12.7",
+    "raw-loader": "^4.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-markdown": "^7.1.0",
     "react-query": "^3.23.2",
-    "redaxios": "^0.4.1"
+    "react-syntax-highlighter": "^15.4.4",
+    "redaxios": "^0.4.1",
+    "remark-gfm": "^3.0.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.20",

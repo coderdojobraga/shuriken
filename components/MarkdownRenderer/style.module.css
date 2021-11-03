@@ -33,3 +33,17 @@
 .markdown ol {
     list-style: decimal;
 }
+
+
+.markdown p {
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.markdown table {
+    border: 1px solid black;
+}
+
+.markdown td {
+    border: 1px solid black;
+}
