@@ -5,7 +5,7 @@ import styles from './style.module.css';
 
 import { CalendarOutlined } from  '@ant-design/icons';
 
-const BlogPost = (props) => {
+const BlogPost = (props: { data: { title: string; authorImage: string; author: string; date: string }; content: string; }) => {
     return (
         <div className="container mx-auto">      
             <div className={styles.blogContainer}>

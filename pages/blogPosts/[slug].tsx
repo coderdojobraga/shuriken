@@ -22,7 +22,7 @@ const BlogPostPage = ({content, data}) => {
     );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: { query: { slug: string; }; }) {
     const { slug } = context.query;
 
     const realSlug = slug.replace(/\.md$/, '');
