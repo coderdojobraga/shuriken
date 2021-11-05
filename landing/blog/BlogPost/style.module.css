@@ -1,0 +1,38 @@
+.title {
+  font-size: 4rem !important;
+  font-weight: bolder;
+  display: block;
+}
+
+.header {
+  margin-bottom: 5rem;
+}
+
+.blogContainer {
+  margin-left: 5rem;
+  margin-right: 5rem;
+  margin-bottom: 5rem;
+}
+
+.author {
+  font-size: 1.5rem;
+}
+
+.authorImage {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  float: left;
+  margin-right: 0.5rem;
+}
+
+.dateWrapper {
+  margin-top: 0.5rem;
+}
+
+.calendar {
+  float: left;
+  font-size: 1.2rem;
+  margin-left: 0.4rem;
+  margin-right: 0.4rem;
+}
