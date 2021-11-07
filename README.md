@@ -108,6 +108,10 @@ Please read [CONTRIBUTING][contributing] and [CODE_OF_CONDUCT][code_of_conduct]
 for details on our code of conduct and the process for submitting pull requests
 to us.
 
+## :handshake: Contributing to our blog
+
+Our website now has a blog! Each post is stored as a Markdown file under `_posts`. If you want to contribue please read the relevant section of the [CONTRIBUTING][contributing] file, as well as our [CODE_OF_CONDUCT][code_of_conduct].
+
 ## :memo: License
 
 This project is licensed under the MIT License - see the [LICENSE][license]
