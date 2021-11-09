@@ -4,7 +4,7 @@ import { useBadge } from "~/hooks/badges";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import LinkTo from "~/components/utils/LinkTo";
-import * as BELT from "~/lib/belt";
+import Belt from "~/components/Belt";
 
 import styles from "./style.module.css";
 
@@ -51,21 +51,7 @@ function Badge() {
                   <List.Item.Meta
                     avatar={<Avatar size={64} src={ninja.photo} />}
                     title={`${ninja.first_name} ${ninja.last_name}`}
-                    description={
-                      <Tag
-                        className={
-                          ninja.belt === BELT.LEVELS.NO_BELT
-                            ? styles.nobelt
-                            : styles.belt
-                        }
-                        color={
-                          (ninja.belt !== BELT.LEVELS.WHITE && ninja.belt) ||
-                          null
-                        }
-                      >
-                        {BELT.PT[ninja.belt]}
-                      </Tag>
-                    }
+                    description={<Belt belt={ninja.belt} />}
                   />
                 </LinkTo>
               </List.Item>
