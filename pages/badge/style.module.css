@@ -7,11 +7,6 @@
   padding: 20px;
 }
 
-.nobelt {
-  background: #fff;
-  border-style: dashed;
-}
-
 .belt {
   text-transform: capitalize;
 }
