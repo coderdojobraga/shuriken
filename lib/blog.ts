@@ -1,11 +1,11 @@
 import fs from "fs";
-import { join } from "path";
+import { join, extname } from "path";
 import matter from "gray-matter";
 
 const postsDirectory = join(process.cwd(), "_posts");
 
 export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory);
+  return fs.readdirSync(postsDirectory).filter(file => extname(file) == '.md');
 }
 
 export function getPostBySlug(slug: string, fields: string[] = []) {

@@ -15,7 +15,9 @@ First of all, thank you for wanting to contribute for our blog &#128077;. This s
 
 ## Before writing
 ### Cloning and creating a new branch
+
 If you have decided to contribute to our blog, the first thing you need to do is clone the repository and creating a new branch where you will be writing our post. In other words, you should run the following commands:
+
 ```
 git clone https://github.com/coderdojobraga/shuriken.git
 cd shuriken
@@ -28,6 +30,7 @@ where `your-branch-name` should be your initials (first letter of the your first
 If you are not a member of our team on Github, then instead of creating a branch you need to fork this project. If you don't know how to do that, please [refer to this guide](https://docs.github.com/pt/enterprise-cloud@latest/get-started/quickstart/fork-a-repo).
 
 ### Creating the markdown file
+
 If you don't know already, our blog is a collection of Markdown files. So, in order to write your own post, you must first create a .md file. To create the file, navigate to the posts directory `content/blog `and create your file.
 ``` 
 cd content/blog
@@ -65,8 +68,6 @@ Currently not all of Markdown features are supported. Here is a list of all impo
 ### Previewing your work
 To preview your amazing work, run shuriken (`npm run dev`) and open your page. It should be in http://localhost:3000/blogPosts/your-post-name.
 
-### Bug reports
-If you encounter a bug during writing, please message us. ***Do not open an issue***. If it is something important it will be fixed. Or, if you have the time, you can try and fix it for us &#128512;.
 
 ## After writing
 After you are done writing, commit your changes to your branch and push.

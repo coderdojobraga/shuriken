@@ -1,15 +1,9 @@
-import matter from "gray-matter";
-
 import BlogPost from "../../landing/blog/BlogPost";
 
 import { Footer, Header } from "../../landing";
 
-import fs from "fs";
-import { join } from "path";
 
 import { getAllPosts, getPostBySlug } from "../../lib/blog";
-
-const postsDirectory = "content/blog/";
 
 interface Props {
   title: string;
@@ -30,7 +24,7 @@ const BlogPostPage = ({ title, authorImage, author, date, content }: Props) => {
         date={date}
         content={content}
       />
-      <Footer bgColor="dark" fgColor="white" />
+      <Footer bgColor="light" fgColor="dark" />
     </>
   );
 };
