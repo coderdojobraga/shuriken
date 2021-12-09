@@ -7,7 +7,10 @@ export default function Feature({ title, author, date, photo, topic }) {
         </a>
       </div>
       <div class="mt-4">
-        <a href="#" class="text-lg font-bold dark:text-white text-dark hover:underline">
+        <a
+          href="#"
+          class="text-lg font-bold dark:text-white text-dark hover:underline"
+        >
           {title}
         </a>
       </div>
@@ -18,11 +21,16 @@ export default function Feature({ title, author, date, photo, topic }) {
             alt="avatar"
             class="object-cover w-8 h-8 rounded-full"
           />
-          <a href="#" class="mx-3 text-sm dark:text-white text-gray-700 hover:underline">
+          <a
+            href="#"
+            class="mx-3 text-sm dark:text-white text-gray-700 hover:underline"
+          >
             {author}
           </a>
         </div>
-        <span class="text-sm font-light dark:text-white text-gray-600">{date}</span>
+        <span class="text-sm font-light dark:text-white text-gray-600">
+          {date}
+        </span>
       </div>
     </div>
   );

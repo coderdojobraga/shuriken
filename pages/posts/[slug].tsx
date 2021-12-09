@@ -2,7 +2,6 @@ import BlogPost from "../../landing/blog/BlogPost";
 
 import { Footer, Header } from "../../landing";
 
-
 import { getAllPosts, getPostBySlug } from "../../lib/blog";
 
 interface Props {

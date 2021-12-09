@@ -9,7 +9,6 @@ const MarkdownRenderer = (props: { markdown: string }) => {
   return (
     <div className={styles.markdown}>
       <ReactMarkdown
-        children={props.markdown}
         remarkPlugins={[remarkGfm]}
         components={{
           code({ node, inline, className, children, ...props }) {
@@ -18,28 +17,28 @@ const MarkdownRenderer = (props: { markdown: string }) => {
             if (match && !inline) {
               return (
                 <SyntaxHighlighter
-                  children={String(children).replace(/\n$/, "")}
                   PreTag="div"
                   language={match[1]}
                   style={materialDark}
                   {...props}
-                />
+                >
+                  {String(children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
               );
             } else if (!inline) {
               return (
-                <SyntaxHighlighter
-                  children={String(children).replace(/\n$/, "")}
-                  PreTag="div"
-                  style={materialDark}
-                  {...props}
-                />
+                <SyntaxHighlighter PreTag="div" style={materialDark} {...props}>
+                  {String(children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
               );
             } else {
               return <span>{children}</span>;
             }
           },
         }}
-      />
+      >
+        {props.markdown}
+      </ReactMarkdown>
     </div>
   );
 };
