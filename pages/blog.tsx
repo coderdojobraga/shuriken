@@ -32,9 +32,10 @@ interface Post {
 
 interface Props {
   posts: Post[];
+  topics: string[];
 };
 
-const Blog = ({posts} : Props) => {
+const Blog = ({posts, topics} : Props) => {
   const { isDark } = useTheme();
 
   const defaultState = {
@@ -43,7 +44,6 @@ const Blog = ({posts} : Props) => {
 
   const [st, changeState] = useState(defaultState);
 
-  alert(JSON.stringify(posts[0]));
   return (
     <>
       <Header />
@@ -122,18 +122,7 @@ const Blog = ({posts} : Props) => {
               <div className="px-8 mt-10">
                 <h1 className="mb-4 text-xl font-bold text-dark dark:text-white">💭 Tópicos</h1>
                 <div className="flex flex-wrap relative max-w-sm px-4 py-6 dark:bg-altdark bg-white rounded-lg shadow-md">
-                  <Topic title="Recrutamento" />
-                  <Topic title="Eventos" />
-                  <Topic title="Humor" />
-                  <Topic title="Scratch" />
-                  <Topic title="Elixir" />
-                  <Topic title="JavaScript" />
-                  <Topic title="Ruby" />
-                  <Topic title="Linux" />
-                  <Topic title="Python" />
-                  <Topic title="Git" />
-                  <Topic title="Haskel" />
-                  <Topic title="SQL" />
+                  {topics.map((topic => <Topic title={topic}/>))}
                 </div>
               </div>
             </div>
@@ -150,9 +139,17 @@ const Blog = ({posts} : Props) => {
 }
 
 export async function getStaticProps(context) {
+  const postList = getAllPosts(["title", "slug", "date", "author", "photo", "topic", "featured", "description"]);
+
+  let topicsDup = postList.map(entry => entry.topic);
+  let topics    = topicsDup.filter((element, index) => {
+    return topicsDup.indexOf(element) === index;
+  });
+
   return {
     props: {
-      posts: getAllPosts(["title", "slug", "date", "author", "photo", "topic", "featured", "description"]),
+      posts: postList,
+      topics: topics,
     }
   }
 }
