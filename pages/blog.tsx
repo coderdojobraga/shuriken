@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 import {
   Footer,
   Header,
@@ -8,20 +10,45 @@ import {
   Topic,
 } from "@landing";
 
+import {
+  getPostSlugs,
+  getAllPosts
+} from '../lib/blog';
+
 import { useTheme } from "../components/Theme";
 
 import posts from "data/blog.json";
 import features from "data/feature.json";
 
-function Blog() {
+interface Post {
+  title : string;
+  description: string;
+  author: string;
+  date: Date; 
+  photo: string;
+  topic: string;
+  featured: boolean;
+};
+
+interface Props {
+  posts: Post[];
+};
+
+const Blog = ({posts} : Props) => {
   const { isDark } = useTheme();
+
+  const defaultState = {
+    increasingOrder : false
+  };
+
+  const [st, changeState] = useState(defaultState);
+
+  alert(JSON.stringify(posts[0]));
   return (
     <>
       <Header />
 
-      <div
-        className={`${isDark ? "dark" : "light"} relative overflow-x-hidden`}
-      >
+      <div className={`${isDark ? "dark" : "light"} relative overflow-x-hidden`}>
         <div className="dark:bg-dark px-6 py-8">
           <div className="container flex justify-between mx-auto">
             <div className="w-full lg:w-8/12">
@@ -60,9 +87,7 @@ function Blog() {
               </div>
 
               <div className="px-8">
-                <h1 className="mt-8 mb-4 text-xl font-bold text-dark dark:text-white">
-                  ✍️ Autores
-                </h1>
+                <h1 className="mt-8 mb-4 text-xl font-bold text-dark dark:text-white">✍️ Autores</h1>
                 <div className="dark:bg-altdark mt-4 flex flex-col max-w-sm px-6 py-2 bg-white rounded-lg shadow-md">
                   <ul className="-mx-4">
                     <Author
@@ -95,9 +120,7 @@ function Blog() {
               </div>
 
               <div className="px-8 mt-10">
-                <h1 className="mb-4 text-xl font-bold text-dark dark:text-white">
-                  💭 Tópicos
-                </h1>
+                <h1 className="mb-4 text-xl font-bold text-dark dark:text-white">💭 Tópicos</h1>
                 <div className="flex flex-wrap relative max-w-sm px-4 py-6 dark:bg-altdark bg-white rounded-lg shadow-md">
                   <Topic title="Recrutamento" />
                   <Topic title="Eventos" />
@@ -125,5 +148,14 @@ function Blog() {
     </>
   );
 }
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      posts: getAllPosts(["title", "slug", "date", "author", "photo", "topic", "featured", "description"]),
+    }
+  }
+}
+
 
 export default Blog;

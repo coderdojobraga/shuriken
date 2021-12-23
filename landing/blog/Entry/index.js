@@ -1,7 +1,8 @@
 import { useTheme } from "../../../components/Theme";
 
-export default function Entry({ title, text, author, date, photo, topic }) {
+export default function Entry({ title, description, author, date, photo, topic, slug }) {
   const { isDark } = useTheme();
+
   return (
     <div class={`${isDark ? "dark" : "light"} mt-6`}>
       <div class="max-w-4xl px-10 py-6 dark:bg-altdark bg-white rounded-lg shadow-md">
@@ -18,10 +19,10 @@ export default function Entry({ title, text, author, date, photo, topic }) {
           >
             {title}
           </a>
-          <p class="mt-2 dark:text-white text-gray-600">{text}</p>
+          <p class="mt-2 dark:text-white text-gray-600">{description}</p>
         </div>
         <div class="flex items-center justify-between mt-4">
-          <a href="#" class="dark:text-white text-primary hover:underline">
+          <a href={`posts/${slug}`} class="dark:text-white text-primary hover:underline">
             Read more
           </a>
           <div>
