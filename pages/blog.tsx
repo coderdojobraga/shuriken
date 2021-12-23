@@ -24,10 +24,10 @@ interface Post {
   title : string;
   description: string;
   author: string;
-  date: Date; 
+  date: string; 
   photo: string;
   topic: string;
-  featured: boolean;
+  featured: string;
 };
 
 interface Props {
