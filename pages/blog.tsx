@@ -34,6 +34,7 @@ interface Props {
   posts: Post[];
   topics: string[];
   authors: IAuthor[];
+  featured: Post[];
 };
 
 interface IAuthor {
@@ -42,7 +43,7 @@ interface IAuthor {
   posts: number;
 }
 
-const Blog = ({posts, topics, authors} : Props) => {
+const Blog = ({posts, topics, authors, featured} : Props) => {
   const { isDark } = useTheme();
 
   const defaultState = {
@@ -57,6 +58,12 @@ const Blog = ({posts, topics, authors} : Props) => {
     });
   }
 
+  const changePage = (n) => {
+    changeState({
+      increasingOrder: st.increasingOrder,
+      page: n,
+    });
+  } 
 
   const [st, changeState] = useState(defaultState);
 
@@ -65,8 +72,8 @@ const Blog = ({posts, topics, authors} : Props) => {
   else
     posts.sort((a,b) => new Date(b.date) - new Date(a.date));
 
-  const postsPerPage = 24;
-
+  const postsPerPage = 1;
+  let postCount = posts.length;
   posts = posts.slice(postsPerPage * (st.page - 1), Math.min(posts.length, postsPerPage * st.page));
 
   return (
@@ -98,7 +105,7 @@ const Blog = ({posts, topics, authors} : Props) => {
                 ))}
               </div>
 
-              <Pagination />
+              <Pagination postCount={postCount} currentPage={st.page} postsPerPage={postsPerPage} onChange={changePage}/>
             </div>
 
             <div className="hidden w-4/12 lg:block">
@@ -172,7 +179,8 @@ export async function getStaticProps(context) {
     props: {
       posts: postList,
       topics: topics,
-      authors: getAuthors(postList)
+      authors: getAuthors(postList),
+      featured: postList.filter((entry) => entry.featured == "true"),
     }
   }
 }
