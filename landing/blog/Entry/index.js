@@ -14,7 +14,7 @@ export default function Entry({ title, description, author, date, photo, topic, 
         </div>
         <div class="mt-2">
           <a
-            href="#"
+            href={`posts/${slug}`}
             class="text-2xl font-bold dark:text-white text-dark hover:text-primary hover:underline"
           >
             {title}

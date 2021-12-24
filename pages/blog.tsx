@@ -46,12 +46,29 @@ const Blog = ({posts, topics, authors} : Props) => {
   const { isDark } = useTheme();
 
   const defaultState = {
-    increasingOrder : false
+    increasingOrder : 0,
+    page : 1,
   };
+
+  const changeOrder = (n) => {
+    changeState({
+      increasingOrder: n,
+      page: st.page,
+    });
+  }
+
 
   const [st, changeState] = useState(defaultState);
 
-  alert(JSON.stringify(authors));
+  if(st.increasingOrder == 1)
+    posts.sort((a,b) => new Date(a.date) - new Date(b.date));
+  else
+    posts.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+  const postsPerPage = 24;
+
+  posts = posts.slice(postsPerPage * (st.page - 1), Math.min(posts.length, postsPerPage * st.page));
+
   return (
     <>
       <Header />
@@ -68,9 +85,9 @@ const Blog = ({posts, topics, authors} : Props) => {
                   Blog
                 </h1>
                 <div className="mr-16">
-                  <select className="dark:bg-dark dark:text-white w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    <option> Latest </option>
-                    <option> Oldest </option>
+                  <select onChange={(e) => changeOrder(e.target.value)} className="dark:bg-dark dark:text-white w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <option value={0}> Latest </option>
+                    <option value={1}> Oldest </option>
                   </select>
                 </div>
               </div>
