@@ -33,9 +33,16 @@ interface Post {
 interface Props {
   posts: Post[];
   topics: string[];
+  authors: IAuthor[];
 };
 
-const Blog = ({posts, topics} : Props) => {
+interface IAuthor {
+  author: string;
+  image: string;
+  posts: number;
+}
+
+const Blog = ({posts, topics, authors} : Props) => {
   const { isDark } = useTheme();
 
   const defaultState = {
@@ -44,6 +51,7 @@ const Blog = ({posts, topics} : Props) => {
 
   const [st, changeState] = useState(defaultState);
 
+  alert(JSON.stringify(authors));
   return (
     <>
       <Header />
@@ -90,31 +98,7 @@ const Blog = ({posts, topics} : Props) => {
                 <h1 className="mt-8 mb-4 text-xl font-bold text-dark dark:text-white">✍️ Autores</h1>
                 <div className="dark:bg-altdark mt-4 flex flex-col max-w-sm px-6 py-2 bg-white rounded-lg shadow-md">
                   <ul className="-mx-4">
-                    <Author
-                      author="Filipe Felício"
-                      photo="filipe.png"
-                      numberPosts={2}
-                    />
-                    <Author
-                      author="Nelson Estevão"
-                      photo="nelson.png"
-                      numberPosts={2}
-                    />
-                    <Author
-                      author="Marta Silva"
-                      photo="marta.png"
-                      numberPosts={1}
-                    />
-                    <Author
-                      author="Jessica Fernandes"
-                      photo="jessica.png"
-                      numberPosts={1}
-                    />
-                    <Author
-                      author="Vitor Lelis"
-                      photo="lelis.png"
-                      numberPosts={1}
-                    />
+                    {authors.map(obj => <Author author={obj.author} photo={obj.image} numberPosts={obj.posts}/>)}
                   </ul>
                 </div>
               </div>
@@ -138,6 +122,27 @@ const Blog = ({posts, topics} : Props) => {
   );
 }
 
+function getAuthors(posts) {
+  var result = [];
+
+  for(var i = 0; i < posts.length; i++) {
+    var found = false;
+    for(var j = 0; j < result.length; j++) {
+      if(result[j].author == posts[i].author) {
+        result[j].posts++;
+        found = true;
+        break;
+      }
+    }
+
+    if(!found) {
+      result.push({author: posts[i].author, image: posts[i].photo, posts: 1});
+    }
+  }
+
+  return result;
+}
+
 export async function getStaticProps(context) {
   const postList = getAllPosts(["title", "slug", "date", "author", "photo", "topic", "featured", "description"]);
 
@@ -150,6 +155,7 @@ export async function getStaticProps(context) {
     props: {
       posts: postList,
       topics: topics,
+      authors: getAuthors(postList)
     }
   }
 }

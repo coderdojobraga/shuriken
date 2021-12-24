@@ -11,7 +11,7 @@ export default function Author({ author, photo, numberPosts }) {
           {author}
         </a>
         <span class="text-sm font-light dark:text-white text-gray-700">
-          Created {numberPosts} Posts
+          Created {numberPosts} {numberPosts == 1 ? "Post" : "Posts"}
         </span>
       </p>
     </li>
