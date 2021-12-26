@@ -10,40 +10,15 @@ import {
   Topic,
 } from "@landing";
 
-import {
-  getPostSlugs,
-  getAllPosts
-} from '../lib/blog';
+import  BlogProps from '/lib/blog';
 
-import { useTheme } from "../components/Theme";
+import { useTheme } from "/components/Theme";
 
-import posts from "data/blog.json";
-import features from "data/feature.json";
+import posts from "/data/blog.json";
+import features from "/data/feature.json";
 
-interface Post {
-  title : string;
-  description: string;
-  author: string;
-  date: string; 
-  photo: string;
-  topic: string;
-  featured: string;
-};
 
-interface Props {
-  posts: Post[];
-  topics: string[];
-  authors: IAuthor[];
-  featured: Post[];
-};
-
-interface IAuthor {
-  author: string;
-  image: string;
-  posts: number;
-}
-
-const Blog = ({posts, topics, authors, featured} : Props) => {
+const BlogMenu = ({posts, topics, authors, featured} : BlogProps) => {
   const { isDark } = useTheme();
 
   const defaultState = {
@@ -146,44 +121,4 @@ const Blog = ({posts, topics, authors, featured} : Props) => {
   );
 }
 
-function getAuthors(posts) {
-  var result = [];
-
-  for(var i = 0; i < posts.length; i++) {
-    var found = false;
-    for(var j = 0; j < result.length; j++) {
-      if(result[j].author == posts[i].author) {
-        result[j].posts++;
-        found = true;
-        break;
-      }
-    }
-
-    if(!found) {
-      result.push({author: posts[i].author, image: posts[i].photo, posts: 1});
-    }
-  }
-
-  return result;
-}
-
-export async function getStaticProps(context) {
-  const postList = getAllPosts(["title", "slug", "date", "author", "photo", "topic", "featured", "description"]);
-
-  let topicsDup = postList.map(entry => entry.topic);
-  let topics    = topicsDup.filter((element, index) => {
-    return topicsDup.indexOf(element) === index;
-  });
-
-  return {
-    props: {
-      posts: postList,
-      topics: topics,
-      authors: getAuthors(postList),
-      featured: postList.filter((entry) => entry.featured == "true"),
-    }
-  }
-}
-
-
-export default Blog;
+export default BlogMenu;
