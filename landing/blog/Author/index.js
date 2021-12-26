@@ -2,7 +2,7 @@ export default function Author({ author, photo, numberPosts }) {
   return (
     <li class="flex items-center py-1">
       <img
-        src={`img/team/${photo}`}
+        src={`/img/team/${photo}`}
         alt="avatar"
         class="object-cover w-10 h-10 mx-4 rounded-full"
       />

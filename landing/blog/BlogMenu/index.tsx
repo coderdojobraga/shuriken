@@ -10,15 +10,23 @@ import {
   Topic,
 } from "@landing";
 
-import  BlogProps from '/lib/blog';
-
 import { useTheme } from "/components/Theme";
 
 import posts from "/data/blog.json";
 import features from "/data/feature.json";
 
+interface Props {
+  posts: Post[];
+  topics: string[];
+  authors: IAuthor[];
+  featured: Post[];
+  author: string;
+  topic: string;
+};
 
-const BlogMenu = ({posts, topics, authors, featured} : BlogProps) => {
+
+
+const BlogMenu = ({posts, topics, authors, featured, author, topic} : Props) => {
   const { isDark } = useTheme();
 
   const defaultState = {
@@ -60,12 +68,14 @@ const BlogMenu = ({posts, topics, authors, featured} : BlogProps) => {
           <div className="container flex justify-between mx-auto">
             <div className="w-full lg:w-8/12">
               <div className="flex items-center justify-between">
-                <h1 className="dark:text-white ml-20 text-center font-bold text-dark text-5xl">
+                <h1 className="dark:text-white ml-20 mb-5 text-center font-bold text-dark text-5xl">
                   <span className="text-purple-500 text-2xl text-5xl mr-1">
                     |
                   </span>
-                  Blog
-                </h1>
+                  {author == null && topic == null? "Blog" : ""}
+                  {author != null ? "Blog de " + author : ""}
+                  {topic != null ? "Blog: " + topic : ""}
+                </h1>               
                 <div className="mr-16">
                   <select onChange={(e) => changeOrder(e.target.value)} className="dark:bg-dark dark:text-white w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option value={0}> Latest </option>
@@ -73,7 +83,10 @@ const BlogMenu = ({posts, topics, authors, featured} : BlogProps) => {
                   </select>
                 </div>
               </div>
-
+              {author != null || topic != null ? 
+                <a href="/blog" className="ml-28 px-1 text-lg font-bold dark:text-white text-primary hover:underline">
+                  Voltar ao blog completo
+                </a> : <></> }
               <div className="ml-20">
                 {posts.map((key, entry) => (
                   <Entry key={key} {...entry} />

@@ -10,7 +10,7 @@ import {
 
 const Blog = ({posts, topics, authors, featured} : BlogProps) => {
   return (
-    <BlogMenu posts={posts} topics={topics} authors={authors} featured={featured}/>
+    <BlogMenu posts={posts} topics={topics} authors={authors} featured={featured} author={null} topic={null}/>
   );
 }
 
