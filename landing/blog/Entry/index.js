@@ -26,10 +26,8 @@ export default function Entry({ title, description, author, date, photo, topic, 
             Read more
           </a>
           <div>
-            <a href="#" class="flex items-center">
-              <h1 class="font-bold dark:text-white text-dark hover:underline">
-                {author}
-              </h1>
+            <a href={`/blog/author/${author}`} class="flex items-center">
+              <h1 class="font-bold dark:text-white text-dark hover:underline">{author}</h1>
               <img
                 src={`/img/team/${photo}`}
                 alt="avatar"
