@@ -26,13 +26,18 @@ function Header() {
               />
             </div>
             <ul className="hidden md:flex items-center gap-12 text-black text-sm uppercase">
-
-              <li className="cursor-pointer dark:text-white hover:text-primary">Currículo</li>
-              <li className="cursor-pointer dark:text-white hover:text-primary">Projetos</li>
-              <li className="cursor-pointer dark:text-white hover:text-primary">Equipa</li>
+              <li className="cursor-pointer dark:text-white hover:text-primary">
+                Currículo
+              </li>
+              <li className="cursor-pointer dark:text-white hover:text-primary">
+                Projetos
+              </li>
+              <li className="cursor-pointer dark:text-white hover:text-primary">
+                Equipa
+              </li>
               <li className="cursor-pointer dark:text-white hover:text-primary">
                 <Link href="/blog"> Blog </Link>
-              </li>              
+              </li>
               {user ? (
                 <li className="text-bold">
                   Hello, {user.first_name} {user.last_name}

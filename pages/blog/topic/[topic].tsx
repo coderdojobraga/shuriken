@@ -1,29 +1,39 @@
-import BlogMenu from '/landing/blog/BlogMenu';
+import BlogMenu from "/landing/blog/BlogMenu";
 
-import {
-  getPostSlugs,
-  getAllPosts,
-  getAuthors,
-  BlogProps
-} from '/lib/blog';
+import { getPostSlugs, getAllPosts, getAuthors, BlogProps } from "/lib/blog";
 
 interface Props {
-  blogProps : BlogProps;
-  topic : string;
+  blogProps: BlogProps;
+  topic: string;
 }
 
-const Blog = ({blogProps, topic} : Props) => {
+const Blog = ({ blogProps, topic }: Props) => {
   return (
-    <BlogMenu posts={blogProps.posts} topics={blogProps.topics} authors={blogProps.authors} featured={blogProps.featured} author={null} topic={topic}/>
+    <BlogMenu
+      posts={blogProps.posts}
+      topics={blogProps.topics}
+      authors={blogProps.authors}
+      featured={blogProps.featured}
+      author={null}
+      topic={topic}
+    />
   );
-}
+};
 
-export async function getStaticProps({params}) {
-  const postList = getAllPosts(["title", "slug", "date", "author", "photo", "topic", "featured", "description"]).filter(entry => entry.topic == params.topic);
+export async function getStaticProps({ params }) {
+  const postList = getAllPosts([
+    "title",
+    "slug",
+    "date",
+    "author",
+    "photo",
+    "topic",
+    "featured",
+    "description",
+  ]).filter((entry) => entry.topic == params.topic);
 
-
-  let topicsDup = postList.map(entry => entry.topic);
-  let topics    = topicsDup.filter((element, index) => {
+  let topicsDup = postList.map((entry) => entry.topic);
+  let topics = topicsDup.filter((element, index) => {
     return topicsDup.indexOf(element) === index;
   });
 
@@ -35,26 +45,24 @@ export async function getStaticProps({params}) {
         authors: getAuthors(postList),
         featured: postList.filter((entry) => entry.featured == "true"),
       },
-      topic : params.topic
-    }
-  }
+      topic: params.topic,
+    },
+  };
 }
 
-
 export async function getStaticPaths() {
-    const posts = getAllPosts(["topic"]);
-    
-    return {
-      paths: posts.map((post) => {
-        return {
-          params: {
-            topic: post.topic,
-          },
-        };
-      }),
-      fallback: false,
-    };
-  }
+  const posts = getAllPosts(["topic"]);
 
+  return {
+    paths: posts.map((post) => {
+      return {
+        params: {
+          topic: post.topic,
+        },
+      };
+    }),
+    fallback: false,
+  };
+}
 
 export default Blog;
