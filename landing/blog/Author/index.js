@@ -7,7 +7,10 @@ export default function Author({ author, photo, numberPosts }) {
         class="object-cover w-10 h-10 mx-4 rounded-full"
       />
       <p>
-        <a href="#" class="mx-1 font-bold dark:text-white text-gray-700 hover:underline">
+        <a
+          href="#"
+          class="mx-1 font-bold dark:text-white text-gray-700 hover:underline"
+        >
           {author}
         </a>
         <span class="text-sm font-light dark:text-white text-gray-700">

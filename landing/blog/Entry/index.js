@@ -26,7 +26,9 @@ export default function Entry({ title, text, author, date, photo, topic }) {
           </a>
           <div>
             <a href="#" class="flex items-center">
-              <h1 class="font-bold dark:text-white text-dark hover:underline">{author}</h1>
+              <h1 class="font-bold dark:text-white text-dark hover:underline">
+                {author}
+              </h1>
               <img
                 src={`img/team/${photo}`}
                 alt="avatar"
