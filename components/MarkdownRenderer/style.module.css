@@ -1,0 +1,57 @@
+.markdown {
+  min-width: 400px;
+  max-width: 1536px;
+  /*width: 100vw!important;*/
+  height: auto;
+  margin: auto;
+}
+
+.markdown h1 {
+  font-size: 2.5rem !important;
+  font-weight: bol;
+}
+
+.markdown h2 {
+  font-size: 2rem !important;
+  font-weight: bold;
+}
+
+.markdown h3 {
+  font-size: 1.5rem !important;
+  font-weight: bold;
+}
+
+.markdown a {
+  color: blue !important;
+  text-decoration: underline;
+}
+
+.markdown ul {
+  list-style: disc;
+}
+
+.markdown ol {
+  list-style: decimal;
+}
+
+.markdown p {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.markdown table {
+  border: 1px solid black;
+}
+
+.markdown td {
+  border: 1px solid black;
+}
+
+.markdown th {
+  border: 1px solid black;
+}
+
+.markdown img {
+  max-width: 100%;
+  height: auto;
+}
