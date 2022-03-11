@@ -6,19 +6,19 @@ import { getAllPosts, getPostBySlug } from "../../lib/blog";
 
 interface Props {
   title: string;
-  authorImage: string;
+  photo: string;
   author: string;
   date: string;
   content: string;
 }
 
-const BlogPostPage = ({ title, authorImage, author, date, content }: Props) => {
+const BlogPostPage = ({ title, photo, author, date, content }: Props) => {
   return (
     <>
       <Header />
       <BlogPost
         title={title}
-        authorImage={authorImage}
+        photo={photo}
         author={author}
         date={date}
         content={content}
@@ -31,7 +31,7 @@ const BlogPostPage = ({ title, authorImage, author, date, content }: Props) => {
 export async function getStaticProps({ params }) {
   const post = getPostBySlug(params.slug, [
     "title",
-    "authorImage",
+    "photo",
     "author",
     "date",
     "draft",

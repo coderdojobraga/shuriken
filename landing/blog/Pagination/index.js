@@ -14,8 +14,8 @@ export default function Pagination({
     }
   };
   return (
-    <div class="mt-8 ml-20">
-      <div class="flex">
+    <div className="mt-8 ml-20">
+      <div className="flex">
         {numberPages > 1 ? (
           <a
             onClick={(e) => onClick(e, currentPage - 1)}

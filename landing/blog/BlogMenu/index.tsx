@@ -12,9 +12,6 @@ import {
 
 import { useTheme } from "/components/Theme";
 
-import posts from "/data/blog.json";
-import features from "/data/feature.json";
-
 interface Props {
   posts: Post[];
   topics: string[];
@@ -106,7 +103,7 @@ const BlogMenu = ({
                 <></>
               )}
               <div className="ml-20">
-                {posts.map((key, entry) => (
+                {posts.map((entry, key) => (
                   <Entry key={key} {...entry} />
                 ))}
               </div>
@@ -124,7 +121,7 @@ const BlogMenu = ({
                 <h1 className="text-xl font-bold dark:text-white text-dark">
                   ⭐ Artigos em Destaque
                 </h1>
-                {features.map((key, entry) => (
+                {featured.map((entry, key) => (
                   <Feature key={key} {...entry} />
                 ))}
               </div>
@@ -135,8 +132,9 @@ const BlogMenu = ({
                 </h1>
                 <div className="dark:bg-altdark mt-4 flex flex-col max-w-sm px-6 py-2 bg-white rounded-lg shadow-md">
                   <ul className="-mx-4">
-                    {authors.map((obj) => (
+                    {authors.map((obj, key) => (
                       <Author
+                        key={key}
                         author={obj.author}
                         photo={obj.image}
                         numberPosts={obj.posts}
@@ -151,8 +149,8 @@ const BlogMenu = ({
                   💭 Tópicos
                 </h1>
                 <div className="flex flex-wrap relative max-w-sm px-4 py-6 dark:bg-altdark bg-white rounded-lg shadow-md">
-                  {topics.map((topic) => (
-                    <Topic title={topic} />
+                  {topics.map((topic, key) => (
+                    <Topic key={key} title={topic} />
                   ))}
                 </div>
               </div>

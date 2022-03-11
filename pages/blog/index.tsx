@@ -27,6 +27,8 @@ export async function getStaticProps(context) {
     "description",
   ]);
 
+  console.log(JSON.stringify(postList));
+
   let topicsDup = postList.map((entry) => entry.topic);
   let topics = topicsDup.filter((element, index) => {
     return topicsDup.indexOf(element) === index;

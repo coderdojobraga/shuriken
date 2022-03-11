@@ -6,13 +6,13 @@ import { CalendarOutlined } from "@ant-design/icons";
 
 interface Props {
   title: string;
-  authorImage: string;
+  photo: string;
   author: string;
   date: string;
   content: string;
 }
 
-const BlogPost = ({ title, authorImage, author, date, content }: Props) => {
+const BlogPost = ({ title, photo, author, date, content }: Props) => {
   return (
     <div className="container mx-auto">
       <div className={styles.blogContainer}>
@@ -20,7 +20,7 @@ const BlogPost = ({ title, authorImage, author, date, content }: Props) => {
           <h1 className={styles.title}>{title}</h1>
 
           <div>
-            <img className={styles.authorImage} src={authorImage} />
+            <img className={styles.photo} src={`/img/team/${photo}`} />
             <h2 className={styles.author}>{author}</h2>
           </div>
 
