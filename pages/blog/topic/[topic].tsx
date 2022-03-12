@@ -1,6 +1,6 @@
 import BlogMenu from "/landing/blog/BlogMenu";
 
-import { getPostSlugs, getAllPosts, getAuthors, BlogProps } from "/lib/blog";
+import { getAllPosts, getAuthors, BlogProps } from "/lib/blog";
 
 interface Props {
   blogProps: BlogProps;
@@ -26,7 +26,6 @@ export async function getStaticProps({ params }) {
     "slug",
     "date",
     "author",
-    "photo",
     "topic",
     "featured",
     "description",

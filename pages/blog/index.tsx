@@ -1,6 +1,6 @@
 import BlogMenu from "/landing/blog/BlogMenu";
 
-import { getPostSlugs, getAllPosts, getAuthors, BlogProps } from "/lib/blog";
+import { getAllPosts, getAuthors, BlogProps } from "/lib/blog";
 
 const Blog = ({ posts, topics, authors, featured }: BlogProps) => {
   return (
@@ -26,8 +26,6 @@ export async function getStaticProps(context) {
     "featured",
     "description",
   ]);
-
-  console.log(JSON.stringify(postList));
 
   let topicsDup = postList.map((entry) => entry.topic);
   let topics = topicsDup.filter((element, index) => {

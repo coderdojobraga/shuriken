@@ -5,7 +5,6 @@ export default function Entry({
   description,
   author,
   date,
-  photo,
   topic,
   slug,
 }) {
@@ -42,12 +41,15 @@ export default function Entry({
             Read more
           </a>
           <div>
-            <a href={`/blog/author/${author}`} className="flex items-center">
+            <a
+              href={`/blog/author/${author.name}`}
+              className="flex items-center"
+            >
               <h1 className="font-bold dark:text-white text-dark hover:underline">
-                {author}
+                {author.name}
               </h1>
               <img
-                src={`/img/team/${photo}`}
+                src={`/img/team/${author.photo}`}
                 alt="avatar"
                 className="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block"
               />

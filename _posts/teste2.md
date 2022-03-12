@@ -1,8 +1,9 @@
 ---
 title: "Bogosort: O melhor algoritmo de ordenação do mundo"
 date: "2021-10-01"
-author: "Marta Silva"
-photo: "marta.png"
+author:
+  name: "Marta Silva"
+  photo: "marta.png"
 topic: "Algoritmos"
 featured: "true"
 description: "Melhora a forma como ordenas as tuas arrays usando aleatoriadade"

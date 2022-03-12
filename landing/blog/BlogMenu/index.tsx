@@ -56,7 +56,7 @@ const BlogMenu = ({
     posts.sort((a, b) => new Date(a.date) - new Date(b.date));
   else posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  const postsPerPage = 1;
+  const postsPerPage = 24;
   let postCount = posts.length;
   posts = posts.slice(
     postsPerPage * (st.page - 1),
@@ -135,8 +135,8 @@ const BlogMenu = ({
                     {authors.map((obj, key) => (
                       <Author
                         key={key}
-                        author={obj.author}
-                        photo={obj.image}
+                        author={obj.author.name}
+                        photo={obj.author.photo}
                         numberPosts={obj.posts}
                       />
                     ))}

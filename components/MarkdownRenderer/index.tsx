@@ -1,7 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { materialDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import styles from "./style.module.css";
 
@@ -16,18 +15,13 @@ const MarkdownRenderer = (props: { markdown: string }) => {
 
             if (match && !inline) {
               return (
-                <SyntaxHighlighter
-                  PreTag="div"
-                  language={match[1]}
-                  style={materialDark}
-                  {...props}
-                >
+                <SyntaxHighlighter PreTag="div" language={match[1]} {...props}>
                   {String(children).replace(/\n$/, "")}
                 </SyntaxHighlighter>
               );
             } else if (!inline) {
               return (
-                <SyntaxHighlighter PreTag="div" style={materialDark} {...props}>
+                <SyntaxHighlighter PreTag="div" {...props}>
                   {String(children).replace(/\n$/, "")}
                 </SyntaxHighlighter>
               );

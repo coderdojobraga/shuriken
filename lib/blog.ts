@@ -7,9 +7,11 @@ const postsDirectory = join(process.cwd(), "_posts");
 export interface Post {
   title: string;
   description: string;
-  author: string;
+  author: {
+    name: string;
+    photo: string;
+  };
   date: string;
-  photo: string;
   topic: string;
   featured: string;
 }
@@ -76,7 +78,7 @@ export function getAuthors(posts) {
     }
 
     if (!found) {
-      result.push({ author: posts[i].author, image: posts[i].photo, posts: 1 });
+      result.push({ author: posts[i].author, posts: 1 });
     }
   }
 

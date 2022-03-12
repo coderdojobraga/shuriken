@@ -1,8 +1,9 @@
 ---
 title: "Build an awesome Next.js blog"
 date: "2020-10-01"
-author: "Vitor Lelis"
-photo: "lelis.png"
+author:
+  name: "Vitor Lelis"
+  photo: "lelis.png"
 draft: true
 topic: "Algoritmos"
 featured: false
