@@ -1,0 +1,104 @@
+@media (min-width: 1030px) {
+  .fish4-fish {
+    transform-origin: 13px 32px;
+  }
+
+  .fish4-fish .fish-wrapper {
+    width: 45px;
+    height: 108px;
+  }
+
+  .fish4-fish .fish-normal {
+    width: 30px;
+    height: 108px;
+    background-image: url("/app/koi/fish4/fish_normal.svg");
+    animation: fish4-normal-animation 0.5s steps(16) infinite;
+  }
+
+  .fish4-fish .fish-turn-soft {
+    width: 34px;
+    height: 108px;
+    background-image: url("/app/koi/fish4/turn_soft.svg");
+    animation: fish4-turn-soft-animation 0.5s steps(9);
+  }
+
+  .fish4-fish .fish-turn-medium {
+    width: 38px;
+    height: 108px;
+    background-image: url("/app/koi/fish4/turn_medium.svg");
+    animation: fish4-turn-medium-animation 0.5s steps(9);
+  }
+
+  .fish4-fish .fish-turn-hard {
+    width: 50px;
+    height: 108px;
+    background-image: url("/app/koi/fish4/turn_hard.svg");
+    animation: fish4-turn-hard-animation 0.5s steps(8);
+  }
+
+  /* <-- Fish Fin --> */
+  .fish4-fish .fish-fin {
+    width: 14px;
+    height: 16px;
+    background-image: url("/app/koi/fish4/fin.svg");
+    animation: fish4-fin-animation 0.5s steps(15) infinite;
+  }
+
+  .fish4-fish .fish-fin-left {
+    position: absolute;
+    top: 18%;
+    left: -20%;
+  }
+
+  .fish4-fish .fish-fin-right {
+    position: absolute;
+    top: 18%;
+    left: 47%;
+    transform: scale(-1, 1);
+  }
+
+  @keyframes fish4-normal-animation {
+    from {
+      background-position: 0;
+    }
+    to {
+      background-position: -480px;
+    } /* <-- width of spritesheet */
+  }
+
+  @keyframes fish4-turn-soft-animation {
+    from {
+      background-position: 0;
+    }
+    to {
+      background-position: -306px;
+    } /* <-- width of spritesheet */
+  }
+
+  @keyframes fish4-turn-medium-animation {
+    from {
+      background-position: 0;
+    }
+    to {
+      background-position: -342px;
+    } /* <-- width of spritesheet */
+  }
+
+  @keyframes fish4-turn-hard-animation {
+    from {
+      background-position: 0;
+    }
+    to {
+      background-position: -400px;
+    } /* <-- width of spritesheet */
+  }
+
+  @keyframes fish4-fin-animation {
+    from {
+      background-position: 0;
+    }
+    to {
+      background-position: -210px;
+    } /* <-- width of spritesheet */
+  }
+}

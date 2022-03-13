@@ -1,0 +1,45 @@
+{
+  "name": "shuriken-home",
+  "version": "0.2.0-dev",
+  "private": true,
+  "scripts": {
+    "develop": "npm-run-all dev",
+    "dev": "next dev -p 5000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "npm-run-all lint:*",
+    "lint:js": "next lint",
+    "lint:css": "stylelint --fix './**/*.css' --ignore-path .gitignore",
+    "fmt": "npm-run-all format",
+    "format": "prettier --write . --ignore-path .gitignore",
+    "test": "npm-run-all test:*",
+    "test:lint": "npm-run-all test:lint:*",
+    "test:lint:js": "next lint",
+    "test:lint:css": "stylelint './**/*.css' --ignore-path .gitignore",
+    "test:format": "prettier --check . --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "antd": "^4.19.2",
+    "next": "^12.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "redaxios": "^0.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@types/react": "^17.0.20",
+    "autoprefixer": "^10.3.1",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "11.1.2",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.3.6",
+    "prettier": "^2.4.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recess-order": "^2.5.0",
+    "stylelint-prettier": "^1.2.0",
+    "tailwindcss": "^2.2.7",
+    "typescript": "^4.4.2"
+  }
+}

@@ -2,29 +2,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@landing": ["landing/index.tsx"],
-      "~/components/*": ["components/*"],
-      "~/data/*": ["data/*"],
-      "~/hooks/*": ["hooks/*"],
-      "~/layouts/*": ["components/layouts/*"],
-      "~/lib/*": ["lib/*"],
-      "~/styles/*": ["styles/*"]
-    },
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+      "@app/*": ["app/*"],
+      "@blog/*": ["blog/*"],
+      "@home/*": ["home/*"],
+      "~/data/*": ["_data/*"],
+    }
+  }
 }
