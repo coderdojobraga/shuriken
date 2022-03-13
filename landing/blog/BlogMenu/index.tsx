@@ -10,7 +10,8 @@ import {
   Topic,
 } from "@landing";
 
-import { useTheme } from "/components/Theme";
+import { useTheme } from "~/components/Theme";
+import { Post, IAuthor } from "~/lib/blog";
 
 interface Props {
   posts: Post[];
@@ -53,8 +54,13 @@ const BlogMenu = ({
   const [st, changeState] = useState(defaultState);
 
   if (st.increasingOrder == 1)
-    posts.sort((a, b) => new Date(a.date) - new Date(b.date));
-  else posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    posts.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    );
+  else
+    posts.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
 
   const postsPerPage = 24;
   let postCount = posts.length;
@@ -66,7 +72,6 @@ const BlogMenu = ({
   return (
     <>
       <Header />
-
       <div
         className={`${isDark ? "dark" : "light"} relative overflow-x-hidden`}
       >
@@ -87,8 +92,8 @@ const BlogMenu = ({
                     onChange={(e) => changeOrder(e.target.value)}
                     className="dark:bg-dark dark:text-white w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   >
-                    <option value={0}> Latest </option>
-                    <option value={1}> Oldest </option>
+                    <option value={0}> Mais recentes</option>
+                    <option value={1}> Mais antigos </option>
                   </select>
                 </div>
               </div>

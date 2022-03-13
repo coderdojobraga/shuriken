@@ -14,6 +14,7 @@ export interface Post {
   date: string;
   topic: string;
   featured: string;
+  slug: string;
 }
 
 export interface BlogProps {
@@ -24,8 +25,10 @@ export interface BlogProps {
 }
 
 export interface IAuthor {
-  author: string;
-  image: string;
+  author: {
+    name: string;
+    photo: string;
+  };
   posts: number;
 }
 

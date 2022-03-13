@@ -1,6 +1,6 @@
-import BlogMenu from "/landing/blog/BlogMenu";
+import BlogMenu from "~/landing/blog/BlogMenu";
 
-import { getAllPosts, getAuthors, BlogProps } from "/lib/blog";
+import { getAllPosts, getAuthors, BlogProps } from "~/lib/blog";
 
 const Blog = ({ posts, topics, authors, featured }: BlogProps) => {
   return (

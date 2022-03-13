@@ -1,24 +1,26 @@
-import BlogPost from "../../landing/blog/BlogPost";
+import BlogPost from "~/landing/blog/BlogPost";
 
-import { Footer, Header } from "../../landing";
+import { Footer, Header } from "@landing";
 
-import { getAllPosts, getPostBySlug } from "../../lib/blog";
+import { getAllPosts, getPostBySlug } from "~/lib/blog";
 
 interface Props {
   title: string;
-  photo: string;
-  author: string;
+  author: {
+    name: string;
+    photo: string;
+  };
   date: string;
   content: string;
 }
 
-const BlogPostPage = ({ title, photo, author, date, content }: Props) => {
+const BlogPostPage = ({ title, author, date, content }: Props) => {
   return (
     <>
       <Header />
       <BlogPost
         title={title}
-        photo={photo}
+        photo={author.photo}
         author={author}
         date={date}
         content={content}

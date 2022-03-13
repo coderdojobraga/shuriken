@@ -1,10 +1,13 @@
-import BlogMenu from "/landing/blog/BlogMenu";
+import BlogMenu from "~/landing/blog/BlogMenu";
 
-import { getAllPosts, getAuthors, BlogProps } from "/lib/blog";
+import { getAllPosts, getAuthors, BlogProps } from "~/lib/blog";
 
 interface Props {
   blogProps: BlogProps;
-  author: string;
+  author: {
+    name: string;
+    photo: string;
+  };
 }
 
 const Blog = ({ blogProps, author }: Props) => {
@@ -14,7 +17,7 @@ const Blog = ({ blogProps, author }: Props) => {
       topics={blogProps.topics}
       authors={blogProps.authors}
       featured={blogProps.featured}
-      author={author}
+      author={author.name}
       topic={null}
     />
   );
@@ -29,8 +32,7 @@ export async function getStaticProps({ params }) {
     "topic",
     "featured",
     "description",
-  ]).filter((entry) => entry.author.name == params.author);
-
+  ]).filter((entry) => entry.author["name"] == params.author);
   let topicsDup = postList.map((entry) => entry.topic);
   let topics = topicsDup.filter((element, index) => {
     return topicsDup.indexOf(element) === index;
@@ -51,12 +53,11 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const posts = getAllPosts(["author"]);
-
   return {
     paths: posts.map((post) => {
       return {
         params: {
-          author: post.author.name,
+          author: post.author["name"],
         },
       };
     }),

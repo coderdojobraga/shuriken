@@ -25,7 +25,11 @@ git switch -c your-branch-name
 
 where `your-branch-name` should be your initials (first letter of the your first and last name) folowed by `/blog/your-post-topic` . For example, if your name is João Silva and you are writing about how to make an hello world in python, your branch name would be something like `js/blog/python-hello-world`.
 
-In alternative, you can run our `create-blog-post.sh` script.
+In alternative, you can run our `create-blog-post.sh` script like
+
+```
+sh create-blog-post.sh your-branch-name your-blog-post-name
+```
 
 ### Note for those not a part of the Coderdojo Braga team
 
