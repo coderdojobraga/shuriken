@@ -1,5 +1,3 @@
-echo 'Nome do branch'
-read branchName
-git switch -c $branchName
+git switch -c $1
 cd _posts
-cp template.txt $branchName.md
+cp template.txt $2.md

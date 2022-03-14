@@ -1,24 +1,26 @@
-import BlogPost from "../../landing/blog/BlogPost";
+import BlogPost from "~/landing/blog/BlogPost";
 
-import { Footer, Header } from "../../landing";
+import { Footer, Header } from "@landing";
 
-import { getAllPosts, getPostBySlug } from "../../lib/blog";
+import { getAllPosts, getPostBySlug } from "~/lib/blog";
 
 interface Props {
   title: string;
-  authorImage: string;
-  author: string;
+  author: {
+    name: string;
+    photo: string;
+  };
   date: string;
   content: string;
 }
 
-const BlogPostPage = ({ title, authorImage, author, date, content }: Props) => {
+const BlogPostPage = ({ title, author, date, content }: Props) => {
   return (
     <>
       <Header />
       <BlogPost
         title={title}
-        authorImage={authorImage}
+        photo={author.photo}
         author={author}
         date={date}
         content={content}
@@ -31,7 +33,7 @@ const BlogPostPage = ({ title, authorImage, author, date, content }: Props) => {
 export async function getStaticProps({ params }) {
   const post = getPostBySlug(params.slug, [
     "title",
-    "authorImage",
+    "photo",
     "author",
     "date",
     "draft",

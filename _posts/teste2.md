@@ -1,12 +1,12 @@
 ---
-title: "Build an awesome Next.js blog"
-date: "2020-10-01"
+title: "Bogosort: O melhor algoritmo de ordenação do mundo"
+date: "2021-10-01"
 author:
-  name: "Vitor Lelis"
-  photo: "lelis.png"
-draft: true
+  name: "Marta Silva"
+  photo: "marta.png"
 topic: "Algoritmos"
-featured: false
+featured: "true"
+description: "Melhora a forma como ordenas as tuas arrays usando aleatoriadade"
 ---
 
 ---

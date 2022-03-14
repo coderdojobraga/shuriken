@@ -1,38 +1,57 @@
 import { useTheme } from "../../../components/Theme";
 
-export default function Entry({ title, text, author, date, photo, topic }) {
+export default function Entry({
+  title,
+  description,
+  author,
+  date,
+  topic,
+  slug,
+}) {
   const { isDark } = useTheme();
+
   return (
-    <div class={`${isDark ? "dark" : "light"} mt-6`}>
-      <div class="max-w-4xl px-10 py-6 dark:bg-altdark bg-white rounded-lg shadow-md">
-        <div class="flex items-center justify-between">
-          <span class="font-light dark:text-white text-gray-600">{date}</span>
-          <a href="#" class="px-2 py-1 font-bold text-white bg-primary rounded">
+    <div className={`${isDark ? "dark" : "light"} mt-6`}>
+      <div className="max-w-4xl px-10 py-6 dark:bg-altdark bg-white rounded-lg shadow-md">
+        <div className="flex items-center justify-between">
+          <span className="font-light dark:text-white text-gray-600">
+            {date}
+          </span>
+          <a
+            href={`/blog/topic/${topic}`}
+            className="px-2 py-1 font-bold text-white bg-primary rounded"
+          >
             {topic}
           </a>
         </div>
-        <div class="mt-2">
+        <div className="mt-2">
           <a
-            href="#"
-            class="text-2xl font-bold dark:text-white text-dark hover:text-primary hover:underline"
+            href={`/posts/${slug}`}
+            className="text-2xl font-bold dark:text-white text-dark hover:text-primary hover:underline"
           >
             {title}
           </a>
-          <p class="mt-2 dark:text-white text-gray-600">{text}</p>
+          <p className="mt-2 dark:text-white text-gray-600">{description}</p>
         </div>
-        <div class="flex items-center justify-between mt-4">
-          <a href="#" class="dark:text-white text-primary hover:underline">
+        <div className="flex items-center justify-between mt-4">
+          <a
+            href={`posts/${slug}`}
+            className="dark:text-white text-primary hover:underline"
+          >
             Read more
           </a>
           <div>
-            <a href="#" class="flex items-center">
-              <h1 class="font-bold dark:text-white text-dark hover:underline">
-                {author}
+            <a
+              href={`/blog/author/${author.name}`}
+              className="flex items-center"
+            >
+              <h1 className="font-bold dark:text-white text-dark hover:underline">
+                {author.name}
               </h1>
               <img
-                src={`img/team/${photo}`}
+                src={`/img/team/${author.photo}`}
                 alt="avatar"
-                class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block"
+                className="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block"
               />
             </a>
           </div>

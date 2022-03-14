@@ -25,7 +25,11 @@ git switch -c your-branch-name
 
 where `your-branch-name` should be your initials (first letter of the your first and last name) folowed by `/blog/your-post-topic` . For example, if your name is João Silva and you are writing about how to make an hello world in python, your branch name would be something like `js/blog/python-hello-world`.
 
-In alternative, you can run our `create-blog-post.sh` script.
+In alternative, you can run our `create-blog-post.sh` script like
+
+```
+sh create-blog-post.sh your-branch-name your-blog-post-name
+```
 
 ### Note for those not a part of the Coderdojo Braga team
 
@@ -84,13 +88,13 @@ The first part of your file should be metadata used by the website to correctly 
 title: "Your title"
 date: "Publishing date"
 author: "your name"
-authorImage: "path to your image"
+photo: "path to your image"
 draft: true/false
 featured: true/false
 ---
 ```
 
-The date should be in the `yyyy-mm-dd`format, and you should set it to a few days after you intend on creating a PR (if you don't know what that means, read to the end). Your image should be under `../img/team/`. If you don't have an image yet, upload one to that directory and include it in your branch. So, your `authorImage` should look like `../img/team/your-photo.format`. If you aren't done writing, set the `draft`property to `true`.
+The date should be in the `yyyy-mm-dd`format, and you should set it to a few days after you intend on creating a PR (if you don't know what that means, read to the end). Your image should be under `../img/team/`. If you don't have an image yet, upload one to that directory and include it in your branch. So, your `photo` should look like `../img/team/your-photo.format`. If you aren't done writing, set the `draft`property to `true`.
 
 If your post is very relevant it should be featured on our main page. If that is the case, set the `feature` to true. However, always consult with the dev team on whether or not your post should be featured before setting that property.
 
