@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useTheme } from "../../components/Theme";
 import DarkModeToggle from "../../components/DarkModeToggle";
 
-function Header() {
+function Header({ landing }) {
   const { user } = useAuth();
   const [isDrawerVisible, setVisibleDrawer] = useState(false);
   const { isDark } = useTheme();
@@ -27,13 +27,13 @@ function Header() {
             </div>
             <ul className="hidden md:flex items-center gap-12 text-black text-sm uppercase">
               <li className="cursor-pointer dark:text-white hover:text-primary">
-                Currículo
+                <Link href="/curriculum">Currículo</Link>
               </li>
               <li className="cursor-pointer dark:text-white hover:text-primary">
-                Projetos
+                <Link href="/projects">Projetos</Link>
               </li>
               <li className="cursor-pointer dark:text-white hover:text-primary">
-                Equipa
+                <Link href="/team">Equipa</Link>
               </li>
               <li className="cursor-pointer dark:text-white hover:text-primary">
                 <Link href="/blog"> Blog </Link>
@@ -43,15 +43,14 @@ function Header() {
                   Hello, {user.first_name} {user.last_name}
                 </li>
               ) : (
-                <button
-                  type="button"
-                  className="bg-primary text-white rounded-3xl px-4 py-2 transform duration-300 uppercase hover:bg-purple-600"
+                <Link
+                  href="/login"
                 >
-                  Login
-                </button>
+                  <a className="bg-primary text-white rounded-3xl px-4 py-2 transform duration-300 uppercase hover:bg-purple-600">Login</a>
+                </Link>
               )}
               <li>
-                <DarkModeToggle />
+                <DarkModeToggle visible={!landing}/>
               </li>
             </ul>
             <div className="flex md:hidden flex-1 justify-end px-2">
