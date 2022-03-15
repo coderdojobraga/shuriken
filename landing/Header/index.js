@@ -43,10 +43,10 @@ function Header({ landing }) {
                   Hello, {user.first_name} {user.last_name}
                 </li>
               ) : (
-                <Link
-                  href="/login"
-                >
-                  <a className="bg-primary text-white rounded-3xl px-4 py-2 transform duration-300 uppercase hover:bg-purple-600">Login</a>
+                <Link href="/login">
+                  <a className="bg-primary text-white rounded-3xl px-4 py-2 transform duration-300 uppercase hover:bg-purple-600">
+                    Login
+                  </a>
                 </Link>
               )}
               <li>
