@@ -19,7 +19,7 @@ const Footer = ({ bgColor, fgColor }) => (
     <div className="container mx-auto">
       <div className="grid md:grid-cols-3 items-center mx-2 lg:mx-12 xl:mx-20">
         <div className="flex flex-row justify-center order-last md:justify-start md:order-first">
-          <p>&copy; 2021 CoderDojo Braga.</p>
+          <p>&copy; {new Date().getFullYear()} CoderDojo Braga.</p>
         </div>
         <div className="flex flex-row justify-center items-center gap-12 my-8">
           {social.map(({ key, base_url, username }) => (
