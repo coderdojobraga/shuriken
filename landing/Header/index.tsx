@@ -3,7 +3,7 @@ import Link from "next/link";
 import { NavBar } from "@landing";
 import { useTheme } from "../../components/Theme";
 
-function Header() {
+function Header({ landing }) {
   const { isDark } = useTheme();
   return (
     <section className={isDark ? "dark" : "light"}>
@@ -21,7 +21,7 @@ function Header() {
                 />
               </Link>
             </div>
-            <NavBar />
+            <NavBar landing={landing} />
           </nav>
         </header>
       </div>

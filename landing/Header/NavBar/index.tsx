@@ -11,7 +11,7 @@ const Entry = ({ name }) => (
   </li>
 );
 
-function NavBar() {
+function NavBar({ landing }) {
   const screens = useBreakpoint();
 
   if (screens.md) {
@@ -22,7 +22,7 @@ function NavBar() {
         <Entry name="Equipa" />
         <AuthMenu />
         <li>
-          <DarkModeToggle />
+          <DarkModeToggle visible={!landing} />
         </li>
       </ul>
     );

@@ -5,7 +5,7 @@ import styles from "~/styles/Home.module.css";
 
 const Home = () => (
   <>
-    <Header />
+    <Header landing={true} />
     <Hero />
     <div className="container mx-auto">
       <section className="relative mx-2 lg:mx-12 xl:mx-20 md:mt-28">
