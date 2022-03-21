@@ -1,41 +1,41 @@
 .circle {
   position: relative;
-  border-radius: 100%;
   width: 2rem;
   height: 2rem;
-  background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
   margin: auto;
+  background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+  border-radius: 100%;
 }
 
 .crescent {
   position: absolute;
-  border-radius: 100%;
   right: 0;
   width: 1.5rem;
   height: 1.5rem;
   background: white;
+  border-radius: 100%;
+  transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
   transform: scale(0);
   transform-origin: top right;
-  transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .circle_dark {
   position: relative;
-  border-radius: 100%;
   width: 2rem;
   height: 2rem;
   margin: auto;
   background: linear-gradient(40deg, #8983f7, #a3dafb 70%);
+  border-radius: 100%;
 }
 
 .crescent_dark {
   position: absolute;
-  border-radius: 100%;
   right: 0;
   width: 1.5rem;
   height: 1.5rem;
-  transform-origin: top right;
+  background: #343434;
+  border-radius: 100%;
   transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
   transform: scale(1);
-  background: #343434;
+  transform-origin: top right;
 }
