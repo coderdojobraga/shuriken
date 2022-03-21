@@ -45,9 +45,11 @@
   display: block;
   width: 120%;
   height: 100%;
+  margin-top: -2px;
   content: "";
   background-color: #343434;
   border-top-left-radius: 9999px;
+  border-top-right-radius: -9999px;
   transform: translate(-10%, -235px);
 }
 
@@ -65,7 +67,8 @@
   z-index: -4;
   display: block;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 2px);
+  margin-top: -2px;
   content: "";
   background-color: #343434;
   transform: translate(0%, 665px);
