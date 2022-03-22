@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useTheme } from "../../components/Theme";
 import DarkModeToggle from "../../components/DarkModeToggle";
 
-function Header({ landing }) {
+function Header({ landing = false }) {
   const { user } = useAuth();
   const [isDrawerVisible, setVisibleDrawer] = useState(false);
   const { isDark } = useTheme();

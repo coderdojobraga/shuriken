@@ -1,8 +1,6 @@
-import dynamic from "next/dynamic";
-
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import SyntaxHighlighter from "react-syntax-highlighter";
 import {
   solarizedLight,
   dark,
@@ -28,7 +26,6 @@ const MarkdownRenderer = (props: { markdown: string }) => {
                 <SyntaxHighlighter
                   PreTag="div"
                   language={match[1]}
-                  {...props}
                   style={isDark ? dark : solarizedLight}
                 >
                   {String(children).replace(/\n$/, "")}
@@ -38,7 +35,6 @@ const MarkdownRenderer = (props: { markdown: string }) => {
               return (
                 <SyntaxHighlighter
                   PreTag="div"
-                  {...props}
                   style={isDark ? dark : solarizedLight}
                 >
                   {String(children).replace(/\n$/, "")}
