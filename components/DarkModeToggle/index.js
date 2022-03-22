@@ -7,15 +7,15 @@ function DarkModeToggle({ visible }) {
   return (
     visible && (
       <button onClick={toggleTheme}>
-        {isDark ? 
+        {isDark ? (
           <div className={styles.circle_dark}>
             <div className={styles.crescent_dark}></div>
           </div>
-         : 
+        ) : (
           <div className={styles.circle}>
             <div className={styles.crescent}></div>
           </div>
-        }
+        )}
       </button>
     )
   );

@@ -1,41 +1,41 @@
 .dark h1 {
-  color: white!important;
+  color: white !important;
 }
 
 .dark table {
-  border-color: white!important;
+  border-color: white !important;
 }
 
 .dark tr {
-  border-color: white!important;
+  border-color: white !important;
 }
 
 .dark td {
-  border-color: white!important;
+  border-color: white !important;
 }
 
 .dark h2 {
-  color: white!important;
+  color: white !important;
 }
 
 .dark h3 {
-  color: white!important;
+  color: white !important;
 }
 
 .dark h4 {
-  color: white!important;
+  color: white !important;
 }
 
 .dark h5 {
-  color: white!important;
+  color: white !important;
 }
 
 .dark h6 {
-  color: white!important;
+  color: white !important;
 }
 
 .dark p {
-  color: white!important;
+  color: white !important;
 }
 
 .markdown {
@@ -67,9 +67,8 @@
 }
 
 .dark a {
-  color: lightblue!important;
+  color: lightblue !important;
 }
-
 
 .markdown ul {
   list-style: disc;

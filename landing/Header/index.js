@@ -50,7 +50,7 @@ function Header({ landing }) {
                 </Link>
               )}
               <li>
-                <DarkModeToggle visible={!landing}/>
+                <DarkModeToggle visible={!landing} />
               </li>
             </ul>
             <div className="flex md:hidden flex-1 justify-end px-2">

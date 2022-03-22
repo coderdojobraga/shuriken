@@ -20,7 +20,7 @@ const BlogPostPage = ({ title, author, date, content }: Props) => {
   const { isDark } = useTheme();
   return (
     <div className={isDark ? "bg-dark text-white" : ""}>
-      <Header landing={false}/>
+      <Header landing={false} />
       <BlogPost
         title={title}
         photo={author.photo}
@@ -28,7 +28,10 @@ const BlogPostPage = ({ title, author, date, content }: Props) => {
         date={date}
         content={content}
       />
-      <Footer bgColor={isDark ? "dark" : "light"} fgColor={isDark ? "light" : "dark"} />
+      <Footer
+        bgColor={isDark ? "dark" : "light"}
+        fgColor={isDark ? "light" : "dark"}
+      />
     </div>
   );
 };
