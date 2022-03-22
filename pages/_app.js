@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { ConfigProvider } from "antd";
 import ptPT from "antd/lib/locale/pt_PT";
 import { AuthProvider } from "~/components/Auth";
+import { ThemeProvider } from "../components/Theme";
 
 import "~/styles/globals.css";
 
@@ -61,17 +62,19 @@ function Shuriken({ Component, pageProps }) {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ConfigProvider form={{ validateMessages }} locale={ptPT}>
-        <AuthProvider>
-          <Head>
-            <title>CoderDojo Braga</title>
-          </Head>
-          <Component {...pageProps} />
-        </AuthProvider>
-      </ConfigProvider>
-      <ReactQueryDevtools position="bottom-right" />
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ConfigProvider form={{ validateMessages }} locale={ptPT}>
+          <AuthProvider>
+            <Head>
+              <title>CoderDojo Braga</title>
+            </Head>
+            <Component {...pageProps} />
+          </AuthProvider>
+        </ConfigProvider>
+        <ReactQueryDevtools position="bottom-right" />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 
