@@ -12,7 +12,7 @@ function Header({ landing }) {
   const [isDrawerVisible, setVisibleDrawer] = useState(false);
   const { isDark } = useTheme();
   return (
-    <section className={isDark ? "dark" : "light"}>
+    <section className={isDark && !landing ? "dark" : "light"}>
       <div className="dark:bg-dark">
         <header className="container mx-auto">
           <nav className="flex flex-row justify-between items-center mx-2 lg:mx-12 xl:mx-20 pb-3 pt-7">

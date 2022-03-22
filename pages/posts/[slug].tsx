@@ -4,6 +4,8 @@ import { Footer, Header } from "@landing";
 
 import { getAllPosts, getPostBySlug } from "~/lib/blog";
 
+import { useTheme } from "~/components/Theme";
+
 interface Props {
   title: string;
   author: {
@@ -15,9 +17,10 @@ interface Props {
 }
 
 const BlogPostPage = ({ title, author, date, content }: Props) => {
+  const { isDark } = useTheme();
   return (
-    <>
-      <Header />
+    <div className={isDark ? "bg-dark text-white" : ""}>
+      <Header landing={false}/>
       <BlogPost
         title={title}
         photo={author.photo}
@@ -25,8 +28,8 @@ const BlogPostPage = ({ title, author, date, content }: Props) => {
         date={date}
         content={content}
       />
-      <Footer bgColor="light" fgColor="dark" />
-    </>
+      <Footer bgColor={isDark ? "dark" : "light"} fgColor={isDark ? "light" : "dark"} />
+    </div>
   );
 };
 

@@ -1,6 +1,8 @@
-import MarkdownRenderer from "../../../components/MarkdownRenderer";
+import Image from "next/image";
 
-import styles from "./style.module.css";
+import MarkdownRenderer from "~/components/MarkdownRenderer";
+
+import { useTheme } from "~/components/Theme";
 
 import { CalendarOutlined } from "@ant-design/icons";
 
@@ -15,21 +17,25 @@ interface Props {
   content: string;
 }
 
-const BlogPost = ({ title, photo, author, date, content }: Props) => {
+const BlogPost = ({ title, author, date, content }: Props) => {
+  const { isDark } = useTheme();
   return (
-    <div className="container mx-auto">
-      <div className={styles.blogContainer}>
-        <div className={styles.header}>
-          <h1 className={styles.title}>{title}</h1>
+    <div className={`${isDark ? "dark" : "light"} container mx-auto dark:bg-dark`}>
+      <div className="m-16">
+        <div className="mb-16">
+          <h1 className="block text-6xl font-bold my-4 dark:text-white">{title}</h1>
 
           <div>
-            <img className={styles.photo} src={`/img/team/${author.photo}`} />
-            <h2 className={styles.author}>{author.name}</h2>
+            <div className="float-left mr-2">
+              <Image className="rounded-full" alt={author.name} src={`/img/team/${author.photo}`} height="30rem" width="30rem"/>
+            </div>
+            
+            <h2 className="dark:text-white text-2xl">{author.name}</h2>
           </div>
 
-          <div className={styles.dateWrapper}>
-            <CalendarOutlined className={styles.calendar} />
-            <h3>{date}</h3>
+          <div className="mt-5">
+            <CalendarOutlined className="float-left text-md mx-3 my-1" />
+            <h3 className="dark:text-white text-md">{date}</h3>
           </div>
         </div>
 
