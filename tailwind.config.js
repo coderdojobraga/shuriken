@@ -11,6 +11,8 @@ module.exports = {
         primary: "#722ED1",
         dark: "#343434",
         orange: "#ed684aff",
+        white: "#ffffff",
+        altdark: "#262626",
       },
     },
   },

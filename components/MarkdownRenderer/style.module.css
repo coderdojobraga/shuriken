@@ -1,0 +1,101 @@
+.dark h1 {
+  color: white !important;
+}
+
+.dark table {
+  border-color: white !important;
+}
+
+.dark tr {
+  border-color: white !important;
+}
+
+.dark td {
+  border-color: white !important;
+}
+
+.dark h2 {
+  color: white !important;
+}
+
+.dark h3 {
+  color: white !important;
+}
+
+.dark h4 {
+  color: white !important;
+}
+
+.dark h5 {
+  color: white !important;
+}
+
+.dark h6 {
+  color: white !important;
+}
+
+.dark p {
+  color: white !important;
+}
+
+.markdown {
+  min-width: 400px;
+  max-width: 1536px;
+  /*width: 100vw!important;*/
+  height: auto;
+  margin: auto;
+}
+
+.markdown h1 {
+  font-size: 2.5rem !important;
+  font-weight: bold;
+}
+
+.markdown h2 {
+  font-size: 2rem !important;
+  font-weight: bold;
+}
+
+.markdown h3 {
+  font-size: 1.5rem !important;
+  font-weight: bold;
+}
+
+.markdown a {
+  color: blue !important;
+  text-decoration: underline;
+}
+
+.dark a {
+  color: lightblue !important;
+}
+
+.markdown ul {
+  list-style: disc;
+}
+
+.markdown ol {
+  list-style: decimal;
+}
+
+.markdown p {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.markdown table {
+  border: 1px solid;
+}
+
+.markdown td {
+  border: 1px solid;
+}
+
+.markdown th {
+  border: 1px solid;
+}
+
+.markdown img {
+  max-width: 100%;
+  height: auto;
+}
