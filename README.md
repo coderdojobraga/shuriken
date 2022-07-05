@@ -29,7 +29,7 @@ local machine for development and testing purposes.
 
 The following software is required to be installed on your system:
 
-- [Node.js 14.17+](https://nodejs.org/en/download/)
+- [Node.js 16.15+](https://nodejs.org/en/download/)
 
 We recommend using [asdf version
 manager](https://asdf-vm.com/#/core-manage-asdf?id=install) to install and
