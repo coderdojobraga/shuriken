@@ -1,4 +1,4 @@
-import BlogPost from "~/landing/blog/BlogPost";
+import BlogPost from "blog/BlogPost";
 
 import { Footer, Header } from "@landing";
 

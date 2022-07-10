@@ -1,14 +1,7 @@
 import { useState } from "react";
 
-import {
-  Footer,
-  Header,
-  Entry,
-  Author,
-  Feature,
-  Pagination,
-  Topic,
-} from "@landing";
+import { Entry, Author, Feature, Pagination, Topic } from "@blog";
+import { Footer, Header } from "@landing";
 
 import { useTheme } from "~/components/Theme";
 import { Post, IAuthor } from "~/lib/blog";

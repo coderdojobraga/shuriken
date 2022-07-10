@@ -1,4 +1,4 @@
-import { useTheme } from "../../../components/Theme";
+import { useTheme } from "~/components/Theme";
 
 export default function Entry({
   title,
