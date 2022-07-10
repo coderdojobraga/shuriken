@@ -6,7 +6,7 @@
 [style-status]: https://github.com/coderdojobraga/shuriken/actions/workflows/style.yml/badge.svg
 [style-workflow]: https://github.com/coderdojobraga/shuriken/actions/workflows/style.yml
 [figma-landing]: https://www.figma.com/file/vrq1JmgubKLKgsLQf1D6Bl
-[figma-shuriken]: https://www.figma.com/file/1phER5eukGFC5p9tFGnfk7/SEI
+[figma-shuriken]: https://www.figma.com/files/project/26101453/Shuriken?fuid=648167867289777861
 
 # shuriken
 
