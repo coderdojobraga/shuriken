@@ -1,4 +1,4 @@
-import BlogMenu from "~/landing/blog/BlogMenu";
+import { BlogMenu } from "@blog";
 
 import { getAllPosts, getAuthors, BlogProps } from "~/lib/blog";
 

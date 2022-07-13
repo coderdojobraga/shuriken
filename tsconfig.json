@@ -3,7 +3,9 @@
     "baseUrl": ".",
     "paths": {
       "@landing": ["landing/index.tsx"],
+      "@blog": ["blog/index.tsx"],
       "~/landing/*": ["landing/*"],
+      "~/blog/*": ["blog/*"],
       "~/components/*": ["components/*"],
       "~/data/*": ["data/*"],
       "~/hooks/*": ["hooks/*"],
