@@ -1,16 +1,22 @@
 import { useState } from "react";
 import Image from "next/image";
-import { Drawer } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
-import { useAuth } from "~/components/Auth";
 import Link from "next/link";
-import { useTheme } from "../../components/Theme";
-import DarkModeToggle from "../../components/DarkModeToggle";
+
+import { AiOutlineMenu } from "react-icons/ai";
+
+import { useAuth } from "~/components/Auth";
+import { useTheme } from "~/components/Theme";
+import DarkModeToggle from "~/components/DarkModeToggle";
+import { Drawer } from "~/components/Drawer";
 
 function Header({ landing = false }) {
   const { user } = useAuth();
-  const [isDrawerVisible, setVisibleDrawer] = useState(false);
   const { isDark } = useTheme();
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const closeDrawer = () => setIsDrawerOpen(false);
+
   return (
     <section className={isDark && !landing ? "dark" : "light"}>
       <div className="dark:bg-dark">
@@ -54,34 +60,15 @@ function Header({ landing = false }) {
               </li>
             </ul>
             <div className="flex md:hidden flex-1 justify-end px-2">
-              <button
-                onClick={() => setVisibleDrawer(true)}
-                type="button"
-                className="bg-primary text-white text-xl inline-flex items-center justify-center p-2 transform duration-300 rounded-md hover:text-white hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
-              >
-                <MenuOutlined />
+              <button onClick={() => setIsDrawerOpen(true)} type="button">
+                <AiOutlineMenu size={36} color={isDark && "white"} />
               </button>
+
               <Drawer
-                className="flex md:hidden"
-                placement="right"
-                closable={false}
-                onClose={() => setVisibleDrawer(false)}
-                visible={isDrawerVisible}
-                zIndex={20}
-              >
-                <ul className="flex flex-col items-center text-xl gap-6 uppercase">
-                  <li className="cursor-pointer hover:text-primary">
-                    Currículo
-                  </li>
-                  <li className="cursor-pointer hover:text-primary">
-                    Projetos
-                  </li>
-                  <li className="cursor-pointer hover:text-primary">Equipa</li>
-                  <li className="cursor-pointer hover:text-primary">
-                    <Link href="/blog"> Blog </Link>
-                  </li>
-                </ul>
-              </Drawer>
+                isOpen={isDrawerOpen}
+                onClickClose={closeDrawer}
+                landing={landing}
+              />
             </div>
           </nav>
         </header>
