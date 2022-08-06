@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Avatar, Button, Card, Row, Typography } from "antd";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import LinkTo from "~/components/utils/LinkTo";
@@ -45,9 +41,11 @@ function Ninjas() {
             size="large"
             style={{ width: 300, marginTop: 16 }}
             actions={[
-              <SettingOutlined key="setting" />,
-              <EditOutlined key="edit" />,
-              <EllipsisOutlined key="ellipsis" />,
+              <Link key={`link ${ninja.id}`} href={`/ninjas/edit/${ninja.id}`}>
+                <a>
+                  <EditOutlined key="edit" />
+                </a>
+              </Link>,
             ]}
           >
             <LinkTo href={`/profile/ninja/${ninja.id}`}>
