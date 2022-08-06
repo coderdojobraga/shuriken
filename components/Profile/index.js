@@ -91,7 +91,7 @@ function Profile({ id, type }) {
 
             <Col span={24}>
               {skills.map((s) => (
-                <Tag>{s.name}</Tag>
+                <Tag key={s.id}>{s.name}</Tag>
               ))}
             </Col>
 

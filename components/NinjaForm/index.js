@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
 import {
@@ -9,6 +9,7 @@ import {
   Input,
   notification,
   Row,
+  Select,
   Space,
   Typography,
 } from "antd";
@@ -24,6 +25,64 @@ export default function NinjaForm({ id }) {
   const [form] = Form.useForm();
 
   const [ninja, setNinja] = useState(undefined);
+
+  const [userSkills, setUserSkills] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [selectedSkills, setSelectedSkills] = useState([]);
+
+  const getAllSkills = () => {
+    api
+      .getSkills()
+      .then((response) => setSkills(response.data))
+      .catch((error) => notification["error"](error.data?.errors));
+  };
+  const getUserSkills = useCallback(() => {
+    if (id) {
+      api
+        .getNinjaSkills(id)
+        .then((response) => {
+          setUserSkills(response.data);
+          setSelectedSkills(response.data.map((s) => s.id));
+        })
+        .catch((error) => notification["error"](error.data?.errors));
+    }
+  }, [id]);
+
+  const deleteSkill = (ninja_id, skill_id) => {
+    api
+      .deleteNinjaSkills(ninja_id, skill_id)
+      .then((_) => getUserSkills())
+      .catch((error) => notification["error"](error.data?.errors));
+  };
+
+  const addSkill = (ninja_id, skill_id) => {
+    api
+      .addNinjaSkills(id, skill_id)
+      .then((_) => getUserSkills())
+      .catch((error) => notification["error"](error.data?.errors));
+  };
+
+  const changeSkills = (ninja_id) => {
+    const deleted = userSkills
+      .map((s) => s.id)
+      .filter((s) => !selectedSkills.includes(s));
+
+    for (const skill of deleted) {
+      deleteSkill(ninja_id, skill);
+    }
+    const added = selectedSkills.filter(
+      (s) => !userSkills.map((s1) => s1.id).includes(s)
+    );
+
+    for (const skill of added) {
+      addSkill(ninja_id, skill);
+    }
+  };
+
+  useEffect(() => {
+    getUserSkills();
+    getAllSkills();
+  }, [getUserSkills]);
 
   useEffect(() => {
     if (id) {
@@ -42,14 +101,27 @@ export default function NinjaForm({ id }) {
     if (id) {
       api
         .updateNinja(id, values)
-        .then(() => router.push("/ninjas"))
-        .catch();
+        .then(() => {
+          changeSkills(id);
+          router.push("/ninjas");
+        })
+        .catch((error) => notification["error"](error.data?.errors));
     } else {
       api
         .createNinja(values)
-        .then(() => router.push("/ninjas"))
-        .catch();
+        .then((response) => {
+          changeSkills(response.data.id);
+          router.push("/ninjas");
+        })
+        .catch((error) => notification["error"](error.data?.errors));
     }
+  };
+
+  const breakpoints = {
+    xs: 24,
+    md: 12,
+    xl: 8,
+    xxl: 6,
   };
 
   return (
@@ -114,6 +186,22 @@ export default function NinjaForm({ id }) {
               }
             >
               <DatePicker />
+            </Form.Item>
+
+            <Form.Item label="Quer aprender">
+              <Select
+                mode="multiple"
+                placeholder="Adicionar linguagem"
+                onChange={setSelectedSkills}
+                value={selectedSkills}
+                style={{ minWidth: "200px" }}
+              >
+                {skills.map((s) => (
+                  <Select.Option key={s.id} value={s.id}>
+                    {s.name}
+                  </Select.Option>
+                ))}
+              </Select>
             </Form.Item>
           </Form>
         </Col>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Avatar,
   Button,
@@ -56,7 +56,7 @@ function Settings() {
       .then((response) => setSkills(response.data))
       .catch((error) => notification["error"](error.data?.errors));
   };
-  const getUserSkills = () => {
+  const getUserSkills = useCallback(() => {
     switch (user.role) {
       case USER.ROLES.MENTOR:
         getMentorSkills(user.mentor_id)
@@ -75,7 +75,7 @@ function Settings() {
           .catch((error) => notification["error"](error.data?.errors));
         break;
     }
-  };
+  }, [user]);
 
   const deleteSkill = (skill_id) => {
     switch (user.role) {
@@ -128,7 +128,7 @@ function Settings() {
     setAvatar(user.photo);
     getUserSkills();
     getAllSkills();
-  }, [user]);
+  }, [user, getUserSkills]);
 
   const breakpoints = {
     xs: 24,
@@ -230,9 +230,9 @@ function Settings() {
                   style={{ minWidth: "200px" }}
                 >
                   {skills.map((s) => (
-                    <Option key={s.id} value={s.id}>
+                    <Select.Option key={s.id} value={s.id}>
                       {s.name}
-                    </Option>
+                    </Select.Option>
                   ))}
                 </Select>
               </Col>
