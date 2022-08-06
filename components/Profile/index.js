@@ -5,6 +5,7 @@ import {
   Empty,
   Row,
   Space,
+  Tag,
   Tabs,
   Timeline,
   Typography,
@@ -29,6 +30,7 @@ function Profile({ id, type }) {
   const [info, setInfo] = useState({});
   const [badges, setBadges] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [skills, setSkills] = useState([]);
 
   useEffect(() => {
     api
@@ -36,7 +38,12 @@ function Profile({ id, type }) {
       .then((response) => setInfo(response.data))
       .catch((error) => notification["error"](error.data?.errors));
 
-    if (type == USER.ROLES.NINJA) {
+    if (type == USER.ROLES.MENTOR) {
+      api
+        .getMentorSkills(id)
+        .then((response) => setSkills(response.data))
+        .catch((error) => notification["error"](error.data?.errors));
+    } else if (type == USER.ROLES.NINJA) {
       api
         .getNinjaBadges(id)
         .then((response) => setBadges(response.data))
@@ -45,6 +52,11 @@ function Profile({ id, type }) {
       api
         .getNinjaFiles(id)
         .then((response) => setProjects(response.data))
+        .catch((error) => notification["error"](error.data?.errors));
+
+      api
+        .getNinjaSkills(id)
+        .then((response) => setSkills(response.data))
         .catch((error) => notification["error"](error.data?.errors));
     }
   }, [id, type]);
@@ -75,6 +87,12 @@ function Profile({ id, type }) {
               <Title className={styles.capitalize} level={4}>
                 {type}
               </Title>
+            </Col>
+
+            <Col span={24}>
+              {skills.map((s) => (
+                <Tag>{s.name}</Tag>
+              ))}
             </Col>
 
             {"belt" in info && (

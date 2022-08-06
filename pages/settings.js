@@ -17,6 +17,7 @@ import {
 import moment from "moment";
 import { UploadOutlined } from "@ant-design/icons";
 import { getBase64 } from "~/lib/images";
+import * as USER from "~/lib/user";
 import { useAuth, withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 
@@ -57,7 +58,7 @@ function Settings() {
   };
   const getUserSkills = () => {
     switch (user.role) {
-      case "mentor":
+      case USER.ROLES.MENTOR:
         getMentorSkills(user.mentor_id)
           .then((response) => {
             setUserSkills(response.data);
@@ -65,7 +66,7 @@ function Settings() {
           })
           .catch((error) => notification["error"](error.data?.errors));
         break;
-      case "ninja":
+      case USER.ROLES.NINJA:
         getNinjaSkills(user.ninja_id)
           .then((response) => {
             setUserSkills(response.data);
@@ -78,12 +79,12 @@ function Settings() {
 
   const deleteSkill = (skill_id) => {
     switch (user.role) {
-      case "mentor":
+      case USER.ROLES.MENTOR:
         deleteMentorSkills(user.mentor_id, skill_id)
           .then((_) => getUserSkills())
           .catch((error) => notification["error"](error.data?.errors));
         break;
-      case "ninja":
+      case USER.ROLES.NINJA:
         deleteNinjaSkills(user.ninja_id, skill_id)
           .then((_) => getUserSkills())
           .catch((error) => notification["error"](error.data?.errors));
@@ -93,12 +94,12 @@ function Settings() {
 
   const addSkill = (skill_id) => {
     switch (user.role) {
-      case "mentor":
+      case USER.ROLES.MENTOR:
         addMentorSkills(user.mentor_id, skill_id)
           .then((_) => getUserSkills())
           .catch((error) => notification["error"](error.data?.errors));
         break;
-      case "ninja":
+      case USER.ROLES.NINJA:
         addNinjaSkills(user.ninja_id, skill_id)
           .then((_) => getUserSkills())
           .catch((error) => notification["error"](error.data?.errors));
@@ -216,7 +217,7 @@ function Settings() {
           </Col>
         </Row>
 
-        {user.role == "guardian" || (
+        {user.role == USER.ROLES.GUARDIAN || (
           <>
             <Section title="Conhecimentos" />
             <Row gutter={24}>
