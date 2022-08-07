@@ -80,9 +80,11 @@ const RegisterActions = () => {
 const ResendEmailActions = () => {
   const router = useRouter();
   const [isLoading, setLoading] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   const ask_confirmation_email = () => {
     setLoading(true);
+    setClicked(true);
     api
       .resend_confirmation_email()
       .then((status) => {
@@ -98,8 +100,13 @@ const ResendEmailActions = () => {
   };
 
   return (
-    <Button loading={isLoading} onClick={ask_confirmation_email} type="primary">
-      Pedir Novamente
+    <Button
+      loading={isLoading}
+      onClick={ask_confirmation_email}
+      type="primary"
+      disabled={clicked}
+    >
+      {clicked ? "Pedido enviado" : "Pedir Novamente"}
     </Button>
   );
 };
