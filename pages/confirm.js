@@ -85,7 +85,6 @@ const ResendEmailActions = () => {
   const ask_confirmation_email = useRef(
     throttle(
       () => {
-        console.log("Adeus");
         setLoading(true);
 
         api
