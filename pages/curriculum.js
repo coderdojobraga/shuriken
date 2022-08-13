@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { Footer, Header, Hero } from "@landing";
+import fs from "fs";
+import { join, extname } from "path";
 
-import styles from "~/styles/Home.module.css";
-import { getStaticBeltInfo } from "~/lib/belt";
+import Image from "next/image";
+import { Footer, Header } from "@landing";
 
 const Belt = ({ colour, description, image, requirements }) => {
   return (
@@ -81,19 +81,14 @@ const Curriculum = ({ belts }) => (
 );
 
 export async function getStaticProps() {
-  console.log(getStaticBeltInfo());
+  const fullPath = join(process.cwd(), "data/curriculum.json");
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+
   return {
     props: {
-      belts: getStaticBeltInfo(),
+      belts: JSON.parse(fileContents),
     },
   };
 }
 
 export default Curriculum;
-/**
- *  <div className="relative">
-      <div className={styles.rectangle} />
-      <div className={styles.curve} />
-      <div className={styles.base} />
-    </div>
- */
