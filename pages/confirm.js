@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { Result, Button } from "antd";
 import { useAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import * as api from "~/lib/api";
+import throttle from "lodash.throttle";
 
 export async function getServerSideProps({ query }) {
   const { token } = query;
@@ -80,33 +81,38 @@ const RegisterActions = () => {
 const ResendEmailActions = () => {
   const router = useRouter();
   const [isLoading, setLoading] = useState(false);
-  const [clicked, setClicked] = useState(false);
 
-  const ask_confirmation_email = () => {
-    setLoading(true);
-    setClicked(true);
-    api
-      .resend_confirmation_email()
-      .then((status) => {
-        switch (status) {
-          case 201:
-            break;
-          case 204:
-            router.replace("/dashboard");
-            break;
-        }
-      })
-      .finally(() => setLoading(false));
-  };
+  const ask_confirmation_email = useRef(
+    throttle(
+      () => {
+        console.log("Adeus");
+        setLoading(true);
+
+        api
+          .resend_confirmation_email()
+          .then((status) => {
+            switch (status) {
+              case 201:
+                break;
+              case 204:
+                router.replace("/dashboard");
+                break;
+            }
+          })
+          .finally(() => setLoading(false));
+      },
+      5000,
+      { trailing: false }
+    )
+  );
 
   return (
     <Button
       loading={isLoading}
-      onClick={ask_confirmation_email}
+      onClick={(_) => ask_confirmation_email.current()}
       type="primary"
-      disabled={clicked}
     >
-      {clicked ? "Pedido enviado" : "Pedir Novamente"}
+      Pedir Novamente
     </Button>
   );
 };
