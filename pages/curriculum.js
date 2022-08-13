@@ -8,7 +8,7 @@ const Belt = ({ colour, description, image, requirements }) => {
   return (
     <div className="container mx-auto">
       <section id={colour} className="relative mx-2 lg:mx-12 xl:mx-20 md:my-28">
-        <div className=" flex flex-row items-start my-8 py-2 ">
+        <div className="flex flex-row items-center my-8 py-2 ">
           <div className="block">
             <h2 className="text-2xl sm:text-3xl font-semibold py-2">
               <span className="text-purple-500 text-2xl sm:text-3xl mr-1">
@@ -24,8 +24,8 @@ const Belt = ({ colour, description, image, requirements }) => {
               ))}
             </ul>
           </div>
-          <div className="md:block hidden ml-auto">
-            <div className="block">
+          <div className="ml-auto">
+            <div className="block w-48 h-48">
               <Image
                 src={`/img/ninjas/${image}`}
                 width={300}
@@ -62,15 +62,11 @@ const Curriculum = ({ belts }) => (
             O que são os cinturões?
           </h2>
           <p className="text-sm sm:text-md mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-            dictum vulputate pellentesque. Proin egestas pharetra mauris eget
-            pulvinar. Etiam sagittis, lacus sit amet tempus varius, urna lorem
-            mattis augue, quis condimentum neque eros ut nulla. Morbi ultrices
-            ex in sem lobortis, sit amet dignissim felis bibendum. Interdum et
-            malesuada fames ac ante ipsum primis in faucibus. Nullam orci felis,
-            suscipit mattis tempor et, tempor vitae est. Vestibulum mollis
-            congue ex, ac volutpat ante convallis eu. Ut sed lectus volutpat,
-            vulputate tortor quis, malesuada diam.
+            Ao longo do seu percurso pelo CoderDojo Braga, os ninjas recebem
+            cinturões. À semelhança das artes marciais, os cinturões representam
+            o conhecimento e domínio da programação que os ninjas possuem. O
+            caminho de cada ninja é único, mas deverá sempre passar pelos
+            fundamentos da área.
           </p>
         </div>
       </section>
