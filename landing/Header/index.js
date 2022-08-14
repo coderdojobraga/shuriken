@@ -8,8 +8,9 @@ import { useTheme } from "../../components/Theme";
 import DarkModeToggle from "../../components/DarkModeToggle";
 
 function Header({ landing = false }) {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [isDrawerVisible, setVisibleDrawer] = useState(false);
+  const [userDropdownVisible, setUserDropdownVisible] = useState(false);
   const { isDark } = useTheme();
   return (
     <section className={isDark && !landing ? "dark" : "light"}>
@@ -39,8 +40,44 @@ function Header({ landing = false }) {
                 <Link href="/blog"> Blog </Link>
               </li>
               {user ? (
-                <li className="text-bold">
-                  Hello, {user.first_name} {user.last_name}
+                <li
+                  className="text-bold"
+                  onClick={(_) => setUserDropdownVisible(!userDropdownVisible)}
+                >
+                  {!user.photo ? (
+                    /* eslint-disable @next/next/no-img-element */
+                    <img
+                      className="z-50"
+                      src={user.photo}
+                      width={50}
+                      height={50}
+                    />
+                  ) : (
+                    <div className="rounded-full border-2 border-primary relative z-50 select-none text-lg px-2 py-1">
+                      {user.first_name[0] + user.last_name[0]}
+                    </div>
+                  )}
+                  <div
+                    className={`mt-2 absolute z-10 ${
+                      userDropdownVisible
+                        ? "opacity-100"
+                        : "opacity-0 invisible -translate-y-full"
+                    } -translate-x-1/4 transition-all duration-300 transform px-4 py-2`}
+                  >
+                    <ul>
+                      <li>
+                        <Link href="/dashboard">Dashboard</Link>
+                      </li>
+                      <li>
+                        <button
+                          className="hover:text-primary mt-2"
+                          onClick={logout}
+                        >
+                          LOG OUT
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
                 </li>
               ) : (
                 <Link href="/login">
