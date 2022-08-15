@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import API from "~/lib/api";
 
-export function useBadge(id, preloads = []) {
+export function useBadge(id: string, preloads: Array<"ninjas"> = []) {
   return useQuery(["badges", id], async () => {
     const {
       data: { data: badge },

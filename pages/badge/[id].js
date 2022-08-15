@@ -27,10 +27,11 @@ function Badge() {
               isLoading ? (
                 <Skeleton.Image />
               ) : (
+                /* eslint-disable @next/next/no-img-element */
                 <img
                   className={styles.image}
-                  alt={badge?.description}
                   src={badge?.image}
+                  alt={badge?.description}
                 />
               )
             }

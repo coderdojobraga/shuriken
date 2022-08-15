@@ -47,6 +47,7 @@ function Navbar({ selected }) {
           preview={false}
           height={60}
           src="/lettering.png"
+          alt="CoderDojo Braga"
         />
       </LinkTo>
       {navbar
