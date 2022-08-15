@@ -4,7 +4,7 @@ import { Result, Button } from "antd";
 import { useAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import * as api from "~/lib/api";
-import throttle from "lodash.throttle";
+import throttle from "lodash-es/throttle";
 
 export async function getServerSideProps({ query }) {
   const { token } = query;
