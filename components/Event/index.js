@@ -32,7 +32,7 @@ const Event = ({ event, collapsed = true }) => {
       year: "numeric",
       month: "short",
       day: "numeric",
-    })}`;  
+    })}`;
 
   return (
     <LinkTo href={`event/${event.id}`}>
