@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Button, Card, Descriptions, Grid, Modal, Space } from "antd";
+import {
+  Button,
+  Card,
+  Descriptions,
+  Grid,
+  Modal,
+  Space,
+  notification,
+} from "antd";
 import {
   CalendarOutlined,
   ClockCircleOutlined,
@@ -7,10 +15,11 @@ import {
   HomeOutlined,
 } from "@ant-design/icons";
 import EventInfo from "~/components/Event/EventInfo";
+import LinkTo from "~/components/utils/LinkTo";
 
 const { useBreakpoint } = Grid;
 
-function Event({ event, collapsed = true }) {
+const Event = ({ event, collapsed = true }) => {
   const [isPopupVisible, setPopupVisible] = useState(false);
   const screens = useBreakpoint();
 
@@ -23,10 +32,10 @@ function Event({ event, collapsed = true }) {
       year: "numeric",
       month: "short",
       day: "numeric",
-    })}`;
+    })}`;  
 
   return (
-    <>
+    <LinkTo href={`event/${event.id}`}>
       <Modal
         visible={isPopupVisible}
         title={title}
@@ -109,11 +118,18 @@ function Event({ event, collapsed = true }) {
           ) : (
             <EventInfo {...event} />
           )}
-          <Button type="primary">Inscrever</Button>
+          <Button
+            onClick={() => {
+              registerUserOnEvent();
+            }}
+            type="primary"
+          >
+            Inscrever
+          </Button>
         </Space>
       </Card>
-    </>
+    </LinkTo>
   );
-}
+};
 
 export default Event;
