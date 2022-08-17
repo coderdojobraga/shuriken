@@ -1,18 +1,20 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import { useEvent } from "~/hooks/events";
 import { useAuth, withAuth } from "~/components/Auth";
 import * as USER from "~/lib/user";
-import { Col, Row, Title } from "antd";
+import { Col, notification, Row, Title } from "antd";
 import AppLayout from "~/components/layouts/AppLayout";
 
-import { getEventByID, createAvailability, createEnrollment } from "~/lib/api";
+import { createAvailability, createEnrollment } from "~/lib/api";
 
 function Event() {
   const { user } = useAuth();
   const router = useRouter();
   const { id } = router.query;
 
-  const [event, setEvent] = useState([]);
+  const { data: event, isLoading } = useEvent(id);
+  console.log(isLoading);
 
   const registerUserOnEvent = (is_available) => {
     switch (user.role) {
@@ -30,12 +32,6 @@ function Event() {
     }
   };
 
-  useEffect(() => {
-    getEventByID(id)
-      .then((response) => setEvent(response.data))
-      .catch((error) => notification["error"](error.data?.errors));
-  }, []);
-
   const breakpoints = {
     xs: 24,
     md: 12,
@@ -47,7 +43,11 @@ function Event() {
     <AppLayout>
       <Row justify="start">
         <Col {...breakpoints}>
-          <Title level={3}>{event.name}</Title>
+          {isLoading ? (
+            <Title level={3}>It is loading</Title>
+          ) : (
+            <Title level={3}>{event?.name}</Title>
+          )}
         </Col>
       </Row>
     </AppLayout>
