@@ -11,6 +11,7 @@ function AuthenticationLayout({ children }) {
       <Content className={styles.content}>
         <Koi />
         <div className={styles.main}>
+          {/* eslint-disable @next/next/no-img-element */}
           <img
             className={styles.logo}
             src="/img/logo.svg"
