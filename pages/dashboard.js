@@ -25,22 +25,6 @@ function Dashboard() {
   return (
     <AppLayout>
       <Title level={2}>Painel Principal</Title>
-      <Paragraph>
-        <Alert
-          message="Inscrições Abertas"
-          description={
-            <Space direction="vertical">
-              As inscrições para a sessão de 10 de junho de 2021 estão abertas.
-              <Button size="small" type="primary">
-                Inscrever
-              </Button>
-            </Space>
-          }
-          closable
-          type="info"
-          showIcon
-        />
-      </Paragraph>
       <Title level={3}>Próximo Evento</Title>
       <Row className={styles.row} align="top" justify="space-between">
         {events.length > 0 ? (

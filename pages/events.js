@@ -3,7 +3,7 @@ import { Typography, Col, Row } from "antd";
 import AppLayout from "~/components/layouts/AppLayout";
 import { withAuth } from "~/components/Auth";
 import Event from "~/components/Event";
-import * as api from "~/lib/api";
+import { getEvents } from "~/lib/api";
 
 import styles from "~/styles/Dashboard.module.css";
 
@@ -13,10 +13,9 @@ function Events() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    api
-      .getEvents()
+    getEvents()
       .then((response) => setEvents(response.data))
-      .catch(() => {});
+      .catch((error) => notification["error"](error.data?.errors));
   }, []);
 
   return (

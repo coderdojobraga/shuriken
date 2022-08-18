@@ -7,15 +7,18 @@ import {
   HomeOutlined,
 } from "@ant-design/icons";
 
-function EventInfo({ start_time, end_time, location, team, notes }) {
+function EventInfo({
+  start_time,
+  end_time,
+  location,
+  team,
+  notes,
+  breakpoints = { xs: 1, sm: 1, md: 1, lg: 7, xl: 7, xxl: 7 },
+}) {
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
 
   return (
-    <Descriptions
-      column={{ xs: 1, sm: 1, md: 1, lg: 7, xl: 7, xxl: 7 }}
-      size="small"
-      layout="horizontal"
-    >
+    <Descriptions column={breakpoints} size="small" layout="horizontal">
       <Descriptions.Item
         labelStyle={labelStyle}
         label={
@@ -41,7 +44,7 @@ function EventInfo({ start_time, end_time, location, team, notes }) {
         }
         span={5}
       >
-        {location.name}
+        {location?.name}
       </Descriptions.Item>
       <Descriptions.Item
         labelStyle={labelStyle}
@@ -81,7 +84,7 @@ function EventInfo({ start_time, end_time, location, team, notes }) {
         }
         span={2}
       >
-        {team.name}
+        {team?.name}
       </Descriptions.Item>
       <Descriptions.Item
         labelStyle={labelStyle}
