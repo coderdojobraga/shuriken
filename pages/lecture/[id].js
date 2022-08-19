@@ -61,9 +61,9 @@ function Lectures() {
   }, [lecture, form]);
 
   const editable =
-    lecture &&
+    lecture.mentor &&
     user.role == USER.ROLES.MENTOR &&
-    user.mentor.id == lecture.mentor.id;
+    user.mentor_id == lecture.mentor.id;
 
   return (
     <AppLayout>
@@ -85,87 +85,96 @@ function Lectures() {
           )}
         </Col>
       </Row>
-      <Row align="middle" gutter={[16, 16]}>
-        <Col>
-          <CalendarOutlined
-            style={{
-              verticalAlign: "middle",
-              paddingBottom: "2px",
-            }}
-          />
-        </Col>
-        <Col>
+      <Space direction="vertical" style={{ width: "100%" }}>
+        <Row>
           <Text>
-            {!lecture.event ||
-              moment(new Date(lecture.event.start_time)).format("DD/MM/YYYY")}
+            Evento: {!lecture.event || lecture.event.title || "Sem título"}
           </Text>
-        </Col>
-      </Row>
-
-      <Row align="middle" gutter={[10, 10]}>
-        <Col>
-          <Text>Mentor:</Text>
-        </Col>
-        <Col>
-          <Avatar
-            src={!lecture.mentor || lecture.mentor.photo}
-            size="large"
-            alt="Avatar Mentor"
-            icon={<UserOutlined />}
-          />
-        </Col>
-        <Col>
-          <Text>{`${!lecture.mentor || lecture.mentor.first_name} ${
-            !lecture.mentor || lecture.mentor.last_name
-          }`}</Text>
-        </Col>
-      </Row>
-      <Row align="middle" gutter={[10, 10]}>
-        <Col>
-          <Text>Ninja:</Text>
-        </Col>
-        <Col>
-          <Avatar
-            src={!lecture.ninja || lecture.ninja.photo}
-            size="large"
-            alt="Avatar Ninja"
-            icon={<UserOutlined />}
-          />
-        </Col>
-        <Col>
-          <Text>{`${!lecture.ninja || lecture.ninja.first_name} ${
-            !lecture.ninja || lecture.ninja.last_name
-          }`}</Text>
-        </Col>
-      </Row>
-
-      <Row>
-        <Text>{attendance}</Text>
-      </Row>
-
-      <Row align="middle" gutter={[10, 10]}>
-        <Form
-          form={form}
-          onFinish={onFinish}
-          layout="horiontal"
-          style={{ width: "100%" }}
-          disabled={!editable}
-        >
-          <Form.Item name="summary" label="Sumário">
-            <Input.TextArea
-              placeholder="Um sumário da sessão"
-              defaultValue={lecture.summary}
+        </Row>
+        <Row align="middle" gutter={[16, 16]}>
+          <Col>
+            <CalendarOutlined
+              style={{
+                verticalAlign: "middle",
+                paddingBottom: "2px",
+              }}
             />
-          </Form.Item>
+          </Col>
+          <Col>
+            <Text>
+              {!lecture.event ||
+                moment(new Date(lecture.event.start_time)).format("DD/MM/YYYY")}
+            </Text>
+          </Col>
+        </Row>
 
-          <Form.Item name="notes" label="Notas">
-            <Input.TextArea
-              placeholder="Notas adicionais"
-              defaultValue={lecture.notes}
+        <Row align="middle" gutter={[10, 10]}>
+          <Col>
+            <Text>Mentor(a):</Text>
+          </Col>
+          <Col>
+            <Avatar
+              src={!lecture.mentor || lecture.mentor.photo}
+              size="large"
+              alt="Avatar Mentor"
+              icon={<UserOutlined />}
             />
-          </Form.Item>
-        </Form>
-      </Row>
+          </Col>
+          <Col>
+            <Text>{`${!lecture.mentor || lecture.mentor.first_name} ${
+              !lecture.mentor || lecture.mentor.last_name
+            }`}</Text>
+          </Col>
+        </Row>
+        <Row align="middle" gutter={[10, 10]}>
+          <Col>
+            <Text>Ninja:</Text>
+          </Col>
+          <Col>
+            <Avatar
+              src={!lecture.ninja || lecture.ninja.photo}
+              size="large"
+              alt="Avatar Ninja"
+              icon={<UserOutlined />}
+            />
+          </Col>
+          <Col>
+            <Text>{`${!lecture.ninja || lecture.ninja.first_name} ${
+              !lecture.ninja || lecture.ninja.last_name
+            }`}</Text>
+          </Col>
+        </Row>
+
+        <Row>
+          <Text>Presenças: {attendance}</Text>
+        </Row>
+
+        <Row align="middle" gutter={[10, 10]}>
+          <Col style={{ width: "100%" }}>
+            <Form
+              form={form}
+              onFinish={onFinish}
+              layout="horiontal"
+              style={{ width: "100%" }}
+              disabled={!editable}
+            >
+              <Form.Item name="summary" label="Sumário">
+                <Input.TextArea
+                  placeholder="Um sumário da sessão"
+                  defaultValue={lecture.summary}
+                />
+              </Form.Item>
+
+              <Form.Item name="notes" label="Notas">
+                <Input.TextArea
+                  placeholder="Notas adicionais"
+                  defaultValue={lecture.notes}
+                />
+              </Form.Item>
+            </Form>
+          </Col>
+        </Row>
+      </Space>
     </AppLayout>
   );
 }

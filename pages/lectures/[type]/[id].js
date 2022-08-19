@@ -54,7 +54,7 @@ function Lectures() {
 
   return (
     <AppLayout>
-      <Row justify="space-around" gutter={[10, 10]}>
+      <Row gutter={[10, 10]}>
         <Title level={2}>
           {type == user.ROLES.MENTOR
             ? "Sessões"
@@ -69,7 +69,7 @@ function Lectures() {
             title={lecture.event.title || "Sem título"}
             style={{ width: 300, marginTop: 16 }}
             actions={[
-              <Link key={`link ${lecture.id}`} href={`/`}>
+              <Link key={`link ${lecture.id}`} href={`/lecture/${lecture.id}`}>
                 <a>
                   <EditOutlined key="edit" />
                 </a>
@@ -95,15 +95,7 @@ function Lectures() {
             </Row>
             <Row align="middle" gutter={[16, 16]}>
               <Col>
-                <Avatar
-                  src={lecture.mentor.photo}
-                  size="large"
-                  alt={`Avatar ${lecture.mentor.first_name} ${lecture.mentor.last_name}`}
-                  icon={<UserOutlined />}
-                />
-              </Col>
-              <Col>
-                <Text>{`${lecture.mentor.first_name} ${lecture.mentor.last_name}`}</Text>
+                <Text>{`Mentor(a): ${lecture.mentor.first_name} ${lecture.mentor.last_name}`}</Text>
               </Col>
             </Row>
           </Card>
