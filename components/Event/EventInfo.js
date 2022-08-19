@@ -5,6 +5,8 @@ import {
   ClockCircleOutlined,
   EnvironmentOutlined,
   HomeOutlined,
+  CheckCircleOutlined, 
+  CloseCircleOutlined
 } from "@ant-design/icons";
 
 function EventInfo({
@@ -13,9 +15,19 @@ function EventInfo({
   location,
   team,
   notes,
-  breakpoints = { xs: 1, sm: 1, md: 1, lg: 7, xl: 7, xxl: 7 },
+  enrollments_open,
+  enrollments_close,
+  breakpoints = { xs: 1, sm: 1, md: 1, lg: 7, xl: 7, xxl: 7 }
 }) {
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
+
+  const timeForEnrollmentsClose = () => {
+    const enrollmentsClose = new Date(enrollments_close).getTime();
+    const nowDate = new Date().getTime();
+    const timeDiff = (enrollmentsClose - nowDate) / (1000 * 60 * 60 * 24);
+
+    return timeDiff > 0 && timeDiff < 1; // Difference of less than a day
+  }
 
   return (
     <Descriptions column={breakpoints} size="small" layout="horizontal">
@@ -32,7 +44,7 @@ function EventInfo({
           weekday: "long",
           year: "numeric",
           month: "long",
-          day: "numeric",
+          day: "numeric"
         })}
       </Descriptions.Item>
       <Descriptions.Item
@@ -57,7 +69,7 @@ function EventInfo({
       >
         {new Date(start_time).toLocaleString("pt", {
           hour: "numeric",
-          minute: "numeric",
+          minute: "numeric"
         })}
       </Descriptions.Item>
 
@@ -72,7 +84,7 @@ function EventInfo({
       >
         {new Date(end_time).toLocaleString("pt", {
           hour: "numeric",
-          minute: "numeric",
+          minute: "numeric"
         })}
       </Descriptions.Item>
       <Descriptions.Item
@@ -96,6 +108,48 @@ function EventInfo({
         span={5}
       >
         {notes}
+      </Descriptions.Item>
+      <Descriptions.Item
+        labelStyle={labelStyle}
+        label={
+          <span>
+            <CheckCircleOutlined /> Abertura das inscrições
+          </span>
+        }
+        span={2}
+      >
+        {new Date(enrollments_open).toLocaleDateString("pt", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric"
+        })}
+      </Descriptions.Item>
+      <Descriptions.Item
+        labelStyle={labelStyle}
+        label={
+          timeForEnrollmentsClose() ? (
+            <span className="text-red-600 animate-bounce">
+              <CloseCircleOutlined /> Fecho das inscrições
+            </span>
+          ) : (
+            <span>
+              <CloseCircleOutlined /> Fecho das inscrições
+            </span>
+          )
+        }
+        span={2}
+      >
+        {new Date(enrollments_close).toLocaleDateString("pt", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric"
+        })}
       </Descriptions.Item>
     </Descriptions>
   );

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Avatar, Card, Col, List, Row, Skeleton, Tag, Typography } from "antd";
+import { Avatar, Card, Col, List, Row, Skeleton, Typography } from "antd";
 import { useBadge } from "~/hooks/badges";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
