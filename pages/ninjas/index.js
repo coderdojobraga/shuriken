@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Avatar, Button, Card, Row, Typography } from "antd";
-import { EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { CalendarOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import LinkTo from "~/components/utils/LinkTo";
@@ -46,6 +46,11 @@ function Ninjas() {
                   <EditOutlined key="edit" />
                 </a>
               </Link>,
+              <Link key={`Sessions ${ninja.id}`} href={`/lectures/ninja/${ninja.id}`}>
+              <a>
+                <CalendarOutlined key="sessions" />
+              </a>
+            </Link>,
             ]}
           >
             <LinkTo href={`/profile/ninja/${ninja.id}`}>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, Avatar, Typography } from "antd";
 import {
   CalendarOutlined,
+  BookOutlined,
   HomeOutlined,
   LogoutOutlined,
   SettingOutlined,
@@ -117,6 +118,11 @@ function AppMenu({ hidePrimaryMenu, collapsed }) {
             {user.role === USER.ROLES.GUARDIAN && (
               <Item key="/ninjas" icon={<UserAddOutlined />}>
                 Ninjas
+              </Item>
+            )}
+            {user.role === USER.ROLES.MENTOR && (
+              <Item key={`/lectures/mentor/${user.mentor_id}`} icon={<BookOutlined />}>
+                Sessões
               </Item>
             )}
             {user.role === USER.ROLES.NINJA && (
