@@ -8,11 +8,11 @@ import {
   EditOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { withAuth } from "~/components/Auth";
+import { useAuth, withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import LinkTo from "~/components/utils/LinkTo";
 import * as api from "~/lib/api";
-import * as user from "~/lib/user";
+import * as USER from "~/lib/user";
 import Belt from "~/components/Belt";
 import moment from "moment";
 
@@ -22,7 +22,7 @@ function Lectures() {
   const router = useRouter();
   const { id } = router.query;
   const [form] = Form.useForm();
-
+  const { user } = useAuth();
   const onFinish = (values) => {
     api
       .updateLecture(id, values)
@@ -62,6 +62,8 @@ function Lectures() {
     form.resetFields();
   }, [lecture]);
 
+  const editable = lecture && user.role == USER.ROLES.MENTOR && user.mentor.id == lecture.mentor.id;
+
   return (
     <AppLayout>
         <Row  justify="space-between" gutter={[10, 10]}>
@@ -70,12 +72,12 @@ function Lectures() {
           </Col>
             
             <Col>
-          <Space>
+          {!editable || <Space>
             <Button onClick={() => router.push("/dashboard")}>Cancelar</Button>
             <Button onClick={() => form.submit()} type="primary">
               Guardar
             </Button>
-          </Space>
+          </Space>}
         </Col>
         </Row>
       <Row align="middle" gutter={[16, 16]}>
@@ -139,6 +141,7 @@ function Lectures() {
             onFinish={onFinish}
             layout="horiontal"
             style={{width: "100%"}}
+            disabled={!editable}
         >
           <Form.Item name="summary" label="Sumário">
             <Input.TextArea placeholder="Um sumário da sessão" defaultValue={lecture.summary}/>
