@@ -98,6 +98,11 @@ function Lectures() {
                 <Text>{`Mentor(a): ${lecture.mentor.first_name} ${lecture.mentor.last_name}`}</Text>
               </Col>
             </Row>
+            <Row align="middle" gutter={[16, 16]}>
+              <Col>
+                <Text>{`Ninja: ${lecture.ninja.first_name} ${lecture.ninja.last_name}`}</Text>
+              </Col>
+            </Row>
           </Card>
         ))}
       </Row>
