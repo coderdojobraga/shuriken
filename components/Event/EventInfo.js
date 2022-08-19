@@ -5,8 +5,8 @@ import {
   ClockCircleOutlined,
   EnvironmentOutlined,
   HomeOutlined,
-  CheckCircleOutlined, 
-  CloseCircleOutlined
+  CheckCircleOutlined,
+  CloseCircleOutlined,
 } from "@ant-design/icons";
 
 function EventInfo({
@@ -17,7 +17,7 @@ function EventInfo({
   notes,
   enrollments_open,
   enrollments_close,
-  breakpoints = { xs: 1, sm: 1, md: 1, lg: 7, xl: 7, xxl: 7 }
+  breakpoints = { xs: 1, sm: 1, md: 1, lg: 7, xl: 7, xxl: 7 },
 }) {
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
 
@@ -27,7 +27,7 @@ function EventInfo({
     const timeDiff = (enrollmentsClose - nowDate) / (1000 * 60 * 60 * 24);
 
     return timeDiff > 0 && timeDiff < 1; // Difference of less than a day
-  }
+  };
 
   return (
     <Descriptions column={breakpoints} size="small" layout="horizontal">
@@ -44,7 +44,7 @@ function EventInfo({
           weekday: "long",
           year: "numeric",
           month: "long",
-          day: "numeric"
+          day: "numeric",
         })}
       </Descriptions.Item>
       <Descriptions.Item
@@ -69,7 +69,7 @@ function EventInfo({
       >
         {new Date(start_time).toLocaleString("pt", {
           hour: "numeric",
-          minute: "numeric"
+          minute: "numeric",
         })}
       </Descriptions.Item>
 
@@ -84,7 +84,7 @@ function EventInfo({
       >
         {new Date(end_time).toLocaleString("pt", {
           hour: "numeric",
-          minute: "numeric"
+          minute: "numeric",
         })}
       </Descriptions.Item>
       <Descriptions.Item
@@ -124,7 +124,7 @@ function EventInfo({
           month: "long",
           day: "numeric",
           hour: "numeric",
-          minute: "numeric"
+          minute: "numeric",
         })}
       </Descriptions.Item>
       <Descriptions.Item
@@ -148,7 +148,7 @@ function EventInfo({
           month: "long",
           day: "numeric",
           hour: "numeric",
-          minute: "numeric"
+          minute: "numeric",
         })}
       </Descriptions.Item>
     </Descriptions>
