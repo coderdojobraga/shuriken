@@ -24,6 +24,14 @@ const Event = ({ event, collapsed = true }) => {
       day: "numeric",
     })}`;
 
+  const enrollmentsStillOpen = () => {
+    const enrollmentsOpen = new Date(event?.enrollments_open);
+    const enrollmentsClose = new Date(event?.enrollments_close);
+    const nowDate = new Date();
+
+    return enrollmentsOpen < nowDate && enrollmentsClose > nowDate;
+  };
+
   return (
     <Card title={title} style={collapsed ? { maxWidth: 460 } : null}>
       <Space
@@ -86,9 +94,13 @@ const Event = ({ event, collapsed = true }) => {
         ) : (
           <EventInfo {...event} />
         )}
-        <LinkTo href={`event/${event.id}`}>
-          <Button type="primary"> Inscrever </Button>
-        </LinkTo>
+        {enrollmentsStillOpen() ? (
+          <LinkTo href={`event/${event.id}`}>
+            <Button type="primary"> Inscrever </Button>
+          </LinkTo>
+        ) : (
+          <></>
+        )}
       </Space>
     </Card>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Space, Typography, Col, Row } from "antd";
+import { Typography, Col, Row } from "antd";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import Event from "~/components/Event";
@@ -9,7 +9,7 @@ import * as api from "~/lib/api";
 
 import styles from "~/styles/Dashboard.module.css";
 
-const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 
 function Dashboard() {
   const [events, setEvents] = useState([]);
