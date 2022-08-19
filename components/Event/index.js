@@ -45,16 +45,6 @@ const Event = ({ event, collapsed = true }) => {
               labelStyle={labelStyle}
               label={
                 <span>
-                  <HomeOutlined /> Turma
-                </span>
-              }
-            >
-              {event.team.name}
-            </Descriptions.Item>
-            <Descriptions.Item
-              labelStyle={labelStyle}
-              label={
-                <span>
                   <CalendarOutlined /> Data
                 </span>
               }
@@ -81,7 +71,7 @@ const Event = ({ event, collapsed = true }) => {
               labelStyle={labelStyle}
               label={
                 <span>
-                  <ClockCircleOutlined /> Hora
+                  <ClockCircleOutlined /> Início
                 </span>
               }
             >
@@ -89,6 +79,29 @@ const Event = ({ event, collapsed = true }) => {
                 hour: "numeric",
                 minute: "numeric",
               })}
+            </Descriptions.Item>
+            <Descriptions.Item
+              labelStyle={labelStyle}
+              label={
+                <span>
+                  <ClockCircleOutlined /> Fim
+                </span>
+              }
+            >
+              {new Date(event.end_time).toLocaleString("pt", {
+                hour: "numeric",
+                minute: "numeric",
+              })}
+            </Descriptions.Item>
+            <Descriptions.Item
+              labelStyle={labelStyle}
+              label={
+                <span>
+                  <HomeOutlined /> Turma
+                </span>
+              }
+            >
+              {event.team.name}
             </Descriptions.Item>
           </Descriptions>
         ) : (
