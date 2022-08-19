@@ -121,7 +121,10 @@ function AppMenu({ hidePrimaryMenu, collapsed }) {
               </Item>
             )}
             {user.role === USER.ROLES.MENTOR && (
-              <Item key={`/lectures/mentor/${user.mentor_id}`} icon={<BookOutlined />}>
+              <Item
+                key={`/lectures/mentor/${user.mentor_id}`}
+                icon={<BookOutlined />}
+              >
                 Sessões
               </Item>
             )}

@@ -16,7 +16,6 @@ import * as USER from "~/lib/user";
 import Belt from "~/components/Belt";
 import moment from "moment";
 
-
 function Lectures() {
   const { Title, Text } = Typography;
   const router = useRouter();
@@ -30,18 +29,17 @@ function Lectures() {
       .catch((error) => notification["error"](error.data?.errors));
   };
 
-
   const [lecture, setLecture] = useState({});
 
   useEffect(() => {
     api
-    .getLecture(id)
-    .then((response) => setLecture(response.data))
-    .catch((error) => notification["error"](error.data?.errors));
-  }, []);
+      .getLecture(id)
+      .then((response) => setLecture(response.data))
+      .catch((error) => notification["error"](error.data?.errors));
+  }, [id]);
 
   let attendance = "";
-  switch(lecture.attendance) {
+  switch (lecture.attendance) {
     case "both_present":
       attendance = "Ambos Presentes";
       break;
@@ -60,26 +58,33 @@ function Lectures() {
 
   useEffect(() => {
     form.resetFields();
-  }, [lecture]);
+  }, [lecture, form]);
 
-  const editable = lecture && user.role == USER.ROLES.MENTOR && user.mentor.id == lecture.mentor.id;
+  const editable =
+    lecture &&
+    user.role == USER.ROLES.MENTOR &&
+    user.mentor.id == lecture.mentor.id;
 
   return (
     <AppLayout>
-        <Row  justify="space-between" gutter={[10, 10]}>
-          <Col>
-            <Title level={1}>Detalhes de sessão</Title>
-          </Col>
-            
-            <Col>
-          {!editable || <Space>
-            <Button onClick={() => router.push("/dashboard")}>Cancelar</Button>
-            <Button onClick={() => form.submit()} type="primary">
-              Guardar
-            </Button>
-          </Space>}
+      <Row justify="space-between" gutter={[10, 10]}>
+        <Col>
+          <Title level={1}>Detalhes de sessão</Title>
         </Col>
-        </Row>
+
+        <Col>
+          {!editable || (
+            <Space>
+              <Button onClick={() => router.push("/dashboard")}>
+                Cancelar
+              </Button>
+              <Button onClick={() => form.submit()} type="primary">
+                Guardar
+              </Button>
+            </Space>
+          )}
+        </Col>
+      </Row>
       <Row align="middle" gutter={[16, 16]}>
         <Col>
           <CalendarOutlined
@@ -91,14 +96,15 @@ function Lectures() {
         </Col>
         <Col>
           <Text>
-            {!lecture.event || moment(new Date(lecture.event.start_time)).format("DD/MM/YYYY")}
+            {!lecture.event ||
+              moment(new Date(lecture.event.start_time)).format("DD/MM/YYYY")}
           </Text>
         </Col>
       </Row>
 
       <Row align="middle" gutter={[10, 10]}>
         <Col>
-            <Text>Mentor:</Text>
+          <Text>Mentor:</Text>
         </Col>
         <Col>
           <Avatar
@@ -109,12 +115,14 @@ function Lectures() {
           />
         </Col>
         <Col>
-          <Text>{`${!lecture.mentor || lecture.mentor.first_name} ${!lecture.mentor || lecture.mentor.last_name}`}</Text>
+          <Text>{`${!lecture.mentor || lecture.mentor.first_name} ${
+            !lecture.mentor || lecture.mentor.last_name
+          }`}</Text>
         </Col>
       </Row>
       <Row align="middle" gutter={[10, 10]}>
-      <Col>
-            <Text>Ninja:</Text>
+        <Col>
+          <Text>Ninja:</Text>
         </Col>
         <Col>
           <Avatar
@@ -125,30 +133,36 @@ function Lectures() {
           />
         </Col>
         <Col>
-          <Text>{`${!lecture.ninja || lecture.ninja.first_name} ${!lecture.ninja || lecture.ninja.last_name}`}</Text>
+          <Text>{`${!lecture.ninja || lecture.ninja.first_name} ${
+            !lecture.ninja || lecture.ninja.last_name
+          }`}</Text>
         </Col>
       </Row>
 
       <Row>
-        <Text>
-            {attendance}
-        </Text>
+        <Text>{attendance}</Text>
       </Row>
 
       <Row align="middle" gutter={[10, 10]}>
         <Form
-            form={form}
-            onFinish={onFinish}
-            layout="horiontal"
-            style={{width: "100%"}}
-            disabled={!editable}
+          form={form}
+          onFinish={onFinish}
+          layout="horiontal"
+          style={{ width: "100%" }}
+          disabled={!editable}
         >
           <Form.Item name="summary" label="Sumário">
-            <Input.TextArea placeholder="Um sumário da sessão" defaultValue={lecture.summary}/>
+            <Input.TextArea
+              placeholder="Um sumário da sessão"
+              defaultValue={lecture.summary}
+            />
           </Form.Item>
 
           <Form.Item name="notes" label="Notas">
-            <Input.TextArea placeholder="Notas adicionais" defaultValue={lecture.notes}/>
+            <Input.TextArea
+              placeholder="Notas adicionais"
+              defaultValue={lecture.notes}
+            />
           </Form.Item>
         </Form>
       </Row>

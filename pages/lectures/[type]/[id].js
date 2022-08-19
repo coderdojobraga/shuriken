@@ -44,18 +44,22 @@ function Lectures() {
         router.push("/404");
         break;
     }
-      if(type == user.ROLES.NINJA) {
-        api
-      .getNinja(id)
-      .then((response) => setNinja(response.data))
-      .catch((error) => notification["error"](error.data?.errors));
-      }
-  }, []);
+    if (type == user.ROLES.NINJA) {
+      api
+        .getNinja(id)
+        .then((response) => setNinja(response.data))
+        .catch((error) => notification["error"](error.data?.errors));
+    }
+  }, [router, type, id]);
 
   return (
     <AppLayout>
       <Row justify="space-around" gutter={[10, 10]}>
-        <Title level={2}>{type == user.ROLES.MENTOR ? "Sessões" : `Sessões ${ninja.first_name} ${ninja.last_name}`}</Title>
+        <Title level={2}>
+          {type == user.ROLES.MENTOR
+            ? "Sessões"
+            : `Sessões ${ninja.first_name} ${ninja.last_name}`}
+        </Title>
       </Row>
       <Row justify="space-around" gutter={[10, 10]}>
         {lectures.map((lecture) => (
