@@ -10,7 +10,6 @@ import {
   Row,
   Select,
   Space,
-  notification,
   Typography,
   Upload,
 } from "antd";
@@ -30,6 +29,8 @@ import {
   getNinjaSkills,
   getSkills,
 } from "~/lib/api";
+
+import { notifyError } from "~/components/ErrorNotification";
 
 const { Title } = Typography;
 
@@ -54,7 +55,7 @@ function Settings() {
   const getAllSkills = () => {
     getSkills()
       .then((response) => setSkills(response.data))
-      .catch((error) => notification["error"](error.data?.errors));
+      .catch(notifyError);
   };
   const getUserSkills = useCallback(() => {
     switch (user.role) {
@@ -64,7 +65,7 @@ function Settings() {
             setUserSkills(response.data);
             setSelectedSkills(response.data.map((s) => s.id));
           })
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch(notifyError);
         break;
       case USER.ROLES.NINJA:
         getNinjaSkills(user.ninja_id)
@@ -72,7 +73,7 @@ function Settings() {
             setUserSkills(response.data);
             setSelectedSkills(response.data.map((s) => s.id));
           })
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch(notifyError);
         break;
     }
   }, [user]);
@@ -82,12 +83,12 @@ function Settings() {
       case USER.ROLES.MENTOR:
         deleteMentorSkills(user.mentor_id, skill_id)
           .then((_) => getUserSkills())
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch(notifyError);
         break;
       case USER.ROLES.NINJA:
         deleteNinjaSkills(user.ninja_id, skill_id)
           .then((_) => getUserSkills())
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch(notifyError);
         break;
     }
   };
@@ -97,12 +98,12 @@ function Settings() {
       case USER.ROLES.MENTOR:
         addMentorSkills(user.mentor_id, skill_id)
           .then((_) => getUserSkills())
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch(notifyError);
         break;
       case USER.ROLES.NINJA:
         addNinjaSkills(user.ninja_id, skill_id)
           .then((_) => getUserSkills())
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch(notifyError);
         break;
     }
   };

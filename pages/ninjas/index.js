@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Avatar, Button, Card, Row, Typography } from "antd";
+import { Avatar, Button, Card, notification, Row, Typography } from "antd";
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import LinkTo from "~/components/utils/LinkTo";
 import * as api from "~/lib/api";
 import Belt from "~/components/Belt";
+import { notifyError } from "~/components/ErrorNotification";
 
 const { Meta } = Card;
 const { Title } = Typography;
@@ -18,7 +19,7 @@ function Ninjas() {
     api
       .getNinjas()
       .then((response) => setNinjas(response.data))
-      .catch(() => {});
+      .catch(notifyError);
   }, []);
 
   return (

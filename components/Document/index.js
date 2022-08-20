@@ -9,6 +9,7 @@ import {
 import * as api from "~/lib/api.js";
 import LinkTo from "~/components/utils/LinkTo";
 import { useState } from "react";
+import { notifyError } from "~/components/ErrorNotification";
 
 const { Meta } = Card;
 
@@ -21,7 +22,7 @@ function Document({ id, title, description, document, editable = false }) {
     api
       .editFile(id, info)
       .then((response) => setDoc(response.data) && setInfo(response.data))
-      .catch();
+      .catch(notifyError);
   };
 
   return (

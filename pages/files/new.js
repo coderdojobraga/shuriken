@@ -1,9 +1,21 @@
 import { useRouter } from "next/router";
-import { Button, Col, Form, Input, Row, Space, Typography, Upload } from "antd";
+import {
+  Button,
+  Col,
+  Form,
+  Input,
+  notification,
+  Row,
+  Space,
+  Typography,
+  Upload,
+} from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import * as api from "~/lib/api.js";
+
+import { notifyError } from "~/components/ErrorNotification";
 
 const { Title } = Typography;
 const { Dragger } = Upload;
@@ -16,7 +28,7 @@ function NewFile() {
     api
       .createFile(values)
       .then(() => router.push("/files"))
-      .catch();
+      .catch(notifyError);
   };
 
   return (

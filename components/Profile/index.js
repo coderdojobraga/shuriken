@@ -23,6 +23,8 @@ import * as SOCIAL from "~/lib/social";
 
 import styles from "./style.module.css";
 
+import { notifyError } from "~/components/ErrorNotification";
+
 const { TabPane } = Tabs;
 const { Title } = Typography;
 
@@ -36,28 +38,28 @@ function Profile({ id, type }) {
     api
       .getUserByType({ id, type })
       .then((response) => setInfo(response.data))
-      .catch((error) => notification["error"](error.data?.errors));
+      .catch(notifyError);
 
     if (type == USER.ROLES.MENTOR) {
       api
         .getMentorSkills(id)
         .then((response) => setSkills(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch(notifyError);
     } else if (type == USER.ROLES.NINJA) {
       api
         .getNinjaBadges(id)
         .then((response) => setBadges(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch(notifyError);
 
       api
         .getNinjaFiles(id)
         .then((response) => setProjects(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch(notifyError);
 
       api
         .getNinjaSkills(id)
         .then((response) => setSkills(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch(notifyError);
     }
   }, [id, type]);
 

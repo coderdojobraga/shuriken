@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Space, Typography, Col, Row } from "antd";
+import { Alert, Button, Space, Typography, Col, notification, Row } from "antd";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import Event from "~/components/Event";
@@ -8,6 +8,7 @@ import { useBadges } from "~/hooks/badges";
 import * as api from "~/lib/api";
 
 import styles from "~/styles/Dashboard.module.css";
+import { notifyError } from "~/components/ErrorNotification";
 
 const { Title, Paragraph } = Typography;
 
@@ -19,7 +20,7 @@ function Dashboard() {
     api
       .getEvents()
       .then((response) => setEvents(response.data))
-      .catch(() => {});
+      .catch(notifyError);
   }, []);
 
   return (

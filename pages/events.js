@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { Typography, Col, Row } from "antd";
+import { Typography, Col, notification, Row } from "antd";
 import AppLayout from "~/components/layouts/AppLayout";
 import { withAuth } from "~/components/Auth";
 import Event from "~/components/Event";
 import * as api from "~/lib/api";
 
 import styles from "~/styles/Dashboard.module.css";
+
+import { notifyError } from "~/components/ErrorNotification";
 
 const { Title } = Typography;
 
@@ -16,7 +18,7 @@ function Events() {
     api
       .getEvents()
       .then((response) => setEvents(response.data))
-      .catch(() => {});
+      .catch(notifyError);
   }, []);
 
   return (

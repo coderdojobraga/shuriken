@@ -17,6 +17,7 @@ import moment from "moment";
 import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
 import LinkTo from "~/components/utils/LinkTo";
 import * as api from "~/lib/api";
+import { notifyError } from "~/components/ErrorNotification";
 
 const { Title } = Typography;
 
@@ -34,7 +35,7 @@ export default function NinjaForm({ id }) {
     api
       .getSkills()
       .then((response) => setSkills(response.data))
-      .catch((error) => notification["error"](error.data?.errors));
+      .catch(notifyError);
   };
   const getUserSkills = useCallback(() => {
     if (id) {
@@ -44,7 +45,7 @@ export default function NinjaForm({ id }) {
           setUserSkills(response.data);
           setSelectedSkills(response.data.map((s) => s.id));
         })
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch(notifyError);
     }
   }, [id]);
 
@@ -52,14 +53,14 @@ export default function NinjaForm({ id }) {
     api
       .deleteNinjaSkills(ninja_id, skill_id)
       .then((_) => getUserSkills())
-      .catch((error) => notification["error"](error.data?.errors));
+      .catch(notifyError);
   };
 
   const addSkill = (ninja_id, skill_id) => {
     api
       .addNinjaSkills(id, skill_id)
       .then((_) => getUserSkills())
-      .catch((error) => notification["error"](error.data?.errors));
+      .catch(notifyError);
   };
 
   const changeSkills = (ninja_id) => {
@@ -89,7 +90,7 @@ export default function NinjaForm({ id }) {
       api
         .getNinja(id)
         .then((response) => setNinja(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch(notifyError);
     }
   }, [id]);
 
@@ -105,7 +106,7 @@ export default function NinjaForm({ id }) {
           changeSkills(id);
           router.push("/ninjas");
         })
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch(notifyError);
     } else {
       api
         .createNinja(values)
@@ -113,7 +114,7 @@ export default function NinjaForm({ id }) {
           changeSkills(response.data.id);
           router.push("/ninjas");
         })
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch(notifyError);
     }
   };
 
