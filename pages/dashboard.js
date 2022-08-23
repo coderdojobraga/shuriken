@@ -1,25 +1,39 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Space, Typography, Col, Row } from "antd";
-import { withAuth } from "~/components/Auth";
+import { Alert, Button, Space, Typography, Col, Row, notification } from "antd";
+import { useAuth, withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import Event from "~/components/Event";
 import Badge from "~/components/Badge";
 import { useBadges } from "~/hooks/badges";
-import * as api from "~/lib/api";
+import * as USER from "~/lib/user";
+import { getEvents, getNinjas } from "~/lib/api";
+import Ninja from "~/components/Ninja";
 
 import styles from "~/styles/Dashboard.module.css";
 
 const { Title, Paragraph } = Typography;
 
 function Dashboard() {
+  const { user } = useAuth();
+  const role = user.role;
+
   const [events, setEvents] = useState([]);
+  const [ninjas, setNinjas] = useState([]);
+
   const { data: badges, isLoading: isLoadingBadges } = useBadges();
 
   useEffect(() => {
-    api
-      .getEvents()
+    getEvents()
       .then((response) => setEvents(response.data))
-      .catch(() => {});
+      .catch((error) => notification["error"](error.data?.errors));
+  }, []);
+
+  useEffect(() => {
+    if (role === USER.ROLES.GUARDIAN) {
+      getNinjas()
+        .then((response) => setNinjas(response.data))
+        .catch((error) => notification["error"](error.data?.errors));
+    }
   }, []);
 
   return (
@@ -55,15 +69,41 @@ function Dashboard() {
           </Col>
         ))}
       </Row>
-      <Title level={3}>Crachás</Title>
-      <Row className={styles.row} align="top" justify="start" gutter={[16, 16]}>
-        {badges &&
-          badges.slice(0, 5).map((badge) => (
-            <Col key={badge.id}>
-              <Badge {...badge} />
-            </Col>
-          ))}
-      </Row>
+      {role === USER.ROLES.GUARDIAN ? (
+        <>
+          <Title level={3}>Ninjas</Title>
+          <Row
+            className={styles.row}
+            align="top"
+            justify="start"
+            gutter={[16, 16]}
+          >
+            {ninjas &&
+              ninjas.slice(0, 5).map((ninja) => (
+                <Col key={ninja.id}>
+                  <Ninja {...ninja} />
+                </Col>
+              ))}
+          </Row>
+        </>
+      ) : (
+        <>
+          <Title level={3}>Crachás</Title>
+          <Row
+            className={styles.row}
+            align="top"
+            justify="start"
+            gutter={[16, 16]}
+          >
+            {badges &&
+              badges.slice(0, 5).map((badge) => (
+                <Col key={badge.id}>
+                  <Badge {...badge} loading={isLoadingBadges} />
+                </Col>
+              ))}
+          </Row>
+        </>
+      )}
     </AppLayout>
   );
 }
