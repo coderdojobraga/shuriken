@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Card, Row, Typography } from "antd";
+import { Button, Card, Row, Typography, Col } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
@@ -35,7 +35,9 @@ function Ninjas() {
       </Row>
       <Row justify="space-around" gutter={[10, 10]}>
         {ninjas.map((ninja) => (
-          <Ninja {...ninja} />
+          <Col key={ninja.id}>
+            <Ninja {...ninja} />
+          </Col>
         ))}
       </Row>
     </AppLayout>
