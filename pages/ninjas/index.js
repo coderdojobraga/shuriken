@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Avatar, Button, Card, notification, Row, Typography } from "antd";
+import { Avatar, Button, Card, Row, Typography } from "antd";
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";

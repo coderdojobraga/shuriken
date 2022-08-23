@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Typography, Col, notification, Row } from "antd";
+import { Typography, Col, Row } from "antd";
 import AppLayout from "~/components/layouts/AppLayout";
 import { withAuth } from "~/components/Auth";
 import Event from "~/components/Event";
