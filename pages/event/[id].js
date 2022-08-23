@@ -164,7 +164,6 @@ function EventPage() {
           )
           .then(() => router.push("/events"))
           .catch((error) => notification["error"](error.data?.errors));
-        ;
       }
     });
   };
@@ -297,7 +296,6 @@ function EventPage() {
                       title={`${mentor.first_name} ${mentor.last_name}`}
                       description={mentor.notes ? `Notas: ${mentor.notes}` : ""}
                     />
-                    
                   </LinkTo>
                 </List.Item>
               )}
