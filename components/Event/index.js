@@ -1,4 +1,4 @@
-import { Button, Card, Descriptions, Grid, Space } from "antd";
+import { Button, Card, Descriptions, Grid, Space, Skeleton } from "antd";
 import {
   CalendarOutlined,
   ClockCircleOutlined,
@@ -10,14 +10,19 @@ import LinkTo from "~/components/utils/LinkTo";
 
 const { useBreakpoint } = Grid;
 
-const Event = ({ event, collapsed = true }) => {
+const Event = ({
+  event,
+  collapsed = true,
+  details = false,
+  isLoading = false,
+}) => {
   const screens = useBreakpoint();
 
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
 
   const title =
-    event.title ||
-    `Sessão ${new Date(event.start_time).toLocaleDateString("pt", {
+    event?.title ||
+    `Sessão ${new Date(event?.start_time).toLocaleDateString("pt", {
       weekday: "long",
       year: "numeric",
       month: "short",
@@ -33,89 +38,95 @@ const Event = ({ event, collapsed = true }) => {
   };
 
   return (
-    <Card title={title} style={collapsed ? { maxWidth: 460 } : null}>
-      <Space
-        align="end"
-        direction="horizontal"
-        wrap={(screens.sm && !screens.md) || screens.xs}
-      >
-        {collapsed ? (
-          <Descriptions size="small" column={1} layout="horizontal">
-            <Descriptions.Item
-              labelStyle={labelStyle}
-              label={
-                <span>
-                  <CalendarOutlined /> Data
-                </span>
-              }
-            >
-              {new Date(event.start_time).toLocaleString("pt", {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </Descriptions.Item>
-            <Descriptions.Item
-              labelStyle={labelStyle}
-              label={
-                <span>
-                  <EnvironmentOutlined /> Localização
-                </span>
-              }
-              span={1}
-            >
-              {event.location.name}
-            </Descriptions.Item>
-            <Descriptions.Item
-              labelStyle={labelStyle}
-              label={
-                <span>
-                  <ClockCircleOutlined /> Início
-                </span>
-              }
-            >
-              {new Date(event.start_time).toLocaleString("pt", {
-                hour: "numeric",
-                minute: "numeric",
-              })}
-            </Descriptions.Item>
-            <Descriptions.Item
-              labelStyle={labelStyle}
-              label={
-                <span>
-                  <ClockCircleOutlined /> Fim
-                </span>
-              }
-            >
-              {new Date(event.end_time).toLocaleString("pt", {
-                hour: "numeric",
-                minute: "numeric",
-              })}
-            </Descriptions.Item>
-            <Descriptions.Item
-              labelStyle={labelStyle}
-              label={
-                <span>
-                  <HomeOutlined /> Turma
-                </span>
-              }
-            >
-              {event.team.name}
-            </Descriptions.Item>
-          </Descriptions>
-        ) : (
-          <EventInfo {...event} />
-        )}
-        {enrollmentsStillOpen() ? (
-          <LinkTo href={`event/${event.id}`}>
-            <Button type="primary"> Inscrever </Button>
-          </LinkTo>
-        ) : (
-          <></>
-        )}
-      </Space>
-    </Card>
+    <>
+      {isLoading ? (
+        <Skeleton active />
+      ) : (
+        <Card title={title} style={collapsed ? { maxWidth: 460 } : null}>
+          <Space
+            align="end"
+            direction="horizontal"
+            wrap={(screens.sm && !screens.md) || screens.xs}
+          >
+            {collapsed ? (
+              <Descriptions size="small" column={1} layout="horizontal">
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <CalendarOutlined /> Data
+                    </span>
+                  }
+                >
+                  {new Date(event?.start_time).toLocaleString("pt", {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <EnvironmentOutlined /> Localização
+                    </span>
+                  }
+                  span={1}
+                >
+                  {event?.location?.name}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <ClockCircleOutlined /> Início
+                    </span>
+                  }
+                >
+                  {new Date(event?.start_time).toLocaleString("pt", {
+                    hour: "numeric",
+                    minute: "numeric",
+                  })}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <ClockCircleOutlined /> Fim
+                    </span>
+                  }
+                >
+                  {new Date(event?.end_time).toLocaleString("pt", {
+                    hour: "numeric",
+                    minute: "numeric",
+                  })}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <HomeOutlined /> Turma
+                    </span>
+                  }
+                >
+                  {event?.team?.name}
+                </Descriptions.Item>
+              </Descriptions>
+            ) : (
+              <EventInfo {...event} />
+            )}
+            {enrollmentsStillOpen() && !details ? (
+              <LinkTo href={`event/${event.id}`}>
+                <Button type="primary"> Inscrever </Button>
+              </LinkTo>
+            ) : (
+              <></>
+            )}
+          </Space>
+        </Card>
+      )}
+    </>
   );
 };
 

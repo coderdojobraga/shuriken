@@ -17,7 +17,7 @@ function EventInfo({
   notes,
   enrollments_open,
   enrollments_close,
-  breakpoints = { xs: 1, sm: 1, md: 1, lg: 7, xl: 7, xxl: 7 },
+  breakpoints = { xs: 1, sm: 1, md: 1, lg: 1, xl: 1, xxl: 6 },
 }) {
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
 
@@ -119,7 +119,6 @@ function EventInfo({
         span={2}
       >
         {new Date(enrollments_open).toLocaleDateString("pt", {
-          weekday: "long",
           year: "numeric",
           month: "long",
           day: "numeric",
@@ -131,7 +130,7 @@ function EventInfo({
         labelStyle={labelStyle}
         label={
           timeForEnrollmentsClose() ? (
-            <span className="text-red-600 animate-bounce">
+            <span className="text-yellow-600 animate-bounce">
               <CloseCircleOutlined /> Fecho das inscrições
             </span>
           ) : (
@@ -143,7 +142,6 @@ function EventInfo({
         span={2}
       >
         {new Date(enrollments_close).toLocaleDateString("pt", {
-          weekday: "long",
           year: "numeric",
           month: "long",
           day: "numeric",
