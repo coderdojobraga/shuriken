@@ -18,16 +18,9 @@ function Dashboard() {
   const { user } = useAuth();
   const role = user.role;
 
-  const [events, setEvents] = useState([]);
   const [ninjas, setNinjas] = useState([]);
-
+  const { data: events, isLoading: isLoadingEvents } = useEvents();
   const { data: badges, isLoading: isLoadingBadges } = useBadges();
-
-  useEffect(() => {
-    getEvents()
-      .then((response) => setEvents(response.data))
-      .catch((error) => notification["error"](error.data?.errors));
-  }, []);
 
   useEffect(() => {
     if (role === USER.ROLES.GUARDIAN) {
@@ -36,10 +29,7 @@ function Dashboard() {
         .catch((error) => notification["error"](error.data?.errors));
     }
   }, []);
-
-  const { data: events, isLoading: isLoadingEvents } = useEvents();
-  const { data: badges, isLoading: isLoadingBadges } = useBadges();
-
+  
   return (
     <AppLayout>
       <Title level={2}>Painel Principal</Title>
