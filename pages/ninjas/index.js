@@ -1,18 +1,12 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { Avatar, Button, Card, Row, Typography } from "antd";
-import {
-  CalendarOutlined,
-  EditOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { Button, Card, Row, Typography, Col } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
 import LinkTo from "~/components/utils/LinkTo";
 import * as api from "~/lib/api";
-import Belt from "~/components/Belt";
+import Ninja from "~/components/Ninja";
 
-const { Meta } = Card;
 const { Title } = Typography;
 
 function Ninjas() {
@@ -40,34 +34,9 @@ function Ninjas() {
       </Row>
       <Row justify="space-around" gutter={[10, 10]}>
         {ninjas.map((ninja) => (
-          <Card
-            key={ninja.id}
-            size="large"
-            style={{ width: 300, marginTop: 16 }}
-            actions={[
-              <Link key={`link ${ninja.id}`} href={`/ninjas/edit/${ninja.id}`}>
-                <a>
-                  <EditOutlined key="edit" />
-                </a>
-              </Link>,
-              <Link
-                key={`Sessions ${ninja.id}`}
-                href={`/lectures/ninja/${ninja.id}`}
-              >
-                <a>
-                  <CalendarOutlined key="sessions" />
-                </a>
-              </Link>,
-            ]}
-          >
-            <LinkTo href={`/profile/ninja/${ninja.id}`}>
-              <Meta
-                avatar={<Avatar src={ninja.photo} />}
-                title={`${ninja.first_name} ${ninja.last_name}`}
-              />
-              <Belt belt={ninja.belt} />
-            </LinkTo>
-          </Card>
+          <Col key={ninja.id}>
+            <Ninja {...ninja} />
+          </Col>
         ))}
       </Row>
     </AppLayout>
