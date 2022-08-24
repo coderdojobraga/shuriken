@@ -73,9 +73,7 @@ const BlogMenu = ({
             <div className="w-full lg:w-8/12">
               <div className="flex items-center justify-between">
                 <h1 className="dark:text-white ml-20 mb-5 text-center font-bold text-dark text-5xl">
-                  <span className="text-purple-500 text-2xl text-5xl mr-1">
-                    |
-                  </span>
+                  <span className="text-purple-500 text-5xl mr-1">|</span>
                   {author == null && topic == null ? "Blog" : ""}
                   {author != null ? "Blog de " + author : ""}
                   {topic != null ? "Blog: " + topic : ""}

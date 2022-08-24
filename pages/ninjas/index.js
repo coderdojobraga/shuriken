@@ -7,7 +7,6 @@ import LinkTo from "~/components/utils/LinkTo";
 import * as api from "~/lib/api";
 import Ninja from "~/components/Ninja";
 
-const { Meta } = Card;
 const { Title } = Typography;
 
 function Ninjas() {
