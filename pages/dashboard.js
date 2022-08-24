@@ -29,7 +29,7 @@ function Dashboard() {
         .catch((error) => notification["error"](error.data?.errors));
     }
   }, []);
-  
+
   return (
     <AppLayout>
       <Title level={2}>Painel Principal</Title>
