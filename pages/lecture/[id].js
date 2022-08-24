@@ -67,25 +67,25 @@ function Lectures() {
 
   return (
     <AppLayout>
-      <Row justify="space-between" gutter={[10, 10]}>
-        <Col>
-          <Title level={1}>Detalhes de sessão</Title>
-        </Col>
-
-        <Col>
-          {!editable || (
-            <Space>
-              <Button onClick={() => router.push("/dashboard")}>
-                Cancelar
-              </Button>
-              <Button onClick={() => form.submit()} type="primary">
-                Guardar
-              </Button>
-            </Space>
-          )}
-        </Col>
-      </Row>
       <Space direction="vertical" style={{ width: "100%" }}>
+        <Row justify="space-between" gutter={[10, 10]}>
+          <Col>
+            <Title level={1}>Detalhes de sessão</Title>
+          </Col>
+
+          <Col>
+            {!editable || (
+              <Space>
+                <Button onClick={() => router.push("/dashboard")}>
+                  Cancelar
+                </Button>
+                <Button onClick={() => form.submit()} type="primary">
+                  Guardar
+                </Button>
+              </Space>
+            )}
+          </Col>
+        </Row>
         <Row>
           <Text>
             Evento: {!lecture.event || lecture.event.title || "Sem título"}

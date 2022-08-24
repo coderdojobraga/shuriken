@@ -25,11 +25,11 @@ const { Text, Title } = Typography;
 function AppMenu({ hidePrimaryMenu, collapsed }) {
   const { user, logout } = useAuth();
   const router = useRouter();
-  const { pathname } = router;
+  const { asPath } = router;
 
   // These states and handlers are needed in order to sync both menus.
   // Without this, each menu would behave independently
-  const [primarySelectedKeys, setPrimarySelectedKeys] = useState([pathname]);
+  const [primarySelectedKeys, setPrimarySelectedKeys] = useState([asPath]);
   const [secondarySelectedKeys, setSecondarySelectedKeys] = useState([]);
   const handleClickPrimary = ({ key }) => {
     router.push(key);
