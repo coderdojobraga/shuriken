@@ -48,6 +48,9 @@ function Header({ landing = false }) {
                 <Link href="/team">Equipa</Link>
               </li>
               <li className="cursor-pointer dark:text-white hover:text-primary">
+                <Link href="/recruitment"> Recrutamento </Link>
+              </li>
+              <li className="cursor-pointer dark:text-white hover:text-primary">
                 <Link href="/blog"> Blog </Link>
               </li>
               {user ? (
@@ -137,6 +140,9 @@ function Header({ landing = false }) {
                         Equipa
                       </li>
                       <li className="cursor-pointer hover:text-primary">
+                        <Link href="/recruitment"> Recrutamento </Link>
+                      </li>
+                      <li className="cursor-pointer hover:text-primary">
                         <Link href="/blog"> Blog </Link>
                       </li>
                       <li className="cursor-pointer hover:text-primary">
@@ -176,6 +182,9 @@ function Header({ landing = false }) {
                       </li>
                       <li className="cursor-pointer hover:text-primary">
                         Equipa
+                      </li>
+                      <li className="cursor-pointer hover:text-primary">
+                        <Link href="/recruitment"> Recrutamento </Link>
                       </li>
                       <li className="cursor-pointer hover:text-primary">
                         <Link href="/blog"> Blog </Link>

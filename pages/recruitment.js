@@ -6,7 +6,7 @@ import Communication from "landing/recruitment/DesignMarketing";
 export default function Recruitment() {
   return (
     <>
-      <Header />
+      <Header landing={true} />
       <div className="mt-12 container mx-auto">
         <h1 className="text-4xl sm:text-5xl text-center font-bold m-4">
           Junta-te ao CoderDojo!
