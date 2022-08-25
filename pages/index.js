@@ -1,13 +1,14 @@
+import Image from "next/image";
 import { Footer, Header, Hero } from "@landing";
 
 import styles from "~/styles/Home.module.css";
 
 const Home = () => (
   <>
-    <Header />
+    <Header landing={true} />
     <Hero />
     <div className="container mx-auto">
-      <section className="relative mx-2 lg:mx-12 md:mt-28">
+      <section className="relative mx-2 lg:mx-12 xl:mx-20 md:mt-28">
         <div className="container w-11/12 sm:w-10/12 lg:w-4/6 flex flex-col items-start my-8 py-2">
           <h2 className="text-2xl sm:text-3xl font-semibold py-2">
             <span className="text-purple-500 text-2xl sm:text-3xl mr-1">|</span>
@@ -23,7 +24,7 @@ const Home = () => (
       </section>
     </div>
     <div className="container mx-auto">
-      <section className="relative mx-2 lg:mx-12 my-12 flex justify-end text-white">
+      <section className="relative mx-2 lg:mx-12 xl:mx-20 my-12 flex justify-end text-white">
         <div className="container w-11/12 sm:w-10/12 lg:w-4/6 flex flex-col items-end my-8 py-2">
           <h2 className="text-2xl sm:text-3xl text-white font-semibold py-2 gap-1">
             Como funciona o Dojo?
@@ -46,7 +47,7 @@ const Home = () => (
     </div>
 
     <div className="container mx-auto">
-      <section className="relative mx-2 lg:mx-12 py-5">
+      <section className="relative mx-2 lg:mx-12 xl:mx-20 py-5">
         <div className="flex flex-col items-start my-8 lg:my-12 md:mt-0">
           <h2 className="text-white text-2xl sm:text-3xl font-semibold py-2">
             <span className="text-purple-500 text-2xl sm:text-3xl mr-1">|</span>
@@ -54,25 +55,31 @@ const Home = () => (
           </h2>
           <div className="w-full mx-auto mt-10 grid grid-rows-1 lg:grid-cols-2 justify-items-center">
             <div className="flex flex-col items-center">
-              <div className="rounded-xl bg-purple-500 p-1 mb-4">
-                <img
-                  className="rounded-xl w-96"
-                  src="/img/projects/number.png"
-                  alt="Guess a number preview"
-                />
+              <div className="rounded-2xl bg-purple-500 p-1 mb-4">
+                <div className="relative w-96 h-72">
+                  <Image
+                    layout="fill"
+                    className="rounded-2xl"
+                    src="/img/projects/number.png"
+                    alt="Guess a number preview"
+                  />
+                </div>
               </div>
               <h3 className="text-white text-xl sm:text-2xl">
                 Em que número estou a pensar?
               </h3>
               <h4 className="text-gray-400 text-lg">Tomás Campos</h4>
             </div>
-            <div className="hidden lg:inline-flex flex flex-col items-center">
-              <div className="rounded-xl bg-purple-500 p-1 mb-4">
-                <img
-                  className="rounded-xl w-96"
-                  src="/img/projects/number.png"
-                  alt="Guess a number preview"
-                />
+            <div className="hidden lg:inline-flex flex-col items-center">
+              <div className="rounded-2xl bg-purple-500 p-1 mb-4">
+                <div className="relative w-96 h-72">
+                  <Image
+                    layout="fill"
+                    className="rounded-2xl"
+                    src="/img/projects/number.png"
+                    alt="Guess a number preview"
+                  />
+                </div>
               </div>
               <h3 className="text-white text-2xl">
                 Em que número estou a pensar?
@@ -85,24 +92,28 @@ const Home = () => (
     </div>
     <div className="bg-dark">
       <div className="container mx-auto">
-        <section className="relative mx-2 lg:mx-12 text-white py-10">
+        <section className="relative mx-2 lg:mx-12 xl:mx-20 text-white py-10">
           <div className="container mx-auto">
-            <hr className="py-2 mx-auto w-6/12 lg:w-3/12 border-purple-500 h-8/12 text-center text-2xl" />
+            <hr className="py-2 mx-auto w-6/12 lg:w-3/12 border-purple-500 text-center" />
             <div className="mx-auto text-center w-9/12 md:w-8/12 m-4 text-2xl">
               O CoderDojo Braga pretende dar a todas as crianças e jovens da
               região minhota a oportunidade de aprenderem a programar num
               ambiente amigável e divertido.
             </div>
-            <img
-              className="mx-auto"
-              src="/img/logo-draw.svg"
-              alt="CoderDojo Braga Draw Logo"
-            />
+            <div className="mx-auto mt-12 w-24">
+              <Image
+                layout="fixed"
+                width={80}
+                height={80}
+                src="/img/logo-draw-white.svg"
+                alt="CoderDojo Braga Draw Logo"
+              />
+            </div>
           </div>
         </section>
       </div>
     </div>
-    <Footer />
+    <Footer bgColor="dark" fgColor="white" />
   </>
 );
 

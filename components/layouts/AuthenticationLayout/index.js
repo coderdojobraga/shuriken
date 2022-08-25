@@ -1,4 +1,5 @@
 import { Layout } from "antd";
+import Koi from "~/components/Koi";
 
 import styles from "./style.module.css";
 
@@ -8,7 +9,9 @@ function AuthenticationLayout({ children }) {
   return (
     <Layout>
       <Content className={styles.content}>
+        <Koi />
         <div className={styles.main}>
+          {/* eslint-disable @next/next/no-img-element */}
           <img
             className={styles.logo}
             src="/img/logo.svg"

@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 import LinkTo from "~/components/utils/LinkTo";
 import { useAuth } from "~/components/Auth";
-import * as USER from "~/lib/utils/user";
+import * as USER from "~/lib/user";
 
 import styles from "./style.module.css";
 
@@ -47,6 +47,7 @@ function Navbar({ selected }) {
           preview={false}
           height={60}
           src="/lettering.png"
+          alt="CoderDojo Braga"
         />
       </LinkTo>
       {navbar

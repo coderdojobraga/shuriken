@@ -1,6 +1,6 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
-import * as api from "~/lib/utils/api.js";
+import * as api from "~/lib/api.js";
 
 export const AuthContext = createContext();
 
@@ -46,8 +46,16 @@ export function AuthProvider({ children }) {
   }
 
   function logout() {
-    api.logout().then(() => setUser(undefined));
-    router.push("/");
+    setLoading(true);
+
+    api
+      .logout()
+      .then(() => {
+        setUser(undefined);
+        router.push("/");
+      })
+      .catch((error) => setErrors(error?.data?.errors))
+      .finally(() => setLoading(false));
   }
 
   function edit_user(values) {

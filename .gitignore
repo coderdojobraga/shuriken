@@ -1,3 +1,5 @@
+*.min.js
+
 # dependencies
 /node_modules
 /.pnp
@@ -30,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# compiled
+styles/antd-theme.css

@@ -1,19 +1,21 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Link from "next/link";
 import { Menu, Avatar, Typography } from "antd";
 import {
   CalendarOutlined,
-  FileOutlined,
+  BookOutlined,
   HomeOutlined,
   LogoutOutlined,
   SettingOutlined,
+  SnippetsOutlined,
   StarOutlined,
   UserAddOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { useAuth } from "~/components/Auth";
-import * as USER from "~/lib/utils/user";
+import * as USER from "~/lib/user";
 
 import styles from "./style.module.css";
 
@@ -23,11 +25,11 @@ const { Text, Title } = Typography;
 function AppMenu({ hidePrimaryMenu, collapsed }) {
   const { user, logout } = useAuth();
   const router = useRouter();
-  const { pathname } = router;
+  const { asPath } = router;
 
   // These states and handlers are needed in order to sync both menus.
   // Without this, each menu would behave independently
-  const [primarySelectedKeys, setPrimarySelectedKeys] = useState([pathname]);
+  const [primarySelectedKeys, setPrimarySelectedKeys] = useState([asPath]);
   const [secondarySelectedKeys, setSecondarySelectedKeys] = useState([]);
   const handleClickPrimary = ({ key }) => {
     router.push(key);
@@ -35,6 +37,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }) {
     setSecondarySelectedKeys([]);
   };
   const handleClickSecondary = ({ key }) => {
+    if (key == "logout") return;
     router.push(key);
     setPrimarySelectedKeys([]);
     setSecondarySelectedKeys([key]);
@@ -48,25 +51,28 @@ function AppMenu({ hidePrimaryMenu, collapsed }) {
         selectedKeys={primarySelectedKeys}
         className={styles.primary}
       >
-        {collapsed ? (
-          <div className={styles.logo_collapsed}>
-            <Image
-              src={"/img/logo.svg"}
-              alt="Logótipo CoderDojo"
-              width={200}
-              height={200}
-            />
-          </div>
-        ) : (
-          <div className={styles.logo}>
-            <Image
-              src={"/img/logo-lettering.png"}
-              alt="Logótipo CoderDojo"
-              width={200}
-              height={58}
-            />
-          </div>
-        )}
+        <Link href="/">
+          {collapsed ? (
+            <div className={styles.logo_collapsed}>
+              <Image
+                src={"/img/logo.svg"}
+                alt="Logótipo CoderDojo"
+                width={200}
+                height={200}
+              />
+            </div>
+          ) : (
+            <div className={styles.logo}>
+              <Image
+                src={"/img/logo-lettering-dark.svg"}
+                alt="Logótipo CoderDojo"
+                width={199}
+                height={50}
+                layout="responsive"
+              />
+            </div>
+          )}
+        </Link>
         {!hidePrimaryMenu && (
           <>
             <div className={styles.user}>
@@ -106,12 +112,20 @@ function AppMenu({ hidePrimaryMenu, collapsed }) {
             <Item key="/events" icon={<CalendarOutlined />}>
               Eventos
             </Item>
-            <Item key="/files" icon={<FileOutlined />}>
+            <Item key="/files" icon={<SnippetsOutlined />}>
               Ficheiros
             </Item>
             {user.role === USER.ROLES.GUARDIAN && (
               <Item key="/ninjas" icon={<UserAddOutlined />}>
                 Ninjas
+              </Item>
+            )}
+            {user.role === USER.ROLES.MENTOR && (
+              <Item
+                key={`/lectures/mentor/${user.mentor_id}`}
+                icon={<BookOutlined />}
+              >
+                Sessões
               </Item>
             )}
             {user.role === USER.ROLES.NINJA && (

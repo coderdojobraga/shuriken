@@ -5,8 +5,8 @@
 }
 
 .content {
-  background-color: #fff;
   height: 100vh;
-  overflow: auto;
   padding: 70px;
+  overflow: auto;
+  background-color: #fff;
 }

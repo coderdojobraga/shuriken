@@ -1,0 +1,8 @@
+.capitalize {
+  text-transform: capitalize;
+}
+
+.nobelt {
+  background: #fff;
+  border-style: dashed;
+}

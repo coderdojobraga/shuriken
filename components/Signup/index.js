@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import {
   Typography,
   Form,
@@ -14,7 +15,7 @@ import {
   InfoCircleOutlined,
 } from "@ant-design/icons";
 import { useAuth } from "~/components/Auth";
-import Link from "next/link";
+import Koi from "~/components/Koi";
 
 import styles from "./style.module.css";
 
@@ -34,6 +35,8 @@ function Signup() {
 
   return (
     <Form name="signup" onFinish={onFinish}>
+      <Koi />
+
       <Title>Registar</Title>
 
       <Form.Item

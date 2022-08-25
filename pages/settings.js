@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Avatar,
   Button,
@@ -8,15 +8,28 @@ import {
   Form,
   Input,
   Row,
+  Select,
   Space,
+  notification,
   Typography,
   Upload,
 } from "antd";
 import moment from "moment";
 import { UploadOutlined } from "@ant-design/icons";
+import { getBase64 } from "~/lib/images";
+import * as USER from "~/lib/user";
 import { useAuth, withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
-import { getBase64 } from "~/lib/utils/images";
+
+import {
+  addMentorSkills,
+  addNinjaSkills,
+  deleteMentorSkills,
+  deleteNinjaSkills,
+  getMentorSkills,
+  getNinjaSkills,
+  getSkills,
+} from "~/lib/api";
 
 const { Title } = Typography;
 
@@ -34,9 +47,88 @@ function Settings() {
   const [formPassword] = Form.useForm();
   const [avatar, setAvatar] = useState();
 
+  const [userSkills, setUserSkills] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [selectedSkills, setSelectedSkills] = useState([]);
+
+  const getAllSkills = () => {
+    getSkills()
+      .then((response) => setSkills(response.data))
+      .catch((error) => notification["error"](error.data?.errors));
+  };
+  const getUserSkills = useCallback(() => {
+    switch (user.role) {
+      case USER.ROLES.MENTOR:
+        getMentorSkills(user.mentor_id)
+          .then((response) => {
+            setUserSkills(response.data);
+            setSelectedSkills(response.data.map((s) => s.id));
+          })
+          .catch((error) => notification["error"](error.data?.errors));
+        break;
+      case USER.ROLES.NINJA:
+        getNinjaSkills(user.ninja_id)
+          .then((response) => {
+            setUserSkills(response.data);
+            setSelectedSkills(response.data.map((s) => s.id));
+          })
+          .catch((error) => notification["error"](error.data?.errors));
+        break;
+    }
+  }, [user]);
+
+  const deleteSkill = (skill_id) => {
+    switch (user.role) {
+      case USER.ROLES.MENTOR:
+        deleteMentorSkills(user.mentor_id, skill_id)
+          .then((_) => getUserSkills())
+          .catch((error) => notification["error"](error.data?.errors));
+        break;
+      case USER.ROLES.NINJA:
+        deleteNinjaSkills(user.ninja_id, skill_id)
+          .then((_) => getUserSkills())
+          .catch((error) => notification["error"](error.data?.errors));
+        break;
+    }
+  };
+
+  const addSkill = (skill_id) => {
+    switch (user.role) {
+      case USER.ROLES.MENTOR:
+        addMentorSkills(user.mentor_id, skill_id)
+          .then((_) => getUserSkills())
+          .catch((error) => notification["error"](error.data?.errors));
+        break;
+      case USER.ROLES.NINJA:
+        addNinjaSkills(user.ninja_id, skill_id)
+          .then((_) => getUserSkills())
+          .catch((error) => notification["error"](error.data?.errors));
+        break;
+    }
+  };
+
+  const changeSkills = () => {
+    const deleted = userSkills
+      .map((s) => s.id)
+      .filter((s) => !selectedSkills.includes(s));
+
+    for (const skill of deleted) {
+      deleteSkill(skill);
+    }
+    const added = selectedSkills.filter(
+      (s) => !userSkills.map((s1) => s1.id).includes(s)
+    );
+
+    for (const skill of added) {
+      addSkill(skill);
+    }
+  };
+
   useEffect(() => {
     setAvatar(user.photo);
-  }, [user]);
+    getUserSkills();
+    getAllSkills();
+  }, [user, getUserSkills]);
 
   const breakpoints = {
     xs: 24,
@@ -64,6 +156,7 @@ function Settings() {
             <Button
               loading={isLoading}
               onClick={() => {
+                changeSkills();
                 formPersonal.submit();
               }}
               type="primary"
@@ -123,6 +216,29 @@ function Settings() {
             </Form.Item>
           </Col>
         </Row>
+
+        {user.role == USER.ROLES.GUARDIAN || (
+          <>
+            <Section title="Conhecimentos" />
+            <Row gutter={24}>
+              <Col {...breakpoints}>
+                <Select
+                  mode="multiple"
+                  placeholder="Adicionar conhecimento"
+                  onChange={setSelectedSkills}
+                  value={selectedSkills}
+                  style={{ minWidth: "200px" }}
+                >
+                  {skills.map((s) => (
+                    <Select.Option key={s.id} value={s.id}>
+                      {s.name}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Col>
+            </Row>
+          </>
+        )}
       </Form>
       <Section title="Segurança" />
       <Form form={formPassword} layout="vertical">

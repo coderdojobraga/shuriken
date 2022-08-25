@@ -2,73 +2,76 @@
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: -1;
   width: 100%;
   height: 200px;
-  z-index: -1;
 }
 
 .rectangle::after {
-  content: "";
-  display: block;
   position: absolute;
+  z-index: -3;
+  display: block;
   width: 100%;
   height: 100%;
+  content: "";
   background-color: #343434;
   transform: translate(0%, -435px);
-  z-index: -3;
 }
 
 .curve {
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: -1;
   width: 100%;
   height: 200px;
-  z-index: -1;
 }
 
 .curve::before {
-  content: "";
-  display: block;
   position: absolute;
-  border-bottom-right-radius: 9999px;
+  z-index: -1;
+  display: block;
   width: 110%;
   height: 100%;
+  content: "";
   background-color: white;
+  border-bottom-right-radius: 9999px;
   transform: translate(0%, -435px);
-  z-index: -1;
 }
 
 .curve::after {
-  content: "";
-  display: block;
   position: absolute;
-  border-top-left-radius: 9999px;
+  z-index: -2;
+  display: block;
   width: 120%;
   height: 100%;
+  margin-top: -2px;
+  content: "";
   background-color: #343434;
+  border-top-left-radius: 9999px;
+  border-top-right-radius: -9999px;
   transform: translate(-10%, -235px);
-  z-index: -2;
 }
 
 .base {
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: -1;
   width: 100%;
   height: 900px;
-  z-index: -1;
 }
 
 .base::after {
-  content: "";
-  display: block;
   position: absolute;
+  z-index: -4;
+  display: block;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 2px);
+  margin-top: -2px;
+  content: "";
   background-color: #343434;
   transform: translate(0%, 665px);
-  z-index: -4;
 }
 
 @media (min-width: 386px) {
@@ -76,73 +79,73 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 200px;
-    z-index: -1;
   }
 
   .rectangle::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -3;
+    display: block;
     width: 100%;
     height: 100%;
+    content: "";
     background-color: #343434;
     transform: translate(0%, -365px);
-    z-index: -3;
   }
 
   .curve {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 200px;
-    z-index: -1;
   }
 
   .curve::before {
-    content: "";
-    display: block;
     position: absolute;
-    border-bottom-right-radius: 9999px;
+    z-index: -1;
+    display: block;
     width: 100%;
     height: 100%;
+    content: "";
     background-color: white;
+    border-bottom-right-radius: 9999px;
     transform: translate(0%, -365px);
-    z-index: -1;
   }
 
   .curve::after {
-    content: "";
-    display: block;
     position: absolute;
-    border-top-left-radius: 9999px;
+    z-index: -2;
+    display: block;
     width: 100%;
     height: 100%;
+    content: "";
     background-color: #343434;
+    border-top-left-radius: 9999px;
     transform: translate(0%, -165px);
-    z-index: -2;
   }
 
   .base {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 900px;
-    z-index: -1;
   }
 
   .base::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -4;
+    display: block;
     width: 100%;
     height: 100%;
+    content: "";
     background-color: #343434;
     transform: translate(0%, 735px);
-    z-index: -4;
   }
 }
 
@@ -151,73 +154,73 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 200px;
-    z-index: -1;
   }
 
   .rectangle::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -3;
+    display: block;
     width: 100%;
     height: 100%;
+    content: "";
     background-color: #343434;
     transform: translate(0%, -340px);
-    z-index: -3;
   }
 
   .curve {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 200px;
-    z-index: -1;
   }
 
   .curve::before {
-    content: "";
-    display: block;
     position: absolute;
-    border-bottom-right-radius: 9999px;
+    z-index: -1;
+    display: block;
     width: 100%;
     height: 100%;
+    content: "";
     background-color: white;
+    border-bottom-right-radius: 9999px;
     transform: translate(0%, -340px);
-    z-index: -1;
   }
 
   .curve::after {
-    content: "";
-    display: block;
     position: absolute;
-    border-top-left-radius: 9999px;
+    z-index: -2;
+    display: block;
     width: 100%;
     height: 100%;
+    content: "";
     background-color: #343434;
+    border-top-left-radius: 9999px;
     transform: translate(0%, -140px);
-    z-index: -2;
   }
 
   .base {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 900px;
-    z-index: -1;
   }
 
   .base::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -4;
+    display: block;
     width: 100%;
     height: 100%;
+    content: "";
     background-color: #343434;
     transform: translate(0%, 760px);
-    z-index: -4;
   }
 }
 
@@ -226,73 +229,73 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2360px;
-    z-index: -1;
   }
 
   .rectangle::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -3;
+    display: block;
     width: 100%;
     height: 28%;
+    content: "";
     background-color: #343434;
     transform: translate(0%, 1372px);
-    z-index: -3;
   }
 
   .curve {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2950px;
-    z-index: -1;
   }
 
   .curve::before {
-    content: "";
-    display: block;
     position: absolute;
-    border-bottom-right-radius: 80%;
+    z-index: -1;
+    display: block;
     width: 185%;
     height: 30%;
+    content: "";
     background-color: white;
+    border-bottom-right-radius: 80%;
     transform: translate(0%, 1740px);
-    z-index: -1;
   }
 
   .curve::after {
-    content: "";
-    display: block;
     position: absolute;
-    border-top-left-radius: 80%;
+    z-index: -2;
+    display: block;
     width: 170%;
     height: 30%;
+    content: "";
     background-color: #343434;
+    border-top-left-radius: 80%;
     transform: translate(-40%, 2615px);
-    z-index: -2;
   }
 
   .base {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2360px;
-    z-index: -1;
   }
 
   .base::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -4;
+    display: block;
     width: 100%;
     height: 260px;
+    content: "";
     background-color: #343434;
     transform: translate(0%, 2700px);
-    z-index: -4;
   }
 }
 
@@ -301,73 +304,73 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2360px;
-    z-index: -1;
   }
 
   .rectangle::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -3;
+    display: block;
     width: 100%;
     height: 28%;
+    content: "";
     background-color: #343434;
     transform: translate(0%, 1382px);
-    z-index: -3;
   }
 
   .curve {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2810px;
-    z-index: -1;
   }
 
   .curve::before {
-    content: "";
-    display: block;
     position: absolute;
-    border-bottom-right-radius: 9999px;
+    z-index: -1;
+    display: block;
     width: 165%;
     height: 30%;
+    content: "";
     background-color: white;
+    border-bottom-right-radius: 9999px;
     transform: translate(0%, 1650px);
-    z-index: -1;
   }
 
   .curve::after {
-    content: "";
-    display: block;
     position: absolute;
-    border-top-left-radius: 9999px;
+    z-index: -2;
+    display: block;
     width: 165%;
     height: 30%;
+    content: "";
     background-color: #343434;
+    border-top-left-radius: 9999px;
     transform: translate(-35%, 2493px);
-    z-index: -2;
   }
 
   .base {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2360px;
-    z-index: -1;
   }
 
   .base::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -4;
+    display: block;
     width: 100%;
     height: 260px;
+    content: "";
     background-color: #343434;
     transform: translate(0%, 2700px);
-    z-index: -4;
   }
 }
 
@@ -376,73 +379,73 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2360px;
-    z-index: -1;
   }
 
   .rectangle::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -3;
+    display: block;
     width: 100%;
     height: 28%;
+    content: "";
     background-color: #343434;
     transform: translate(0%, 1375px);
-    z-index: -3;
   }
 
   .curve {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2380px;
-    z-index: -1;
   }
 
   .curve::before {
-    content: "";
-    display: block;
     position: absolute;
-    border-bottom-right-radius: 9999px;
+    z-index: -1;
+    display: block;
     width: 115%;
     height: 30%;
+    content: "";
     background-color: white;
+    border-bottom-right-radius: 9999px;
     transform: translate(0%, 1342px);
-    z-index: -1;
   }
 
   .curve::after {
-    content: "";
-    display: block;
     position: absolute;
-    border-top-left-radius: 9999px;
+    z-index: -2;
+    display: block;
     width: 115%;
     height: 28%;
+    content: "";
     background-color: #343434;
+    border-top-left-radius: 9999px;
     transform: translate(-13%, 2055px);
-    z-index: -2;
   }
 
   .base {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2360px;
-    z-index: -1;
   }
 
   .base::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -4;
+    display: block;
     width: 100%;
     height: 260px;
+    content: "";
     background-color: #343434;
     transform: translate(0%, 2700px);
-    z-index: -4;
   }
 }
 
@@ -451,72 +454,72 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2360px;
-    z-index: -1;
   }
 
   .rectangle::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -3;
+    display: block;
     width: 100%;
     height: 28%;
+    content: "";
     background-color: #343434;
     transform: translate(0%, 1385px);
-    z-index: -3;
   }
 
   .curve {
     position: absolute;
     bottom: 0;
+    z-index: -1;
     width: 100%;
     height: 2380px;
-    z-index: -1;
   }
 
   .curve::before {
-    content: "";
-    display: block;
     position: absolute;
-    border-bottom-right-radius: 9999px;
+    z-index: -1;
+    display: block;
     width: 100%;
     height: 28%;
+    content: "";
     background-color: white;
+    border-bottom-right-radius: 9999px;
     transform: translate(0%, 1400px);
-    z-index: -1;
   }
 
   .curve::after {
-    content: "";
-    display: block;
     position: absolute;
-    border-top-left-radius: 9999px;
+    z-index: -2;
+    display: block;
     width: 100%;
     height: 28%;
+    content: "";
     background-color: #343434;
+    border-top-left-radius: 9999px;
     transform: translate(0%, 2065px);
-    z-index: -2;
   }
 
   .base {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2360px;
-    z-index: -1;
   }
 
   .base::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -4;
+    display: block;
     width: 100%;
     height: 250px;
+    content: "";
     background-color: #343434;
     transform: translate(0%, 2710px);
-    z-index: -4;
   }
 }
 
@@ -525,71 +528,71 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2360px;
-    z-index: -1;
   }
 
   .rectangle::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -3;
+    display: block;
     width: 100%;
     height: 28%;
+    content: "";
     background-color: #343434;
     transform: translate(0%, 1420px);
-    z-index: -3;
   }
 
   .curve {
     position: absolute;
     bottom: 0;
+    z-index: -1;
     width: 100%;
     height: 2380px;
-    z-index: -1;
   }
 
   .curve::before {
-    content: "";
-    display: block;
     position: absolute;
-    border-bottom-right-radius: 9999px;
+    z-index: -1;
+    display: block;
     width: 100%;
     height: 28%;
+    content: "";
     background-color: white;
-    transform: translate(0%, 1435px);
-    z-index: -1;
+    border-bottom-right-radius: 9999px;
+    transform: translate(0%, 1435.5px);
   }
 
   .curve::after {
-    content: "";
-    display: block;
     position: absolute;
-    border-top-left-radius: 9999px;
+    z-index: -2;
+    display: block;
     width: 100%;
     height: 28%;
+    content: "";
     background-color: #343434;
+    border-top-left-radius: 9999px;
     transform: translate(0%, 2101px);
-    z-index: -2;
   }
 
   .base {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 2360px;
-    z-index: -1;
   }
 
   .base::after {
-    content: "";
-    display: block;
     position: absolute;
+    z-index: -4;
+    display: block;
     width: 100%;
     height: 270px;
+    content: "";
     background-color: #343434;
     transform: translate(0%, 2747px);
-    z-index: -4;
   }
 }

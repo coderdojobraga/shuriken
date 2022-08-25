@@ -5,8 +5,8 @@ import {
   Empty,
   Row,
   Space,
-  Tabs,
   Tag,
+  Tabs,
   Timeline,
   Typography,
   notification,
@@ -14,12 +14,12 @@ import {
 import { ClockCircleOutlined, UserOutlined } from "@ant-design/icons";
 import moment from "moment";
 import Badge from "~/components/Badge";
+import Belt from "~/components/Belt";
 import Document from "~/components/Document";
 import LinkTo from "~/components/utils/LinkTo";
-import * as api from "~/lib/utils/api";
-import * as BELT from "~/lib/utils/belt";
-import * as USER from "~/lib/utils/user";
-import * as SOCIAL from "~/lib/utils/social";
+import * as api from "~/lib/api";
+import * as USER from "~/lib/user";
+import * as SOCIAL from "~/lib/social";
 
 import styles from "./style.module.css";
 
@@ -30,6 +30,7 @@ function Profile({ id, type }) {
   const [info, setInfo] = useState({});
   const [badges, setBadges] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [skills, setSkills] = useState([]);
 
   useEffect(() => {
     api
@@ -37,7 +38,12 @@ function Profile({ id, type }) {
       .then((response) => setInfo(response.data))
       .catch((error) => notification["error"](error.data?.errors));
 
-    if (type == USER.ROLES.NINJA) {
+    if (type == USER.ROLES.MENTOR) {
+      api
+        .getMentorSkills(id)
+        .then((response) => setSkills(response.data))
+        .catch((error) => notification["error"](error.data?.errors));
+    } else if (type == USER.ROLES.NINJA) {
       api
         .getNinjaBadges(id)
         .then((response) => setBadges(response.data))
@@ -46,6 +52,11 @@ function Profile({ id, type }) {
       api
         .getNinjaFiles(id)
         .then((response) => setProjects(response.data))
+        .catch((error) => notification["error"](error.data?.errors));
+
+      api
+        .getNinjaSkills(id)
+        .then((response) => setSkills(response.data))
         .catch((error) => notification["error"](error.data?.errors));
     }
   }, [id, type]);
@@ -77,16 +88,18 @@ function Profile({ id, type }) {
                 {type}
               </Title>
             </Col>
-            {info.belt ? (
+
+            <Col span={24}>
+              {skills.map((s) => (
+                <Tag key={s.id}>{s.name}</Tag>
+              ))}
+            </Col>
+
+            {"belt" in info && (
               <Col span={24}>
-                <Tag
-                  className={!info.belt ? styles.nobelt : styles.capitalize}
-                  color={(info.belt !== BELT.LEVELS.WHITE && info.belt) || null}
-                >
-                  {BELT.PT[info.belt]}
-                </Tag>
+                <Belt belt={info.belt} />
               </Col>
-            ) : null}
+            )}
 
             <Col span={24}>
               <Space style={{ fontSize: 30 }}>

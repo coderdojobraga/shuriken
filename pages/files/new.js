@@ -3,7 +3,7 @@ import { Button, Col, Form, Input, Row, Space, Typography, Upload } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/components/layouts/AppLayout";
-import * as api from "~/lib/utils/api.js";
+import * as api from "~/lib/api.js";
 
 const { Title } = Typography;
 const { Dragger } = Upload;

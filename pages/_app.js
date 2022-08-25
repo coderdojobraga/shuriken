@@ -1,9 +1,14 @@
-import "~/styles/globals.css";
-
+import Head from "next/head";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { ConfigProvider } from "antd";
 import ptPT from "antd/lib/locale/pt_PT";
 import { AuthProvider } from "~/components/Auth";
-import Head from "next/head";
+import { ThemeProvider } from "../components/Theme";
+
+import "~/styles/globals.css";
+
+const queryClient = new QueryClient();
 
 function Shuriken({ Component, pageProps }) {
   const typeTemplate = "Não é um ${type} válido";
@@ -57,14 +62,19 @@ function Shuriken({ Component, pageProps }) {
   };
 
   return (
-    <AuthProvider>
-      <ConfigProvider form={{ validateMessages }} locale={ptPT}>
-        <Head>
-          <title>CoderDojo Braga</title>
-        </Head>
-        <Component {...pageProps} />
-      </ConfigProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ConfigProvider form={{ validateMessages }} locale={ptPT}>
+          <AuthProvider>
+            <Head>
+              <title>CoderDojo Braga</title>
+            </Head>
+            <Component {...pageProps} />
+          </AuthProvider>
+        </ConfigProvider>
+        <ReactQueryDevtools position="bottom-right" />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 
