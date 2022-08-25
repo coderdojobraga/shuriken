@@ -14,7 +14,7 @@ export default function Team() {
 
         <div className="mx-auto py-0.5 container w-6/12 lg:w-3/12 bg-primary h-8/12 text-center text-2xl" />
 
-        <p className="mx-2 lg:mx-12 mt-8 text-black text-2xl text-center leading-relaxed mt-4 mb-4">
+        <p className="mx-2 lg:mx-12 text-black text-2xl text-center leading-relaxed mt-4 mb-4">
           A equipa do CoderDojo Braga é composta por alunos voluntários de
           vários cursos dedicados e apaixonados pelo projeto e por tecnologia.
           Cada uma traz o seu contributo único para criar uma experiencia

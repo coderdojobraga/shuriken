@@ -1,11 +1,10 @@
 .badge {
-  max-width: 300px;
+  max-width: 320px;
   margin-right: 40px;
 }
 
-.nobelt {
-  background: #fff;
-  border-style: dashed;
+.image {
+  padding: 20px;
 }
 
 .belt {

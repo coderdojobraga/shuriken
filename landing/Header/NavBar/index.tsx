@@ -1,19 +1,29 @@
 import { Grid } from "antd";
 import MobileNavBar from "./MobileNavBar";
 import AuthMenu from "./AuthMenu";
+import DarkModeToggle from "../../../components/DarkModeToggle";
 
 const { useBreakpoint } = Grid;
 
-function NavBar() {
+const Entry = ({ name }) => (
+  <li className="cursor-pointer dark:text-white dark:hover:text-primary hover:text-primary">
+    {name}
+  </li>
+);
+
+function NavBar({ landing }) {
   const screens = useBreakpoint();
 
   if (screens.md) {
     return (
       <ul className="flex items-center gap-12 text-black text-sm uppercase">
-        <li className="cursor-pointer hover:text-primary">Currículo</li>
-        <li className="cursor-pointer hover:text-primary">Projetos</li>
-        <li className="cursor-pointer hover:text-primary">Equipa</li>
+        <Entry name="Currículo" />
+        <Entry name="Projetos" />
+        <Entry name="Equipa" />
         <AuthMenu />
+        <li>
+          <DarkModeToggle visible={!landing} />
+        </li>
       </ul>
     );
   }

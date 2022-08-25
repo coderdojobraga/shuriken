@@ -17,6 +17,7 @@ const Badge = ({ id, image, name, description, loading = false }) => {
           loading ? (
             <Skeleton.Image className={styles.image} />
           ) : (
+            /* eslint-disable @next/next/no-img-element */
             <img className={styles.image} alt={description} src={image} />
           )
         }

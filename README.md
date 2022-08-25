@@ -1,18 +1,18 @@
 [contributing]: CONTRIBUTING.md
 [code_of_conduct]: CODE_OF_CONDUCT.md
 [license]: LICENSE.txt
-[vercel-status]: http://therealsujitk-vercel-badge.vercel.app/?app=coderdojo-braga
-[deploy-url]: https://coderdojo-braga.vercel.app
+[netlify-status]: https://api.netlify.com/api/v1/badges/efcedb09-323c-44c8-8b87-203206832991/deploy-status
+[netlify-project]: https://app.netlify.com/sites/coderdojobraga-shuriken/deploys
 [style-status]: https://github.com/coderdojobraga/shuriken/actions/workflows/style.yml/badge.svg
 [style-workflow]: https://github.com/coderdojobraga/shuriken/actions/workflows/style.yml
 [figma-landing]: https://www.figma.com/file/vrq1JmgubKLKgsLQf1D6Bl
-[figma-shuriken]: https://www.figma.com/file/1phER5eukGFC5p9tFGnfk7/SEI
+[figma-shuriken]: https://www.figma.com/files/project/26101453/Shuriken?fuid=648167867289777861
 
 # shuriken
 
 > :star: **shuri**ken + bok**ken**
 
-[![Vercel][vercel-status]][deploy-url]
+[![Netlify][netlify-status]][netlify-project]
 [![CI Style][style-status]][style-workflow]
 [![Design Shuriken](https://img.shields.io/badge/figma-shuriken-F24E1E?style=flat&logo=figma&logoColor=F24E1E)][figma-shuriken]
 [![Design Landing](https://img.shields.io/badge/figma-landing-F24E1E?style=flat&logo=figma&logoColor=F24E1E)][figma-landing]
@@ -29,7 +29,7 @@ local machine for development and testing purposes.
 
 The following software is required to be installed on your system:
 
-- [Node.js 14.17+](https://nodejs.org/en/download/)
+- [Node.js 16.15+](https://nodejs.org/en/download/)
 
 We recommend using [asdf version
 manager](https://asdf-vm.com/#/core-manage-asdf?id=install) to install and
@@ -90,15 +90,23 @@ uses.
 
 ## :warning: Dirty hacks you should be aware of
 
-Through no fault of your own (of course :wink:), the following hacks (or, as we prefer to call them: unconventional programming techniques) made their way into our code. **If you want to potentially save yourself some hours of bug hunting**, we recommend you read this section.
+Through no fault of your own (of course :wink:), the following hacks (or, as we
+prefer to call them: unconventional programming techniques) made their way into
+our code. **If you want to potentially save yourself some hours of bug
+hunting**, we recommend you read this section.
 
 ### :arrow_right: Ant Design theme customization
 
-This project uses [Ant Design](https://ant.design/) for the styling of its authenticated pages.
+This project uses [Ant Design](https://ant.design/) for the styling of its
+authenticated pages.
 
-Unfortunately for us, Ant requires LESS support for theme customization and NextJS doesn't support it.
+Unfortunately for us, Ant requires LESS support for theme customization and
+Next.js doesn't support it.
 
-To solve this, we adapted the npm scripts to always compile the necessary LESS files before starting a build or a development server. This means that any changes made the the Ant theme will trigger a build in a development server; you have to restart it to see the effects.
+To solve this, we adapted the npm scripts to always compile the necessary LESS
+files before starting a build or a development server. This means that any
+changes made the the Ant theme will trigger a build in a development server;
+you have to restart it to see the effects.
 
 For more information refer to [PR #30](https://github.com/coderdojobraga/shuriken/pull/30).
 
@@ -107,6 +115,13 @@ For more information refer to [PR #30](https://github.com/coderdojobraga/shurike
 Please read [CONTRIBUTING][contributing] and [CODE_OF_CONDUCT][code_of_conduct]
 for details on our code of conduct and the process for submitting pull requests
 to us.
+
+## :handshake: Contributing to our blog
+
+Our website now has a blog! Each post is stored as a Markdown file under
+`_posts`. If you want to contribute please read the relevant section of the
+[CONTRIBUTING][contributing] file, as well as our
+[CODE_OF_CONDUCT][code_of_conduct].
 
 ## :memo: License
 

@@ -4,13 +4,15 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./landing/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
         primary: "#722ED1",
         dark: "#343434",
         orange: "#ed684aff",
+        white: "#ffffff",
+        altdark: "#262626",
       },
     },
   },

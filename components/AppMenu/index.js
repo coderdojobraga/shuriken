@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, Avatar, Typography } from "antd";
 import {
   CalendarOutlined,
+  BookOutlined,
   HomeOutlined,
   LogoutOutlined,
   SettingOutlined,
@@ -24,11 +25,11 @@ const { Text, Title } = Typography;
 function AppMenu({ hidePrimaryMenu, collapsed }) {
   const { user, logout } = useAuth();
   const router = useRouter();
-  const { pathname } = router;
+  const { asPath } = router;
 
   // These states and handlers are needed in order to sync both menus.
   // Without this, each menu would behave independently
-  const [primarySelectedKeys, setPrimarySelectedKeys] = useState([pathname]);
+  const [primarySelectedKeys, setPrimarySelectedKeys] = useState([asPath]);
   const [secondarySelectedKeys, setSecondarySelectedKeys] = useState([]);
   const handleClickPrimary = ({ key }) => {
     router.push(key);
@@ -117,6 +118,14 @@ function AppMenu({ hidePrimaryMenu, collapsed }) {
             {user.role === USER.ROLES.GUARDIAN && (
               <Item key="/ninjas" icon={<UserAddOutlined />}>
                 Ninjas
+              </Item>
+            )}
+            {user.role === USER.ROLES.MENTOR && (
+              <Item
+                key={`/lectures/mentor/${user.mentor_id}`}
+                icon={<BookOutlined />}
+              >
+                Sessões
               </Item>
             )}
             {user.role === USER.ROLES.NINJA && (
