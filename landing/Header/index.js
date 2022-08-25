@@ -16,16 +16,19 @@ function Header({ landing = false }) {
   const { isDark } = useTheme();
 
   const onDrawerLogOut = () => {
-    logout()
+    logout();
     setVisibleDrawer(false);
-  }
+  };
 
   return (
     <section className={isDark && !landing ? "dark" : "light"}>
       <div className="dark:bg-dark">
         <header className="container mx-auto">
           <nav className="flex flex-row justify-between items-center mx-2 lg:mx-12 xl:mx-20 pb-3 pt-7">
-            <div className="py-2 cursor-pointer" onClick={(_) => router.push("/")}>
+            <div
+              className="py-2 cursor-pointer"
+              onClick={(_) => router.push("/")}
+            >
               <Image
                 layout="fixed"
                 width={208}
@@ -101,11 +104,8 @@ function Header({ landing = false }) {
             <div className="flex md:hidden flex-1 justify-end px-2">
               {user ? (
                 <>
-                  <button
-                    type="button"
-                    onClick={(_) => setVisibleDrawer(true)}
-                  >
-                  {user.photo ? (
+                  <button type="button" onClick={(_) => setVisibleDrawer(true)}>
+                    {user.photo ? (
                       /* eslint-disable @next/next/no-img-element */
                       <img
                         className="z-50"
@@ -119,34 +119,37 @@ function Header({ landing = false }) {
                       </div>
                     )}
                   </button>
-                    <Drawer
-                      className="flex md:hidden"
-                      placement="right"
-                      onClose={() => setVisibleDrawer(false)}
-                      visible={isDrawerVisible}
-                      zIndex={50}
-                    >
-                      <ul className="flex flex-col items-center text-xl gap-6 uppercase">
-                        <li className="cursor-pointer hover:text-primary">
-                          Currículo
-                        </li>
-                        <li className="cursor-pointer hover:text-primary">
-                          Projetos
-                        </li>
-                        <li className="cursor-pointer hover:text-primary">
-                          Equipa
-                        </li>
-                        <li className="cursor-pointer hover:text-primary">
-                          <Link href="/blog"> Blog </Link>
-                        </li>
-                        <li className="cursor-pointer hover:text-primary">
-                          <Link href="/dashboard"> Dashboard </Link>
-                        </li>
-                        <button className="cursor-pointer hover:text-primary" onClick={(_) => onDrawerLogOut()}>
-                          LOG OUT
-                        </button>
-                      </ul>
-                    </Drawer>
+                  <Drawer
+                    className="flex md:hidden"
+                    placement="right"
+                    onClose={() => setVisibleDrawer(false)}
+                    visible={isDrawerVisible}
+                    zIndex={50}
+                  >
+                    <ul className="flex flex-col items-center text-xl gap-6 uppercase">
+                      <li className="cursor-pointer hover:text-primary">
+                        Currículo
+                      </li>
+                      <li className="cursor-pointer hover:text-primary">
+                        Projetos
+                      </li>
+                      <li className="cursor-pointer hover:text-primary">
+                        Equipa
+                      </li>
+                      <li className="cursor-pointer hover:text-primary">
+                        <Link href="/blog"> Blog </Link>
+                      </li>
+                      <li className="cursor-pointer hover:text-primary">
+                        <Link href="/dashboard"> Dashboard </Link>
+                      </li>
+                      <button
+                        className="cursor-pointer hover:text-primary"
+                        onClick={(_) => onDrawerLogOut()}
+                      >
+                        LOG OUT
+                      </button>
+                    </ul>
+                  </Drawer>
                 </>
               ) : (
                 <>
