@@ -59,7 +59,7 @@ function EventPage() {
         .then((response) => setAvailableMentors(response))
         .catch((error) => notification["error"](error.data?.errors));
     }
-  }, [event_id]);
+  }, [event_id, role]);
 
   useEffect(() => {
     if (role === USER.ROLES.MENTOR) {
@@ -67,7 +67,7 @@ function EventPage() {
         .then((response) => setAvailabilities(response.data))
         .catch((error) => notification["error"](error.data?.errors));
     }
-  }, [event_id]);
+  }, [event_id, role]);
 
   useEffect(() => {
     if (role === USER.ROLES.GUARDIAN) {
@@ -75,7 +75,7 @@ function EventPage() {
         .then((response) => setEnrolledNinjas(response))
         .catch((error) => notification["error"](error.data?.errors));
     }
-  }, [event_id]);
+  }, [event_id, role, user.guardian_id]);
 
   useEffect(() => {
     if (role === USER.ROLES.GUARDIAN) {
@@ -83,7 +83,7 @@ function EventPage() {
         .then((response) => setNinjas(response.data))
         .catch((error) => notification["error"](error.data?.errors));
     }
-  }, []);
+  }, [role]);
 
   const intersectNinjaData = () => {
     const enrolledNinjasIDs = enrolledNinjas.map((entity) => entity?.ninja.id);
