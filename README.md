@@ -119,7 +119,7 @@ to us.
 ## :handshake: Contributing to our blog
 
 Our website now has a blog! Each post is stored as a Markdown file under
-`_posts`. If you want to contribue please read the relevant section of the
+`_posts`. If you want to contribute please read the relevant section of the
 [CONTRIBUTING][contributing] file, as well as our
 [CODE_OF_CONDUCT][code_of_conduct].
 
