@@ -28,7 +28,7 @@ function Dashboard() {
         .then((response) => setNinjas(response.data))
         .catch((error) => notification["error"](error.data?.errors));
     }
-  }, []);
+  }, [role]);
 
   return (
     <AppLayout>
