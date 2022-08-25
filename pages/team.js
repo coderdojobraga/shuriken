@@ -5,7 +5,7 @@ import team from "~/data/team.json";
 export default function Team() {
   return (
     <>
-      <Header />
+      <Header landing={true} />
 
       <div className="mx-auto mt-12 container">
         <h1 className="text-4xl sm:text-5xl text-center font-bold m-4">
