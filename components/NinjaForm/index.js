@@ -150,7 +150,7 @@ export default function NinjaForm({ id }) {
           />
         </Space>
       </Row>
-      <Row justify="center" align="middle">
+      <Row align="middle">
         <Col xs={24} sm={24} md={20} lg={16} xl={12}>
           <Form
             {...{
@@ -203,6 +203,13 @@ export default function NinjaForm({ id }) {
                 ))}
               </Select>
             </Form.Item>
+            <Row justify="center">
+              <LinkTo href="/posts/choosing-first-language">
+                <Button type="secondary">
+                  Como escolher a linguagem para o ninja aprender?
+                </Button>
+              </LinkTo>
+            </Row>
           </Form>
         </Col>
       </Row>
