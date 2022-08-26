@@ -19,7 +19,7 @@ function EventInfo({
   enrollments_close,
   breakpoints = { xs: 1, sm: 1, md: 1, lg: 1, xl: 1, xxl: 6 },
 }) {
-  const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
+  const labelStyle = { color: "rgba(0, 0, 0, 0.45)", maxWidth: "30vw" };
 
   const timeForEnrollmentsClose = () => {
     const enrollmentsClose = new Date(enrollments_close).getTime();
