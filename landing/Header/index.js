@@ -58,7 +58,7 @@ function Header({ landing = false }) {
                   {user.photo ? (
                     /* eslint-disable @next/next/no-img-element */
                     <img
-                      className="z-50"
+                      className="z-50 rounded-full"
                       src={user.photo}
                       width={50}
                       height={50}
@@ -108,7 +108,7 @@ function Header({ landing = false }) {
                     {user.photo ? (
                       /* eslint-disable @next/next/no-img-element */
                       <img
-                        className="z-50"
+                        className="z-50 rounded-full"
                         src={user.photo}
                         width={50}
                         height={50}
