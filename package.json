@@ -1,59 +1,35 @@
 {
   "name": "shuriken",
-  "version": "0.2.0-dev",
+  "version": "0.0.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "npm-run-all develop",
-    "develop": "npm-run-all less dev-server",
-    "dev-server": "next dev",
-    "build": "npm-run-all less make-build",
-    "make-build": "next build",
-    "start": "next start",
-    "less": "lessc --js styles/antd-theme.less styles/antd-theme.css",
-    "lint": "npm-run-all lint:*",
-    "lint:js": "next lint",
-    "lint:css": "stylelint --fix './**/*.css' --ignore-path .gitignore",
-    "fmt": "npm-run-all format",
-    "format": "prettier --write . --ignore-path .gitignore",
-    "test": "npm-run-all test:*",
-    "test:lint": "npm-run-all test:lint:*",
-    "test:lint:js": "next lint",
-    "test:lint:css": "stylelint './**/*.css' --ignore-path .gitignore",
-    "test:format": "prettier --check . --ignore-path .gitignore"
-  },
-  "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "antd": "^4.21.7",
-    "fs": "^0.0.1-security",
-    "gray-matter": "^4.0.3",
-    "less": "^4.1.1",
-    "lodash-es": "^4.17.21",
-    "next": "^12.2.3",
-    "path": "^0.12.7",
-    "raw-loader": "^4.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-markdown": "^7.1.0",
-    "react-query": "^3.23.2",
-    "react-syntax-highlighter": "^15.4.4",
-    "redaxios": "^0.5.0",
-    "remark-gfm": "^3.0.0"
+    "clean": "rm -rf node_modules && npm cache verify",
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "eslint:check": "turbo run lint:check",
+    "eslint:fix": "turbo run lint",
+    "format:fix": "npm run prettier:fix",
+    "format:check": "npm run prettier:check",
+    "lint": "npm run lint:fix",
+    "lint:fix": "npm run eslint:fix && npm run format:fix",
+    "lint:check": "npm run eslint:check && npm run format:check",
+    "prettier:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx}\"",
+    "prettier:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx}\""
   },
   "devDependencies": {
-    "@types/node": "^17.0.21",
-    "@types/react": "^17.0.20",
-    "@types/react-syntax-highlighter": "^13.5.2",
-    "autoprefixer": "^10.3.1",
-    "eslint": "^7.32.0",
-    "eslint-config-next": "11.1.2",
-    "npm-run-all": "^4.1.5",
-    "postcss": "^8.3.6",
-    "prettier": "^2.4.0",
-    "stylelint": "^13.13.1",
-    "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-recess-order": "^2.5.0",
-    "stylelint-prettier": "^1.2.0",
-    "tailwindcss": "^2.2.7",
-    "typescript": "^4.4.2"
-  }
+    "eslint-config-coderdojobraga": "*",
+    "prettier": "latest",
+    "prettier-plugin-tailwindcss": "latest",
+    "turbo": "latest"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=16 <17"
+  },
+  "dependencies": {},
+  "packageManager": "npm@8.15.0"
 }
