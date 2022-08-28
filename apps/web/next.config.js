@@ -8,6 +8,10 @@ module.exports = withTM({
   async rewrites() {
     return [
       {
+        source: "/login",
+        destination: "http://localhost:3002/app/login",
+      },
+      {
         source: "/app",
         destination: "http://localhost:3002/app",
       },

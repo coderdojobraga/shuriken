@@ -1,12 +1,18 @@
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { Drawer } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useAuth, useTheme, ThemeToggle } from "@coderdojobraga/ui";
-import { useRouter } from "next/router";
+import { DEFAULT_MENU_ENTRIES } from "./config";
+import { getUserInitials } from "./utils";
 
-export function Header({ landing = false }) {
+interface Props {
+  landing?: boolean;
+}
+
+export function Header({ landing = false }: Props) {
   const { user, logout } = useAuth();
   const router = useRouter();
   const [isDrawerVisible, setVisibleDrawer] = useState(false);
@@ -36,18 +42,11 @@ export function Header({ landing = false }) {
               />
             </div>
             <ul className="hidden items-center gap-8 text-sm uppercase text-black md:flex">
-              <li className="hover:text-primary cursor-pointer dark:text-white">
-                <Link href="/curriculum">Currículo</Link>
-              </li>
-              <li className="hover:text-primary cursor-pointer dark:text-white">
-                <Link href="/projects">Projetos</Link>
-              </li>
-              <li className="hover:text-primary cursor-pointer dark:text-white">
-                <Link href="/team">Equipa</Link>
-              </li>
-              <li className="hover:text-primary cursor-pointer dark:text-white">
-                <Link href="/blog"> Blog </Link>
-              </li>
+              {DEFAULT_MENU_ENTRIES.map(({ path, text }) => (
+                <li className="hover:text-primary cursor-pointer dark:text-white">
+                  <Link href={path}>{text}</Link>
+                </li>
+              ))}
               {user ? (
                 <li
                   className="text-bold cursor-pointer"
@@ -63,8 +62,7 @@ export function Header({ landing = false }) {
                     />
                   ) : (
                     <div className="border-primary relative z-50 select-none rounded-full border-2 px-2 py-1 text-lg">
-                      {/* TODO: fix this */}
-                      {/* {user?.first_name?[0]? + user?.last_name?[0]?)} */}
+                      {getUserInitials(user)}
                     </div>
                   )}
                   <div
@@ -76,7 +74,7 @@ export function Header({ landing = false }) {
                   >
                     <ul>
                       <li>
-                        <Link href="/dashboard">Dashboard</Link>
+                        <Link href="/app">Dashboard</Link>
                       </li>
                       <li>
                         <button
@@ -114,8 +112,7 @@ export function Header({ landing = false }) {
                       />
                     ) : (
                       <div className="border-primary relative z-50 select-none rounded-full border-2 px-2 py-1 text-lg">
-                        {/* TODO: fix this */}
-                        {/* {user?.first_name?[0] + user?.last_name?[0]} */}
+                        {getUserInitials(user)}
                       </div>
                     )}
                   </button>
@@ -127,20 +124,13 @@ export function Header({ landing = false }) {
                     zIndex={50}
                   >
                     <ul className="flex flex-col items-center gap-6 text-xl uppercase">
+                      {DEFAULT_MENU_ENTRIES.map(({ path, text }) => (
+                        <li className="hover:text-primary cursor-pointer">
+                          <Link href={path}>{text}</Link>
+                        </li>
+                      ))}
                       <li className="hover:text-primary cursor-pointer">
-                        Currículo
-                      </li>
-                      <li className="hover:text-primary cursor-pointer">
-                        Projetos
-                      </li>
-                      <li className="hover:text-primary cursor-pointer">
-                        Equipa
-                      </li>
-                      <li className="hover:text-primary cursor-pointer">
-                        <Link href="/blog"> Blog </Link>
-                      </li>
-                      <li className="hover:text-primary cursor-pointer">
-                        <Link href="/dashboard"> Dashboard </Link>
+                        <Link href="/app">Dashboard</Link>
                       </li>
                       <button
                         className="hover:text-primary cursor-pointer"
@@ -168,18 +158,11 @@ export function Header({ landing = false }) {
                     zIndex={20}
                   >
                     <ul className="flex flex-col items-center gap-6 text-xl uppercase">
-                      <li className="hover:text-primary cursor-pointer">
-                        Currículo
-                      </li>
-                      <li className="hover:text-primary cursor-pointer">
-                        Projetos
-                      </li>
-                      <li className="hover:text-primary cursor-pointer">
-                        Equipa
-                      </li>
-                      <li className="hover:text-primary cursor-pointer">
-                        <Link href="/blog"> Blog </Link>
-                      </li>
+                      {DEFAULT_MENU_ENTRIES.map(({ path, text }) => (
+                        <li className="hover:text-primary cursor-pointer">
+                          <Link href={path}>{text}</Link>
+                        </li>
+                      ))}
                       <Link href="/login">
                         <a className="hover:text-primary cursor-pointer">
                           LOGIN
