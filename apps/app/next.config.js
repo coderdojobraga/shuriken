@@ -5,5 +5,5 @@ const withTM = require("next-transpile-modules")([
 
 module.exports = withTM({
   reactStrictMode: true,
-  basePath: "/app",
+  basePath: "/dashboard",
 });

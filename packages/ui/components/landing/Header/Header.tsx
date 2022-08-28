@@ -74,7 +74,7 @@ export function Header({ landing = false }: Props) {
                   >
                     <ul>
                       <li>
-                        <Link href="/app">Dashboard</Link>
+                        <Link href="/dashboard">Dashboard</Link>
                       </li>
                       <li>
                         <button
@@ -130,7 +130,7 @@ export function Header({ landing = false }: Props) {
                         </li>
                       ))}
                       <li className="hover:text-primary cursor-pointer">
-                        <Link href="/app">Dashboard</Link>
+                        <Link href="/dashboard">Dashboard</Link>
                       </li>
                       <button
                         className="hover:text-primary cursor-pointer"

@@ -9,15 +9,15 @@ module.exports = withTM({
     return [
       {
         source: "/login",
-        destination: "http://localhost:3002/app/login",
+        destination: "http://localhost:3002/dashboard/login",
       },
       {
-        source: "/app",
-        destination: "http://localhost:3002/app",
+        source: "/dashboard",
+        destination: "http://localhost:3002/dashboard",
       },
       {
-        source: "/app/:path*",
-        destination: "http://localhost:3002/app/:path*",
+        source: "/dashboard/:path*",
+        destination: "http://localhost:3002/dashboard/:path*",
       },
       {
         source: "/blog",
