@@ -560,8 +560,7 @@
     height: 28%;
     content: "";
     background-color: white;
-    border-bottom-right-radius: 9999px;
-    transform: translate(0%, 1435.5px);
+    transform: translate(0%, 1435px);
   }
 
   .curve::after {
