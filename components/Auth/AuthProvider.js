@@ -28,17 +28,7 @@ export function AuthProvider({ children }) {
         setUser(user);
         router.push("/dashboard");
       })
-      .catch((error) => {
-        switch (error.status) {
-          case 403:
-            router.push("/inactive");
-            break;
-
-          default:
-            setErrors(error?.data?.errors);
-            break;
-        }
-      })
+      .catch((error) => setErrors(error?.data?.errors))
       .finally(() => setLoading(false));
   }
 
