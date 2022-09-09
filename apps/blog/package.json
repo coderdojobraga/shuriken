@@ -13,7 +13,6 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@coderdojobraga/ui": "*",
-    "antd": "^4.22.8",
     "gray-matter": "^4.0.3",
     "lodash-es": "^4.17.21",
     "next": "12.2.3",
@@ -25,7 +24,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "@types/antd": "^1.0.0",
     "@types/lodash-es": "^4.17.6",
     "@types/node": "^17.0.12",
     "@types/react": "17.0.48",

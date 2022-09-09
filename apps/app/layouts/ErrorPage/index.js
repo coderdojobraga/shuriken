@@ -11,11 +11,7 @@ function DefaultActions() {
       <Button onClick={() => router.back()} key="back">
         Voltar
       </Button>
-      <Button
-        onClick={() => router.push("/dashboard")}
-        key="home"
-        type="primary"
-      >
+      <Button onClick={() => router.push("/")} key="home" type="primary">
         Página Inicial
       </Button>
     </>

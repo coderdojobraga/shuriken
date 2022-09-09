@@ -6,4 +6,7 @@ const withTM = require("next-transpile-modules")([
 module.exports = withTM({
   reactStrictMode: true,
   basePath: "/blog",
+  env: {
+    BASE_URL: process.env.BASE_URL,
+  },
 });

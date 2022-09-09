@@ -9,7 +9,7 @@ export function withoutAuth(WrappedComponent: any) {
 
     if (user) {
       if (user.registered) {
-        router.replace(`/dashboard`);
+        router.replace(`/`);
       } else {
         router.replace("/register");
       }

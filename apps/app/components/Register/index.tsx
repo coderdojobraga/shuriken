@@ -52,7 +52,7 @@ function Register({ cities }: any) {
     api
       .registerUser(values)
       .then(() => {
-        router.push("/dashboard");
+        router.push("/");
       })
       .catch((error) => setErrors(error?.data?.errors))
       .finally(() => setLoading(false));

@@ -57,11 +57,7 @@ const SuccessActions = () => {
       <Button onClick={() => router.back()} key="back">
         Voltar
       </Button>
-      <Button
-        onClick={() => router.push("/dashboard")}
-        key="home"
-        type="primary"
-      >
+      <Button onClick={() => router.push("/")} key="home" type="primary">
         Página Inicial
       </Button>
     </>
@@ -94,7 +90,7 @@ const ResendEmailActions = () => {
               case 201:
                 break;
               case 204:
-                router.replace("/dashboard");
+                router.replace("/");
                 break;
             }
           })

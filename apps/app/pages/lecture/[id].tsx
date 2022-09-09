@@ -28,7 +28,7 @@ function Lectures() {
   const onFinish = (values: any) => {
     api
       .updateLecture(id as string, values)
-      .then(() => router.push("/dashboard"))
+      .then(() => router.push("/"))
       .catch((error) => notification["error"](error.data?.errors));
   };
 
@@ -79,9 +79,7 @@ function Lectures() {
           <Col>
             {!editable || (
               <Space>
-                <Button onClick={() => router.push("/dashboard")}>
-                  Cancelar
-                </Button>
+                <Button onClick={() => router.push("/")}>Cancelar</Button>
                 <Button onClick={() => form.submit()} type="primary">
                   Guardar
                 </Button>

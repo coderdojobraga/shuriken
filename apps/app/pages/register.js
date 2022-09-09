@@ -22,7 +22,7 @@ function Register({ cities }) {
   const { user } = useAuth();
 
   if (user?.registered) {
-    router.replace("/dashboard");
+    router.replace("/");
     return null;
   }
 
