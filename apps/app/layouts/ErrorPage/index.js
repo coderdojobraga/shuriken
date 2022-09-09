@@ -12,7 +12,7 @@ function DefaultActions() {
         Voltar
       </Button>
       <Button
-        onClick={() => router.push("/dashboard")}
+        onClick={() => router.push("/")}
         key="home"
         type="primary"
       >

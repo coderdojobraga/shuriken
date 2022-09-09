@@ -58,7 +58,7 @@ const SuccessActions = () => {
         Voltar
       </Button>
       <Button
-        onClick={() => router.push("/dashboard")}
+        onClick={() => router.push("/")}
         key="home"
         type="primary"
       >
@@ -94,7 +94,7 @@ const ResendEmailActions = () => {
               case 201:
                 break;
               case 204:
-                router.replace("/dashboard");
+                router.replace("/");
                 break;
             }
           })

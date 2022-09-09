@@ -98,7 +98,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
                 </Text>
               )}
             </div>
-            <Item key="/dashboard" icon={<HomeOutlined />}>
+            <Item key="/" icon={<HomeOutlined />}>
               Painel Principal
             </Item>
             {user?.role === EUser.Organizer && (

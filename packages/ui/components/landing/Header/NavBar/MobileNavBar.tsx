@@ -21,7 +21,7 @@ const pages = {
     { key: "#", text: "Projetos", icon: <SnippetsOutlined /> },
   ],
   authenticated: [
-    { key: "/dashboard", text: "Página Principal", icon: <HomeOutlined /> },
+    { key: "/", text: "Página Principal", icon: <HomeOutlined /> },
     { key: "/settings", text: "Configurações", icon: <SettingOutlined /> },
   ],
 };
