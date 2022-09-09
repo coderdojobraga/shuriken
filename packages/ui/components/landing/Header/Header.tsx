@@ -42,7 +42,7 @@ export function Header({ landing = false }: Props) {
               />
             </div>
             <ul className="hidden items-center gap-8 text-sm uppercase text-black md:flex">
-              {DEFAULT_MENU_ENTRIES.map(({ path, text }) => (
+              {(landing ? DEFAULT_MENU_ENTRIES.LANDING : DEFAULT_MENU_ENTRIES.BLOG).map(({ path, text }) => (
                 <li className="hover:text-primary cursor-pointer dark:text-white">
                   <Link href={path}>{text}</Link>
                 </li>
@@ -124,7 +124,7 @@ export function Header({ landing = false }: Props) {
                     zIndex={50}
                   >
                     <ul className="flex flex-col items-center gap-6 text-xl uppercase">
-                      {DEFAULT_MENU_ENTRIES.map(({ path, text }) => (
+                      {(landing ? DEFAULT_MENU_ENTRIES.LANDING : DEFAULT_MENU_ENTRIES.BLOG).map(({ path, text }) => (
                         <li className="hover:text-primary cursor-pointer">
                           <Link href={path}>{text}</Link>
                         </li>
@@ -158,7 +158,7 @@ export function Header({ landing = false }: Props) {
                     zIndex={20}
                   >
                     <ul className="flex flex-col items-center gap-6 text-xl uppercase">
-                      {DEFAULT_MENU_ENTRIES.map(({ path, text }) => (
+                      {(landing ? DEFAULT_MENU_ENTRIES.LANDING : DEFAULT_MENU_ENTRIES.BLOG).map(({ path, text }) => (
                         <li className="hover:text-primary cursor-pointer">
                           <Link href={path}>{text}</Link>
                         </li>
