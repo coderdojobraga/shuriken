@@ -32,7 +32,7 @@ const AuthMenu = () => {
     };
 
     const entries = [
-      { key: "/dashboard", text: "Página Principal", icon: <HomeOutlined /> },
+      { key: "/", text: "Página Principal", icon: <HomeOutlined /> },
       { key: "/settings", text: "Configurações", icon: <SettingOutlined /> },
     ];
 
