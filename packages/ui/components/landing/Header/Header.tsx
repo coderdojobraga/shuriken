@@ -29,17 +29,16 @@ export function Header({ landing = false }: Props) {
       <div className="dark:bg-dark">
         <header className="container mx-auto">
           <nav className="mx-2 flex flex-row items-center justify-between pb-3 pt-7 lg:mx-12 xl:mx-20">
-            <div
-              className="cursor-pointer py-2"
-              onClick={(_) => router.push("/")}
-            >
-              <Image
-                layout="fixed"
-                width={208}
-                height={65}
-                src={`/img/logo-lettering-${isDark ? "light" : "dark"}.svg`}
-                alt="CoderDojo Braga Logo"
-              />
+            <div className="cursor-pointer py-2">
+              <a href={process.env.BASE_URL || ""}>
+                <Image
+                  layout="fixed"
+                  width={208}
+                  height={65}
+                  src={`/img/logo-lettering-${isDark ? "light" : "dark"}.svg`}
+                  alt="CoderDojo Braga Logo"
+                />
+              </a>
             </div>
             <ul className="hidden items-center gap-8 text-sm uppercase text-black md:flex">
               {(landing
@@ -91,7 +90,7 @@ export function Header({ landing = false }: Props) {
                   </div>
                 </li>
               ) : (
-                <Link href="/login">
+                <Link href={`${process.env.BASE_URL}/login`}>
                   <a className="bg-primary transform rounded-3xl px-4 py-2 uppercase text-white duration-300 hover:bg-purple-600">
                     Login
                   </a>
@@ -172,7 +171,7 @@ export function Header({ landing = false }: Props) {
                           <Link href={path}>{text}</Link>
                         </li>
                       ))}
-                      <Link href="/login">
+                      <Link href={`${process.env.BASE_URL}/login`}>
                         <a className="hover:text-primary cursor-pointer">
                           LOGIN
                         </a>
