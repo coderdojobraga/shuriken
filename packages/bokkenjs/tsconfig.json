@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/lib/*": ["lib/*"]
+    }
+  },
+  "extends": "tsconfig/jslibrary.json",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"]
+}
