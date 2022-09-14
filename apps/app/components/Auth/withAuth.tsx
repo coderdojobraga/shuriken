@@ -22,6 +22,11 @@ export function withAuth(WrappedComponent: any) {
       return null;
     }
 
+    if (!user.active) {
+      router.replace("/inactive");
+      return null;
+    }
+
     return <WrappedComponent {...props} />;
   };
 }

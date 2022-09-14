@@ -29,6 +29,7 @@ export interface IUser {
   birthday?: string;
   verified?: boolean;
   registered?: boolean;
+  active?: boolean;
   mentor_id?: string;
   ninja_id?: string;
   guardian_id?: string;
