@@ -5,7 +5,7 @@ import { Drawer } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useAuth, useTheme, ThemeToggle } from "@coderdojobraga/ui";
-import { DEFAULT_MENU_ENTRIES } from "./config";
+import { MENU_ENTRIES } from "./config";
 import { getUserInitials } from "./utils";
 
 interface Props {
@@ -41,10 +41,7 @@ export function Header({ landing = false }: Props) {
               </a>
             </div>
             <ul className="hidden items-center gap-8 text-sm uppercase text-black md:flex">
-              {(landing
-                ? DEFAULT_MENU_ENTRIES.LANDING
-                : DEFAULT_MENU_ENTRIES.BLOG
-              ).map(({ path, text }) => (
+              {MENU_ENTRIES.map(({ path, text }) => (
                 <li className="hover:text-primary cursor-pointer dark:text-white">
                   <Link href={path}>{text}</Link>
                 </li>
@@ -90,7 +87,7 @@ export function Header({ landing = false }: Props) {
                   </div>
                 </li>
               ) : (
-                <Link href={`${process.env.BASE_URL}/login`}>
+                <Link href="/dashboard/login">
                   <a className="bg-primary transform rounded-3xl px-4 py-2 uppercase text-white duration-300 hover:bg-purple-600">
                     Login
                   </a>
@@ -126,10 +123,7 @@ export function Header({ landing = false }: Props) {
                     zIndex={50}
                   >
                     <ul className="flex flex-col items-center gap-6 text-xl uppercase">
-                      {(landing
-                        ? DEFAULT_MENU_ENTRIES.LANDING
-                        : DEFAULT_MENU_ENTRIES.BLOG
-                      ).map(({ path, text }) => (
+                      {MENU_ENTRIES.map(({ path, text }) => (
                         <li className="hover:text-primary cursor-pointer">
                           <Link href={path}>{text}</Link>
                         </li>
@@ -163,10 +157,7 @@ export function Header({ landing = false }: Props) {
                     zIndex={20}
                   >
                     <ul className="flex flex-col items-center gap-6 text-xl uppercase">
-                      {(landing
-                        ? DEFAULT_MENU_ENTRIES.LANDING
-                        : DEFAULT_MENU_ENTRIES.BLOG
-                      ).map(({ path, text }) => (
+                      {MENU_ENTRIES.map(({ path, text }) => (
                         <li className="hover:text-primary cursor-pointer">
                           <Link href={path}>{text}</Link>
                         </li>

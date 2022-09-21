@@ -5,7 +5,7 @@ export default function Author({ name, photo, username }: IAuthor) {
   return (
     <li className="flex items-center py-1">
       <img
-        src={`/blog/img/team/${photo}`}
+        src={`/img/team/${photo}`}
         alt="avatar"
         className="mx-4 h-10 w-10 rounded-full object-cover"
       />

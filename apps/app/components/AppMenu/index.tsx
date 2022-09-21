@@ -59,7 +59,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
           {collapsed ? (
             <div className={styles.logo_collapsed}>
               <Image
-                src={"/img/logo.svg"}
+                src="/img/logo.svg"
                 alt="Logótipo CoderDojo"
                 width={200}
                 height={200}
@@ -68,7 +68,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
           ) : (
             <div className={styles.logo}>
               <Image
-                src={"/img/logo-lettering-dark.svg"}
+                src="/img/logo-lettering-dark.svg"
                 alt="Logótipo CoderDojo"
                 width={199}
                 height={50}

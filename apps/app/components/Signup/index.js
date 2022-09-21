@@ -142,7 +142,8 @@ function Signup() {
       </Form.Item>
 
       <Text>
-        Já tens uma conta? <Link href="/login">Inicia sessão aqui</Link>
+        Já tens uma conta?{" "}
+        <Link href="/dashboard/login">Inicia sessão aqui</Link>
       </Text>
     </Form>
   );

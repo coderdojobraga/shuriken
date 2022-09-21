@@ -204,7 +204,7 @@ export default function NinjaForm({ id }) {
               </Select>
             </Form.Item>
             <Row justify="center">
-              <Link href="/posts/choosing-first-language">
+              <Link href="/blog/posts/choosing-first-language">
                 <Button type="secondary">
                   Como escolher a linguagem para o ninja aprender?
                 </Button>

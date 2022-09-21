@@ -23,7 +23,7 @@ export default function Featured({ title, author, date, topic, slug }: Props) {
       <div className="mt-4 flex items-center justify-between">
         <div className="flex items-center">
           <img
-            src={`/blog/img/team/${author?.photo}`}
+            src={`/img/team/${author?.photo}`}
             alt="avatar"
             className="h-8 w-8 rounded-full object-cover"
           />
