@@ -47,50 +47,7 @@ const Home = () => (
       <div className={styles.base} />
     </div>
 
-    <div className="container mx-auto">
-      <section className="relative mx-2 py-5 lg:mx-12 xl:mx-20">
-        <div className="my-8 flex flex-col items-start md:mt-0 lg:my-12">
-          <h2 className="py-2 text-2xl font-semibold text-white sm:text-3xl">
-            <span className="mr-1 text-2xl text-purple-500 sm:text-3xl">|</span>
-            Projetos em destaque
-          </h2>
-          <div className="mx-auto mt-10 grid w-full grid-rows-1 justify-items-center lg:grid-cols-2">
-            <div className="flex flex-col items-center">
-              <div className="mb-4 rounded-2xl bg-purple-500 p-1">
-                <div className="relative h-72 w-96">
-                  <Image
-                    layout="fill"
-                    className="rounded-2xl"
-                    src="/img/projects/number.png"
-                    alt="Guess a number preview"
-                  />
-                </div>
-              </div>
-              <h3 className="text-xl text-white sm:text-2xl">
-                Em que número estou a pensar?
-              </h3>
-              <h4 className="text-lg text-gray-400">Tomás Campos</h4>
-            </div>
-            <div className="hidden flex-col items-center lg:inline-flex">
-              <div className="mb-4 rounded-2xl bg-purple-500 p-1">
-                <div className="relative h-72 w-96">
-                  <Image
-                    layout="fill"
-                    className="rounded-2xl"
-                    src="/img/projects/number.png"
-                    alt="Guess a number preview"
-                  />
-                </div>
-              </div>
-              <h3 className="text-2xl text-white">
-                Em que número estou a pensar?
-              </h3>
-              <h4 className="text-lg text-gray-400">Tomás Campos</h4>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    <div className="container mx-auto pb-96"></div>
     <div className="bg-dark">
       <div className="container mx-auto">
         <section className="relative mx-2 py-10 text-white lg:mx-12 xl:mx-20">
