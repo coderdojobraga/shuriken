@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { Button } from "antd";
-import ErrorPage from "~/layouts/ErrorPage";
+import ErrorPage from "@coderdojobraga/ui/components/ErrorPage";
 
 function InactiveActions() {
   const router = useRouter();

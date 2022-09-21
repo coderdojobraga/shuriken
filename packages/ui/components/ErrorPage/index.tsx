@@ -4,7 +4,7 @@ import Image from "next/image";
 interface IProps {
   status: string;
   title: string;
-  actions: any;
+  actions?: any;
 }
 
 const DefaultActions = () => {
@@ -15,7 +15,7 @@ const DefaultActions = () => {
       <button onClick={() => router.back()} key="back">
         Voltar
       </button>
-      <button onClick={() => router.push("/")} key="home" type="primary">
+      <button onClick={() => router.push("/")} key="home">
         Página Inicial
       </button>
     </>
