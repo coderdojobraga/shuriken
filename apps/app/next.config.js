@@ -8,11 +8,6 @@ module.exports = withTM({
   async redirects() {
     return [
       {
-        source: "/login",
-        destination: `${process.env.APP_URL}/login`,
-        permanent: true,
-      },
-      {
         source: "/dashboard",
         destination: `${process.env.APP_URL}`,
         permanent: true,
