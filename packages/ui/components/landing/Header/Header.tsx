@@ -30,7 +30,7 @@ export function Header({ landing = false }: Props) {
         <header className="container mx-auto">
           <nav className="mx-2 flex flex-row items-center justify-between pb-3 pt-7 lg:mx-12 xl:mx-20">
             <div className="cursor-pointer py-2">
-              <a href={process.env.BASE_URL || ""}>
+              <Link href="/web">
                 <Image
                   layout="fixed"
                   width={208}
@@ -38,7 +38,7 @@ export function Header({ landing = false }: Props) {
                   src={`/img/logo-lettering-${isDark ? "light" : "dark"}.svg`}
                   alt="CoderDojo Braga Logo"
                 />
-              </a>
+              </Link>
             </div>
             <ul className="hidden items-center gap-8 text-sm uppercase text-black md:flex">
               {MENU_ENTRIES.map(({ path, text }) => (
