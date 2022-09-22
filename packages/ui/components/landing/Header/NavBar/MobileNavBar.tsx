@@ -57,7 +57,7 @@ function MobileNavBar() {
             Sair
           </Menu.Item>
         ) : (
-          <Menu.Item key="/login" icon={<LoginOutlined />}>
+          <Menu.Item key="/dashboard/loginn" icon={<LoginOutlined />}>
             Login
           </Menu.Item>
         )}

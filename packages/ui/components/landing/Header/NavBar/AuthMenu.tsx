@@ -9,7 +9,7 @@ import {
 import { useAuth } from "@coderdojobraga/ui";
 
 const LoginButton = () => (
-  <Link href="/login">
+  <Link href="/dashboard/login">
     <button
       type="button"
       className="bg-primary transform rounded-3xl px-4 py-2 uppercase text-white duration-300 hover:bg-purple-600 hover:text-white"

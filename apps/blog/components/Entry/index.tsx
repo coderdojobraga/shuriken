@@ -45,7 +45,7 @@ export default function Entry({
                   {author?.name}
                 </h1>
                 <img
-                  src={`/blog/img/team/${author?.photo}`}
+                  src={`/img/team/${author?.photo}`}
                   alt="avatar"
                   className="mx-4 hidden h-10 w-10 rounded-full object-cover sm:block"
                 />

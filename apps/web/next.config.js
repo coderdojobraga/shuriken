@@ -5,31 +5,43 @@ const withTM = require("next-transpile-modules")([
 
 module.exports = withTM({
   reactStrictMode: true,
-  async rewrites() {
+  async redirects() {
     return [
       {
         source: "/login",
-        destination: "http://localhost:3002/dashboard/login",
+        destination: `${process.env.APP_URL}/login`,
+        permanent: true,
       },
       {
         source: "/dashboard",
-        destination: "http://localhost:3002/dashboard",
+        destination: `${process.env.APP_URL}`,
+        permanent: true,
       },
       {
         source: "/dashboard/:path*",
-        destination: "http://localhost:3002/dashboard/:path*",
+        destination: `${process.env.APP_URL}/:path*`,
+        permanent: true,
+      },
+      {
+        source: "/web",
+        destination: `${process.env.WEB_URL}`,
+        permanent: true,
+      },
+      {
+        source: "/web/:path",
+        destination: `${process.env.WEB_URL}/:path`,
+        permanent: true,
       },
       {
         source: "/blog",
-        destination: "http://localhost:3001/blog",
+        destination: `${process.env.BLOG_URL}/`,
+        permanent: true,
       },
       {
-        source: "/blog/:path*",
-        destination: "http://localhost:3001/blog/:path*",
+        source: "/blog/posts/:slug",
+        destination: `${process.env.BLOG_URL}/posts/:slug`,
+        permanent: true,
       },
     ];
-  },
-  env: {
-    BASE_URL: process.env.BASE_URL,
   },
 });

@@ -24,7 +24,7 @@ const Post = ({ title, author, date, content }: Props) => {
               <Image
                 className="rounded-full"
                 alt={author?.name}
-                src={`/blog/img/team/${author.photo}`}
+                src={`/img/team/${author.photo}`}
                 height="30rem"
                 width="30rem"
               />

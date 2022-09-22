@@ -138,7 +138,7 @@ const Confirm = ({ status }) => {
   };
 
   if (status == "info" && !user) {
-    router.push("/login");
+    router.push("/dashboard/login");
     return null;
   }
 
