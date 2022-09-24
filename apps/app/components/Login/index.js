@@ -67,7 +67,7 @@ function Login() {
       </Text>
       <div>
         <Text>
-          <Link href="">Esqueci-me da palavra-passe</Link>
+          <Link href="/forgot">Esqueci-me da palavra-passe</Link>
         </Text>
       </div>
     </Form>
