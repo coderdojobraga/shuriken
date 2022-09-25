@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { withoutAuth } from "~/components/Auth";
 import AuthenticationLayout from "~/layouts/AuthenticationLayout";
-import { Button, Form, Input, Typography } from "antd";
+import { Button, Form, Input, Typography, notification } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import Visibility from "~/components/Visibility";
 import * as api from "bokkenjs";
@@ -25,6 +25,11 @@ const Forgot = () => {
         setIsLoading(false);
       })
       .catch((_) => {
+        notification.error({
+          message: "Ocorreu um erro",
+          description: "Tente novamente mais tarde.",
+          duration: 7,
+        });
         setIsLoading(false);
       });
   };

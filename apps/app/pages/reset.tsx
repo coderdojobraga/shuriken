@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { withoutAuth } from "~/components/Auth";
 import AuthenticationLayout from "~/layouts/AuthenticationLayout";
-import { Button, Form, Input, Typography } from "antd";
+import { Button, Form, Input, Typography, notification } from "antd";
 import { LockOutlined } from "@ant-design/icons";
 import Visibility from "~/components/Visibility";
 import * as api from "bokkenjs";
@@ -31,6 +31,12 @@ const Forgot = () => {
           setRequestSent(true);
         })
         .catch((_) => {
+          notification.error({
+            message: "Ocorreu um erro",
+            description:
+              "Tente novamente. Se o problema persistir, peça outro link para alterar a password.",
+            duration: 7,
+          });
           setIsLoading(false);
         });
     }
