@@ -4,6 +4,7 @@ import AuthenticationLayout from "~/layouts/AuthenticationLayout";
 import { Button, Form, Input, Typography } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import Visibility from "~/components/Visibility";
+import * as api from "bokkenjs";
 
 interface IFormFields {
   email: string;
@@ -15,7 +16,17 @@ const Forgot = () => {
   const [requestSent, setRequestSent] = useState<boolean>(false);
 
   const submit = ({ email }: IFormFields) => {
-    setRequestSent(true);
+    setIsLoading(false);
+
+    api
+      .requestToken({ email })
+      .then((_) => {
+        setRequestSent(true);
+        setIsLoading(false);
+      })
+      .catch((_) => {
+        setIsLoading(false);
+      });
   };
 
   return (

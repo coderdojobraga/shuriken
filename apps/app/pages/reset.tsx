@@ -6,6 +6,7 @@ import AuthenticationLayout from "~/layouts/AuthenticationLayout";
 import { Button, Form, Input, Typography } from "antd";
 import { LockOutlined } from "@ant-design/icons";
 import Visibility from "~/components/Visibility";
+import * as api from "bokkenjs";
 
 interface IFormFields {
   password: string;
@@ -13,13 +14,25 @@ interface IFormFields {
 }
 
 const Forgot = () => {
+  const router = useRouter();
+  const { token } = router.query;
+
   const { Title, Text } = Typography;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [requestSent, setRequestSent] = useState<boolean>(false);
 
   const submit = ({ password, passwordConfirmation }: IFormFields) => {
     if (password == passwordConfirmation) {
-      setRequestSent(true);
+      setIsLoading(true);
+      api
+        .resetPassword({ token, password })
+        .then((_) => {
+          setIsLoading(false);
+          setRequestSent(true);
+        })
+        .catch((_) => {
+          setIsLoading(false);
+        });
     }
   };
 
@@ -35,6 +48,10 @@ const Forgot = () => {
               {
                 required: true,
                 message: "Insira a nova palavra passe!",
+              },
+              {
+                min: 8,
+                message: "Password tem de ter no mínimo 8 caracteres.",
               },
             ]}
             hasFeedback
