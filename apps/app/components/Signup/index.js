@@ -57,6 +57,7 @@ function Signup() {
           {
             required: true,
           },
+          { min: 8, message: "Password tem de ter no mínimo 8 caracteres." },
         ]}
       >
         <Input.Password

@@ -10,6 +10,26 @@ export async function sign_up({ email, password, role }: any) {
   return response.data;
 }
 
+export async function requestToken({ email }: any) {
+  const response = await API.post("/api/auth/reset_password", {
+    user: {
+      email: email,
+    },
+  });
+
+  return response.data;
+}
+
+export async function resetPassword({ token, password }: any) {
+  const response = await API.put(`/api/auth/reset_password/${token}`, {
+    user: {
+      password: password,
+    },
+  });
+
+  return response.data;
+}
+
 export async function login({ email, password }: any) {
   const response = await API.post("/api/auth/sign_in", { email, password });
 
