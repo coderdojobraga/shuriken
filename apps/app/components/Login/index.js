@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button, Form, Input, Typography } from "antd";
+import { Button, Form, Input, notification, Typography } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { useAuth } from "@coderdojobraga/ui";
 import Koi from "~/components/Koi";
@@ -19,7 +19,6 @@ function Login() {
       <Koi />
 
       <Title>Iniciar sessão</Title>
-
       <Form.Item
         name="email"
         rules={[
@@ -50,7 +49,7 @@ function Login() {
       <Form.Item
         className={styles.button}
         validateStatus={errors?.detail && "error"}
-        help={errors?.detail && "Autenticação inválida"}
+        help={!errors || "Autenticação inválida"}
       >
         <Button
           type="primary"
