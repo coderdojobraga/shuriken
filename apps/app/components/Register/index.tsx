@@ -122,14 +122,14 @@ function Register({ cities }: any) {
               rules={[
                 {
                   required: true,
-                  pattern: /^[0-9]{9}$/,
+                  pattern: /^\+351[0-9]{9}$/,
                   message: "Não é um número de telemóvel válido",
                 },
               ]}
             >
               <Input
                 addonBefore={<CountrySelect />}
-                placeholder="9x0011222"
+                placeholder="+3519x0011222"
                 type="tel"
               />
             </Form.Item>
@@ -271,7 +271,7 @@ function Register({ cities }: any) {
 
             <Form.Item
               validateStatus={errors && "error"}
-              help={errors ?? "Email já registado"}
+              help={!errors || "Email já registado"}
             >
               <Button
                 type="primary"
