@@ -11,14 +11,24 @@ const DefaultActions = () => {
   const router = useRouter();
 
   return (
-    <>
-      <button onClick={() => router.back()} key="back">
-        Voltar
-      </button>
-      <button onClick={() => router.push("/")} key="home">
-        Página Inicial
-      </button>
-    </>
+    <div className="m-auto mt-5">
+      <div className="m-auto block w-fit">
+        <button
+          className="mx-2 border p-2"
+          onClick={() => router.back()}
+          key="back"
+        >
+          Voltar
+        </button>
+        <button
+          className="mx-2 border bg-[#722ed1] p-2 text-white"
+          onClick={() => router.push("/")}
+          key="home"
+        >
+          Página Inicial
+        </button>
+      </div>
+    </div>
   );
 };
 
