@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button, Form, Input, notification, Typography } from "antd";
+import { Button, Form, Input, Typography, notification } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { useAuth } from "@coderdojobraga/ui";
 import Koi from "~/components/Koi";
