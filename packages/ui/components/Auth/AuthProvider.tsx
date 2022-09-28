@@ -8,7 +8,7 @@ interface Props {}
 
 export function AuthProvider({ children }: PropsWithChildren<Props>) {
   const [user, setUser] = useState<undefined | IUser>();
-  const [errors, setErrors] = useState<undefined | IErrors>();
+  const [errors, setErrors] = useState<any | IErrors>();
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isFirstLoading, setFirstLoading] = useState<boolean>(true);
 
@@ -28,7 +28,7 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
       .then((user: any) => {
         setUser(user);
       })
-      .catch((error: any) => setErrors(error?.data?.errors))
+      .catch((error: any) => setErrors(error))
       .finally(() => setLoading(false));
   }
 
