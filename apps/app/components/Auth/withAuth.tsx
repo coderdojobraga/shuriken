@@ -27,6 +27,11 @@ export function withAuth(WrappedComponent: any) {
       return null;
     }
 
+    if (user.active && router.pathname === "/inactive") {
+      router.replace("/");
+      return null;
+    }
+
     return <WrappedComponent {...props} />;
   };
 }

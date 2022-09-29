@@ -4,6 +4,7 @@ import Image from "next/image";
 interface IProps {
   status: string;
   title: string;
+  subtitle?: string;
   actions?: any;
 }
 
@@ -32,16 +33,22 @@ const DefaultActions = () => {
   );
 };
 
-const ErrorPage = ({ status, title, actions = <DefaultActions /> }: IProps) => {
+const ErrorPage = ({
+  status,
+  title,
+  subtitle = "",
+  actions = <DefaultActions />,
+}: IProps) => {
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="m-auto flex h-screen max-w-screen-md items-center justify-center">
       <div>
         <div className="m-auto block text-center">
           <Image src="/img/logo.svg" width={200} height={200} />
         </div>
         <div className="text-center">
-          <h1 className="mt-12 text-3xl font-bold">{title}</h1>
-          <h2 className="mt-3 text-xl">Erro {status}</h2>
+          <h1 className="text-md mt-12 font-bold sm:text-3xl">{title}</h1>
+          <p className="mt-6 text-sm sm:text-lg">{subtitle}</p>
+          <h2 className="mt-3 text-sm sm:text-xl">Erro {status}</h2>
         </div>
         <div>{actions}</div>
       </div>
