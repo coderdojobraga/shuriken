@@ -52,7 +52,7 @@ function Register({ cities }: any) {
     api
       .registerUser(values)
       .then(() => {
-        router.push("/");
+        router.push("/dashboard");
       })
       .catch((error) => setErrors(error?.data?.errors))
       .finally(() => setLoading(false));
@@ -122,7 +122,7 @@ function Register({ cities }: any) {
               rules={[
                 {
                   required: true,
-                  pattern: /^\+351[0-9]{9}$/,
+                  pattern: /^\+3519[12356]\d{7}$/,
                   message: "Não é um número de telemóvel válido",
                 },
               ]}
