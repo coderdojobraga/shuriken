@@ -7,7 +7,12 @@ function InactiveActions() {
 
   return (
     <>
-      <Button onClick={(_) => router.push("/")} key="home" type="primary">
+      <Button
+        className="mx-2 border bg-[#722ed1] p-2 text-white"
+        onClick={(_) => router.push("/")}
+        key="home"
+        type="primary"
+      >
         Página Inicial
       </Button>
     </>
