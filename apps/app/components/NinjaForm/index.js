@@ -57,7 +57,7 @@ export default function NinjaForm({ id }) {
 
   const addSkill = (ninja_id, skill_id) => {
     api
-      .addNinjaSkills(id, skill_id)
+      .addNinjaSkills(ninja_id, skill_id)
       .then((_) => getUserSkills())
       .catch((error) => notification["error"](error.data?.errors));
   };
