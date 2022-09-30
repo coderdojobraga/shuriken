@@ -246,9 +246,7 @@ function EventPage() {
               okText="Sim"
               onConfirm={(_) => setChangeAvailability(!changeAvailability)}
             >
-              <Button type="primary">
-                Alterar inscrição
-              </Button>
+              <Button type="primary">Alterar inscrição</Button>
             </Popconfirm>
           ) : !availability ? (
             <Popconfirm
@@ -261,9 +259,7 @@ function EventPage() {
                   : (_) => changeMentorAvailability()
               }
             >
-              <Button type="primary">
-                Confirmar inscrição
-              </Button>
+              <Button type="primary">Confirmar inscrição</Button>
             </Popconfirm>
           ) : (
             <Button
