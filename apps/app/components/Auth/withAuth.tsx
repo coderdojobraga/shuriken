@@ -17,13 +17,13 @@ export function withAuth(WrappedComponent: any) {
       return null;
     }
 
-    if (router.pathname !== "/register" && !user.registered) {
-      router.replace("/register");
+    if (router.pathname !== "/inactive" && !user.active) {
+      router.replace("/inactive");
       return null;
     }
 
-    if (!user.active) {
-      router.replace("/inactive");
+    if (router.pathname !== "/register" && user.active && !user.registered) {
+      router.replace("/register");
       return null;
     }
 

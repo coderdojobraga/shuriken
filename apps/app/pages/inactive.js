@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { Button } from "antd";
 import ErrorPage from "@coderdojobraga/ui/components/ErrorPage";
 import { withAuth } from "~/components/Auth";
 
@@ -9,14 +8,14 @@ function InactiveActions() {
   return (
     <div className="m-auto mt-5 px-4">
       <div className="m-auto block w-fit">
-        <Button
+        <button
           className="mx-2 border bg-[#722ed1] p-2 text-white"
           onClick={(_) => router.push("/")}
           key="home"
           type="primary"
         >
           Página Inicial
-        </Button>
+        </button>
       </div>
     </div>
   );
