@@ -43,7 +43,7 @@ export async function getServerSideProps({ query }) {
           };
         default:
           throw new Error(
-            `Unknown error code ${error.status}: ${error.data.errors.detail}`
+            `Unknown error code ${error.status}: ${error.data?.errors.detail}`
           );
       }
     });

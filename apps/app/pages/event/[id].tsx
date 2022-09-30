@@ -178,7 +178,7 @@ function EventPage() {
   return (
     <AppLayout>
       <Title level={2}>Detalhes do evento</Title>
-      <Row className="mb-2" align="top" justify="space-between">
+      <Row align="top" justify="space-between">
         <Event
           event={event}
           collapsed={false}
@@ -190,7 +190,7 @@ function EventPage() {
         {role === EUser.Mentor ? (
           !isMentorAlreadyRegistered() || changeAvailability ? (
             <>
-              <Row className="mt-2 mb-2">
+              <Row>
                 <Checkbox onChange={(e) => setAvailability(e.target.checked)}>
                   Estás disponível?
                 </Checkbox>
@@ -198,7 +198,7 @@ function EventPage() {
               <Row>
                 <Input.TextArea
                   placeholder="Alguma nota sobre a tua disponibilidade? Escreve-a aqui"
-                  className="w-1/2"
+                  style={{ width: "50%" }}
                   rows={6}
                   autoSize={{ minRows: 6, maxRows: 18 }}
                   value={notes}
@@ -211,11 +211,11 @@ function EventPage() {
           )
         ) : (
           <>
-            <Row className="mt-2 mb-2">
-              {intersectNinjaData() || (
+            <Row>
+              {intersectNinjaData() && (
                 <Select
                   placeholder="Escolha pelo menos um Ninja"
-                  className="w-1/2"
+                  style={{ width: "50%" }}
                   mode="multiple"
                   onChange={setSelectedNinjas}
                   value={
@@ -246,7 +246,7 @@ function EventPage() {
               okText="Sim"
               onConfirm={(_) => setChangeAvailability(!changeAvailability)}
             >
-              <Button type="primary" className="mt-2 mb-2">
+              <Button type="primary">
                 Alterar inscrição
               </Button>
             </Popconfirm>
@@ -261,14 +261,13 @@ function EventPage() {
                   : (_) => changeMentorAvailability()
               }
             >
-              <Button type="primary" className="mt-2 mb-2">
+              <Button type="primary">
                 Confirmar inscrição
               </Button>
             </Popconfirm>
           ) : (
             <Button
               type="primary"
-              className="mt-2 mb-2"
               onClick={
                 !changeAvailability
                   ? (_) => registerMentorOnEvent()
@@ -281,7 +280,6 @@ function EventPage() {
         ) : (
           <Button
             type="primary"
-            className="mt-2 mb-2"
             onClick={(_) => registerNinjasOnEvent()}
             disabled={Object.keys(selectedNinjas).length === 0}
           >
