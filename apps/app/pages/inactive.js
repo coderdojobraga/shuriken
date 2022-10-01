@@ -9,7 +9,7 @@ function InactiveActions() {
     <div className="m-auto mt-5 px-4">
       <div className="m-auto block w-fit">
         <button
-          className="mx-2 border bg-[#722ed1] p-2 text-white"
+          className="mx-2 cursor-pointer border bg-[#722ed1] p-2 text-white"
           onClick={(_) => router.push("/")}
           key="home"
           type="primary"
