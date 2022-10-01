@@ -1,28 +1,28 @@
 [
   {
-    "picture": "nelsonmestevao.jpg",
-    "name": "Nelson Estevão",
+    "picture": "ninja.jpg",
+    "name": "Jéssica Fernandes",
     "role": "Champion"
   },
   {
-    "picture": "feliciofilipe.jpg",
-    "name": "Filipe Felício",
+    "picture": "ruioliveira.jpg",
+    "name": "Rui Oliveira",
+    "role": "Co-Champion"
+  },
+  {
+    "picture": "vitorlelis.jpg",
+    "name": "Vitor Lélis",
     "role": "Co-Champion"
   },
   {
     "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
+    "name": "Rui Lopes",
+    "role": "Responsável Tecnologia e Desenvolvimento"
   },
   {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
+    "picture": "juliopinto.png",
+    "name": "Júlio Pinto",
+    "role": "Responsável Comunicação e Marketing"
   },
   {
     "picture": "ninja.jpg",
