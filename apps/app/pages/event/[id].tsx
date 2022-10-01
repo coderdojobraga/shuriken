@@ -178,7 +178,7 @@ function EventPage() {
   return (
     <AppLayout>
       <Title level={2}>Detalhes do evento</Title>
-      <Row align="top" justify="space-between">
+      <Row align="top" justify="space-between" style={{ marginBottom: "8px"}}>
         <Event
           event={event}
           collapsed={false}
@@ -190,7 +190,7 @@ function EventPage() {
         {role === EUser.Mentor ? (
           !isMentorAlreadyRegistered() || changeAvailability ? (
             <>
-              <Row>
+              <Row style={{ marginBottom: "8px", marginTop: "8px" }}>
                 <Checkbox onChange={(e) => setAvailability(e.target.checked)}>
                   Estás disponível?
                 </Checkbox>
@@ -211,7 +211,7 @@ function EventPage() {
           )
         ) : (
           <>
-            <Row>
+            <Row style={{ marginBottom: "8px", marginTop: "8px" }}>
               {intersectNinjaData() && (
                 <Select
                   placeholder="Escolha pelo menos um Ninja"
@@ -246,7 +246,7 @@ function EventPage() {
               okText="Sim"
               onConfirm={(_) => setChangeAvailability(!changeAvailability)}
             >
-              <Button type="primary">Alterar inscrição</Button>
+              <Button type="primary" style={{ marginBottom: "8px", marginTop: "8px" }}>Alterar inscrição</Button>
             </Popconfirm>
           ) : !availability ? (
             <Popconfirm
@@ -259,11 +259,12 @@ function EventPage() {
                   : (_) => changeMentorAvailability()
               }
             >
-              <Button type="primary">Confirmar inscrição</Button>
+              <Button type="primary" style={{ marginBottom: "8px", marginTop: "8px" }}>Confirmar inscrição</Button>
             </Popconfirm>
           ) : (
             <Button
               type="primary"
+              style={{ marginBottom: "8px", marginTop: "8px" }}
               onClick={
                 !changeAvailability
                   ? (_) => registerMentorOnEvent()
@@ -276,6 +277,7 @@ function EventPage() {
         ) : (
           <Button
             type="primary"
+            style={{ marginBottom: "8px", marginTop: "8px" }}
             onClick={(_) => registerNinjasOnEvent()}
             disabled={Object.keys(selectedNinjas).length === 0}
           >
