@@ -178,7 +178,7 @@ function EventPage() {
   return (
     <AppLayout>
       <Title level={2}>Detalhes do evento</Title>
-      <Row align="top" justify="space-between" style={{ marginBottom: "8px"}}>
+      <Row align="top" justify="space-between" style={{ marginBottom: "8px" }}>
         <Event
           event={event}
           collapsed={false}
@@ -246,7 +246,12 @@ function EventPage() {
               okText="Sim"
               onConfirm={(_) => setChangeAvailability(!changeAvailability)}
             >
-              <Button type="primary" style={{ marginBottom: "8px", marginTop: "8px" }}>Alterar inscrição</Button>
+              <Button
+                type="primary"
+                style={{ marginBottom: "8px", marginTop: "8px" }}
+              >
+                Alterar inscrição
+              </Button>
             </Popconfirm>
           ) : !availability ? (
             <Popconfirm
@@ -259,7 +264,12 @@ function EventPage() {
                   : (_) => changeMentorAvailability()
               }
             >
-              <Button type="primary" style={{ marginBottom: "8px", marginTop: "8px" }}>Confirmar inscrição</Button>
+              <Button
+                type="primary"
+                style={{ marginBottom: "8px", marginTop: "8px" }}
+              >
+                Confirmar inscrição
+              </Button>
             </Popconfirm>
           ) : (
             <Button
