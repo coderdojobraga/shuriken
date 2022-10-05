@@ -36,7 +36,7 @@ export default function Communication() {
           <div className="relative mr-auto ml-auto w-6/12 pl-80 pt-20">
             <Image
               alt="Half Logo"
-              src="/img/half_logo.png"
+              src="/img/half_logo.svg"
               width={300}
               height={398}
             />
