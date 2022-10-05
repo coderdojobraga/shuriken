@@ -19,7 +19,7 @@ export default function Developer() {
             </p>
             <p className="mt-0 mb-4 text-lg font-light leading-relaxed text-white">
               Ao contribuires para as nossas plataformas, estás não só a ganhar
-              experiência profissional, como a melhorar a qualidade do trabalho
+              experiência profissional, como também a melhorar a qualidade do trabalho
               que desenvolvemos.
             </p>
             <a
