@@ -1,132 +1,47 @@
 [
   {
-    "picture": "nelsonmestevao.jpg",
-    "name": "Nelson Estevão",
+    "picture": "jess.jpg",
+    "name": "Jéssica Fernandes",
     "role": "Champion"
   },
   {
-    "picture": "feliciofilipe.jpg",
-    "name": "Filipe Felício",
+    "picture": "ruioliveira.jpg",
+    "name": "Rui Oliveira",
     "role": "Co-Champion"
   },
   {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
+    "picture": "vitorlelis.jpg",
+    "name": "Vitor Lélis",
+    "role": "Co-Champion"
+  },
+  {
+    "picture": "ruilopes.png",
+    "name": "Rui Lopes",
+    "role": "Responsável Tecnologia e Desenvolvimento"
+  },
+  {
+    "picture": "juliopinto.png",
+    "name": "Júlio Pinto",
+    "role": "Responsável Comunicação e Marketing"
   },
   {
     "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
+    "name": "Marta Silva",
+    "role": "Responsável Recrutamento e Formação"
   },
   {
     "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
+    "name": "Miguel Ângelo Freitas",
+    "role": "Responsável Recrutamento e Formação"
   },
   {
     "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
+    "name": "Diogo Neto",
+    "role": "Responsável Currículo e Material"
   },
   {
     "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Membro",
-    "role": "Mentor"
+    "name": "Rui Ribeiro",
+    "role": "Responsável Currículo e Material"
   }
 ]
