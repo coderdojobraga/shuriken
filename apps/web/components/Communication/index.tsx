@@ -20,7 +20,7 @@ export default function Communication() {
               voluntários.
             </p>
             <p className="mt-0 mb-4 text-lg font-light leading-relaxed text-white">
-              Junta-te à nossa equipa, e contribuir para tornar este projeto
+              Junta-te à nossa equipa, e contribui para tornar este projeto
               nalgo cada vez maior e melhor.
             </p>
             <a
