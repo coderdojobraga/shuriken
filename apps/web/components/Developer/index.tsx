@@ -15,12 +15,12 @@ export default function Developer() {
             </h3>
             <p className="mt-4 mb-4 text-lg font-light leading-relaxed text-white">
               O código-fonte destas plataformas é público, o que significa que
-              qualquer pessoa pode ver e contribuir para as mesmas
+              qualquer pessoa pode ver e contribuir para as mesmas.
             </p>
             <p className="mt-0 mb-4 text-lg font-light leading-relaxed text-white">
               Ao contribuires para as nossas plataformas, estás não só a ganhar
-              experiência profissional, como também a melhorar a qualidade do trabalho
-              que desenvolvemos.
+              experiência profissional, como também a melhorar a qualidade do
+              trabalho que desenvolvemos.
             </p>
             <a
               href="https://github.com/coderdojobraga/shuriken"
