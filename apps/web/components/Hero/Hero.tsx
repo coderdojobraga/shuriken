@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Hero = () => (
   <section className="relative">
     <div className="container mx-auto mt-14 flex flex-col items-center gap-12">
@@ -10,12 +12,16 @@ const Hero = () => (
         </h2>
       </div>
       <div className="-mt-4 flex flex-col gap-12 sm:flex-row">
-        <button className="bg-primary transform rounded-3xl px-4 py-2 text-white duration-300 hover:scale-110">
-          Quero ser Ninja
-        </button>
-        <button className="bg-dark transform rounded-3xl px-4 py-2 text-white duration-300 hover:scale-110">
-          Quero ser Mentor
-        </button>
+        <Link href="/dashboard/signup">
+          <button className="bg-primary transform rounded-3xl px-4 py-2 text-white duration-300 hover:scale-110">
+            Quero ser Ninja
+          </button>
+        </Link>
+        <Link href="/recruitment">
+          <button className="bg-dark transform rounded-3xl px-4 py-2 text-white duration-300 hover:scale-110">
+            Quero ser Voluntário
+          </button>
+        </Link>
       </div>
     </div>
   </section>
