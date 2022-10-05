@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useAuth } from "@coderdojobraga/ui";
+import { EUser } from "bokkenjs";
 
 export function withAuth(WrappedComponent: any) {
   // eslint-disable-next-line react/display-name
@@ -29,6 +30,11 @@ export function withAuth(WrappedComponent: any) {
 
     if (user.active && router.pathname === "/inactive") {
       router.replace("/");
+      return null;
+    }
+
+    if (router.pathname === "/admin/event" && user.role != EUser.Organizer) {
+      router.replace("/404");
       return null;
     }
 
