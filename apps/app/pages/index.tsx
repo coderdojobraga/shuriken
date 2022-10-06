@@ -70,20 +70,6 @@ function Dashboard() {
         </>
       ) : (
         <>
-          <Title level={3}>Crachás</Title>
-          <Row
-            className={styles.row}
-            align="top"
-            justify="start"
-            gutter={[16, 16]}
-          >
-            {badges &&
-              badges.slice(0, 5).map((badge: any) => (
-                <Col key={badge.id}>
-                  <Badge {...badge} loading={isLoadingBadges} />
-                </Col>
-              ))}
-          </Row>
         </>
       )}
     </AppLayout>
