@@ -39,7 +39,6 @@
 }
 
 .markdown {
-  min-width: 400px;
   max-width: 1536px;
   /*width: 100vw!important;*/
   height: auto;
