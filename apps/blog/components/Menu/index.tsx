@@ -70,7 +70,7 @@ const Menu = ({ posts, topics, authors, featured, author, topic }: Props) => {
           <div className="container mx-auto flex justify-between">
             <div className="w-full lg:w-8/12">
               <div className="flex items-center justify-between">
-                <h1 className="text-dark ml-20 mb-5 text-center text-5xl font-bold dark:text-white">
+                <h1 className="text-dark mb-5 text-center text-5xl font-bold dark:text-white">
                   <span className="mr-1 text-5xl text-purple-500">|</span>
                   {author == null && topic == null ? "Blog" : ""}
                   {author != null ? "Blog de " + author : ""}
@@ -93,7 +93,7 @@ const Menu = ({ posts, topics, authors, featured, author, topic }: Props) => {
                   </a>
                 </Link>
               )}
-              <div className="ml-20">
+              <div className="m-auto">
                 {posts.map((entry, key) => (
                   <Entry key={key} {...entry} />
                 ))}

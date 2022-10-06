@@ -33,11 +33,6 @@ export default function Entry({
           <p className="mt-2 text-gray-600 dark:text-white">{description}</p>
         </div>
         <div className="mt-4 flex items-center justify-between">
-          <Link href={`posts/${slug}`}>
-            <a className="text-primary hover:underline dark:text-white">
-              Read more
-            </a>
-          </Link>
           <div>
             <Link href={`/author/${author?.username}`}>
               <a className="flex items-center">
