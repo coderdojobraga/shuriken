@@ -9,9 +9,7 @@ export async function getAvailabilities(event_id: string) {
 export async function getAvailableMentors(event_id: string) {
   const response = await API.get(`/api/events/${event_id}/availabilities`);
 
-  return response.data.data.filter(
-    (mentor: any) => mentor.is_available == true
-  );
+  return response.data;
 }
 
 export async function createAvailability(

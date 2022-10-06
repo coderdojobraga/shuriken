@@ -44,6 +44,7 @@ function EventPage() {
   const { data: event, isLoading } = useEvent(event_id as string);
 
   const [availabilities, setAvailabilities] = useState([]);
+  const [mentors, setMentors] = useState<any[]>([]);
   const [availableMentors, setAvailableMentors] = useState([]);
   const [availability, setAvailability] = useState(false);
   const [notes, setNotes] = useState("");
@@ -56,7 +57,12 @@ function EventPage() {
   useEffect(() => {
     if (role === EUser.Mentor) {
       getAvailableMentors(event_id as string)
-        .then((response: any) => setAvailableMentors(response))
+        .then((response: any) => {
+          setMentors(response.data);
+          setAvailableMentors(
+            response.data.filter((mentor: any) => mentor.is_available)
+          );
+        })
         .catch(notifyInfo);
     }
   }, [event_id, role]);
@@ -122,7 +128,7 @@ function EventPage() {
     if (role === EUser.Mentor) {
       const mentor_id = user?.mentor_id!;
 
-      availableMentors.map((mentor: any) => {
+      mentors.map((mentor: any) => {
         if (mentor.id === mentor_id) {
           flag = true;
         }
