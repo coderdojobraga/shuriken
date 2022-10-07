@@ -5,7 +5,7 @@ import Hero from "~/components/Hero";
 import styles from "~/styles/index.module.css";
 
 const Home = () => (
-  <>
+  <div style={{ overflow: "hidden" }}>
     <Header landing={true} />
     <Hero />
     <div className="container mx-auto">
@@ -24,6 +24,13 @@ const Home = () => (
         </div>
       </section>
     </div>
+
+    <div className={styles.container}>
+      <div className={styles.curveTop} />
+      <div className={styles.rectangle} />
+      <div className={styles.curveBottom} />
+    </div>
+
     <div className="container mx-auto">
       <section className="relative mx-2 my-12 flex justify-end text-white lg:mx-12 xl:mx-20">
         <div className="container my-8 flex w-11/12 flex-col items-end py-2 sm:w-10/12 lg:w-4/6">
@@ -39,12 +46,6 @@ const Home = () => (
           </p>
         </div>
       </section>
-    </div>
-
-    <div className="relative">
-      <div className={styles.rectangle} />
-      <div className={styles.curve} />
-      <div className={styles.base} />
     </div>
 
     <div className="container mx-auto pb-96"></div>
@@ -72,7 +73,7 @@ const Home = () => (
       </div>
     </div>
     <Footer bgColor="dark" fgColor="white" />
-  </>
+  </div>
 );
 
 export default Home;
