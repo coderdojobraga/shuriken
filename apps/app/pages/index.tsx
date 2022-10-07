@@ -69,8 +69,7 @@ function Dashboard() {
           </Row>
         </>
       ) : (
-        <>
-        </>
+        <></>
       )}
     </AppLayout>
   );
