@@ -32,8 +32,8 @@
   position: absolute;
   z-index: -1;
   
-  width: 2000px;
-  height: 2000px;
+  width: 100vw;
+  height: 9999px;
 
   border-radius: 9999px;
   
@@ -45,37 +45,20 @@
   position: absolute;
   z-index: -1;
   
-  width: 2000px;
-  height: 2000px;
+  width: 100vw;
+  height: 9999px;
 
   border-radius: 9999px;
   
   background-color: #343434;
 }
 
-/* @media (max-width: 386px) {
-}
-@media (max-width: 462px) {}
-@media (max-width: 640px) {}
-@media (max-width: 768px) {}
+/* 
+This is necessary because when screens width are bigger than 1530px,
+the curves don't work properly, so the curve's width needs to be a little bit larger
  */
-@media (max-width: 1536px) {
+@media (min-width: 1530px) {
   .curveTop, .curveBottom {
-    width: 1540px;
-    height: 1540px;
-  }
-}
-
-@media (max-width: 1280px) {
-  .curveTop, .curveBottom {
-    width: 1300px;
-    height: 1300px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .curveTop, .curveBottom {
-    width: 1130px;
-    height: 1130px;
+    width: calc(100vw + (100vw - 1530px) / 4);
   }
 }
