@@ -162,7 +162,7 @@ export function Header({ landing = false }: Props) {
                           <Link href={path}>{text}</Link>
                         </li>
                       ))}
-                      <Link href={`${process.env.BASE_URL}/login`}>
+                      <Link href="/dashboard/login">
                         <a className="hover:text-primary cursor-pointer">
                           LOGIN
                         </a>
