@@ -9,10 +9,10 @@ import {
   Input,
   InputNumber,
   Row,
+  Select,
   Space,
   Typography,
   notification,
-  Select,
 } from "antd";
 import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
 import { notifyInfo } from "~/components/InfoNotification";
