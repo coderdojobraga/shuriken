@@ -12,7 +12,7 @@ import {
   Space,
   Typography,
   notification,
-  Select
+  Select,
 } from "antd";
 import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
 import { notifyInfo } from "~/components/InfoNotification";
@@ -49,7 +49,7 @@ function CreateEvent() {
   for (let i = 0; i < locations.length; i++) {
     locationOptions.push({
       label: locations[i].name,
-      value: locations[i].id
+      value: locations[i].id,
     });
   }
 
@@ -57,7 +57,7 @@ function CreateEvent() {
   for (let i = 0; i < teams.length; i++) {
     teamOptions.push({
       label: teams[i].name,
-      value: teams[i].id
+      value: teams[i].id,
     });
   }
 
@@ -65,7 +65,10 @@ function CreateEvent() {
     api
       .createEvent(values)
       .then(() =>
-        notifyInfo("Info", `O Evento ${values["event[title]"]} foi criado com sucesso`)
+        notifyInfo(
+          "Info",
+          `O Evento ${values["event[title]"]} foi criado com sucesso`
+        )
       )
       .catch((error: any) => notification["error"](error.data?.errors));
   };
@@ -197,7 +200,7 @@ function CreateEvent() {
               rules={[
                 {
                   required: true,
-                }
+                },
               ]}
             >
               <Select
@@ -211,13 +214,10 @@ function CreateEvent() {
               rules={[
                 {
                   required: true,
-                }
+                },
               ]}
             >
-              <Select
-                placeholder="Selecionar equipa"
-                options={teamOptions}
-              />
+              <Select placeholder="Selecionar equipa" options={teamOptions} />
             </Form.Item>
             <Form.Item
               label="Notas"

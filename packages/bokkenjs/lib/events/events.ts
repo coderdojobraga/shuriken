@@ -12,21 +12,21 @@ export async function createEvent(values: any) {
 
     switch (key) {
       case "event[start_time]":
-        data.append(key, values[key].toISOString())
+        data.append(key, values[key].toISOString());
         break;
 
       case "event[end_time]":
-        data.append(key, values[key].toISOString())
+        data.append(key, values[key].toISOString());
         break;
 
       case "event[enrollments_open]":
-        data.append(key, values[key].toISOString())
+        data.append(key, values[key].toISOString());
         break;
 
       case "event[enrollments_close]":
-        data.append(key, values[key].toISOString())
+        data.append(key, values[key].toISOString());
         break;
-        
+
       default:
         data.append(key, values[key]);
         break;
