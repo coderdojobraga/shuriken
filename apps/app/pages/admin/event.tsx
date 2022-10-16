@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { SelectProps } from "antd";
 import {
   Button,
   Checkbox,
@@ -27,8 +28,8 @@ function CreateEvent() {
   const router = useRouter();
   const [form] = Form.useForm();
 
-  const [locations, setLocations] = useState([]);
-  const [teams, setTeams] = useState([]);
+  const [locations, setLocations] = useState<any[]>([]);
+  const [teams, setTeams] = useState<any[]>([]);
 
   useEffect(() => {
     api
@@ -43,6 +44,22 @@ function CreateEvent() {
       .then((response) => setTeams(response.data))
       .catch((error: any) => notification["error"](error.data?.errors));
   }, []);
+
+  const locationOptions: SelectProps["options"] = [];
+  for (let i = 0; i < locations.length; i++) {
+    locationOptions.push({
+      label: locations[i].name,
+      value: locations[i].id
+    });
+  }
+
+  const teamOptions: SelectProps["options"] = [];
+  for (let i = 0; i < teams.length; i++) {
+    teamOptions.push({
+      label: teams[i].name,
+      value: teams[i].id
+    });
+  }
 
   const onFinish = (values: any) => {
     api
@@ -185,14 +202,8 @@ function CreateEvent() {
             >
               <Select
                 placeholder="Selecionar localização"
-                value={locations}
-              >
-                {locations.map((location: any) => {
-                  <Select.Option key={location.id} value={location.id}>
-                    {location.adress}
-                  </Select.Option>
-                })}
-              </Select>
+                options={locationOptions}
+              />
             </Form.Item>
             <Form.Item
               label="Equipa"
@@ -205,13 +216,8 @@ function CreateEvent() {
             >
               <Select
                 placeholder="Selecionar equipa"
-              >
-                {teams.map((team: any) => {
-                  <Select.Option key={team.id} value={team.id}>
-                    {team.name}
-                  </Select.Option>
-                })}
-              </Select>
+                options={teamOptions}
+              />
             </Form.Item>
             <Form.Item
               label="Notas"

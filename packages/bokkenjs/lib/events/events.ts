@@ -33,9 +33,6 @@ export async function createEvent(values: any) {
     }
   }
 
-  data.append("event[team_id]", "b49a792d-cc13-43aa-b793-09d52b998241");
-  data.append("event[location_id]", "e7604616-bc62-48da-bff5-7317b5b78376");
-
   const response = await API.post("/api/events", data, { headers: undefined });
 
   return response.data;
