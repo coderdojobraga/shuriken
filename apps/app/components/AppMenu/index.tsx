@@ -101,9 +101,11 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
             <Item key="/" icon={<HomeOutlined />}>
               Painel Principal
             </Item>
-            <Item key="/events" icon={<CalendarOutlined />}>
-              Eventos
-            </Item>
+            {user?.role !== EUser.Organizer && (
+              <Item key="/events" icon={<CalendarOutlined />}>
+                Eventos
+              </Item>
+            )}
             {user?.role === EUser.Organizer && (
               <>
                 <SubMenu
