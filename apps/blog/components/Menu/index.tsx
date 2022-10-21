@@ -62,7 +62,7 @@ const Menu = ({ posts, topics, authors, featured, author, topic }: Props) => {
 
   return (
     <>
-      <Header landing={true} />
+      <Header landing={false} />
       <div
         className={`${isDark ? "dark" : "light"} relative overflow-x-hidden`}
       >
