@@ -116,12 +116,8 @@ function Signup() {
         <Checkbox>
           <Text>
             Eu li e aceito a{" "}
-            <Link href="/privacy_policy.pdf" target="_blank">
-              política de privacidade
-            </Link>{" "}
-            e os{" "}
-            <Link href="/terms_of_service.pdf" target="_blank">
-              termos de uso
+            <Link href="/docs/terms-of-service.pdf" target="_blank">
+              política de privacidade e os termos de uso
             </Link>
           </Text>
         </Checkbox>

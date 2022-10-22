@@ -42,6 +42,11 @@ module.exports = withTM({
         destination: `${process.env.BLOG_URL}/posts/:slug`,
         permanent: true,
       },
+      {
+        source: "/docs/terms-of-service.pdf",
+        destination: `${process.env.WEB_URL}/docs/terms-of-service.pdf`,
+        permanent: true,
+      },
     ];
   },
 });
