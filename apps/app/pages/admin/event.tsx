@@ -70,6 +70,7 @@ function CreateEvent() {
           `O Evento ${values["event[title]"]} foi criado com sucesso`
         )
       )
+      .then(() => router.push("/events"))
       .catch((error: any) => notification["error"](error.data?.errors));
   };
 
