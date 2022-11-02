@@ -101,20 +101,28 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
             <Item key="/" icon={<HomeOutlined />}>
               Painel Principal
             </Item>
-            {user?.role === EUser.Organizer && (
-              <SubMenu
-                key="/users"
-                icon={<UserOutlined />}
-                title="Utilizadores"
-              >
-                <Item key="/ninjas">Ninjas</Item>
-                <Item key="/mentors">Mentores</Item>
-                <Item key="/guardians">Guardiões</Item>
-              </SubMenu>
+            {user?.role !== EUser.Organizer && (
+              <Item key="/events" icon={<CalendarOutlined />}>
+                Eventos
+              </Item>
             )}
-            <Item key="/events" icon={<CalendarOutlined />}>
-              Eventos
-            </Item>
+            {user?.role === EUser.Organizer && (
+              <>
+                <SubMenu
+                  key="/users"
+                  icon={<UserOutlined />}
+                  title="Utilizadores"
+                >
+                  <Item key="/ninjas">Ninjas</Item>
+                  <Item key="/mentors">Mentores</Item>
+                  <Item key="/guardians">Guardiões</Item>
+                </SubMenu>
+                <SubMenu icon={<CalendarOutlined />} title="Eventos">
+                  <Item key="/events">Listar eventos</Item>
+                  <Item key="/admin/event">Criar evento</Item>
+                </SubMenu>
+              </>
+            )}
             <Item key="/files" icon={<SnippetsOutlined />}>
               Ficheiros
             </Item>

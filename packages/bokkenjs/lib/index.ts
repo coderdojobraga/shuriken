@@ -7,3 +7,6 @@ export * from "./files";
 export * from "./lectures";
 export * from "./skills";
 export * from "./users";
+export * from "./events";
+export * from "./locations";
+export * from "./teams";
