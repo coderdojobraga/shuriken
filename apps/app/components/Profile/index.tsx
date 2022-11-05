@@ -18,7 +18,7 @@ import Badge from "~/components/Badge";
 import Belt from "~/components/Belt";
 import Document from "~/components/Document";
 import * as api from "bokkenjs";
-import * as social from "~/lib/social";
+import * as socials from "~/lib/social";
 
 import styles from "./style.module.css";
 import { EUser } from "bokkenjs";
@@ -112,9 +112,11 @@ function Profile({ id, role }: Props) {
                   <Link
                     key={social.id}
                     target="_blank"
-                    href={`${social.URLS[social.name]}/${social.username}`}
+                    href={`${
+                      socials.URLS[social.name as keyof typeof socials.URLS]
+                    }/${social.username}`}
                   >
-                    {social.ICONS[social.name]}
+                    {socials.ICONS[social.name as keyof typeof socials.URLS]}
                   </Link>
                 ))}
               </Space>
