@@ -52,7 +52,7 @@ function Profile({ id, role }: Props) {
       api
         .getNinjaBadges(id)
         .then((response) => setBadges(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {});
 
       api
         .getNinjaFiles(id)
