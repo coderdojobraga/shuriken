@@ -55,7 +55,7 @@ function EventPage() {
   const [enrolledNinjas, setEnrolledNinjas] = useState([]);
 
   useEffect(() => {
-    if (role === EUser.Mentor) {
+    if (role === EUser.Mentor || role === EUser.Organizer) {
       getAvailableMentors(event_id as string)
         .then((response: any) => {
           setMentors(response.data);
@@ -68,7 +68,7 @@ function EventPage() {
   }, [event_id, role]);
 
   useEffect(() => {
-    if (role === EUser.Mentor) {
+    if (role === EUser.Mentor || role === EUser.Organizer) {
       getAvailabilities(event_id as string)
         .then((response: any) => setAvailabilities(response.data))
         .catch(notifyInfo);
@@ -215,7 +215,7 @@ function EventPage() {
           ) : (
             <></>
           )
-        ) : (
+        ) : role === EUser.Guardian ? (
           <>
             <Row style={{ marginBottom: "8px", marginTop: "8px" }}>
               {intersectNinjaData() && (
@@ -243,6 +243,8 @@ function EventPage() {
               )}
             </Row>
           </>
+        ) : (
+          <></>
         )}
         {role === EUser.Mentor ? (
           isMentorAlreadyRegistered() && !changeAvailability ? (
@@ -290,7 +292,7 @@ function EventPage() {
               Confirmar inscrição
             </Button>
           )
-        ) : (
+        ) : role === EUser.Guardian ? (
           <Button
             type="primary"
             style={{ marginBottom: "8px", marginTop: "8px" }}
@@ -299,9 +301,11 @@ function EventPage() {
           >
             Confirmar inscrição
           </Button>
+        ) : (
+          <></>
         )}
         <Divider />
-        {role === EUser.Mentor ? (
+        {role === EUser.Mentor || role === EUser.Organizer ? (
           <>
             <Title level={2}>Mentores disponíveis</Title>
             <List
