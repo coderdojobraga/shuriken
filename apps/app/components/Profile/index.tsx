@@ -125,15 +125,6 @@ function Profile({ id, role }: Props) {
       <Tabs defaultActiveKey="1" centered>
         <TabPane tab="Eventos" key="1">
           <Timeline mode="alternate">
-            <Timeline.Item>
-              Participou no desafio Coolest Projects
-            </Timeline.Item>
-            <Timeline.Item color="red">
-              Faltou à sessão 2015-09-01
-            </Timeline.Item>
-            <Timeline.Item color="green">
-              Esteve na sessão 2015-09-01
-            </Timeline.Item>
             <Timeline.Item dot={<ClockCircleOutlined />}>
               Registou-se na plataforma{" "}
               {moment(info.since).locale("pt").fromNow()}
