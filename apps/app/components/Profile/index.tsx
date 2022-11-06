@@ -112,6 +112,7 @@ function Profile({ id, role }: Props) {
                   <a
                     key={social.id}
                     target="_blank"
+                    rel="noreferrer"
                     href={`${
                       socials.URLS[social.name as keyof typeof socials.URLS]
                     }/${social.username}`}
