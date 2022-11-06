@@ -109,7 +109,7 @@ function Profile({ id, role }: Props) {
             <Col span={24}>
               <Space style={{ fontSize: 30 }}>
                 {info?.socials?.map((social: any) => (
-                  <Link
+                  <a
                     key={social.id}
                     target="_blank"
                     href={`${
@@ -117,7 +117,7 @@ function Profile({ id, role }: Props) {
                     }/${social.username}`}
                   >
                     {socials.ICONS[social.name as keyof typeof socials.URLS]}
-                  </Link>
+                  </a>
                 ))}
               </Space>
             </Col>
