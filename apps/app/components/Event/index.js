@@ -19,6 +19,8 @@ const Event = ({
   isLoading = false,
 }) => {
   const { user } = useAuth();
+  const role = user?.role;
+
   const screens = useBreakpoint();
 
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
@@ -119,12 +121,13 @@ const Event = ({
             ) : (
               <EventInfo {...event} />
             )}
-            {enrollmentsStillOpen() && !details ? (
+            {role === EUser.Organizer ? (
+              <Link href={`/admin/event/${event.id}`}>
+                <Button type="primary">Info</Button>
+              </Link>
+            ) : enrollmentsStillOpen() && !details ? (
               <Link href={`event/${event.id}`}>
-                <Button type="primary">
-                  {" "}
-                  {user.role === EUser.Organizer ? "Info" : "Inscrever"}{" "}
-                </Button>
+                <Button type="primary">Inscrever</Button>
               </Link>
             ) : (
               <></>

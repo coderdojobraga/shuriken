@@ -1,11 +1,9 @@
 import { API } from "../api";
 
-export async function getEnrolledNinjas(event_id: string, guardian_id: string) {
+export async function getEnrolledNinjas(event_id: string) {
   const response = await API.get(`/api/events/${event_id}/enrollments`);
 
-  return response.data.data.filter(
-    (entity: any) => entity?.ninja.guardian_id == guardian_id
-  );
+  return response.data;
 }
 
 export async function createEnrollment(

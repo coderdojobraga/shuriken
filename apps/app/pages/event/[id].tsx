@@ -55,7 +55,7 @@ function EventPage() {
   const [enrolledNinjas, setEnrolledNinjas] = useState([]);
 
   useEffect(() => {
-    if (role === EUser.Mentor || role === EUser.Organizer) {
+    if (role === EUser.Mentor) {
       getAvailableMentors(event_id as string)
         .then((response: any) => {
           setMentors(response.data);
@@ -68,7 +68,7 @@ function EventPage() {
   }, [event_id, role]);
 
   useEffect(() => {
-    if (role === EUser.Mentor || role === EUser.Organizer) {
+    if (role === EUser.Mentor) {
       getAvailabilities(event_id as string)
         .then((response: any) => setAvailabilities(response.data))
         .catch(notifyInfo);
@@ -77,8 +77,14 @@ function EventPage() {
 
   useEffect(() => {
     if (role === EUser.Guardian) {
-      getEnrolledNinjas(event_id as string, user?.guardian_id!)
-        .then((response) => setEnrolledNinjas(response))
+      getEnrolledNinjas(event_id as string)
+        .then((response: any) =>
+          setEnrolledNinjas(
+            response.data.filter(
+              (entity: any) => entity?.ninja.guardian_id === user?.guardian_id!
+            )
+          )
+        )
         .catch(notifyInfo);
     }
   }, [event_id, role, user?.guardian_id]);
@@ -215,7 +221,7 @@ function EventPage() {
           ) : (
             <></>
           )
-        ) : role === EUser.Guardian ? (
+        ) : (
           <>
             <Row style={{ marginBottom: "8px", marginTop: "8px" }}>
               {intersectNinjaData() && (
@@ -243,8 +249,6 @@ function EventPage() {
               )}
             </Row>
           </>
-        ) : (
-          <></>
         )}
         {role === EUser.Mentor ? (
           isMentorAlreadyRegistered() && !changeAvailability ? (
@@ -292,7 +296,7 @@ function EventPage() {
               Confirmar inscrição
             </Button>
           )
-        ) : role === EUser.Guardian ? (
+        ) : (
           <Button
             type="primary"
             style={{ marginBottom: "8px", marginTop: "8px" }}
@@ -301,11 +305,9 @@ function EventPage() {
           >
             Confirmar inscrição
           </Button>
-        ) : (
-          <></>
         )}
         <Divider />
-        {role === EUser.Mentor || role === EUser.Organizer ? (
+        {role === EUser.Mentor ? (
           <>
             <Title level={2}>Mentores disponíveis</Title>
             <List
