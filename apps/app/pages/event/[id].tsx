@@ -308,7 +308,7 @@ function EventPage() {
               itemLayout="vertical"
               dataSource={availableMentors}
               renderItem={(mentor: any) => (
-                <List.Item>
+                <List.Item style={{ cursor: "pointer" }}>
                   <Link href={`/profile/mentor/${mentor.id}`}>
                     <List.Item.Meta
                       avatar={<Avatar size={64} src={mentor.photo} />}
