@@ -77,8 +77,14 @@ function EventPage() {
 
   useEffect(() => {
     if (role === EUser.Guardian) {
-      getEnrolledNinjas(event_id as string, user?.guardian_id!)
-        .then((response) => setEnrolledNinjas(response))
+      getEnrolledNinjas(event_id as string)
+        .then((response: any) =>
+          setEnrolledNinjas(
+            response.data.filter(
+              (entity: any) => entity?.ninja.guardian_id === user?.guardian_id!
+            )
+          )
+        )
         .catch(notifyInfo);
     }
   }, [event_id, role, user?.guardian_id]);

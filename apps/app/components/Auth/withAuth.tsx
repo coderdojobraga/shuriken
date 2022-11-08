@@ -33,7 +33,7 @@ export function withAuth(WrappedComponent: any) {
       return null;
     }
 
-    if (router.pathname === "/admin/event" && user.role != EUser.Organizer) {
+    if (router.pathname.startsWith("/admin") && user.role != EUser.Organizer) {
       router.replace("/404");
       return null;
     }

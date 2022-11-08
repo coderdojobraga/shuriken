@@ -7,6 +7,8 @@ import {
   HomeOutlined,
 } from "@ant-design/icons";
 import EventInfo from "~/components/Event/EventInfo";
+import { useAuth } from "@coderdojobraga/ui";
+import { EUser } from "bokkenjs";
 
 const { useBreakpoint } = Grid;
 
@@ -16,6 +18,9 @@ const Event = ({
   details = false,
   isLoading = false,
 }) => {
+  const { user } = useAuth();
+  const role = user?.role;
+
   const screens = useBreakpoint();
 
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
@@ -116,9 +121,13 @@ const Event = ({
             ) : (
               <EventInfo {...event} />
             )}
-            {enrollmentsStillOpen() && !details ? (
+            {role === EUser.Organizer ? (
+              <Link href={`/admin/event/${event.id}`}>
+                <Button type="primary">Info</Button>
+              </Link>
+            ) : enrollmentsStillOpen() && !details ? (
               <Link href={`event/${event.id}`}>
-                <Button type="primary"> Inscrever </Button>
+                <Button type="primary">Inscrever</Button>
               </Link>
             ) : (
               <></>
