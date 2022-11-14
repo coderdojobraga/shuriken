@@ -20,7 +20,9 @@ Quando falamos sobre programação temos a ideia que vamos aprender diferentes l
 ## Paradigma Funcional
 
 O Paradigma Funcional consiste em escrever funções puras, isto é, funções que não alteram o estado do programa, ou seja, não há alteração do valor de variáveis e em vez disso são geradas novas variáveis como forma de output. Por outras palavras, o output de uma função pura apenas depende do input recebido. 
+Este paradigma é o mais similar à matemática sendo assim a única barreira de entrada para quem está a começar é aprender a sua syntax , envolvendo apenas lógica e matemática básica que é estudada até ao 12º ano de escolaridade.
 O Paradigma Funcional é usado em várias linguagens, como por exemplo [Haskell](https://www.youtube.com/watch?v=Qa8IfEeBJqk) e [Elixir](https://www.youtube.com/watch?v=R7t7zca8SyM), são populares porque permitem aos programadores criar e manter software com funções pequenas e limpas, o que é vital para organização de código.
+
 
 &nbsp;
 
