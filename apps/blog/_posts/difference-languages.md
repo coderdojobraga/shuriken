@@ -19,8 +19,9 @@ Quando falamos sobre programação temos a ideia que vamos aprender diferentes l
 
 ## Paradigma Funcional
 
-O Paradigma Funcional consiste em escrever funções puras, isto é, funções que não alteram o estado do programa, ou seja, não há alteração do valor de variáveis e em vez disso são geradas novas variáveis como forma de output. Por outras palavras, o output de uma função pura apenas depende do input recebido. 
+O Paradigma Funcional consiste em escrever funções puras, isto é, funções que não alteram o estado do programa, ou seja, não há alteração do valor de variáveis e em vez disso são criadas novas variáveis como forma de output. Por outras palavras, o output de uma função pura apenas depende do input recebido. 
 Este paradigma é o mais similar à matemática sendo assim a única barreira de entrada para quem está a começar é aprender a sua syntax , envolvendo apenas lógica e matemática básica que é estudada até ao 12º ano de escolaridade.
+
 O Paradigma Funcional é usado em várias linguagens, como por exemplo [Haskell](https://www.youtube.com/watch?v=Qa8IfEeBJqk) e [Elixir](https://www.youtube.com/watch?v=R7t7zca8SyM), são populares porque permitem aos programadores criar e manter software com funções pequenas e limpas, o que é vital para organização de código.
 
 
@@ -35,7 +36,17 @@ As linguagens mais conhecidas neste paradigma são por exemplo [C](https://www.y
 
 ## Paradigma Orientado a Objetos
 
-O Paradigma Orientado a Objetos é baseado em objetos (contêm dadis e metôdos) que têm como objetivo modular e reutilizar o código. Objetos são geralmente instâncias de classes que são usadas para interagir entre si para criar aplicações e programas.
+O Paradigma Orientado a Objetos é baseado em objetos (contêm dados e metôdos) que têm como objetivo modular e reutilizar o código. Objetos são geralmente instâncias de classes que são usadas para interagir entre si para criar aplicações e programas.
+Mas vocês devem-se tar a perguntar mas afinal o que são classes e instâncias de classes, porque pode soar um pouco estranho. 
+Um exemplo:
+```
+ Temos uma pessoa a Maria que tem um nome, idade e altura. Uma classe de exemplo seria "Pessoa" que iria armazenar dados como o nome a idade e a altura, e a Maria seria uma instância dessa classe ou um objeto. 
+
+ Classe - Pessoa
+ Armazena - Nome, Idade, Altura
+
+ Exemplos de instâncias dessa classe - Maria, João, Pedro, etc.
+```
 As linguagens mais usadas quando nos referimos a este paradigma são [Java](https://www.youtube.com/watch?v=l9AzO1FMgM8) e [C#](https://www.youtube.com/watch?v=ravLFzIguCM), apesar das suas vantagens este tipo de paradigma têm os seus contras que são performances lentas e um grande espaço de memôria necessário quando críamos aplicações.
 
 &nbsp;
