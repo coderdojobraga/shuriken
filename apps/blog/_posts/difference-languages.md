@@ -20,7 +20,7 @@ Quando falamos sobre programação temos a ideia que vamos aprender diferentes l
 ## Paradigma Funcional
 
 O Paradigma Funcional consiste em escrever funções puras, isto é, funções que não alteram o estado do programa, ou seja, não há alteração do valor de variáveis e em vez disso são criadas novas variáveis como forma de output. Por outras palavras, o output de uma função pura apenas depende do input recebido. 
-Este paradigma é o mais similar à matemática sendo assim a única barreira de entrada para quem está a começar é aprender a sua syntax , envolvendo apenas lógica e matemática básica que é estudada até ao 12º ano de escolaridade.
+Este paradigma é o mais similar à matemática sendo assim a única barreira de entrada para quem está a começar é aprender a sua sintaxe , envolvendo apenas lógica e matemática que é estudada até ao 12º ano de escolaridade.
 
 O Paradigma Funcional é usado em várias linguagens, como por exemplo [Haskell](https://www.youtube.com/watch?v=Qa8IfEeBJqk) e [Elixir](https://www.youtube.com/watch?v=R7t7zca8SyM), são populares porque permitem aos programadores criar e manter software com funções pequenas e limpas, o que é vital para organização de código.
 
@@ -53,7 +53,7 @@ As linguagens mais usadas quando nos referimos a este paradigma são [Java](http
 
 ## Paradigma Orientado a Eventos
 
-O Paradigma Orientado a Eventos é um paradigma onde as entendidades (objetivos, serviços, etc) comunicam indiretamente através de mensagens que são enviadas pelo um intermediário. Por norma estas mensagens são guardadas numa [queue](https://www.youtube.com/watch?v=QCb6k2nik5k) antes de serem usadas. Por norma a execução do programa é determinada por novos "eventos" do usuário.
+O Paradigma Orientado a Eventos é um paradigma onde as entendidades (objetivos, serviços, etc) comunicam indiretamente através de mensagens que são enviadas pelo um intermediário. Por norma estas mensagens são guardadas numa [fila de espera](https://www.youtube.com/watch?v=QCb6k2nik5k) antes de serem usadas. Por norma a execução do programa é determinada por novos "eventos" do usuário.
 Mas o que são esses eventos? São por exemplo cliques no botão do rato, ou em teclas, mover o rato para umas coordenadas do mapa. 
 A linguagem mais conhecida e mais usada neste paradigma é o [Scratch](https://www.youtube.com/watch?v=B1JoK3Vgd_w) e por norma é usada para introduzir crianças e jovens à programação de uma forma lúdica e divertida.
 
@@ -63,5 +63,11 @@ A linguagem mais conhecida e mais usada neste paradigma é o [Scratch](https://w
 
 Multiparadigmas acontecem quando uma linguagem não fica restrita apenas a um paradigma e consegue ser usadas de diferentes formas, ou seja, consegue ser Funcional ou seja trabalhar apenas com [recursividade](https://www.youtube.com/watch?v=NKymAD4pJZI) e ao mesmo tempo imperativa tendo variáveis e instruções na memória.
 Um bom exemplo de linguagem que é um multiparadigma é o [Python](https://www.youtube.com/watch?v=x7X9w_GIm1s) e o [Javascript](https://www.youtube.com/watch?v=DHjqpvDnNGE).
+
+
+## Mas afinal qual é o melhor paradigma?
+
+A realidade é que não existe um paradigma melhor, cada paradigma têm um estrutura diferente para desenvolver um projeto, cada um têm as suas vantagens e desvantagens como referido previamente, tentem procurar a melhor [stack](https://blog.betrybe.com/tecnologia/stack-tecnologico/) possível para desenvolverem o vosso projeto que seja eficiente e favorável ao que querem fazer, procurem projetos semelhantes e procurem perceber porque é que uma certa [stack](https://blog.betrybe.com/tecnologia/stack-tecnologico/) foi usada por o/a programador/equipa. 
+Preferencialmente eu prefiro desenvolver com uma [stack](https://blog.betrybe.com/tecnologia/stack-tecnologico/) que use um/uma paradigma/linguagem funcional devido às razões apresentadas previamente e porque torna possível desenvolver bons projetos com relativamente poucas linhas relativamente à dimensão do projeto, ou seja, caso seja um projeto com um tamanho astronômico torna-se impossível desenvolver-lo com meia dúzia de linhas mas acabamos sempre por escrever menos quando comparado com outras linguagens.
 
 &nbsp;
