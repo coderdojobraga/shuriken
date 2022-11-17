@@ -6,7 +6,7 @@ author:
   photo: "your image.png"
 draft: true
 topic: "Your topic"
-featured: "false"
+featured: false
 ---
 
 ---

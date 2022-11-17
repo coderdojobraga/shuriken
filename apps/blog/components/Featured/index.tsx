@@ -21,15 +21,17 @@ export default function Featured({ title, author, date, topic, slug }: Props) {
         </Link>
       </div>
       <div className="mt-4 flex items-center justify-between">
-        <div className="flex items-center">
-          <img
-            src={`/img/team/${author?.photo}`}
-            alt="avatar"
-            className="h-8 w-8 rounded-full object-cover"
-          />
-          <Link href={`/author/${author?.name}`}>
-            <a className="mx-3 text-sm text-gray-700 hover:underline dark:text-white">
-              {author?.name}
+        <div>
+          <Link href={`/author/${author?.username}`}>
+            <a className="flex items-center">
+              <img
+                src={`/img/team/${author?.photo}`}
+                alt="avatar"
+                className="h-8 w-8 rounded-full object-cover"
+              />
+              <h1 className="mx-3 text-sm text-gray-700 hover:underline dark:text-white">
+                {author?.name}
+              </h1>
             </a>
           </Link>
         </div>

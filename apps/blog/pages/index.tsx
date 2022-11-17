@@ -15,8 +15,8 @@ export const getStaticProps: GetStaticProps = async (_context) => {
   const topics = uniq(posts.map(({ topic }) => topic));
   const featuredPosts = posts.filter(({ featured }) => featured);
   const authors = uniqBy(
-    posts.map(({ author }) => author),
-    ({ username }) => username
+    posts.map((post) => post.author),
+    "username"
   );
 
   return {
