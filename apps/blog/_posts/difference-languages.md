@@ -1,18 +1,18 @@
 ---
 title: "São todas as linguagens de programação iguais?"
-date: "2022-11-14"
+date: "2022-11-24"
 author:
   name: "Mário Rodrigues"
   photo: "mario.jpg"
   username: "mariorodrigues"
-draft: true
+draft: false
 topic: "Linguagens"
 featured: "true"
 ---
 
 &nbsp;
 
-Quando falamos sobre programação temos a ideia que vamos aprender diferentes linguagens de programação, mas na realidade o que estamos a aprender são diferentes paradigmas. Um paradigma é uma forma que existe de classificar uma linguagem baseada nas suas funcionalidades. A escolha desse paradigma vai influenciar em toda a estrutura e execução do programa.
+Quando falamos sobre programação temos a ideia que vamos aprender diferentes linguagens de programação, mas na realidade o que estamos a aprender são diferentes paradigmas. Um paradigma é uma forma que existe de classificar uma linguagem baseada nas suas funcionalidades. A escolha desse paradigma vai influenciar toda a estrutura e execução do programa.
 
 &nbsp;
 
@@ -20,7 +20,7 @@ Quando falamos sobre programação temos a ideia que vamos aprender diferentes l
 ## Paradigma Funcional
 
 O Paradigma Funcional consiste em escrever funções puras, isto é, funções que não alteram o estado do programa, ou seja, não há alteração do valor de variáveis e em vez disso são criadas novas variáveis como forma de output. Por outras palavras, o output de uma função pura apenas depende do input recebido. 
-Este paradigma é o mais similar à matemática sendo assim a única barreira de entrada para quem está a começar é aprender a sua sintaxe , envolvendo apenas lógica e matemática que é estudada até ao 12º ano de escolaridade.
+Este paradigma é o mais similar à matemática, sendo assim a única barreira de entrada para quem está a começar é aprender a sua sintaxe , envolvendo apenas lógica e matemática que é estudada até ao 12º ano de escolaridade.
 
 O Paradigma Funcional é usado em várias linguagens, como por exemplo [Haskell](https://www.youtube.com/watch?v=Qa8IfEeBJqk) e [Elixir](https://www.youtube.com/watch?v=R7t7zca8SyM), são populares porque permitem aos programadores criar e manter software com funções pequenas e limpas, o que é vital para organização de código.
 
@@ -36,7 +36,7 @@ As linguagens mais conhecidas neste paradigma são por exemplo [C](https://www.y
 
 ## Paradigma Orientado a Objetos
 
-O Paradigma Orientado a Objetos é baseado em objetos (contêm dados e metôdos) que têm como objetivo modular e reutilizar o código. Objetos são geralmente instâncias de classes que são usadas para interagir entre si para criar aplicações e programas.
+O Paradigma Orientado a Objetos é baseado em, como o próprio nome indica, objetos (que contêm dados e métodos), que têm como objetivo modularizar e permitir reutilização de  código. Objetos são geralmente instâncias de classes que são usadas para interagir entre si para criar aplicações e programas.
 Mas vocês devem-se tar a perguntar mas afinal o que são classes e instâncias de classes, porque pode soar um pouco estranho. 
 Um exemplo:
 ```
@@ -61,13 +61,13 @@ A linguagem mais conhecida e mais usada neste paradigma é o [Scratch](https://w
 
 ## MultiParadigmas
 
-Multiparadigmas acontecem quando uma linguagem não fica restrita apenas a um paradigma e consegue ser usadas de diferentes formas, ou seja, consegue ser Funcional ou seja trabalhar apenas com [recursividade](https://www.youtube.com/watch?v=NKymAD4pJZI) e ao mesmo tempo imperativa tendo variáveis e instruções na memória.
+Multi paradigmas acontecem quando uma linguagem não fica restrita apenas a um paradigma e consegue ser usadas de diferentes formas, ou seja, consegue ser funcional ou seja trabalhar apenas com [recursividade](https://www.youtube.com/watch?v=NKymAD4pJZI) e ao mesmo tempo imperativa tendo variáveis e instruções na memória.
 Um bom exemplo de linguagem que é um multiparadigma é o [Python](https://www.youtube.com/watch?v=x7X9w_GIm1s) e o [Javascript](https://www.youtube.com/watch?v=DHjqpvDnNGE).
 
 
 ## Mas afinal qual é o melhor paradigma?
 
 A realidade é que não existe um paradigma melhor, cada paradigma têm um estrutura diferente para desenvolver um projeto, cada um têm as suas vantagens e desvantagens como referido previamente, tentem procurar a melhor [stack](https://blog.betrybe.com/tecnologia/stack-tecnologico/) possível para desenvolverem o vosso projeto que seja eficiente e favorável ao que querem fazer, procurem projetos semelhantes e procurem perceber porque é que uma certa [stack](https://blog.betrybe.com/tecnologia/stack-tecnologico/) foi usada por o/a programador/equipa. 
-Preferencialmente eu prefiro desenvolver com uma [stack](https://blog.betrybe.com/tecnologia/stack-tecnologico/) que use um/uma paradigma/linguagem funcional devido às razões apresentadas previamente e porque torna possível desenvolver bons projetos com relativamente poucas linhas relativamente à dimensão do projeto, ou seja, caso seja um projeto com um tamanho astronômico torna-se impossível desenvolver-lo com meia dúzia de linhas mas acabamos sempre por escrever menos quando comparado com outras linguagens.
+Pessoalmente, eu prefiro desenvolver com uma [stack](https://blog.betrybe.com/tecnologia/stack-tecnologico/) que use um/uma paradigma/linguagem funcional devido às razões apresentadas previamente e porque torna possível desenvolver bons projetos com relativamente poucas linhas relativamente à dimensão do projeto, ou seja, caso seja um projeto com um tamanho astronómico torna-se impossível de desenvolver com meia dúzia de linhas, mas acabamos sempre por escrever menos quando comparado com outras linguagens.
 
 &nbsp;
