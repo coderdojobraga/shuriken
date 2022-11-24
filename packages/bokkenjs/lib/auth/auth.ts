@@ -97,7 +97,6 @@ export async function resend_confirmation_email() {
 
 export async function registerUser(values: any) {
   const data = new FormData();
-  console.log(values);
 
   for (const key in values) {
     if (!values[key]) continue;
