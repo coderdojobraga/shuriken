@@ -16,9 +16,9 @@ import {
 } from "antd";
 import moment from "moment";
 import {
-  UploadOutlined,
-  PlusOutlined,
   MinusCircleOutlined,
+  PlusOutlined,
+  UploadOutlined,
 } from "@ant-design/icons";
 import { getBase64 } from "~/lib/images";
 import { useAuth } from "@coderdojobraga/ui";
@@ -28,10 +28,10 @@ import {
   addNinjaSkills,
   deleteMentorSkills,
   deleteNinjaSkills,
+  getMentor,
   getMentorSkills,
   getNinjaSkills,
   getSkills,
-  getMentor,
 } from "bokkenjs";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
@@ -56,11 +56,8 @@ function Settings() {
   const [userSkills, setUserSkills] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<any[]>([]);
-  const [socials, setSocials] = useState([]);
-  const [test] = useState([
-    { name: "GitHub", username: "RuiL1904" },
-    { name: "GitLab", username: "RuiLopes" },
-  ]);
+  const [mentorSocials, setMentorSocials] = useState([]);
+  const [socials] = useState(["Codewars", "GitHub", "GitLab", "Scratch"]);
 
   const getAllSkills = () => {
     getSkills()
@@ -143,12 +140,15 @@ function Settings() {
   useEffect(() => {
     if (user?.role === EUser.Mentor) {
       getMentor(user?.mentor_id!)
-        .then((response) => setSocials(response.data?.socials))
+        .then((response) => {
+          setMentorSocials(response.data?.socials);
+          formPersonal.setFieldsValue({
+            "user[socials]": response.data?.socials,
+          });
+        })
         .catch((error) => notification["error"](error.data?.errors));
     }
   }, [user?.role]);
-
-  console.log(socials);
 
   useEffect(() => {
     setAvatar(user?.photo);
@@ -265,11 +265,7 @@ function Settings() {
               </Col>
             </Row>
             <Section title="Redes Sociais" />
-            <Form.Item
-              name="user[socials]"
-              label="Redes Sociais"
-              initialValue={test}
-            >
+            <Form.Item name="user[socials]" initialValue={mentorSocials}>
               <Form.List name="user[socials]">
                 {(fields, { add, remove }) => (
                   <Space direction="vertical" style={{ width: "100%" }}>
@@ -282,10 +278,10 @@ function Settings() {
                           >
                             {socials?.map((item: any) => (
                               <Option
-                                key={item.name}
-                                value={item.name?.toLocaleLowerCase()}
+                                key={item}
+                                value={item.toLocaleLowerCase()}
                               >
-                                {item.name}
+                                {item}
                               </Option>
                             ))}
                           </Select>

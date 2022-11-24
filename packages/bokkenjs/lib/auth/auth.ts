@@ -63,6 +63,13 @@ export async function editUser(values: any) {
         data.append(key, values[key].format("YYYY-MM-DD"));
         break;
 
+      case "user[socials]":
+        for (const social of values[key]) {
+          data.append(`${key}[${social.name}][name]`, social.name);
+          data.append(`${key}[${social.name}][username]`, social.username);
+        }
+        break;
+
       default:
         data.append(key, values[key]);
         break;
@@ -90,6 +97,7 @@ export async function resend_confirmation_email() {
 
 export async function registerUser(values: any) {
   const data = new FormData();
+  console.log(values);
 
   for (const key in values) {
     if (!values[key]) continue;
