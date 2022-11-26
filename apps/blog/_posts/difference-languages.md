@@ -64,6 +64,7 @@ A linguagem mais conhecida e mais usada neste paradigma é o [Scratch](https://w
 Multi paradigmas acontecem quando uma linguagem não fica restrita apenas a um paradigma e consegue ser usadas de diferentes formas, ou seja, consegue ser funcional ou seja trabalhar apenas com [recursividade](https://www.youtube.com/watch?v=NKymAD4pJZI) e ao mesmo tempo imperativa tendo variáveis e instruções na memória.
 Um bom exemplo de linguagem que é um multiparadigma é o [Python](https://www.youtube.com/watch?v=x7X9w_GIm1s) e o [Javascript](https://www.youtube.com/watch?v=DHjqpvDnNGE).
 
+&nbsp;
 
 ## Mas afinal qual é o melhor paradigma?
 
