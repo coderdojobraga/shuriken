@@ -7,7 +7,7 @@ author:
   username: "ruioliveira02"
 draft: false
 topic: "Linguagens"
-featured: true
+featured: false
 ---
 
 ---

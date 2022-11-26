@@ -1,6 +1,6 @@
 ---
 title: "São todas as linguagens de programação iguais?"
-date: "2022-11-24"
+date: "2022-11-27"
 author:
   name: "Mário Rodrigues"
   photo: "mario.jpg"
