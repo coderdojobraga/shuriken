@@ -76,6 +76,10 @@ export async function editUser(values: any) {
     }
   }
 
+  if (values["user[socials]"].length == 0) {
+    data.append("user[socials]", "[]");
+  }
+
   const response = await API.put("/api/auth/me", data, {
     headers: undefined,
   });
