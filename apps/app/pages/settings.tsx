@@ -57,7 +57,15 @@ function Settings() {
   const [skills, setSkills] = useState<any[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<any[]>([]);
   const [mentorSocials, setMentorSocials] = useState([]);
-  const [socials] = useState(["Codewars", "GitHub", "GitLab", "Scratch"]);
+  const [socials] = useState([
+    "Scratch",
+    "Codewars",
+    "GitHub",
+    "GitLab",
+    "Trello",
+    "Discord",
+    "Slack",
+  ]);
 
   const getAllSkills = () => {
     getSkills()

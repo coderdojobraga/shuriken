@@ -1,20 +1,28 @@
 import {
-  CodeOutlined,
-  GithubOutlined,
-  GitlabOutlined,
-  RobotOutlined,
-} from "@ant-design/icons";
+  FaGithub,
+  FaGitlab,
+  FaDiscord,
+  FaSlack,
+  FaTrello,
+} from "react-icons/fa";
+import { SiScratch, SiCodewars } from "react-icons/si";
 
 export const ICONS = {
-  github: <GithubOutlined />,
-  gitlab: <GitlabOutlined />,
-  codewars: <CodeOutlined />,
-  scratch: <RobotOutlined />,
+  scratch: <SiScratch />,
+  codewars: <SiCodewars />,
+  github: <FaGithub />,
+  gitlab: <FaGitlab />,
+  trello: <FaTrello />,
+  discord: <FaDiscord />,
+  slack: <FaSlack />,
 };
 
 export const URLS = {
+  scratch: "https://scratch.mit.edu/users",
+  codewars: "https://www.codewars.com/users",
   github: "https://github.com",
   gitlab: "https://gitlab.com",
-  codewars: "https://www.codewars.com/users",
-  scratch: "https://scratch.mit.edu/users",
+  trello: "https://trello.com/u",
+  discord: "https://discord.com",
+  slack: "https://slack.com",
 };
