@@ -156,7 +156,7 @@ function Settings() {
         })
         .catch((error) => notification["error"](error.data?.errors));
     }
-  }, [user?.role]);
+  }, [user?.role, user?.mentor_id, formPersonal]);
 
   useEffect(() => {
     setAvatar(user?.photo);

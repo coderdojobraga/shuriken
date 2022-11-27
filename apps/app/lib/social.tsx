@@ -1,11 +1,11 @@
 import {
+  FaDiscord,
   FaGithub,
   FaGitlab,
-  FaDiscord,
   FaSlack,
   FaTrello,
 } from "react-icons/fa";
-import { SiScratch, SiCodewars } from "react-icons/si";
+import { SiCodewars, SiScratch } from "react-icons/si";
 
 export const ICONS = {
   scratch: <SiScratch />,
