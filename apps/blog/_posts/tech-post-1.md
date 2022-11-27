@@ -7,7 +7,7 @@ author:
   username: "ruioliveira02"
 draft: false
 topic: "Desenvolvimento"
-featured: true
+featured: false
 ---
 
 ---
