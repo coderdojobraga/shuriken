@@ -49,11 +49,11 @@ export const BELTS: IBelt[] = [
   {
     colour: EBelt.Orange,
     description:
-      "Com o cinturão laranja, o ninja aprenderá a utilizar ferramentas da sua linguagem escolhida para criar interfaces ou até jogos simples. O Ninja deverá aprender também HTML, de modo a conseguir criar uma página web simples.",
+      "Com o cinturão laranja, o Ninja aprenderá a utilizar ferramentas da sua linguagem escolhida para criar interfaces ou até jogos simples. O Ninja deverá aprender também HTML, de modo a conseguir criar uma página web simples.",
     image: "orange.png",
     requirements: [
       "Aprender a criar interfaces",
-      "Utilizar módulos ou bibliotecas extra como Pygame, GUIZero, etc.",
+      "Utilizar módulos ou bibliotecas extra como Pygame, GUIZero, etc",
       "Terminar 1 projeto usando interface e 1 adaptação de um projeto feito em Scratch",
       "Criar um website simples, recorrendo a HTML (não necessita de CSS nem JavaScript)",
     ],
@@ -65,9 +65,9 @@ export const BELTS: IBelt[] = [
     image: "red.png",
     requirements: [
       "Aprender a usar CSS para alterar a estrutura e a estética de uma página HTML, com recurso a layouts flexbox e/ou grid e a animações",
-      "Aprender JavaScript para adicionar interatividade (botões, avisos, etc…) a uma página HTML",
-      "Conhecer os utilitários básicos de linha de comandos (cd, mkdir, ls/dir, rm, cat, …)",
-      "Conhecer os comandos básicos de Git (clone, add, commit, push, pull, …), em terminal ou em interface gráfica",
+      "Aprender JavaScript para adicionar interatividade (botões, avisos, etc) a uma página HTML",
+      "Conhecer os utilitários básicos de linha de comandos (cd, mkdir, ls/dir, rm, cat, etc)",
+      "Conhecer os comandos básicos de Git (clone, add, commit, push, pull, etc), em terminal ou em interface gráfica",
     ],
   },
   {
