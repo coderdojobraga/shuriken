@@ -15,7 +15,9 @@ function Files() {
     api
       .getFiles()
       .then((response) => setFiles(response.data))
-      .catch();
+      .catch((error) => {
+        notifyError("Ocorreu um erro", "Não foi possível obter os ficheiros");
+      });
   }, []);
 
   return (

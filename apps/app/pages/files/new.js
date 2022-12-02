@@ -16,7 +16,9 @@ function NewFile() {
     api
       .createFile(values)
       .then(() => router.push("/files"))
-      .catch();
+      .catch((error) => {
+        notifyError("Ocorreu um erro", "Não foi possível criar o ficheiro");
+      });
   };
 
   return (

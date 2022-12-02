@@ -30,15 +30,13 @@ const Forgot = () => {
           setIsLoading(false);
           setRequestSent(true);
         })
-        .catch((_) => {
-          notification.error({
-            message: "Ocorreu um erro",
-            description:
-              "Tente novamente. Se o problema persistir, peça outro link para alterar a password.",
-            duration: 7,
-          });
-          setIsLoading(false);
-        });
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Tente novamente mais tarde. Se o problema persistir, peça outro link para alterar a password"
+          );
+        })
+        .finally(() => setIsLoading(false));
     }
   };
 

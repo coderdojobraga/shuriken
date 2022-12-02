@@ -39,7 +39,12 @@ function Dashboard() {
     if (role === EUser.Guardian) {
       getNinjas()
         .then((response: any) => setNinjas(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter informação sobre os seus ninjas"
+          );
+        });
     }
   }, [role]);
 
