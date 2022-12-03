@@ -32,11 +32,12 @@ export default function Mentor() {
               Quero ser Mentor
             </a>
           </div>
-          <div className="relative mr-auto ml-auto mt-20 w-6/12 px-4">
+          <div className="mr-auto ml-auto mt-20 flex w-full items-center justify-center px-4 sm:w-3/4 md:w-6/12">
             <Image
               alt="Mentores do Dojo"
               src="/img/mentor.jpg"
-              layout="fill"
+              width={1944}
+              height={1296}
               className="rounded-2xl shadow-2xl"
             />
           </div>
