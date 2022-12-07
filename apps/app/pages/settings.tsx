@@ -30,6 +30,13 @@ import {
 } from "bokkenjs";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
+import { SiPython } from "react-icons/si";
+import { SiJavascript } from "react-icons/si";
+import { SiCss3 } from "react-icons/si";
+import { SiHtml5 } from "react-icons/si";
+import { SiCsharp } from "react-icons/si";
+import { SiScratch } from "react-icons/si";
+import { SiElixir } from "react-icons/si";
 
 const { Title } = Typography;
 
@@ -40,6 +47,26 @@ const Section = ({ title }: { title: string }) => (
     </Title>
   </Divider>
 );
+
+function getIcon(skill: string) {
+  switch (skill) {
+    case "Python":
+      return <SiPython />;
+    case "HTML/CSS/Javascript":
+      return (
+        <i>
+          {" "}
+          <SiHtml5 /> <SiCss3 /> <SiJavascript />{" "}
+        </i>
+      );
+    case "C#":
+      return <SiCsharp />;
+    case "Scratch":
+      return <SiScratch />;
+    case "Elixir":
+      return <SiElixir />;
+  }
+}
 
 function Settings() {
   const { user, edit_user, isLoading } = useAuth();
@@ -232,7 +259,9 @@ function Settings() {
                 >
                   {skills.map((skill: any) => (
                     <Select.Option key={skill.id} value={skill.id}>
-                      {skill.name}
+                      <div style={{ marginTop: "3px" }}>
+                        {getIcon(skill.name)} {skill.name}
+                      </div>
                     </Select.Option>
                   ))}
                 </Select>
