@@ -63,10 +63,21 @@ export async function editUser(values: any) {
         data.append(key, values[key].format("YYYY-MM-DD"));
         break;
 
+      case "user[socials]":
+        for (const social of values[key]) {
+          data.append(`${key}[${social.name}][name]`, social.name);
+          data.append(`${key}[${social.name}][username]`, social.username);
+        }
+        break;
+
       default:
         data.append(key, values[key]);
         break;
     }
+  }
+
+  if (values["user[socials]"].length == 0) {
+    data.append("user[socials]", "[]");
   }
 
   const response = await API.put("/api/auth/me", data, {

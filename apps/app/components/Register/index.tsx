@@ -45,7 +45,15 @@ function Register({ cities }: any) {
   const [isLoading, setLoading] = useState(false);
   const [errors, setErrors] = useState();
   const [avatar, setAvatar] = useState(null);
-  const [socials] = useState(["Codewars", "GitHub", "GitLab", "Scratch"]);
+  const [socials] = useState([
+    "Scratch",
+    "Codewars",
+    "GitHub",
+    "GitLab",
+    "Trello",
+    "Discord",
+    "Slack",
+  ]);
 
   const onFinish = (values: any) => {
     setLoading(true);
