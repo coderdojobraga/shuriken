@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { Col, Row, Typography, notification } from "antd";
+import { Col, Row, Typography } from "antd";
 import { useAuth } from "@coderdojobraga/ui";
 import { withAuth } from "~/components/Auth/withAuth";
 import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
-import Badge from "~/components/Badge";
 import { useBadges } from "~/hooks/badges";
 import { EUser, getNinjas } from "bokkenjs";
 import Ninja from "~/components/Ninja";
 import { useEvents } from "~/hooks/events";
+import { notifyError } from "~/components/Notification";
 
 import styles from "~/styles/Dashboard.module.css";
 import moment from "moment";

@@ -7,6 +7,7 @@ import { Button, Form, Input, Typography, notification } from "antd";
 import { LockOutlined } from "@ant-design/icons";
 import Visibility from "~/components/Visibility";
 import * as api from "bokkenjs";
+import { notifyError } from "~/components/Notification";
 
 interface IFormFields {
   password: string;

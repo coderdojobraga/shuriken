@@ -5,6 +5,7 @@ import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import Document from "~/components/Document";
 import * as api from "bokkenjs";
+import { notifyError } from "~/components/Notification";
 
 const { Title } = Typography;
 

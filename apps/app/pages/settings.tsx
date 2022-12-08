@@ -22,6 +22,7 @@ import {
 } from "@ant-design/icons";
 import { getBase64 } from "~/lib/images";
 import { useAuth } from "@coderdojobraga/ui";
+import { notifyError } from "~/components/Notification";
 import {
   EUser,
   addMentorSkills,

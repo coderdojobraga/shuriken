@@ -4,6 +4,7 @@ import { InboxOutlined } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import * as api from "bokkenjs";
+import { notifyError } from "~/components/Notification";
 
 const { Title } = Typography;
 const { Dragger } = Upload;
