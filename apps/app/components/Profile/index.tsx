@@ -107,19 +107,25 @@ function Profile({ id, role }: Props) {
             )}
 
             <Col span={24}>
-              <Space style={{ fontSize: 30 }}>
-                {info?.socials?.map((social: any) => (
-                  <a
-                    key={social.id}
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`${
-                      socials.URLS[social.name as keyof typeof socials.URLS]
-                    }/${social.username}`}
-                  >
-                    {socials.ICONS[social.name as keyof typeof socials.URLS]}
-                  </a>
-                ))}
+              <Space style={{ fontSize: 20 }}>
+                {info?.socials?.map((social: any) =>
+                  social?.name == "discord" || social?.name == "slack" ? (
+                    <a title={social.username}>
+                      {socials.ICONS[social.name as keyof typeof socials.URLS]}
+                    </a>
+                  ) : (
+                    <a
+                      key={social.id}
+                      target="_blank"
+                      rel="noreferrer"
+                      href={`${
+                        socials.URLS[social.name as keyof typeof socials.URLS]
+                      }/${social.username}`}
+                    >
+                      {socials.ICONS[social.name as keyof typeof socials.URLS]}
+                    </a>
+                  )
+                )}
               </Space>
             </Col>
           </Row>
