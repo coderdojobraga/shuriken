@@ -11,6 +11,7 @@ import Ninja from "~/components/Ninja";
 import { useEvents } from "~/hooks/events";
 
 import styles from "~/styles/Dashboard.module.css";
+import moment from "moment";
 
 const { Title } = Typography;
 
@@ -21,6 +22,15 @@ function Dashboard() {
   const [ninjas, setNinjas] = useState([]);
   const { data: events, isLoading: isLoadingEvents } = useEvents();
   const { data: badges, isLoading: isLoadingBadges } = useBadges();
+
+  const nextEvent = () => {
+    const cur = moment();
+    return events
+      .filter((e: any) => cur.diff(e.start_time) < 0)
+      .sort((e1: any, e2: any) => {
+        cur.diff(e1.start_time) > cur.diff(e2.start_time);
+      })[0];
+  };
 
   useEffect(() => {
     if (role === EUser.Guardian) {
@@ -37,7 +47,7 @@ function Dashboard() {
       <Row className={styles.row} align="top" justify="space-between">
         {events?.length > 0 ? (
           <Event
-            event={events[0]}
+            event={nextEvent()}
             collapsed={false}
             isLoading={isLoadingEvents}
           />
