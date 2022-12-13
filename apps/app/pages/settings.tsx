@@ -35,6 +35,8 @@ import {
 } from "bokkenjs";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
+import { SiPython } from "react-icons/si";
+import { SiScratch } from "react-icons/si";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -46,6 +48,14 @@ const Section = ({ title }: { title: string }) => (
     </Title>
   </Divider>
 );
+
+function getIcon(skill: string) {
+  if (skill.startsWith("Python")) {
+    return <SiPython />;
+  } else if (skill.startsWith("Scratch")) {
+    return <SiScratch />;
+  }
+}
 
 function Settings() {
   const { user, edit_user, isLoading } = useAuth();
@@ -266,7 +276,9 @@ function Settings() {
                 >
                   {skills.map((skill: any) => (
                     <Select.Option key={skill.id} value={skill.id}>
-                      {skill.name}
+                      <div style={{ marginTop: "3px" }}>
+                        {getIcon(skill.name)} {skill.name}
+                      </div>
                     </Select.Option>
                   ))}
                 </Select>
