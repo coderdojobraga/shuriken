@@ -13,7 +13,7 @@ import {
 } from "antd";
 import { ClockCircleOutlined, UserOutlined } from "@ant-design/icons";
 import moment from "moment";
-import 'moment/locale/pt';
+import "moment/locale/pt";
 import Badge from "~/components/Badge";
 import Belt from "~/components/Belt";
 import Document from "~/components/Document";
@@ -136,7 +136,9 @@ function Profile({ id, role }: Props) {
 
             <Col span={24}>
               {skills.map((s) => (
-                <Tag key={s.id}>{getIcon(s.name)} {s.name}</Tag>
+                <Tag key={s.id}>
+                  {getIcon(s.name)} {s.name}
+                </Tag>
               ))}
             </Col>
           </Row>
