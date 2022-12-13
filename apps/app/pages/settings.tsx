@@ -36,12 +36,7 @@ import {
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import { SiPython } from "react-icons/si";
-import { SiJavascript } from "react-icons/si";
-import { SiCss3 } from "react-icons/si";
-import { SiHtml5 } from "react-icons/si";
-import { SiCsharp } from "react-icons/si";
 import { SiScratch } from "react-icons/si";
-import { SiElixir } from "react-icons/si";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -55,22 +50,10 @@ const Section = ({ title }: { title: string }) => (
 );
 
 function getIcon(skill: string) {
-  switch (skill) {
-    case "Python":
-      return <SiPython />;
-    case "HTML/CSS/Javascript":
-      return (
-        <i>
-          {" "}
-          <SiHtml5 /> <SiCss3 /> <SiJavascript />{" "}
-        </i>
-      );
-    case "C#":
-      return <SiCsharp />;
-    case "Scratch":
-      return <SiScratch />;
-    case "Elixir":
-      return <SiElixir />;
+  if (skill.startsWith("Python")) {
+    return <SiPython />;
+  } else if (skill.startsWith("Scratch")) {
+    return <SiScratch />;
   }
 }
 
