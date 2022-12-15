@@ -176,7 +176,7 @@ function Register({ cities }: any) {
               </Form.Item>
             )}
 
-            <Form.Item name="user[t_shirt]" label="T-Shirt Size">
+            <Form.Item name="user[t_shirt]" label="Tamanho da T-Shirt">
               <Select defaultValue="medium">
                 <Option value="extra_small">Extra Small (XS)</Option>
                 <Option value="small">Small (S)</Option> valuePropName=""
