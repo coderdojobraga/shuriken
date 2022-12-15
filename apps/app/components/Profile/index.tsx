@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import {
   Avatar,
   Col,
@@ -14,6 +13,7 @@ import {
 } from "antd";
 import { ClockCircleOutlined, UserOutlined } from "@ant-design/icons";
 import moment from "moment";
+import "moment/locale/pt";
 import Badge from "~/components/Badge";
 import Belt from "~/components/Belt";
 import Document from "~/components/Document";
@@ -23,12 +23,23 @@ import * as socials from "~/lib/social";
 import styles from "./style.module.css";
 import { EUser } from "bokkenjs";
 
+import { BsFileEarmarkPersonFill } from "react-icons/bs";
+import { SiPython, SiScratch } from "react-icons/si";
+
 const { TabPane } = Tabs;
 const { Title } = Typography;
 
 interface Props {
   id: string;
   role: EUser;
+}
+
+function getIcon(skill: string) {
+  if (skill.startsWith("Python")) {
+    return <SiPython />;
+  } else if (skill.startsWith("Scratch")) {
+    return <SiScratch />;
+  }
 }
 
 function Profile({ id, role }: Props) {
@@ -90,14 +101,8 @@ function Profile({ id, role }: Props) {
             </Col>
             <Col span={24}>
               <Title className={styles.capitalize} level={4}>
-                {role}
+                <BsFileEarmarkPersonFill /> {role}
               </Title>
-            </Col>
-
-            <Col span={24}>
-              {skills.map((s) => (
-                <Tag key={s.id}>{s.name}</Tag>
-              ))}
             </Col>
 
             {"belt" in info && (
@@ -127,6 +132,14 @@ function Profile({ id, role }: Props) {
                   )
                 )}
               </Space>
+            </Col>
+
+            <Col span={24}>
+              {skills.map((s) => (
+                <Tag key={s.id}>
+                  {getIcon(s.name)} {s.name}
+                </Tag>
+              ))}
             </Col>
           </Row>
         </Space>
