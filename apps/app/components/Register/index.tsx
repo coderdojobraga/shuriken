@@ -178,11 +178,11 @@ function Register({ cities }: any) {
 
             <Form.Item name="user[t_shirt]" label="Tamanho da T-Shirt">
               <Select defaultValue="medium">
-                <Option value="extra_small">Extra Small (XS)</Option>
-                <Option value="small">Small (S)</Option> valuePropName=""
-                <Option value="medium">Medium (M)</Option>
-                <Option value="large">Large (L)</Option>
-                <Option value="extra_large">Extra Large (XL)</Option>
+                <Option value="extra_small">Muito Pequeno (XS)</Option>
+                <Option value="small">Pequeno (S)</Option> valuePropName=""
+                <Option value="medium">Médio (M)</Option>
+                <Option value="large">Grande (L)</Option>
+                <Option value="extra_large">Muito Grande (XL)</Option>
               </Select>
             </Form.Item>
 
