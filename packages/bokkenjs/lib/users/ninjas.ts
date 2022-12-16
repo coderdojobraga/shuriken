@@ -6,8 +6,8 @@ export async function getNinja(id: string) {
   return response.data;
 }
 
-export async function getNinjas() {
-  const response = await API.get(`/api/ninjas/`);
+export async function getNinjaEvents(id: string) {
+  const response = await API.get(`/api/events/${id}/ninjas`);
 
   return response.data;
 }
@@ -34,7 +34,6 @@ export async function createNinja(values: any) {
   }
 
   const response = await API.post("/api/ninjas", data, { headers: undefined });
-
   return response.data;
 }
 

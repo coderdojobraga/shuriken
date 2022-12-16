@@ -34,3 +34,22 @@ export async function getMentorLectures(mentor_id: string) {
 
   return response.data;
 }
+
+export async function createLecture(values: any) {
+  const data = new FormData();
+
+  for (const key in values) {
+    data.append(key, values[key]);
+  }
+  const response = await API.post("/api/lectures", data, {
+    headers: undefined,
+  });
+
+  return response.data;
+}
+
+export async function listLectures() {
+  const response = await API.get(`/api/lectures`);
+
+  return response.data;
+}

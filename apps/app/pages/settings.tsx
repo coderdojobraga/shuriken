@@ -35,14 +35,16 @@ import {
 } from "bokkenjs";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
-import { SiPython } from "react-icons/si";
-import { SiScratch } from "react-icons/si";
-import { SiCodewars } from "react-icons/si";
-import { SiGithub } from "react-icons/si";
-import { SiGitlab } from "react-icons/si";
-import { SiTrello } from "react-icons/si";
-import { SiDiscord } from "react-icons/si";
-import { SiSlack } from "react-icons/si";
+import {
+  SiCodewars,
+  SiDiscord,
+  SiGithub,
+  SiGitlab,
+  SiPython,
+  SiScratch,
+  SiSlack,
+  SiTrello,
+} from "react-icons/si";
 
 const { Title } = Typography;
 const { Option } = Select;

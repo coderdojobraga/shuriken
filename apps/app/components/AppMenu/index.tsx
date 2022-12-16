@@ -137,6 +137,8 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
                 <SubMenu icon={<CalendarOutlined />} title="Eventos">
                   <Item key="/events">Listar eventos</Item>
                   <Item key="/admin/event">Criar evento</Item>
+                  <Item key="/admin/lectures">Listar lectures</Item>
+                  <Item key="/admin/lectures/new">Criar Lecture</Item>
                 </SubMenu>
               </>
             )}
