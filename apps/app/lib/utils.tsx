@@ -1,12 +1,12 @@
 import {
-  SiPython,
-  SiScratch,
   SiCodewars,
+  SiDiscord,
   SiGithub,
   SiGitlab,
-  SiTrello,
-  SiDiscord,
+  SiPython,
+  SiScratch,
   SiSlack,
+  SiTrello,
 } from "react-icons/si";
 
 export function getIcon(skill: string) {
