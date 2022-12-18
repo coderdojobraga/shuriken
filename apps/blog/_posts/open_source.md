@@ -10,6 +10,7 @@ featured: false
 ---
 
 ## Definição
+
 Open Source é uma qualidade que se atribui a um programa onde é possível
 ler o seu código fonte e, dependendo da [licença](https://opensource.org/licenses)
 a que está atribuido, podes modificar e distribuir as tuas versões do programa.
@@ -22,6 +23,7 @@ transparência que oferece. Este site e todas as ferramentas do nosso [Dojo](htt
 são Open Source.
 
 ## Vantagens
+
 Cada vez mais, o mundo está dependente das novas tecnologias, e maior parte destas
 não são open source - portanto não temos a certeza do que realmente fazem! Esta é
 a principal vantagem de ter um programa com uma licença que adote esta ideologia.
@@ -29,8 +31,7 @@ Uma consequência direta de abrir o código fonte é a possibilidade de várias 
 sendo estas programadores ou não, contribuirem para programas Open Source.
 
 Outra vantagem é a ausência de custo nestes programas - isto torna
-acessível a sua utilização a toda a gente. 
-
+acessível a sua utilização a toda a gente.
 
 Alguns programas open source mais utilizados são:
 
