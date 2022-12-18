@@ -11,7 +11,7 @@ featured: false
 
 ## Definição
 Open Source é uma qualidade que se atribui a um programa onde é possível
-ler o seu código fonte e, dependendo da [licensa](https://opensource.org/licenses)
+ler o seu código fonte e, dependendo da [licença](https://opensource.org/licenses)
 a que está atribuido, podes modificar e distribuir as tuas versões do programa.
 
 ---
