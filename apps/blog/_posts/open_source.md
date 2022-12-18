@@ -34,6 +34,7 @@ acessível a sua utilização a toda a gente.
 
 Alguns programas open source mais utilizados são:
 
+- [Mozilla Firefox](https://www.mozilla.org/pt-PT/firefox/new/)
 - [VLC](https://www.videolan.org/vlc/)
 - [Audacity](https://www.audacityteam.org/)
 - [GIMP](https://www.gimp.org/)
