@@ -24,7 +24,7 @@ são Open Source.
 ## Vantagens
 Cada vez mais, o mundo está dependente das novas tecnologias, e maior parte destas
 não são open source - portanto não temos a certeza do que realmente fazem! Esta é
-a principal vantagem de ter um programa com uma licensa que adote esta ideologia.
+a principal vantagem de ter um programa com uma licença que adote esta ideologia.
 Uma consequência direta de abrir o código fonte é a possibilidade de, várias pessoas
 sendo estas programadores ou não, contribuirem para programas Open Source.
 
