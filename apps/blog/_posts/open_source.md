@@ -28,7 +28,7 @@ a principal vantagem de ter um programa com uma licença que adote esta ideologi
 Uma consequência direta de abrir o código fonte é a possibilidade de várias pessoas,
 sendo estas programadores ou não, contribuirem para programas Open Source.
 
-Outra vantagem, é a ausência de custo nestes programas - isto torna
+Outra vantagem é a ausência de custo nestes programas - isto torna
 acessível a sua utilização a toda a gente. 
 
 
