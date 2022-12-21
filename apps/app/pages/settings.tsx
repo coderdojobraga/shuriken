@@ -23,6 +23,7 @@ import {
 import { getBase64 } from "~/lib/images";
 import { useAuth } from "@coderdojobraga/ui";
 import { notifyError } from "~/components/Notification";
+import { getIcon } from "~/lib/utils";
 import {
   EUser,
   addMentorSkills,
@@ -36,8 +37,16 @@ import {
 } from "bokkenjs";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
-
-import { getIcon } from "~/lib/utils";
+import {
+  SiCodewars,
+  SiDiscord,
+  SiGithub,
+  SiGitlab,
+  SiPython,
+  SiScratch,
+  SiSlack,
+  SiTrello,
+} from "react-icons/si";
 
 const { Title } = Typography;
 const { Option } = Select;

@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { MenuOutlined } from "@ant-design/icons";
 import { Button, Drawer, Layout } from "antd";
 import { useEffect, useState } from "react";
@@ -50,12 +49,6 @@ function AppLayout({ children, hidePrimaryMenu = false }) {
 
   return (
     <Layout hasSider={true}>
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
-        />
-      </Head>
       {isMobile && (
         <Button
           size="large"
