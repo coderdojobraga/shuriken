@@ -24,7 +24,8 @@ import styles from "./style.module.css";
 import { EUser } from "bokkenjs";
 
 import { BsFileEarmarkPersonFill } from "react-icons/bs";
-import { SiPython, SiScratch } from "react-icons/si";
+
+import { getIcon } from "~/lib/utils";
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
@@ -32,14 +33,6 @@ const { Title } = Typography;
 interface Props {
   id: string;
   role: EUser;
-}
-
-function getIcon(skill: string) {
-  if (skill.startsWith("Python")) {
-    return <SiPython />;
-  } else if (skill.startsWith("Scratch")) {
-    return <SiScratch />;
-  }
 }
 
 function Profile({ id, role }: Props) {
