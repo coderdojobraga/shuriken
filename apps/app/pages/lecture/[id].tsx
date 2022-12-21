@@ -18,6 +18,7 @@ import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import moment from "moment";
 import { EUser } from "bokkenjs";
+import { notifyInfo } from "~/components/InfoNotification";
 
 function Lectures() {
   const { Title, Text } = Typography;
@@ -28,7 +29,8 @@ function Lectures() {
   const onFinish = (values: any) => {
     api
       .updateLecture(id as string, values)
-      .then(() => router.push("/"))
+      .then(() => notifyInfo("Info", "A sessão foi atualizada com sucesso"))
+      .then(() => router.push("/lectures"))
       .catch((error) => notification["error"](error.data?.errors));
   };
 

@@ -36,6 +36,7 @@ function Lectures() {
         router.push("/404");
         break;
     }
+
     if (role == EUser.Ninja) {
       api
         .getNinja(id as string)
