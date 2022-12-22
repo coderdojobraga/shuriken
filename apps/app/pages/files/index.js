@@ -5,6 +5,7 @@ import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import Document from "~/components/Document";
 import * as api from "bokkenjs";
+import { notifyError } from "~/components/Notification";
 
 const { Title } = Typography;
 
@@ -15,7 +16,9 @@ function Files() {
     api
       .getFiles()
       .then((response) => setFiles(response.data))
-      .catch();
+      .catch((error) => {
+        notifyError("Ocorreu um erro", "Não foi possível obter os ficheiros");
+      });
   }, []);
 
   return (

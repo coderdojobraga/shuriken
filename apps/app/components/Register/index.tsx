@@ -27,6 +27,7 @@ import Emoji from "~/components/Emoji";
 import styles from "./style.module.css";
 import { useState } from "react";
 import { EUser } from "bokkenjs";
+import { notifyError, notifyInfo } from "~/components/Notification";
 
 import { getIcon } from "~/lib/utils";
 
@@ -62,9 +63,16 @@ function Register({ cities }: any) {
     api
       .registerUser(values)
       .then(() => {
+        notifyInfo("O registo foi concluído com sucesso", "");
         router.push("/dashboard");
       })
-      .catch((error) => setErrors(error?.data?.errors))
+      .catch((error) => {
+        setErrors(error?.data?.errors);
+        notifyError(
+          "Não foi possível completar o registo",
+          "Tente novamente mais tarde"
+        );
+      })
       .finally(() => setLoading(false));
   };
 

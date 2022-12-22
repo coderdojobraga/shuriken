@@ -4,6 +4,7 @@ import { InboxOutlined } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import * as api from "bokkenjs";
+import { notifyError } from "~/components/Notification";
 
 const { Title } = Typography;
 const { Dragger } = Upload;
@@ -16,7 +17,9 @@ function NewFile() {
     api
       .createFile(values)
       .then(() => router.push("/files"))
-      .catch();
+      .catch((error) => {
+        notifyError("Ocorreu um erro", "Não foi possível criar o ficheiro");
+      });
   };
 
   return (

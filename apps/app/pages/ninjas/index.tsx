@@ -6,6 +6,7 @@ import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import * as api from "bokkenjs";
 import Ninja from "~/components/Ninja";
+import { notifyError } from "~/components/Notification";
 
 const { Title } = Typography;
 
@@ -16,7 +17,9 @@ function Ninjas() {
     api
       .getNinjas()
       .then((response: any) => setNinjas(response.data))
-      .catch(() => {});
+      .catch((error) => {
+        notifyError("Ocorreu um erro", "Não foi possível obter os seus ninjas");
+      });
   }, []);
 
   return (
