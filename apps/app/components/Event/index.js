@@ -126,7 +126,7 @@ const Event = ({
                 <Link href={`/admin/event/${event.id}`}>
                   <Button type="primary">Info</Button>
                 </Link>
-                <Link href={`/admin/lecture/${event.id}`}>
+                <Link href={`/admin/lectures/new`}>
                   <Button type="primary">Criar Lecture</Button>
                 </Link>
               </>

@@ -15,9 +15,9 @@ import {
 import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
 import {
   getNinjaEvents,
+  listEvents,
   listGuardians,
-  list_events,
-  list_mentors,
+  listMentors,
 } from "bokkenjs";
 import * as api from "bokkenjs";
 
@@ -27,28 +27,27 @@ export default function LectureForm({ id }) {
   const router = useRouter();
   const [form] = Form.useForm();
   const [selectedMentor, setSelectedMentor] = useState({});
-  const [selectedAssistant, setSelectedAssistant] = useState([]);
   const [selectedNinja, setSelectedNinja] = useState({});
   const [selectedEvent, setSelectedEvent] = useState({});
 
-  const [mentores, setMentores] = useState([]);
+  const [mentors, setMentors] = useState([]);
   useEffect(() => {
-    list_mentors().then((response) => {
-      setMentores(response.data);
+    listMentors().then((response) => {
+      setMentors(response.data);
     });
   }, []);
 
-  const [eventos, setEvents] = useState([]);
+  const [events, setEvents] = useState([]);
   useEffect(() => {
-    list_events().then((response) => {
+    listEvents().then((response) => {
       setEvents(response.data);
     });
   }, []);
 
   const [ninjas, setNinjas] = useState([]);
   useEffect(() => {
-    eventos.map((evento) => {
-      getNinjaEvents(evento.id).then((response) => {
+    events.map((event) => {
+      getNinjaEvents(event.id).then((response) => {
         setNinjas((ninjas) => [...ninjas, ...response.data]);
         setNinjas((ninjas) => {
           return ninjas.filter(
@@ -58,7 +57,7 @@ export default function LectureForm({ id }) {
         });
       });
     });
-  }, [eventos]);
+  }, [events]);
 
   const onFinish = (values) => {
     if (id) {
@@ -78,20 +77,13 @@ export default function LectureForm({ id }) {
     }
   };
 
-  const breakpoints = {
-    xs: 24,
-    md: 12,
-    xl: 8,
-    xxl: 6,
-  };
-
   return (
     <>
       <Row justify="space-between">
         <Title level={2}>
           {id && ninjas[0]
             ? ninjas[0].first_name + " " + ninjas[0].last_name
-            : "Nova Lecture"}
+            : "Nova Sessão"}
         </Title>
         <Space>
           <Link href="/admin/lectures">
@@ -136,7 +128,7 @@ export default function LectureForm({ id }) {
                     : selectedEvent
                 }
               >
-                {eventos.map((event) => (
+                {events.map((event) => (
                   <Select.Option key={event.id} value={event.id}>
                     <div>
                       {`${event.title} - ${event.start_time} - ${event.end_time}`}
@@ -184,7 +176,7 @@ export default function LectureForm({ id }) {
                     : selectedMentor
                 }
               >
-                {mentores.map((mentor) => (
+                {mentors.map((mentor) => (
                   <Select.Option key={mentor.id} value={mentor.id}>
                     <div>{`${mentor.first_name} ${mentor.last_name}  `}</div>
                   </Select.Option>

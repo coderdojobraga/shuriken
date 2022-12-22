@@ -1,12 +1,30 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Avatar, Button, Col, List, Row, Select, Typography } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import {
+  Avatar,
+  Button,
+  Card,
+  Col,
+  Descriptions,
+  Grid,
+  List,
+  Row,
+  Select,
+  Space,
+  Typography,
+} from "antd";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import * as api from "bokkenjs";
 import Ninja from "~/components/Ninja";
-import { list_events } from "bokkenjs";
+import {
+  CalendarOutlined,
+  ClockCircleOutlined,
+  EnvironmentOutlined,
+  HomeOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
+
 const { Title } = Typography;
 
 type Event = {
@@ -36,9 +54,14 @@ function Lectures() {
   const [lectures, setLectures] = useState<Lecture[]>([]);
   const [selectedLectures, setSelectedLectures] = useState<Lecture[]>([]);
 
+  const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
+  const { useBreakpoint } = Grid;
+  const screens = useBreakpoint();
+  const collapsed = true;
+
   useEffect(() => {
     api
-      .list_events()
+      .listEvents()
       .then((response: any) => setEvents(response.data))
       .catch(() => {});
   }, []);
@@ -84,36 +107,55 @@ function Lectures() {
         </Select>
       </Row>
       {selectedLectures.map((lecture) => (
-        <Col
-          style={{
-            border: "1px solid gray",
-            padding: "16px",
-            margin: "16px 0",
-          }}
+        <Card
+          title={lecture.event?.title}
+          style={{ maxWidth: 460, margin: 15 }}
         >
-          <List.Item>
-            <Title style={{ width: "100px" }} level={4}>
-              Mentor
-            </Title>
-            <Link href={`/profile/mentor/${lecture.mentor.id}`}>
-              <List.Item.Meta
-                avatar={<Avatar size={64} src={lecture.mentor.photo} />}
-                title={`${lecture.mentor.first_name} ${lecture.mentor.last_name}`}
-              />
-            </Link>
-          </List.Item>
-          <List.Item>
-            <Title style={{ width: "100px" }} level={4}>
-              Ninja
-            </Title>
-            <Link href={`/profile/ninja/${lecture.ninja.id}`}>
-              <List.Item.Meta
-                avatar={<Avatar size={64} src={lecture.ninja.photo} />}
-                title={`${lecture.ninja.first_name} ${lecture.ninja.last_name}`}
-              />
-            </Link>
-          </List.Item>
-        </Col>
+          <Space
+            align="end"
+            direction="horizontal"
+            wrap={(screens.sm && !screens.md) || screens.xs}
+          >
+            <Descriptions size="small" column={1} layout="horizontal">
+              <Descriptions.Item
+                labelStyle={labelStyle}
+                label={
+                  <span>
+                    <EnvironmentOutlined /> Ninja
+                  </span>
+                }
+                span={1}
+              >
+                <Link href={`/profile/ninja/${lecture.ninja?.id}`}>
+                  {lecture.ninja?.first_name + " " + lecture.ninja?.last_name}
+                </Link>
+              </Descriptions.Item>
+              <Descriptions.Item
+                labelStyle={labelStyle}
+                label={
+                  <span>
+                    <HomeOutlined /> Mentor
+                  </span>
+                }
+              >
+                <Link href={`/profile/mentor/${lecture.mentor?.id}`}>
+                  {lecture.mentor?.first_name + " " + lecture.mentor?.last_name}
+                </Link>
+              </Descriptions.Item>
+              <Descriptions.Item
+                labelStyle={labelStyle}
+                label={
+                  <span>
+                    <EnvironmentOutlined /> Localização
+                  </span>
+                }
+                span={1}
+              >
+                Departamento de Informática, Edifício 7, Universidade do Minho
+              </Descriptions.Item>
+            </Descriptions>
+          </Space>
+        </Card>
       ))}
     </AppLayout>
   );

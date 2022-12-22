@@ -6,7 +6,7 @@ export async function getMentor(id: string) {
   return response.data;
 }
 
-export async function list_mentors() {
+export async function listMentors() {
   const response = await API.get(`/api/mentors`);
 
   return response.data;

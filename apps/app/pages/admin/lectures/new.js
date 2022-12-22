@@ -2,7 +2,7 @@ import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import LectureForm from "~/components/LectureForm";
 
-function Ninjas() {
+function NewLecture() {
   return (
     <AppLayout>
       <LectureForm />
@@ -10,4 +10,4 @@ function Ninjas() {
   );
 }
 
-export default withAuth(Ninjas);
+export default withAuth(NewLecture);

@@ -12,7 +12,6 @@ export async function getNinjas() {
   return response.data;
 }
 
-
 export async function getNinjaEvents(id: string) {
   const response = await API.get(`/api/events/${id}/ninjas`);
 
