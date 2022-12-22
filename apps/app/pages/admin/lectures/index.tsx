@@ -29,10 +29,12 @@ function Lectures() {
       .catch(() => {});
   }, []);
 
+  console.log(lectures);
+
   useEffect(() => {
     if (Object.keys(selectedEvent).length !== 0) {
       setSelectedLectures(
-        lectures.filter((lecture) => lecture.event.id === selectedEvent)
+        lectures.filter((lecture) => lecture?.event.id === selectedEvent)
       );
     }
   }, [selectedEvent, lectures]);
