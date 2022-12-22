@@ -6,6 +6,13 @@ export async function getNinja(id: string) {
   return response.data;
 }
 
+export async function getNinjas() {
+  const response = await API.get(`/api/ninjas/`);
+
+  return response.data;
+}
+
+
 export async function getNinjaEvents(id: string) {
   const response = await API.get(`/api/events/${id}/ninjas`);
 

@@ -9,11 +9,32 @@ import Ninja from "~/components/Ninja";
 import { list_events } from "bokkenjs";
 const { Title } = Typography;
 
+type Event = {
+  id: string;
+  title: string;
+};
+
+type Lecture = {
+  event: Event;
+  mentor: {
+    id: string;
+    first_name: string;
+    last_name: string;
+    photo: string;
+  };
+  ninja: {
+    id: string;
+    first_name: string;
+    last_name: string;
+    photo: string;
+  };
+};
+
 function Lectures() {
-  const [events, setEvents] = useState([]);
-  const [selectedEvent, setSelectedEvent] = useState({});
-  const [lectures, setLectures] = useState([]);
-  const [selectedLectures, setSelectedLectures] = useState([]);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [selectedEvent, setSelectedEvent] = useState(String);
+  const [lectures, setLectures] = useState<Lecture[]>([]);
+  const [selectedLectures, setSelectedLectures] = useState<Lecture[]>([]);
 
   useEffect(() => {
     api
@@ -29,12 +50,10 @@ function Lectures() {
       .catch(() => {});
   }, []);
 
-  console.log(lectures);
-
   useEffect(() => {
-    if (Object.keys(selectedEvent).length !== 0) {
+    if (selectedEvent != "") {
       setSelectedLectures(
-        lectures.filter((lecture) => lecture?.event.id === selectedEvent)
+        lectures.filter((lecture) => lecture.event.id === selectedEvent)
       );
     }
   }, [selectedEvent, lectures]);
@@ -57,16 +76,13 @@ function Lectures() {
           defaultValue="Selecione um Evento"
           style={{ width: 200 }}
           onChange={setSelectedEvent}
-          value={
-            Object.keys(selectedEvent).length === 0 ? undefined : selectedEvent
-          }
+          value={selectedEvent == "" ? undefined : selectedEvent}
         >
           {events.map((event) => (
             <Select.Option value={event.id}>{event.title}</Select.Option>
           ))}
         </Select>
       </Row>
-      <h1>{selectedEvent.title}</h1>
       {selectedLectures.map((lecture) => (
         <Col
           style={{
