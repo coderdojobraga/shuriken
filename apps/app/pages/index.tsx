@@ -25,11 +25,14 @@ function Dashboard() {
 
   const nextEvent = () => {
     const cur = moment();
-    return events
+
+    const sorted_events = events
       .filter((e: any) => cur.diff(e.start_time) < 0)
       .sort((e1: any, e2: any) => {
         cur.diff(e1.start_time) > cur.diff(e2.start_time);
-      })[0];
+      });
+
+    return sorted_events[0] != undefined ? sorted_events[0] : false;
   };
 
   useEffect(() => {
@@ -45,13 +48,15 @@ function Dashboard() {
       <Title level={2}>Painel Principal</Title>
       <Title level={3}>Próximo Evento</Title>
       <Row className={styles.row} align="top" justify="space-between">
-        {events?.length > 0 ? (
+        {events?.length > 0 && nextEvent() ? (
           <Event
             event={nextEvent()}
             collapsed={false}
             isLoading={isLoadingEvents}
           />
-        ) : null}
+        ) : (
+          <Typography>Aguarda que o próximo evento seja divulgado</Typography>
+        )}
       </Row>
       <Title level={3}>Eventos</Title>
       <Row className={styles.row} align="top" justify="start" gutter={[16, 16]}>

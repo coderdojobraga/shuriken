@@ -28,6 +28,8 @@ import styles from "./style.module.css";
 import { useState } from "react";
 import { EUser } from "bokkenjs";
 
+import { getIcon } from "~/lib/utils";
+
 const { Option } = Select;
 
 const CountrySelect = () => (
@@ -227,7 +229,7 @@ function Register({ cities }: any) {
                                   key={item}
                                   value={item.toLocaleLowerCase()}
                                 >
-                                  {item}
+                                  {getIcon(item)} {item}
                                 </Option>
                               ))}
                             </Select>

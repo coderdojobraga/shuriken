@@ -35,16 +35,8 @@ import {
 } from "bokkenjs";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
-import {
-  SiCodewars,
-  SiDiscord,
-  SiGithub,
-  SiGitlab,
-  SiPython,
-  SiScratch,
-  SiSlack,
-  SiTrello,
-} from "react-icons/si";
+
+import { getIcon } from "~/lib/utils";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -56,31 +48,6 @@ const Section = ({ title }: { title: string }) => (
     </Title>
   </Divider>
 );
-
-function getIcon(skill: string) {
-  if (skill.startsWith("Python")) {
-    return <SiPython />;
-  } else if (skill.startsWith("Scratch")) {
-    return <SiScratch />;
-  }
-
-  switch (skill) {
-    case "Scratch":
-      return <SiScratch />;
-    case "Codewars":
-      return <SiCodewars />;
-    case "GitHub":
-      return <SiGithub />;
-    case "GitLab":
-      return <SiGitlab />;
-    case "Trello":
-      return <SiTrello />;
-    case "Discord":
-      return <SiDiscord />;
-    case "Slack":
-      return <SiSlack />;
-  }
-}
 
 function Settings() {
   const { user, edit_user, isLoading } = useAuth();
