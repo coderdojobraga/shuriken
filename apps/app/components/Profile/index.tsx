@@ -40,6 +40,7 @@ function Profile({ id, role }: Props) {
   const [badges, setBadges] = useState<any[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
+  const [date, setDate] = useState<String>("");
 
   useEffect(() => {
     api
@@ -95,6 +96,10 @@ function Profile({ id, role }: Props) {
     }
   }, [id, role]);
 
+  useEffect(() => {
+    setDate(moment(info.since).format("DD/MM/YYYY"));
+  }, [info]);
+
   return (
     <>
       <Row justify="center" align="middle">
@@ -121,6 +126,9 @@ function Profile({ id, role }: Props) {
               <Title className={styles.capitalize} level={4}>
                 <BsFileEarmarkPersonFill /> {role}
               </Title>
+            </Col>
+            <Col span={24}>
+              <Title level={5}>Conta criada em: {date}</Title>
             </Col>
 
             {"belt" in info && (
