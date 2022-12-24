@@ -40,7 +40,7 @@ function Profile({ id, role }: Props) {
   const [badges, setBadges] = useState<any[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
-  const [date, setDate] = useState<any>(String);
+  const [date, setDate] = useState<String>("");
 
   useEffect(() => {
     api
@@ -128,7 +128,7 @@ function Profile({ id, role }: Props) {
               </Title>
             </Col>
             <Col span={24}>
-              <Title level={5}>Conta Criada em: {date}</Title>
+              <Title level={5}>Conta criada em: {date}</Title>
             </Col>
 
             {"belt" in info && (
