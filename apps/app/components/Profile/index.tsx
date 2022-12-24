@@ -19,12 +19,13 @@ import Belt from "~/components/Belt";
 import Document from "~/components/Document";
 import * as api from "bokkenjs";
 import * as socials from "~/lib/social";
-
+import { notifyError, notifyInfo } from "~/components/Notification";
 import styles from "./style.module.css";
 import { EUser } from "bokkenjs";
 
 import { BsFileEarmarkPersonFill } from "react-icons/bs";
-import { SiPython, SiScratch } from "react-icons/si";
+
+import { getIcon } from "~/lib/utils";
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
@@ -32,14 +33,6 @@ const { Title } = Typography;
 interface Props {
   id: string;
   role: EUser;
-}
-
-function getIcon(skill: string) {
-  if (skill.startsWith("Python")) {
-    return <SiPython />;
-  } else if (skill.startsWith("Scratch")) {
-    return <SiScratch />;
-  }
 }
 
 function Profile({ id, role }: Props) {
@@ -53,28 +46,53 @@ function Profile({ id, role }: Props) {
     api
       .getUserByRole({ id, role })
       .then((response) => setInfo(response.data))
-      .catch((error) => notification["error"](error.data?.errors));
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter os dados do utilizador"
+        );
+      });
 
     if (role == EUser.Mentor) {
       api
         .getMentorSkills(id)
         .then((response) => setSkills(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os conhecimentos do mentor"
+          );
+        });
     } else if (role == EUser.Ninja) {
       api
         .getNinjaBadges(id)
         .then((response) => setBadges(response.data))
-        .catch((error) => { });
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os crachás do ninja"
+          );
+        });
 
       api
         .getNinjaFiles(id)
         .then((response) => setProjects(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os ficheiros do ninja"
+          );
+        });
 
       api
         .getNinjaSkills(id)
         .then((response) => setSkills(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter as linguagens do ninja"
+          );
+        });
     }
   }, [id, role]);
 

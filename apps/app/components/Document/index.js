@@ -8,6 +8,7 @@ import {
   PaperClipOutlined,
   SaveOutlined,
 } from "@ant-design/icons";
+import { notifyError, notifyInfo } from "~/components/Notification";
 import * as api from "bokkenjs";
 
 const { Meta } = Card;
@@ -20,8 +21,14 @@ function Document({ id, title, description, document, editable = false }) {
   const updateInfo = () => {
     api
       .editFile(id, info)
-      .then((response) => setDoc(response.data) && setInfo(response.data))
-      .catch();
+      .then((response) => {
+        setDoc(response.data);
+        setInfo(response.data);
+        notifyInfo("O ficheiro foi editado com sucesso");
+      })
+      .catch((error) => {
+        notifyError("Ocorreu um erro", "Não foi possível editar o ficheiro");
+      });
   };
 
   return (
