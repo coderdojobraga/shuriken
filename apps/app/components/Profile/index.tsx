@@ -47,6 +47,7 @@ function Profile({ id, role }: Props) {
   const [badges, setBadges] = useState<any[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
+  const [date, setDate] = useState<any>(String);
 
   useEffect(() => {
     api
@@ -63,7 +64,7 @@ function Profile({ id, role }: Props) {
       api
         .getNinjaBadges(id)
         .then((response) => setBadges(response.data))
-        .catch((error) => {});
+        .catch((error) => { });
 
       api
         .getNinjaFiles(id)
@@ -76,6 +77,11 @@ function Profile({ id, role }: Props) {
         .catch((error) => notification["error"](error.data?.errors));
     }
   }, [id, role]);
+
+  useEffect(() => {
+    setDate(moment(info.since).format("DD/MM/YYYY"));
+  }, [info]);
+
 
   return (
     <>
@@ -104,6 +110,11 @@ function Profile({ id, role }: Props) {
                 <BsFileEarmarkPersonFill /> {role}
               </Title>
             </Col>
+            <Col span={24}>
+              <Title level={5}>
+                Conta Criada em: {date}
+              </Title>
+            </Col>
 
             {"belt" in info && (
               <Col span={24}>
@@ -123,9 +134,8 @@ function Profile({ id, role }: Props) {
                       key={social.id}
                       target="_blank"
                       rel="noreferrer"
-                      href={`${
-                        socials.URLS[social.name as keyof typeof socials.URLS]
-                      }/${social.username}`}
+                      href={`${socials.URLS[social.name as keyof typeof socials.URLS]
+                        }/${social.username}`}
                     >
                       {socials.ICONS[social.name as keyof typeof socials.URLS]}
                     </a>
