@@ -100,7 +100,6 @@ function Profile({ id, role }: Props) {
     setDate(moment(info.since).format("DD/MM/YYYY"));
   }, [info]);
 
-
   return (
     <>
       <Row justify="center" align="middle">
@@ -129,9 +128,7 @@ function Profile({ id, role }: Props) {
               </Title>
             </Col>
             <Col span={24}>
-              <Title level={5}>
-                Conta Criada em: {date}
-              </Title>
+              <Title level={5}>Conta Criada em: {date}</Title>
             </Col>
 
             {"belt" in info && (
@@ -152,8 +149,9 @@ function Profile({ id, role }: Props) {
                       key={social.id}
                       target="_blank"
                       rel="noreferrer"
-                      href={`${socials.URLS[social.name as keyof typeof socials.URLS]
-                        }/${social.username}`}
+                      href={`${
+                        socials.URLS[social.name as keyof typeof socials.URLS]
+                      }/${social.username}`}
                     >
                       {socials.ICONS[social.name as keyof typeof socials.URLS]}
                     </a>
