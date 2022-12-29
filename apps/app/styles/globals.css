@@ -8,6 +8,7 @@
 @import "koi/koi-animation.css";
 @import "koi/silhouette-animation.css";
 
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
