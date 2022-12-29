@@ -3,6 +3,7 @@ import * as api from "bokkenjs";
 import { IUser } from "bokkenjs";
 import { IErrors } from "./types";
 import AuthContext from "./AuthContext";
+import LoadingOverlay from "@coderdojobraga/ui/components/LoadingOverlay";
 
 interface Props {}
 
@@ -15,9 +16,15 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
   useEffect(() => {
     api
       .getCurrentUser()
-      .then((user) => setUser(user))
+      .then((user) => {
+        setUser(user);
+      })
       .catch(() => {})
-      .finally(() => setFirstLoading(false));
+      .finally(() => {
+        setTimeout(() => {
+          setFirstLoading(false);
+        }, 2000);
+      });
   }, []);
 
   function login({ email, password }: { email: string; password: string }) {
@@ -91,7 +98,7 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
 
   return (
     <AuthContext.Provider value={values}>
-      {!isFirstLoading && children}
+      {!isFirstLoading ? <LoadingOverlay children={children} /> : children}
     </AuthContext.Provider>
   );
 }

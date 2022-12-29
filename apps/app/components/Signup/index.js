@@ -35,7 +35,7 @@ function Signup() {
 
   return (
     <Form name="signup" onFinish={onFinish}>
-      <Koi />
+      {/* <Koi /> */}
 
       <Title>Registar</Title>
 
