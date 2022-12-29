@@ -80,11 +80,7 @@ export default function LectureForm({ id }) {
   return (
     <>
       <Row justify="space-between">
-        <Title level={2}>
-          {id && ninjas[0]
-            ? ninjas[0].first_name + " " + ninjas[0].last_name
-            : "Nova Sessão"}
-        </Title>
+        <Title level={2}>Nova Sessão</Title>
         <Space>
           <Link href="/admin/lectures">
             <Button
@@ -120,7 +116,7 @@ export default function LectureForm({ id }) {
             >
               <Select
                 placeholder="Escolha um evento"
-                style={{ width: "50%" }}
+                style={{ width: "75%" }}
                 onChange={setSelectedEvent}
                 value={
                   Object.keys(selectedEvent).length === 0
@@ -145,7 +141,7 @@ export default function LectureForm({ id }) {
             >
               <Select
                 placeholder="Escolha pelo menos um Ninja"
-                style={{ width: "50%" }}
+                style={{ width: "75%" }}
                 onChange={setSelectedNinja}
                 value={
                   Object.keys(selectedNinja).length === 0
@@ -168,7 +164,7 @@ export default function LectureForm({ id }) {
             >
               <Select
                 placeholder="Escolha pelo menos um Mentor"
-                style={{ width: "50%" }}
+                style={{ width: "75%" }}
                 onChange={setSelectedMentor}
                 value={
                   Object.keys(selectedMentor).length === 0

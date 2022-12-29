@@ -30,6 +30,7 @@ const { Title } = Typography;
 type Event = {
   id: string;
   title: string;
+  location_id: string;
 };
 
 type Lecture = {
@@ -53,6 +54,8 @@ function Lectures() {
   const [selectedEvent, setSelectedEvent] = useState(String);
   const [lectures, setLectures] = useState<Lecture[]>([]);
   const [selectedLectures, setSelectedLectures] = useState<Lecture[]>([]);
+  const [locations, setLocations] = useState<any[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<any[]>([]);
 
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
   const { useBreakpoint } = Grid;
@@ -74,6 +77,13 @@ function Lectures() {
   }, []);
 
   useEffect(() => {
+    api
+      .getLocations()
+      .then((response: any) => setLocations(response.data))
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
     if (selectedEvent != "") {
       setSelectedLectures(
         lectures.filter((lecture) => lecture.event.id === selectedEvent)
@@ -81,10 +91,20 @@ function Lectures() {
     }
   }, [selectedEvent, lectures]);
 
+  // get the location by id if selectedLectures is not empty
+  useEffect(() => {
+    if (selectedLectures.length > 0) {
+      const location = locations.find(
+        (location) => location.id === selectedLectures[0].event.location_id
+      );
+      setSelectedLocation(location);
+    }
+  }, [selectedLectures, locations]);
+
   return (
     <AppLayout>
       <Row justify="space-between">
-        <Title level={2}>Criar uma Lecture</Title>
+        <Title level={2}>Criar uma Sessão</Title>
         <Link href="/admin/lectures/new">
           <Button
             shape="circle"
@@ -97,7 +117,7 @@ function Lectures() {
       <Row justify="space-around" gutter={[10, 10]}>
         <Select
           defaultValue="Selecione um Evento"
-          style={{ width: 200 }}
+          style={{ width: 400 }}
           onChange={setSelectedEvent}
           value={selectedEvent == "" ? undefined : selectedEvent}
         >
@@ -151,7 +171,7 @@ function Lectures() {
                 }
                 span={1}
               >
-                Departamento de Informática, Edifício 7, Universidade do Minho
+                {selectedLocation?.address}
               </Descriptions.Item>
             </Descriptions>
           </Space>
