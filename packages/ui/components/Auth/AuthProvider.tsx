@@ -98,7 +98,7 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
 
   return (
     <AuthContext.Provider value={values}>
-      {!isFirstLoading ? <LoadingOverlay children={children} /> : children}
+      {isFirstLoading ? <LoadingOverlay children={children} /> : children}
     </AuthContext.Provider>
   );
 }
