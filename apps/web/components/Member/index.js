@@ -4,7 +4,7 @@ export default function Member({ picture, name, role }) {
       <img
         alt={name}
         src={`img/team/${picture}`}
-        className="mx-auto h-56 w-56 rounded-full object-scale-down shadow-lg md:h-48 md:w-48"
+        className="mx-auto h-56 w-56 rounded-full object-cover shadow-lg md:h-48 md:w-48"
       />
       <div className="p-4 text-center">
         <p className="text-3xl font-bold md:text-2xl lg:text-xl">{name}</p>
