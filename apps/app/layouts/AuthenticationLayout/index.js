@@ -9,7 +9,6 @@ function AuthenticationLayout({ children }) {
   return (
     <Layout>
       <Content className={styles.content}>
-        {/* <Koi /> */}
         <div className={styles.main}>
           {/* eslint-disable @next/next/no-img-element */}
           <img

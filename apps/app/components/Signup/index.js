@@ -35,8 +35,6 @@ function Signup() {
 
   return (
     <Form name="signup" onFinish={onFinish}>
-      {/* <Koi /> */}
-
       <Title>Registar</Title>
 
       <Form.Item
