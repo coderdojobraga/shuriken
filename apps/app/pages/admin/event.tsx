@@ -15,7 +15,7 @@ import {
   notification,
 } from "antd";
 import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
-import { notifyInfo } from "~/components/InfoNotification";
+import { notifyInfo } from "~/components/Notification";
 import AppLayout from "~/layouts/AppLayout";
 import { withAuth } from "~/components/Auth";
 import * as api from "bokkenjs";
