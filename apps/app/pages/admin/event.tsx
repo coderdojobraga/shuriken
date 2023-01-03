@@ -15,13 +15,12 @@ import {
   notification,
 } from "antd";
 import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
-import { notifyInfo } from "~/components/InfoNotification";
+import { notifyError, notifyInfo } from "~/components/Notification";
 import AppLayout from "~/layouts/AppLayout";
 import { withAuth } from "~/components/Auth";
 import * as api from "bokkenjs";
 import { useRouter } from "next/router";
 import TextArea from "antd/lib/input/TextArea";
-
 const { Title } = Typography;
 
 function CreateEvent() {
@@ -35,14 +34,21 @@ function CreateEvent() {
     api
       .getLocations()
       .then((response) => setLocations(response.data))
-      .catch((error: any) => notification["error"](error.data?.errors));
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter as localizações"
+        );
+      });
   }, []);
 
   useEffect(() => {
     api
       .getTeams()
       .then((response) => setTeams(response.data))
-      .catch((error: any) => notification["error"](error.data?.errors));
+      .catch((error) => {
+        notifyError("Ocorreu um erro", "Não foi possível obter as equipas");
+      });
   }, []);
 
   const locationOptions: SelectProps["options"] = [];
@@ -71,7 +77,9 @@ function CreateEvent() {
         )
       )
       .then(() => router.push("/events"))
-      .catch((error: any) => notification["error"](error.data?.errors));
+      .catch((error) => {
+        notifyError("Ocorreu um erro", "Não foi possível criar o evento");
+      });
   };
 
   return (

@@ -17,7 +17,7 @@ import {
 import moment from "moment";
 import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
 import * as api from "bokkenjs";
-
+import { notifyError, notifyInfo } from "~/components/Notification";
 const { Title } = Typography;
 
 export default function NinjaForm({ id }) {
@@ -34,7 +34,12 @@ export default function NinjaForm({ id }) {
     api
       .getSkills()
       .then((response) => setSkills(response.data))
-      .catch((error) => notification["error"](error.data?.errors));
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter as linguages disponíveis"
+        );
+      });
   };
   const getUserSkills = useCallback(() => {
     if (id) {
@@ -44,22 +49,21 @@ export default function NinjaForm({ id }) {
           setUserSkills(response.data);
           setSelectedSkills(response.data.map((s) => s.id));
         })
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter as linguages que o ninja quer aprender"
+          );
+        });
     }
   }, [id]);
 
   const deleteSkill = (ninja_id, skill_id) => {
-    api
-      .deleteNinjaSkills(ninja_id, skill_id)
-      .then((_) => getUserSkills())
-      .catch((error) => notification["error"](error.data?.errors));
+    api.deleteNinjaSkills(ninja_id, skill_id).then((_) => getUserSkills());
   };
 
   const addSkill = (ninja_id, skill_id) => {
-    api
-      .addNinjaSkills(ninja_id, skill_id)
-      .then((_) => getUserSkills())
-      .catch((error) => notification["error"](error.data?.errors));
+    api.addNinjaSkills(ninja_id, skill_id).then((_) => getUserSkills());
   };
 
   const changeSkills = (ninja_id) => {
@@ -86,10 +90,7 @@ export default function NinjaForm({ id }) {
 
   useEffect(() => {
     if (id) {
-      api
-        .getNinja(id)
-        .then((response) => setNinja(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+      api.getNinja(id).then((response) => setNinja(response.data));
     }
   }, [id]);
 
@@ -103,9 +104,15 @@ export default function NinjaForm({ id }) {
         .updateNinja(id, values)
         .then(() => {
           changeSkills(id);
+          notifyInfo("O ninja foi editado com sucesso");
           router.push("/ninjas");
         })
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível atualizar os dados do ninja"
+          );
+        });
     } else {
       api
         .createNinja(values)
@@ -113,7 +120,9 @@ export default function NinjaForm({ id }) {
           changeSkills(response.data.id);
           router.push("/ninjas");
         })
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError("Ocorreu um erro", "Não foi possível criar o ninja");
+        });
     }
   };
 

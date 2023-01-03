@@ -20,7 +20,7 @@ import { useEvent } from "~/hooks/events";
 import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
 import Belt from "~/components/Belt";
-import { notifyInfo } from "~/components/InfoNotification";
+import { notifyError, notifyInfo } from "~/components/Notification";
 import {
   EUser,
   createAvailability,
@@ -63,7 +63,12 @@ function EventPage() {
             response.data.filter((mentor: any) => mentor.is_available)
           );
         })
-        .catch(notifyInfo);
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os mentores disponíveis"
+          );
+        });
     }
   }, [event_id, role]);
 
@@ -71,7 +76,12 @@ function EventPage() {
     if (role === EUser.Mentor) {
       getAvailabilities(event_id as string)
         .then((response: any) => setAvailabilities(response.data))
-        .catch(notifyInfo);
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os mentores disponíveis"
+          );
+        });
     }
   }, [event_id, role]);
 
@@ -85,7 +95,12 @@ function EventPage() {
             )
           )
         )
-        .catch(notifyInfo);
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os ninjas inscritos"
+          );
+        });
     }
   }, [event_id, role, user?.guardian_id]);
 
@@ -93,7 +108,12 @@ function EventPage() {
     if (role === EUser.Guardian) {
       getNinjas()
         .then((response) => setNinjas(response.data))
-        .catch(notifyInfo);
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os seus ninjas"
+          );
+        });
     }
   }, [role]);
 
@@ -124,7 +144,9 @@ function EventPage() {
           )
         )
         .then(() => router.push("/events"))
-        .catch(notifyInfo);
+        .catch((error) => {
+          notifyError("Ocorreu um erro", "Não foi possível registar o ninja");
+        });
     });
   };
 
@@ -160,7 +182,12 @@ function EventPage() {
         )
       )
       .then(() => router.push("/events"))
-      .catch(notifyInfo);
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível inscrever-te na sessão"
+        );
+      });
   };
 
   const changeMentorAvailability = () => {
@@ -182,7 +209,12 @@ function EventPage() {
             )
           )
           .then(() => router.push("/events"))
-          .catch(notifyInfo);
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível atualizar a tua inscrição"
+            );
+          });
       }
     });
   };

@@ -7,7 +7,7 @@ import { useEvent } from "~/hooks/events";
 import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
 import Belt from "~/components/Belt";
-import { notifyInfo } from "~/components/InfoNotification";
+import { notifyError, notifyInfo } from "~/components/Notification";
 import { getAvailableMentors, getEnrolledNinjas } from "bokkenjs";
 
 const { Title } = Typography;
@@ -26,13 +26,23 @@ function EventPage() {
       .then((response: any) => {
         setMentors(response.data);
       })
-      .catch(notifyInfo);
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter os mentores disponíveis"
+        );
+      });
   }, [event_id]);
 
   useEffect(() => {
     getEnrolledNinjas(event_id as string)
       .then((response) => setEnrolledNinjas(response.data))
-      .catch(notifyInfo);
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter os ninjas inscritos"
+        );
+      });
   }, [event_id]);
 
   return (

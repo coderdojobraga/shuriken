@@ -22,6 +22,8 @@ import {
 } from "@ant-design/icons";
 import { getBase64 } from "~/lib/images";
 import { useAuth } from "@coderdojobraga/ui";
+import { notifyError } from "~/components/Notification";
+import { getIcon } from "~/lib/utils";
 import {
   EUser,
   addMentorSkills,
@@ -35,8 +37,16 @@ import {
 } from "bokkenjs";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
-
-import { getIcon } from "~/lib/utils";
+import {
+  SiCodewars,
+  SiDiscord,
+  SiGithub,
+  SiGitlab,
+  SiPython,
+  SiScratch,
+  SiSlack,
+  SiTrello,
+} from "react-icons/si";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -72,7 +82,12 @@ function Settings() {
   const getAllSkills = () => {
     getSkills()
       .then((response) => setSkills(response.data))
-      .catch((error) => notification["error"](error.data?.errors));
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter os conhecimentos"
+        );
+      });
   };
 
   const getUserSkills = useCallback(() => {
@@ -83,7 +98,12 @@ function Settings() {
             setUserSkills(response.data);
             setSelectedSkills(response.data.map((skill: any) => skill.id));
           })
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível obter os conhecimentos"
+            );
+          });
         break;
 
       case EUser.Ninja:
@@ -92,7 +112,12 @@ function Settings() {
             setUserSkills(response.data);
             setSelectedSkills(response.data.map((skill: any) => skill.id));
           })
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível obter as linguagens do ninja"
+            );
+          });
         break;
     }
   }, [user]);
@@ -102,13 +127,23 @@ function Settings() {
       case EUser.Mentor:
         deleteMentorSkills(user?.mentor_id!, skill_id)
           .then((_) => getUserSkills())
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível alterar os conhecimentos"
+            );
+          });
         break;
 
       case EUser.Ninja:
         deleteNinjaSkills(user?.ninja_id!, skill_id)
           .then((_) => getUserSkills())
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível alterar as linguagens"
+            );
+          });
         break;
     }
   };
@@ -118,13 +153,23 @@ function Settings() {
       case EUser.Mentor:
         addMentorSkills(user?.mentor_id!, skill_id)
           .then((_) => getUserSkills())
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível alterar os conhecimentos"
+            );
+          });
         break;
 
       case EUser.Ninja:
         addNinjaSkills(user?.ninja_id!, skill_id)
           .then((_) => getUserSkills())
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível alterar as linguagens"
+            );
+          });
         break;
     }
   };
