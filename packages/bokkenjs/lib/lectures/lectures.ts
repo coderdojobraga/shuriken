@@ -37,7 +37,6 @@ export async function getMentorLectures(mentor_id: string) {
 
 export async function createLecture(values: any) {
   const data = new FormData();
-
   for (const key in values) {
     data.append(key, values[key]);
   }

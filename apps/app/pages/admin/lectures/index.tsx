@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
-  Avatar,
   Button,
   Card,
-  Col,
   Descriptions,
   Grid,
-  List,
   Row,
   Select,
   Space,
@@ -16,10 +13,7 @@ import {
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import * as api from "bokkenjs";
-import Ninja from "~/components/Ninja";
 import {
-  CalendarOutlined,
-  ClockCircleOutlined,
   EnvironmentOutlined,
   HomeOutlined,
   PlusOutlined,
@@ -49,18 +43,22 @@ type Lecture = {
   };
 };
 
+type Location = {
+  address: string;
+  id: string;
+  name: string;
+};
+
 function Lectures() {
   const [events, setEvents] = useState<Event[]>([]);
   const [selectedEvent, setSelectedEvent] = useState(String);
   const [lectures, setLectures] = useState<Lecture[]>([]);
   const [selectedLectures, setSelectedLectures] = useState<Lecture[]>([]);
   const [locations, setLocations] = useState<any[]>([]);
-  const [selectedLocation, setSelectedLocation] = useState<any[]>([]);
-
+  const [selectedLocation, setSelectedLocation] = useState<Location>(Object);
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)" };
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
-  const collapsed = true;
 
   useEffect(() => {
     api
@@ -91,7 +89,6 @@ function Lectures() {
     }
   }, [selectedEvent, lectures]);
 
-  // get the location by id if selectedLectures is not empty
   useEffect(() => {
     if (selectedLectures.length > 0) {
       const location = locations.find(

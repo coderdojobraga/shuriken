@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useAuth } from "@coderdojobraga/ui";
 import {
   Button,
   Col,
@@ -13,13 +12,9 @@ import {
   notification,
 } from "antd";
 import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
-import {
-  getNinjaEvents,
-  listEvents,
-  listGuardians,
-  listMentors,
-} from "bokkenjs";
+import { getNinjaEvents, listEvents, listMentors } from "bokkenjs";
 import * as api from "bokkenjs";
+import { notifyError } from "~/components/Notification";
 
 const { Title } = Typography;
 
@@ -59,21 +54,34 @@ export default function LectureForm({ id }) {
     });
   }, [events]);
 
+  useEffect(() => {
+    if (id !== "new") {
+      listEvents().then((response) => {
+        const event = response.data.find((event) => event.id === id);
+        setSelectedEvent(event);
+      });
+    }
+  }, [id]);
+
   const onFinish = (values) => {
-    if (id) {
+    if (Object.keys(selectedEvent).length != 0) {
       api
-        .createLecture(id, values)
+        .createLecture(values)
         .then(() => {
           router.push("/admin/lectures");
         })
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError("Ocorreu um erro", "Não foi possível criar uma lecture");
+        });
     } else {
       api
         .createLecture(values)
         .then((response) => {
           router.push("/admin/lectures");
         })
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError("Ocorreu um erro", "Não foi possível criar uma lecture");
+        });
     }
   };
 
@@ -109,30 +117,53 @@ export default function LectureForm({ id }) {
             form={form}
             onFinish={onFinish}
           >
-            <Form.Item
-              label="Evento"
-              name="lecture[event_id]"
-              rules={[{ required: true }]}
-            >
-              <Select
-                placeholder="Escolha um evento"
-                style={{ width: "75%" }}
-                onChange={setSelectedEvent}
-                value={
-                  Object.keys(selectedEvent).length === 0
-                    ? undefined
-                    : selectedEvent
-                }
+            {id === "new" ? (
+              <Form.Item
+                label="Evento"
+                name="lecture[event_id]"
+                rules={[{ required: true }]}
               >
-                {events.map((event) => (
-                  <Select.Option key={event.id} value={event.id}>
+                <Select
+                  placeholder={"Escolha um evento"}
+                  style={{ width: "75%" }}
+                  onChange={setSelectedEvent}
+                  value={
+                    Object.keys(selectedEvent).length === 0
+                      ? undefined
+                      : selectedEvent
+                  }
+                >
+                  {events.map((event) => (
+                    <Select.Option key={event.id} value={event.id}>
+                      <div>
+                        {`${event.title} - ${event.start_time} - ${event.end_time}`}
+                      </div>
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            ) : (
+              <Form.Item
+                label="Evento"
+                name="lecture[event_id]"
+                rules={[{ required: true }]}
+              >
+                <Select
+                  placeholder={"Escolha um evento"}
+                  style={{ width: "75%" }}
+                  value={selectedEvent}
+                >
+                  <Select.Option
+                    key={selectedEvent.id}
+                    value={selectedEvent.id}
+                  >
                     <div>
-                      {`${event.title} - ${event.start_time} - ${event.end_time}`}
+                      {`${selectedEvent.title} - ${selectedEvent.start_time} - ${selectedEvent.end_time}`}
                     </div>
                   </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
+                </Select>
+              </Form.Item>
+            )}
 
             <Form.Item
               label="Ninja"
