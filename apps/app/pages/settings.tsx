@@ -56,6 +56,7 @@ function Settings() {
       .then((response) => setSkills(response.data))
       .catch((error) => notification["error"](error.data?.errors));
   };
+
   const getUserSkills = useCallback(() => {
     switch (user?.role) {
       case EUser.Mentor:

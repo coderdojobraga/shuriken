@@ -1,4 +1,5 @@
 export * from "./api";
+export * from "./admin";
 export * from "./auth";
 export * from "./availabilities";
 export * from "./badges";

@@ -30,11 +30,11 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
   const getUserProfileUrl = (user: IUser | undefined) => {
     switch (user?.role) {
       case EUser.Guardian:
-        return `/guardian/${user.guardian_id}`;
+        return `guardian/${user.guardian_id}`;
       case EUser.Mentor:
-        return `/mentor/${user.mentor_id}`;
+        return `mentor/${user.mentor_id}`;
       case EUser.Ninja:
-        return `/ninja/${user.ninja_id}`;
+        return `ninja/${user.ninja_id}`;
     }
 
     return "/";
@@ -131,7 +131,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
                   title="Utilizadores"
                 >
                   <Item key="/ninjas">Ninjas</Item>
-                  <Item key="/mentors">Mentores</Item>
+                  <Item key="/admin/mentors">Mentores</Item>
                   <Item key="/guardians">Guardiões</Item>
                 </SubMenu>
                 <SubMenu icon={<CalendarOutlined />} title="Eventos">
