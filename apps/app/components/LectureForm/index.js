@@ -71,7 +71,7 @@ export default function LectureForm({ id }) {
           router.push("/admin/lectures");
         })
         .catch((error) => {
-          notifyError("Ocorreu um erro", "Não foi possível criar uma lecture");
+          notifyError("Ocorreu um erro", "Não foi possível criar a sessão");
         });
     } else {
       api
@@ -80,7 +80,7 @@ export default function LectureForm({ id }) {
           router.push("/admin/lectures");
         })
         .catch((error) => {
-          notifyError("Ocorreu um erro", "Não foi possível criar uma lecture");
+          notifyError("Ocorreu um erro", "Não foi possível criar a sessão");
         });
     }
   };
@@ -88,7 +88,7 @@ export default function LectureForm({ id }) {
   return (
     <>
       <Row justify="space-between">
-        <Title level={2}>Nova Sessão</Title>
+        <Title level={2}>Nova sessão</Title>
         <Space>
           <Link href="/admin/lectures">
             <Button

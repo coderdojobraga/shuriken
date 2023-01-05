@@ -12,6 +12,7 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
   const [errors, setErrors] = useState<any | IErrors>();
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isFirstLoading, setFirstLoading] = useState<boolean>(true);
+  console.log(isFirstLoading);
 
   useEffect(() => {
     api

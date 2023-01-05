@@ -138,8 +138,6 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
                 <SubMenu icon={<CalendarOutlined />} title="Eventos">
                   <Item key="/events">Listar eventos</Item>
                   <Item key="/admin/event">Criar evento</Item>
-                  <Item key="/admin/lectures">Listar sessões</Item>
-                  <Item key="/admin/lectures/new">Criar sessão</Item>
                 </SubMenu>
                 <SubMenu icon={<UsergroupAddOutlined />} title="Sessões">
                   <Item key="/admin/lectures">Listar sessões</Item>

@@ -127,7 +127,7 @@ const Event = ({
                   <Button type="primary">Info</Button>
                 </Link>
                 <Link href={`/admin/lectures/${event.id}`}>
-                  <Button type="primary">Criar Lecture</Button>
+                  <Button type="primary">Criar sessão</Button>
                 </Link>
               </>
             ) : enrollmentsStillOpen() && !details ? (
