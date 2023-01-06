@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  Button,
-  Col,
-  Form,
-  Row,
-  Select,
-  Space,
-  Typography,
-  notification,
-} from "antd";
+import { Button, Col, Form, Row, Select, Space, Typography } from "antd";
 import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
-import { getNinjaEvents, listEvents, listMentors } from "bokkenjs";
+import {
+  getNinjaEvents,
+  listEvents,
+  listLectures,
+  listMentors,
+} from "bokkenjs";
 import * as api from "bokkenjs";
 import { notifyError } from "~/components/Notification";
 
@@ -39,21 +35,6 @@ export default function LectureForm({ id }) {
     });
   }, []);
 
-  const [ninjas, setNinjas] = useState([]);
-  useEffect(() => {
-    events.map((event) => {
-      getNinjaEvents(event.id).then((response) => {
-        setNinjas((ninjas) => [...ninjas, ...response.data]);
-        setNinjas((ninjas) => {
-          return ninjas.filter(
-            (ninja, index, self) =>
-              index === self.findIndex((t) => t.id === ninja.id)
-          );
-        });
-      });
-    });
-  }, [events]);
-
   useEffect(() => {
     if (id !== "new") {
       listEvents().then((response) => {
@@ -63,24 +44,52 @@ export default function LectureForm({ id }) {
     }
   }, [id]);
 
+  const [lectures, setLectures] = useState([]);
+  useEffect(() => {
+    listLectures().then((response) => {
+      setLectures(response.data);
+    });
+  }, []);
+
+  const [ninjas, setNinjas] = useState([]);
+
+  useEffect(() => {
+    events.map(
+      (event) => {
+        getNinjaEvents(event.id).then((response) => {
+          setNinjas((ninjas) => [...ninjas, ...response.data]);
+
+          setNinjas((ninjas) => {
+            return ninjas.filter(
+              (ninja, index, self) =>
+                index === self.findIndex((t) => t.id === ninja.id)
+            );
+          });
+        });
+      },
+      [events]
+    );
+  });
+
+  const filteredNinjas = ninjas.filter((ninja) => {
+    const lecture = lectures.find(
+      (lecture) =>
+        lecture.ninja.id === ninja.id && lecture.event.id === selectedEvent.id
+    );
+    return !lecture;
+  });
+
   const onFinish = (values) => {
     if (Object.keys(selectedEvent).length != 0) {
       api
         .createLecture(values)
         .then(() => {
+          notifyInfo("Sessão criada com sucesso.");
           router.push("/admin/lectures");
         })
         .catch((error) => {
           notifyError("Ocorreu um erro", "Não foi possível criar a sessão");
-        });
-    } else {
-      api
-        .createLecture(values)
-        .then((response) => {
           router.push("/admin/lectures");
-        })
-        .catch((error) => {
-          notifyError("Ocorreu um erro", "Não foi possível criar a sessão");
         });
     }
   };
@@ -180,7 +189,7 @@ export default function LectureForm({ id }) {
                     : selectedNinja
                 }
               >
-                {ninjas.map((ninja) => (
+                {filteredNinjas.map((ninja) => (
                   <Select.Option key={ninja.id} value={ninja.id}>
                     <div>{`${ninja.first_name} ${ninja.last_name}  `}</div>
                   </Select.Option>

@@ -17,6 +17,8 @@ import {
   EnvironmentOutlined,
   HomeOutlined,
   PlusOutlined,
+  UserAddOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 
 const { Title } = Typography;
@@ -138,7 +140,7 @@ function Lectures() {
                 labelStyle={labelStyle}
                 label={
                   <span>
-                    <EnvironmentOutlined /> Ninja
+                    <UserAddOutlined /> Ninja
                   </span>
                 }
                 span={1}
@@ -151,7 +153,7 @@ function Lectures() {
                 labelStyle={labelStyle}
                 label={
                   <span>
-                    <HomeOutlined /> Mentor
+                    <UserOutlined /> Mentor
                   </span>
                 }
               >
