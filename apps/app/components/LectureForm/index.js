@@ -53,31 +53,38 @@ export default function LectureForm({ id }) {
 
   const [ninjas, setNinjas] = useState([]);
 
+  let promise;
+
+  const fetchData = () => {
+    if (!promise) {
+      promise = Promise.all(events.map((event) => getNinjaEvents(event.id)));
+    }
+    return promise;
+  };
+
   useEffect(() => {
-    events.map(
-      (event) => {
-        getNinjaEvents(event.id).then((response) => {
-          setNinjas((ninjas) => [...ninjas, ...response.data]);
+    fetchData().then((responses) => {
+      const allNinjas = responses.flatMap((response) => response.data);
+      setNinjas(
+        allNinjas.filter(
+          (ninja, index, self) =>
+            index === self.findIndex((t) => t.id === ninja.id)
+        )
+      );
+    });
+  }, [events]);
 
-          setNinjas((ninjas) => {
-            return ninjas.filter(
-              (ninja, index, self) =>
-                index === self.findIndex((t) => t.id === ninja.id)
-            );
-          });
-        });
-      },
-      [events]
-    );
-  });
-
-  const filteredNinjas = ninjas.filter((ninja) => {
-    const lecture = lectures.find(
-      (lecture) =>
-        lecture.ninja.id === ninja.id && lecture.event.id === selectedEvent.id
-    );
-    return !lecture;
-  });
+  const [filteredNinjas, setFilteredNinjas] = useState([]);
+  useEffect(() => {
+    const filtered = ninjas.filter((ninja) => {
+      const lecture = lectures.find(
+        (lecture) =>
+          lecture.ninja.id === ninja.id && lecture.event.id === selectedEvent.id
+      );
+      return !lecture;
+    });
+    setFilteredNinjas(filtered);
+  }, [ninjas, selectedEvent, lectures]);
 
   const onFinish = (values) => {
     if (Object.keys(selectedEvent).length != 0) {
