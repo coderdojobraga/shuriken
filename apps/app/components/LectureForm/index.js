@@ -91,7 +91,7 @@ export default function LectureForm({ id }) {
       api
         .createLecture(values)
         .then(() => {
-          notifyInfo("Sessão criada com sucesso.");
+          notifyInfo("Sessão criada com sucesso");
           router.push("/admin/lectures");
         })
         .catch((error) => {

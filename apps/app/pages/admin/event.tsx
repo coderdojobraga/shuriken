@@ -38,7 +38,7 @@ function CreateEvent() {
       .catch((error) => {
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível obter as localizações."
+          "Não foi possível obter as localizações"
         );
       });
   }, []);
