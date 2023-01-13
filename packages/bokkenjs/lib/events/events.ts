@@ -37,3 +37,9 @@ export async function createEvent(values: any) {
 
   return response.data;
 }
+
+export async function notify_selected() {
+  const response = await API.post("/api/notify_selected");
+  console.log(response.data);
+  return response.data;
+}

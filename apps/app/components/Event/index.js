@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import EventInfo from "~/components/Event/EventInfo";
 import { useAuth } from "@coderdojobraga/ui";
-import { EUser } from "bokkenjs";
+import { EUser, notify_selected } from "bokkenjs";
 
 const { useBreakpoint } = Grid;
 
@@ -120,6 +120,11 @@ const Event = ({
               </Descriptions>
             ) : (
               <EventInfo {...event} />
+            )}
+            {role === EUser.Organizer ? (
+                <Button onClick = {() => notify_selected()} type="primary">Notificar</Button>
+            ) : (
+              <></>
             )}
             {role === EUser.Organizer ? (
               <Link href={`/admin/event/${event.id}`}>
