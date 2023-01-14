@@ -151,9 +151,7 @@ export default function LectureForm({ id }) {
                 >
                   {events.map((event) => (
                     <Select.Option key={event.id} value={event.id}>
-                      <div>
-                        {`${event.title} - ${event.start_time} - ${event.end_time}`}
-                      </div>
+                      <div>{`${event.title}`}</div>
                     </Select.Option>
                   ))}
                 </Select>
@@ -173,9 +171,7 @@ export default function LectureForm({ id }) {
                     key={selectedEvent.id}
                     value={selectedEvent.id}
                   >
-                    <div>
-                      {`${selectedEvent.title} - ${selectedEvent.start_time} - ${selectedEvent.end_time}`}
-                    </div>
+                    <div>{`${selectedEvent.title}`}</div>
                   </Select.Option>
                 </Select>
               </Form.Item>
