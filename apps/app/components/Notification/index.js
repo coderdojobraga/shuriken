@@ -7,3 +7,11 @@ export function notifyInfo(message, description) {
     duration: 5,
   });
 }
+
+export function notifyError(message, description) {
+  notification.error({
+    message: message,
+    description: description,
+    duration: 5,
+  });
+}

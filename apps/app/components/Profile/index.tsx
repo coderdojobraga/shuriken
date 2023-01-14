@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import {
   Avatar,
   Col,
@@ -14,14 +13,19 @@ import {
 } from "antd";
 import { ClockCircleOutlined, UserOutlined } from "@ant-design/icons";
 import moment from "moment";
+import "moment/locale/pt";
 import Badge from "~/components/Badge";
 import Belt from "~/components/Belt";
 import Document from "~/components/Document";
 import * as api from "bokkenjs";
 import * as socials from "~/lib/social";
-
+import { notifyError, notifyInfo } from "~/components/Notification";
 import styles from "./style.module.css";
 import { EUser } from "bokkenjs";
+
+import { BsFileEarmarkPersonFill } from "react-icons/bs";
+
+import { getIcon } from "~/lib/utils";
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
@@ -36,35 +40,65 @@ function Profile({ id, role }: Props) {
   const [badges, setBadges] = useState<any[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
+  const [date, setDate] = useState<String>("");
 
   useEffect(() => {
     api
       .getUserByRole({ id, role })
       .then((response) => setInfo(response.data))
-      .catch((error) => notification["error"](error.data?.errors));
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter os dados do utilizador"
+        );
+      });
 
     if (role == EUser.Mentor) {
       api
         .getMentorSkills(id)
         .then((response) => setSkills(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os conhecimentos do mentor"
+          );
+        });
     } else if (role == EUser.Ninja) {
       api
         .getNinjaBadges(id)
         .then((response) => setBadges(response.data))
-        .catch((error) => {});
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os crachás do ninja"
+          );
+        });
 
       api
         .getNinjaFiles(id)
         .then((response) => setProjects(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os ficheiros do ninja"
+          );
+        });
 
       api
         .getNinjaSkills(id)
         .then((response) => setSkills(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter as linguagens do ninja"
+          );
+        });
     }
   }, [id, role]);
+
+  useEffect(() => {
+    setDate(moment(info.since).format("DD/MM/YYYY"));
+  }, [info]);
 
   return (
     <>
@@ -90,14 +124,11 @@ function Profile({ id, role }: Props) {
             </Col>
             <Col span={24}>
               <Title className={styles.capitalize} level={4}>
-                {role}
+                <BsFileEarmarkPersonFill /> {role}
               </Title>
             </Col>
-
             <Col span={24}>
-              {skills.map((s) => (
-                <Tag key={s.id}>{s.name}</Tag>
-              ))}
+              <Title level={5}>Conta criada em: {date}</Title>
             </Col>
 
             {"belt" in info && (
@@ -107,20 +138,34 @@ function Profile({ id, role }: Props) {
             )}
 
             <Col span={24}>
-              <Space style={{ fontSize: 30 }}>
-                {info?.socials?.map((social: any) => (
-                  <a
-                    key={social.id}
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`${
-                      socials.URLS[social.name as keyof typeof socials.URLS]
-                    }/${social.username}`}
-                  >
-                    {socials.ICONS[social.name as keyof typeof socials.URLS]}
-                  </a>
-                ))}
+              <Space style={{ fontSize: 20 }}>
+                {info?.socials?.map((social: any) =>
+                  social?.name == "discord" || social?.name == "slack" ? (
+                    <a title={social.username}>
+                      {socials.ICONS[social.name as keyof typeof socials.URLS]}
+                    </a>
+                  ) : (
+                    <a
+                      key={social.id}
+                      target="_blank"
+                      rel="noreferrer"
+                      href={`${
+                        socials.URLS[social.name as keyof typeof socials.URLS]
+                      }/${social.username}`}
+                    >
+                      {socials.ICONS[social.name as keyof typeof socials.URLS]}
+                    </a>
+                  )
+                )}
               </Space>
+            </Col>
+
+            <Col span={24}>
+              {skills.map((s) => (
+                <Tag key={s.id}>
+                  {getIcon(s.name)} {s.name}
+                </Tag>
+              ))}
             </Col>
           </Row>
         </Space>

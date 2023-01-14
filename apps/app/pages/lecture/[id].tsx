@@ -18,6 +18,7 @@ import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import moment from "moment";
 import { EUser } from "bokkenjs";
+import { notifyError, notifyInfo } from "~/components/Notification";
 
 function Lectures() {
   const { Title, Text } = Typography;
@@ -28,8 +29,16 @@ function Lectures() {
   const onFinish = (values: any) => {
     api
       .updateLecture(id as string, values)
-      .then(() => router.push("/"))
-      .catch((error) => notification["error"](error.data?.errors));
+      .then(() => {
+        notifyInfo("Os dados da sessão foram atualizados com sucesso", "");
+        router.push("/");
+      })
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível atualizar os dados da sessão"
+        );
+      });
   };
 
   const [lecture, setLecture] = useState<any>({});
@@ -38,7 +47,9 @@ function Lectures() {
     api
       .getLecture(id as string)
       .then((response) => setLecture(response.data))
-      .catch((error) => notification["error"](error.data?.errors));
+      .catch((error) => {
+        notifyError("Ocorreu um erro", "Não foi obter os dados da sessão");
+      });
   }, [id]);
 
   let attendance = "";

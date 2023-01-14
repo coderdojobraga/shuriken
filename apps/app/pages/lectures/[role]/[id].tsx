@@ -8,6 +8,7 @@ import AppLayout from "~/layouts/AppLayout";
 import * as api from "bokkenjs";
 import moment from "moment";
 import { EUser } from "bokkenjs";
+import { notifyError } from "~/components/Notification";
 
 const { Title, Text } = Typography;
 
@@ -24,13 +25,23 @@ function Lectures() {
         api
           .getMentorLectures(id as string)
           .then((response) => setLectures(response.data))
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível obter as sessões do mentor"
+            );
+          });
         break;
       case EUser.Ninja:
         api
           .getNinjaLectures(id as string)
           .then((response) => setLectures(response.data))
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível obter as sessões do ninja"
+            );
+          });
         break;
       default:
         router.push("/404");
@@ -40,7 +51,12 @@ function Lectures() {
       api
         .getNinja(id as string)
         .then((response) => setNinja(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os dados do ninja"
+          );
+        });
     }
   }, [router, role, id]);
 
