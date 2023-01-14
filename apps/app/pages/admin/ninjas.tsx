@@ -5,10 +5,10 @@ import AppLayout from "~/layouts/AppLayout";
 import {
   Avatar,
   Checkbox,
-  Input,
   Form,
-  Table,
+  Input,
   Popconfirm,
+  Table,
   Typography,
   notification,
 } from "antd";
