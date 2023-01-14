@@ -13,20 +13,19 @@ import {
   notification,
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { getMentorsAsAdmin, updateMentorAsAdmin } from "bokkenjs";
+import { getGuardiansAsAdmin, updateGuardianAsAdmin } from "bokkenjs";
 import moment from "moment";
 
 const { Title } = Typography;
 
 interface Item {
   key: string;
-  mentor_id: string;
+  guardian_id: string;
   photo: any;
   name: string;
-  email: string;
-  birthday: string;
   mobile: string;
-  major: string;
+  city: string;
+  email: string;
   active: boolean;
   verified: boolean;
   registered: boolean;
@@ -96,23 +95,23 @@ const EditableCell: React.FC<EditableCellProps> = ({
   );
 };
 
-function Mentors() {
+function Guardians() {
   const [form] = Form.useForm();
-  const [mentors, setMentors] = useState<Item[]>([]);
+  const [guardians, setGuardians] = useState<Item[]>([]);
 
   const [editingKey, setEditingKey] = useState<string>("");
   const isEditing = (record: Item) => record.key === editingKey;
 
   useEffect(() => {
-    getMentorsAsAdmin()
+    getGuardiansAsAdmin()
       .then((response: any) => {
-        setMentors(
-          response.data.map((mentor: any) => {
+        setGuardians(
+          response.data.map((guardian: any) => {
             return {
-              ...mentor,
-              name: `${mentor.first_name} ${mentor.last_name}`,
-              key: mentor.user_id,
-              mentor_id: mentor.id,
+              ...guardian,
+              name: `${guardian.first_name} ${guardian.last_name}`,
+              key: guardian.user_id,
+              guardian_id: guardian.id,
             };
           })
         );
@@ -126,7 +125,7 @@ function Mentors() {
       email: "",
       birthday: "",
       mobile: "",
-      major: "",
+      city: "",
       verified: false,
       active: false,
       registered: false,
@@ -141,7 +140,7 @@ function Mentors() {
     setEditingKey("");
   };
 
-  const save = async (key: React.Key, mentor_id: string) => {
+  const save = async (key: React.Key, guardian_id: string) => {
     const row = (await form.validateFields()) as Item;
 
     const user = {
@@ -151,16 +150,16 @@ function Mentors() {
       registered: row.registered,
     };
 
-    const mentor = {
-      id: mentor_id,
+    const guardian = {
+      id: guardian_id,
     };
 
     const data = {
       user,
-      mentor,
+      guardian,
     };
 
-    updateMentorAsAdmin(data);
+    updateGuardianAsAdmin(data);
 
     setEditingKey("");
   };
@@ -183,19 +182,13 @@ function Mentors() {
       editable: false,
     },
     {
-      title: "Data de nascimento",
-      dataIndex: "birthday",
-      editable: false,
-      render: (birthday: string) => moment(birthday).format("DD-MM-YYYY"),
-    },
-    {
       title: "Número de telemóvel",
       dataIndex: "mobile",
       editable: false,
     },
     {
-      title: "Curso",
-      dataIndex: "major",
+      title: "Cidade",
+      dataIndex: "city",
       editable: false,
     },
     {
@@ -231,7 +224,7 @@ function Mentors() {
         return editable ? (
           <span>
             <Typography.Link
-              onClick={() => save(record.key, record.mentor_id)}
+              onClick={() => save(record.key, record.guardian_id)}
               style={{ marginRight: 8 }}
             >
               Guardar
@@ -245,7 +238,7 @@ function Mentors() {
           </span>
         ) : (
           <span>
-            <Link href={`/profile/mentor/${record?.mentor_id}`}>
+            <Link href={`/profile/guardian/${record?.guardian_id}`}>
               <a style={{ marginRight: 8 }}>Ver</a>
             </Link>
             <Typography.Link
@@ -281,7 +274,7 @@ function Mentors() {
 
   return (
     <AppLayout>
-      <Title level={2}>Mentores</Title>
+      <Title level={2}>Guardiões</Title>
       <Form form={form} component={false}>
         <Table
           components={{
@@ -290,7 +283,7 @@ function Mentors() {
             },
           }}
           bordered
-          dataSource={mentors}
+          dataSource={guardians}
           columns={mergedColumns}
           pagination={{
             onChange: cancel,
@@ -301,4 +294,4 @@ function Mentors() {
   );
 }
 
-export default withAuth(Mentors);
+export default withAuth(Guardians);

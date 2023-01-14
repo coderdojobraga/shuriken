@@ -6,10 +6,42 @@ export async function getMentorsAsAdmin() {
   return response.data;
 }
 
-export async function updateUserAsAdmin(values: any) {
+export async function updateMentorAsAdmin(values: any) {
   const data = Object.assign({}, values);
 
   const response = await API.post("api/admin/mentor", data, {
+    headers: undefined,
+  });
+
+  return response.data;
+}
+
+export async function getNinjasAsAdmin() {
+  const response = await API.get(`/api/admin/ninjas`);
+
+  return response.data;
+}
+
+export async function updateNinjaAsAdmin(values: any) {
+  const data = Object.assign({}, values);
+
+  const response = await API.post("api/admin/ninja", data, {
+    headers: undefined,
+  });
+
+  return response.data;
+}
+
+export async function getGuardiansAsAdmin() {
+  const response = await API.get(`/api/admin/guardians`);
+
+  return response.data;
+}
+
+export async function updateGuardianAsAdmin(values: any) {
+  const data = Object.assign({}, values);
+
+  const response = await API.post("api/admin/guardian", data, {
     headers: undefined,
   });
 

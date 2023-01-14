@@ -13,20 +13,18 @@ import {
   notification,
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { getMentorsAsAdmin, updateMentorAsAdmin } from "bokkenjs";
+import { getNinjasAsAdmin, updateNinjaAsAdmin } from "bokkenjs";
 import moment from "moment";
 
 const { Title } = Typography;
 
 interface Item {
   key: string;
-  mentor_id: string;
+  ninja_id: string;
   photo: any;
   name: string;
   email: string;
   birthday: string;
-  mobile: string;
-  major: string;
   active: boolean;
   verified: boolean;
   registered: boolean;
@@ -96,23 +94,23 @@ const EditableCell: React.FC<EditableCellProps> = ({
   );
 };
 
-function Mentors() {
+function Ninjas() {
   const [form] = Form.useForm();
-  const [mentors, setMentors] = useState<Item[]>([]);
+  const [ninjas, setNinjas] = useState<Item[]>([]);
 
   const [editingKey, setEditingKey] = useState<string>("");
   const isEditing = (record: Item) => record.key === editingKey;
 
   useEffect(() => {
-    getMentorsAsAdmin()
+    getNinjasAsAdmin()
       .then((response: any) => {
-        setMentors(
-          response.data.map((mentor: any) => {
+        setNinjas(
+          response.data.map((ninja: any) => {
             return {
-              ...mentor,
-              name: `${mentor.first_name} ${mentor.last_name}`,
-              key: mentor.user_id,
-              mentor_id: mentor.id,
+              ...ninja,
+              name: `${ninja.first_name} ${ninja.last_name}`,
+              key: ninja.user_id,
+              ninja_id: ninja.id,
             };
           })
         );
@@ -125,8 +123,6 @@ function Mentors() {
       name: "",
       email: "",
       birthday: "",
-      mobile: "",
-      major: "",
       verified: false,
       active: false,
       registered: false,
@@ -141,7 +137,7 @@ function Mentors() {
     setEditingKey("");
   };
 
-  const save = async (key: React.Key, mentor_id: string) => {
+  const save = async (key: React.Key, ninja_id: string) => {
     const row = (await form.validateFields()) as Item;
 
     const user = {
@@ -151,16 +147,16 @@ function Mentors() {
       registered: row.registered,
     };
 
-    const mentor = {
-      id: mentor_id,
+    const ninja = {
+      id: ninja_id,
     };
 
     const data = {
       user,
-      mentor,
+      ninja,
     };
 
-    updateMentorAsAdmin(data);
+    updateNinjaAsAdmin(data);
 
     setEditingKey("");
   };
@@ -187,16 +183,6 @@ function Mentors() {
       dataIndex: "birthday",
       editable: false,
       render: (birthday: string) => moment(birthday).format("DD-MM-YYYY"),
-    },
-    {
-      title: "Número de telemóvel",
-      dataIndex: "mobile",
-      editable: false,
-    },
-    {
-      title: "Curso",
-      dataIndex: "major",
-      editable: false,
     },
     {
       title: "Verificado",
@@ -231,7 +217,7 @@ function Mentors() {
         return editable ? (
           <span>
             <Typography.Link
-              onClick={() => save(record.key, record.mentor_id)}
+              onClick={() => save(record.key, record.ninja_id)}
               style={{ marginRight: 8 }}
             >
               Guardar
@@ -245,7 +231,7 @@ function Mentors() {
           </span>
         ) : (
           <span>
-            <Link href={`/profile/mentor/${record?.mentor_id}`}>
+            <Link href={`/profile/ninja/${record?.ninja_id}`}>
               <a style={{ marginRight: 8 }}>Ver</a>
             </Link>
             <Typography.Link
@@ -281,7 +267,7 @@ function Mentors() {
 
   return (
     <AppLayout>
-      <Title level={2}>Mentores</Title>
+      <Title level={2}>Ninjas</Title>
       <Form form={form} component={false}>
         <Table
           components={{
@@ -290,7 +276,7 @@ function Mentors() {
             },
           }}
           bordered
-          dataSource={mentors}
+          dataSource={ninjas}
           columns={mergedColumns}
           pagination={{
             onChange: cancel,
@@ -301,4 +287,4 @@ function Mentors() {
   );
 }
 
-export default withAuth(Mentors);
+export default withAuth(Ninjas);

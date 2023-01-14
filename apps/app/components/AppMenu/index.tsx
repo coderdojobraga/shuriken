@@ -130,9 +130,9 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
                   icon={<UserOutlined />}
                   title="Utilizadores"
                 >
-                  <Item key="/ninjas">Ninjas</Item>
+                  <Item key="/admin/ninjas">Ninjas</Item>
                   <Item key="/admin/mentors">Mentores</Item>
-                  <Item key="/guardians">Guardiões</Item>
+                  <Item key="/admin/guardians">Guardiões</Item>
                 </SubMenu>
                 <SubMenu icon={<CalendarOutlined />} title="Eventos">
                   <Item key="/events">Listar eventos</Item>
