@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Button, Col, Form, Row, Select, Space, Typography } from "antd";
@@ -10,8 +10,7 @@ import {
   listMentors,
 } from "bokkenjs";
 import * as api from "bokkenjs";
-import { notifyError } from "~/components/Notification";
-
+import { notifyError, notifyInfo } from "~/components/Notification";
 const { Title } = Typography;
 
 export default function LectureForm({ id }) {
@@ -75,16 +74,31 @@ export default function LectureForm({ id }) {
   }, [events]);
 
   const [filteredNinjas, setFilteredNinjas] = useState([]);
+  const handleEventChange = useCallback(
+    (event) => {
+      setSelectedEvent(event);
+      const filtered = ninjas.filter((ninja) => {
+        const lecture = lectures.find(
+          (lecture) =>
+            lecture.ninja.id === ninja.id && lecture.event.id === event
+        );
+        return !lecture;
+      });
+      setFilteredNinjas(filtered);
+    },
+    [ninjas, lectures]
+  );
+
   useEffect(() => {
     const filtered = ninjas.filter((ninja) => {
       const lecture = lectures.find(
         (lecture) =>
-          lecture.ninja.id === ninja.id && lecture.event.id === selectedEvent.id
+          lecture.ninja.id === ninja.id && lecture.event.id === selectedEvent
       );
       return !lecture;
     });
     setFilteredNinjas(filtered);
-  }, [ninjas, selectedEvent, lectures]);
+  }, [ninjas, selectedEvent, lectures, handleEventChange]);
 
   const onFinish = (values) => {
     if (Object.keys(selectedEvent).length != 0) {
@@ -92,7 +106,6 @@ export default function LectureForm({ id }) {
         .createLecture(values)
         .then(() => {
           notifyInfo("Sessão criada com sucesso");
-          router.push("/admin/lectures");
         })
         .catch((error) => {
           notifyError("Ocorreu um erro", "Não foi possível criar a sessão");
@@ -142,7 +155,7 @@ export default function LectureForm({ id }) {
                 <Select
                   placeholder={"Escolha um evento"}
                   style={{ width: "75%" }}
-                  onChange={setSelectedEvent}
+                  onChange={handleEventChange}
                   value={
                     Object.keys(selectedEvent).length === 0
                       ? undefined
