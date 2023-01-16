@@ -52,3 +52,9 @@ export async function listLectures() {
 
   return response.data;
 }
+
+export async function deleteLecture(lecture_id: string) {
+  const response = await API.delete(`/api/lectures/${lecture_id}`);
+
+  return response.data;
+}

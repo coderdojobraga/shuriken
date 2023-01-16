@@ -14,6 +14,7 @@ import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import * as api from "bokkenjs";
 import {
+  CloseOutlined,
   EnvironmentOutlined,
   HomeOutlined,
   PlusOutlined,
@@ -30,6 +31,7 @@ type Event = {
 };
 
 type Lecture = {
+  id: string;
   event: Event;
   mentor: {
     id: string;
@@ -100,6 +102,17 @@ function Lectures() {
     }
   }, [selectedLectures, locations]);
 
+  // call api to delete lecture
+  const deleteLecture = (lecture: Lecture) => {
+    api
+      .deleteLecture(lecture.id)
+      .then(() => {
+        setSelectedLectures(
+          selectedLectures.filter((l) => l.id !== lecture.id)
+        );
+      })
+      .catch(() => {});
+  };
   return (
     <AppLayout>
       <Row justify="space-between">
@@ -129,6 +142,16 @@ function Lectures() {
         <Card
           title={lecture.event?.title}
           style={{ maxWidth: 460, margin: 15 }}
+          extra={
+            <Button
+              type="primary"
+              shape="circle"
+              icon={<CloseOutlined />}
+              onClick={() => {
+                deleteLecture(lecture);
+              }}
+            />
+          }
         >
           <Space
             align="end"
