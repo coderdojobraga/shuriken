@@ -21,6 +21,7 @@ import { withAuth } from "~/components/Auth";
 import * as api from "bokkenjs";
 import { useRouter } from "next/router";
 import TextArea from "antd/lib/input/TextArea";
+
 const { Title } = Typography;
 
 function CreateEvent() {
@@ -47,7 +48,7 @@ function CreateEvent() {
       .getTeams()
       .then((response) => setTeams(response.data))
       .catch((error) => {
-        notifyError("Ocorreu um erro", "Não foi possível obter as equipas");
+        notifyError("Ocorreu um erro", "Não foi possível obter as equipas.");
       });
   }, []);
 
@@ -78,7 +79,7 @@ function CreateEvent() {
       )
       .then(() => router.push("/events"))
       .catch((error) => {
-        notifyError("Ocorreu um erro", "Não foi possível criar o evento");
+        notifyError("Ocorreu um erro", "Não foi possível criar o evento.");
       });
   };
 

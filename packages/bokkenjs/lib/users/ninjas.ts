@@ -12,6 +12,12 @@ export async function getNinjas() {
   return response.data;
 }
 
+export async function getNinjaEvents(id: string) {
+  const response = await API.get(`/api/events/${id}/ninjas`);
+
+  return response.data;
+}
+
 export async function createNinja(values: any) {
   const data = new FormData();
 
@@ -34,7 +40,6 @@ export async function createNinja(values: any) {
   }
 
   const response = await API.post("/api/ninjas", data, { headers: undefined });
-
   return response.data;
 }
 
