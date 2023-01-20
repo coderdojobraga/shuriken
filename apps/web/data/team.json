@@ -11,7 +11,7 @@
   },
   {
     "picture": "vitorlelis.jpg",
-    "name": "Vitor Lélis",
+    "name": "Vitor Lelis",
     "role": "Co-Champion"
   },
   {
@@ -90,6 +90,11 @@
     "role": "Mentor"
   },
   {
+    "picture": "joséoliveira.jpg",
+    "name": "José Oliveira",
+    "role": "Mentor"
+  },
+  {
     "picture": "lararegina.jpg",
     "name": "Lara Regina",
     "role": "Mentora"
@@ -102,6 +107,11 @@
   {
     "picture": "mariorodrigues.jpg",
     "name": "Mário Rodrigues",
+    "role": "Mentor"
+  },
+  {
+    "picture": "martimferreira.jpg",
+    "name": "Martim Ferreira",
     "role": "Mentor"
   },
   {
