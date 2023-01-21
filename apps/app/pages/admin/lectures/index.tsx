@@ -102,7 +102,6 @@ function Lectures() {
     }
   }, [selectedLectures, locations]);
 
-  // call api to delete lecture
   const deleteLecture = (lecture: Lecture) => {
     api
       .deleteLecture(lecture.id)
@@ -113,6 +112,7 @@ function Lectures() {
       })
       .catch(() => {});
   };
+
   return (
     <AppLayout>
       <Row justify="space-between">
