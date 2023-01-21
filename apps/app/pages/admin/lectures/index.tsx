@@ -5,6 +5,7 @@ import {
   Card,
   Descriptions,
   Grid,
+  Popconfirm,
   Row,
   Select,
   Space,
@@ -116,7 +117,7 @@ function Lectures() {
   return (
     <AppLayout>
       <Row justify="space-between">
-        <Title level={2}>Criar uma Sessão</Title>
+        <Title level={2}>Sessões</Title>
         <Link href="/admin/lectures/new">
           <Button
             shape="circle"
@@ -128,9 +129,18 @@ function Lectures() {
       </Row>
       <Row justify="space-around" gutter={[10, 10]}>
         <Select
+          showSearch
           defaultValue="Selecione um Evento"
           style={{ width: 400 }}
           onChange={setSelectedEvent}
+          filterOption={(input, option) =>
+            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+          }
+          optionFilterProp="children"
+          options={events.map((event) => ({
+            label: event.title,
+            value: event.id,
+          }))}
           value={selectedEvent == "" ? undefined : selectedEvent}
         >
           {events.map((event) => (
@@ -143,14 +153,16 @@ function Lectures() {
           title={lecture.event?.title}
           style={{ maxWidth: 460, margin: 15 }}
           extra={
-            <Button
-              type="primary"
-              shape="circle"
-              icon={<CloseOutlined />}
-              onClick={() => {
+            <Popconfirm
+              title="Tem certeza que deseja excluir essa sessão?"
+              onConfirm={() => {
                 deleteLecture(lecture);
               }}
-            />
+              okText="Sim"
+              cancelText="Não"
+            >
+              <Button type="primary" shape="circle" icon={<CloseOutlined />} />
+            </Popconfirm>
           }
         >
           <Space
