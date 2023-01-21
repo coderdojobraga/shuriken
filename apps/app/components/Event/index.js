@@ -122,9 +122,14 @@ const Event = ({
               <EventInfo {...event} />
             )}
             {role === EUser.Organizer ? (
-              <Link href={`/admin/event/${event.id}`}>
-                <Button type="primary">Info</Button>
-              </Link>
+              <>
+                <Link href={`/admin/event/${event.id}`}>
+                  <Button type="primary">Info</Button>
+                </Link>
+                <Link href={`/admin/lectures/${event.id}`}>
+                  <Button type="primary">Criar sessão</Button>
+                </Link>
+              </>
             ) : enrollmentsStillOpen() && !details ? (
               <Link href={`event/${event.id}`}>
                 <Button type="primary">Inscrever</Button>

@@ -37,3 +37,9 @@ export async function createEvent(values: any) {
 
   return response.data;
 }
+
+export async function listEvents() {
+  const response = await API.get(`/api/events`);
+
+  return response.data;
+}
