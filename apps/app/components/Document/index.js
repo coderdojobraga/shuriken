@@ -71,7 +71,7 @@ function Document({ id, title, description, document, editable = false, onFileDe
                 }}
               />,
               <Link key="download" target="_blank" href={document}>
-                <DownloadOutlined aria-label="Download File" />
+                <DownloadOutlined />
               </Link>,
             ]
           : isEditing
