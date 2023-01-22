@@ -1,22 +1,49 @@
 import { useState } from "react";
 import Link from "next/link";
-import { Card, Input } from "antd";
+import { Card, Input, Modal } from "antd";
 import {
   CloseOutlined,
   DownloadOutlined,
   EditOutlined,
   PaperClipOutlined,
   SaveOutlined,
+  DeleteOutlined,
+  ExclamationCircleFilled,
 } from "@ant-design/icons";
 import { notifyError, notifyInfo } from "~/components/Notification";
 import * as api from "bokkenjs";
 
 const { Meta } = Card;
 
-function Document({ id, title, description, document, editable = false }) {
+function Document({ id, title, description, document, editable = false, onFileDeletion }) {
   const [isEditing, setEditing] = useState(false);
   const [doc, setDoc] = useState({ title, description });
   const [info, setInfo] = useState({ title, description });
+
+  const { confirm } = Modal;
+
+  const showDeleteConfirmationModal = () => {
+    confirm({
+      width: '30rem',
+      title: 'Tens a certeza que queres apagar este ficheiro?',
+      icon: <ExclamationCircleFilled />,
+      content: 'Após confirmares não será possível recuperar o ficheiro!',
+      okText: 'Apagar',
+      okType: 'danger',
+      cancelText: 'Cancelar',
+      onOk: deleteFile,
+    });
+  }
+
+  const deleteFile = async () => {
+    try {
+      await api.deleteFile(id);
+      onFileDeletion(id);
+      notifyInfo("O ficheiro foi apagado com sucesso");
+    } catch (error) {
+      notifyError("Ocorreu um erro", "Não foi possível apagar o ficheiro");
+    }
+  }
 
   const updateInfo = () => {
     api
@@ -37,8 +64,14 @@ function Document({ id, title, description, document, editable = false }) {
       actions={
         !editable
           ? [
+              <DeleteOutlined
+                key="delete"
+                onClick={() => {
+                  showDeleteConfirmationModal();
+                }}
+              />,
               <Link key="download" target="_blank" href={document}>
-                <DownloadOutlined />
+                <DownloadOutlined aria-label="Download File" />
               </Link>,
             ]
           : isEditing
@@ -48,6 +81,12 @@ function Document({ id, title, description, document, editable = false }) {
                 onClick={() => {
                   setInfo(doc);
                   setEditing(!isEditing);
+                }}
+              />,
+              <DeleteOutlined
+                key="delete"
+                onClick={() => {
+                  showDeleteConfirmationModal();
                 }}
               />,
               <SaveOutlined
