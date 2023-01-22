@@ -107,7 +107,11 @@ function Lectures() {
             </Row>
             <Row align="middle" gutter={[16, 16]}>
               <Col>
-                <Text>{`Ninja: ${lecture.ninja.first_name} ${lecture.ninja.last_name}`}</Text>
+                <Link href={`/profile/ninja/${lecture.ninja.id}`}>
+                  <a>
+                    <Text>{`Ninja: ${lecture.ninja.first_name} ${lecture.ninja.last_name}`}</Text>
+                  </a>
+                </Link>
               </Col>
             </Row>
           </Card>
