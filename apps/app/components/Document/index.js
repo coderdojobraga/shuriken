@@ -3,12 +3,12 @@ import Link from "next/link";
 import { Card, Input, Modal } from "antd";
 import {
   CloseOutlined,
+  DeleteOutlined,
   DownloadOutlined,
   EditOutlined,
+  ExclamationCircleFilled,
   PaperClipOutlined,
   SaveOutlined,
-  DeleteOutlined,
-  ExclamationCircleFilled,
 } from "@ant-design/icons";
 import { notifyError, notifyInfo } from "~/components/Notification";
 import * as api from "bokkenjs";
