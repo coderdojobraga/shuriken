@@ -32,6 +32,12 @@ export async function editFile(id: string, data: any) {
   return response.data;
 }
 
+export async function deleteFile(id: string) {
+  const response = await API.delete(`/api/files/${id}`);
+
+  return response.data;
+}
+
 export async function getNinjaFiles(ninja_id: string) {
   const response = await API.get(`/api/ninjas/${ninja_id}/files`);
 
