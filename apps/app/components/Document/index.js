@@ -27,7 +27,7 @@ function Document({ id, title, description, document, editable = false, onFileDe
       width: '30rem',
       title: 'Tens a certeza que queres apagar este ficheiro?',
       icon: <ExclamationCircleFilled />,
-      content: 'Após confirmares não será possível recuperar o ficheiro!',
+      content: 'Após confirmares, não será possível recuperar o ficheiro!',
       okText: 'Apagar',
       okType: 'danger',
       cancelText: 'Cancelar',
