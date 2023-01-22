@@ -15,7 +15,14 @@ import * as api from "bokkenjs";
 
 const { Meta } = Card;
 
-function Document({ id, title, description, document, editable = false, onFileDeletion }) {
+function Document({
+  id,
+  title,
+  description,
+  document,
+  editable = false,
+  onFileDeletion,
+}) {
   const [isEditing, setEditing] = useState(false);
   const [doc, setDoc] = useState({ title, description });
   const [info, setInfo] = useState({ title, description });
@@ -24,16 +31,16 @@ function Document({ id, title, description, document, editable = false, onFileDe
 
   const showDeleteConfirmationModal = () => {
     confirm({
-      width: '30rem',
-      title: 'Tens a certeza que queres apagar este ficheiro?',
+      width: "30rem",
+      title: "Tens a certeza que queres apagar este ficheiro?",
       icon: <ExclamationCircleFilled />,
-      content: 'Após confirmares, não será possível recuperar o ficheiro!',
-      okText: 'Apagar',
-      okType: 'danger',
-      cancelText: 'Cancelar',
+      content: "Após confirmares, não será possível recuperar o ficheiro!",
+      okText: "Apagar",
+      okType: "danger",
+      cancelText: "Cancelar",
       onOk: deleteFile,
     });
-  }
+  };
 
   const deleteFile = async () => {
     try {
@@ -43,7 +50,7 @@ function Document({ id, title, description, document, editable = false, onFileDe
     } catch (error) {
       notifyError("Ocorreu um erro", "Não foi possível apagar o ficheiro");
     }
-  }
+  };
 
   const updateInfo = () => {
     api
