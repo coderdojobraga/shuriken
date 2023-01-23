@@ -154,7 +154,7 @@ function Lectures() {
           style={{ maxWidth: 460, margin: 15 }}
           extra={
             <Popconfirm
-              title="Tem certeza que deseja excluir essa sessão?"
+              title="Tens a certeza que queres eliminar esta sessão?"
               onConfirm={() => {
                 deleteLecture(lecture);
               }}
