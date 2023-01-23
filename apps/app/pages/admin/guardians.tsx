@@ -1,20 +1,26 @@
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { withAuth } from "~/components/Auth";
-import AppLayout from "~/layouts/AppLayout";
+import { SearchOutlined, UserOutlined } from "@ant-design/icons";
+import type { InputRef } from "antd";
 import {
   Avatar,
+  Button,
   Checkbox,
   Form,
   Input,
   Popconfirm,
+  Space,
   Table,
   Typography,
-  notification,
 } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import type { ColumnType } from "antd/es/table";
+import { FilterConfirmProps } from "antd/lib/table/interface";
 import { getGuardiansAsAdmin, updateGuardianAsAdmin } from "bokkenjs";
 import moment from "moment";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import Highlighter from "react-highlight-words";
+import { withAuth } from "~/components/Auth";
+import { notifyError } from "~/components/Notification";
+import AppLayout from "~/layouts/AppLayout";
 
 const { Title } = Typography;
 
@@ -102,6 +108,10 @@ function Guardians() {
   const [editingKey, setEditingKey] = useState<string>("");
   const isEditing = (record: Item) => record.key === editingKey;
 
+  const [searchText, setSearchText] = useState<string>("");
+  const [searchedColumn, setSearchedColumn] = useState<string>("");
+  const searchInput = useRef<InputRef>(null);
+
   useEffect(() => {
     getGuardiansAsAdmin()
       .then((response: any) => {
@@ -116,7 +126,12 @@ function Guardians() {
           })
         );
       })
-      .catch((error: any) => notification["error"](error.data?.errors));
+      .catch((_error) =>
+        notifyError(
+          "Ocorre um erro",
+          "Não foi possível obter os dados dos guardiões"
+        )
+      );
   }, [editingKey]);
 
   const edit = (record: Partial<Item> & { key: React.Key }) => {
@@ -164,6 +179,102 @@ function Guardians() {
     setEditingKey("");
   };
 
+  const handleSearch = (
+    selectedKeys: string[],
+    confirm: (param?: FilterConfirmProps) => void,
+    dataIndex: string
+  ) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+
+  const handleReset = (clearFilters: () => void) => {
+    clearFilters();
+    setSearchText("");
+  };
+
+  const getColumnSearchProps = (dataIndex: string): ColumnType<any> => ({
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters,
+    }) => (
+      <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
+        <Input
+          ref={searchInput}
+          placeholder={`Pesquisar ${
+            dataIndex == "email" ? "e-mail" : dataIndex
+          }`}
+          value={selectedKeys[0]}
+          onChange={(e) =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
+          onPressEnter={() =>
+            handleSearch(selectedKeys as string[], confirm, dataIndex)
+          }
+          style={{ marginBottom: 8, display: "block" }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() =>
+              handleSearch(selectedKeys as string[], confirm, dataIndex)
+            }
+            icon={<SearchOutlined />}
+            size="small"
+            style={{ width: 100 }}
+          >
+            Pesquisar
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{ width: 90 }}
+          >
+            Resetar
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              confirm({ closeDropdown: false });
+              setSearchText((selectedKeys as string[])[0]);
+              setSearchedColumn(dataIndex);
+            }}
+          >
+            Filtrar
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered: boolean) => (
+      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex]
+        .toString()
+        .toLowerCase()
+        .includes((value as string).toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ""}
+        />
+      ) : (
+        text
+      ),
+  });
+
   const columns = [
     {
       title: "Foto",
@@ -175,11 +286,13 @@ function Guardians() {
       title: "Nome",
       dataIndex: "name",
       editable: false,
+      ...getColumnSearchProps("name"),
     },
     {
       title: "E-mail",
       dataIndex: "email",
       editable: false,
+      ...getColumnSearchProps("email"),
     },
     {
       title: "Número de telemóvel",
@@ -214,6 +327,9 @@ function Guardians() {
       dataIndex: "since",
       editable: false,
       render: (since: string) => moment(since).format("DD-MM-YYYY"),
+      sorter: (a: Item, b: Item) =>
+        moment(a.since).unix() - moment(b.since).unix(),
+      defaultSortOrder: "descend",
     },
     {
       title: "Ações",
@@ -253,7 +369,7 @@ function Guardians() {
     },
   ];
 
-  const mergedColumns = columns.map((col) => {
+  const mergedColumns = columns.map((col: any) => {
     if (!col.editable) {
       return col;
     }

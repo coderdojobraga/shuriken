@@ -1,7 +1,6 @@
-import { SearchOutlined, UserOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import type { InputRef } from "antd";
 import {
-  Avatar,
   Button,
   Checkbox,
   Form,
@@ -13,9 +12,8 @@ import {
 } from "antd";
 import type { ColumnType } from "antd/es/table";
 import { FilterConfirmProps } from "antd/lib/table/interface";
-import { getNinjasAsAdmin, updateNinjaAsAdmin } from "bokkenjs";
+import { getUsersAsAdmin, updateUserAsAdmin } from "bokkenjs";
 import moment from "moment";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { withAuth } from "~/components/Auth";
@@ -26,11 +24,9 @@ const { Title } = Typography;
 
 interface Item {
   key: string;
-  ninja_id: string;
-  photo: any;
-  name: string;
+  user_id: string;
   email: string;
-  birthday: string;
+  role: string;
   active: boolean;
   verified: boolean;
   registered: boolean;
@@ -100,9 +96,9 @@ const EditableCell: React.FC<EditableCellProps> = ({
   );
 };
 
-function Ninjas() {
+function Users() {
   const [form] = Form.useForm();
-  const [ninjas, setNinjas] = useState<Item[]>([]);
+  const [users, setUsers] = useState<Item[]>([]);
 
   const [editingKey, setEditingKey] = useState<string>("");
   const isEditing = (record: Item) => record.key === editingKey;
@@ -112,32 +108,28 @@ function Ninjas() {
   const searchInput = useRef<InputRef>(null);
 
   useEffect(() => {
-    getNinjasAsAdmin()
+    getUsersAsAdmin()
       .then((response: any) => {
-        setNinjas(
-          response.data.map((ninja: any) => {
+        setUsers(
+          response.data.map((user: any) => {
             return {
-              ...ninja,
-              name: `${ninja.first_name} ${ninja.last_name}`,
-              key: ninja.user_id,
-              ninja_id: ninja.id,
+              ...user,
+              key: user.id,
             };
           })
         );
       })
-      .catch((_error) =>
+      .catch((_error: any) =>
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível obter os dados dos ninjas"
+          "Não foi possível obter os dados dos utilizadores"
         )
       );
   }, [editingKey]);
 
   const edit = (record: Partial<Item> & { key: React.Key }) => {
     form.setFieldsValue({
-      name: "",
       email: "",
-      birthday: "",
       verified: false,
       active: false,
       registered: false,
@@ -152,7 +144,7 @@ function Ninjas() {
     setEditingKey("");
   };
 
-  const save = async (key: React.Key, ninja_id: string) => {
+  const save = async (key: React.Key) => {
     const row = (await form.validateFields()) as Item;
 
     const user = {
@@ -162,16 +154,7 @@ function Ninjas() {
       registered: row.registered,
     };
 
-    const ninja = {
-      id: ninja_id,
-    };
-
-    const data = {
-      user,
-      ninja,
-    };
-
-    updateNinjaAsAdmin(data);
+    updateUserAsAdmin(user);
 
     setEditingKey("");
   };
@@ -274,28 +257,46 @@ function Ninjas() {
 
   const columns = [
     {
-      title: "Foto",
-      dataIndex: "photo",
-      render: (photo: any) => <Avatar src={photo} icon={<UserOutlined />} />,
-      editable: false,
-    },
-    {
-      title: "Nome",
-      dataIndex: "name",
-      editable: false,
-      ...getColumnSearchProps("name"),
-    },
-    {
       title: "E-mail",
       dataIndex: "email",
       editable: false,
       ...getColumnSearchProps("email"),
     },
     {
-      title: "Data de nascimento",
-      dataIndex: "birthday",
+      title: "Tipo",
+      dataIndex: "role",
       editable: false,
-      render: (birthday: string) => moment(birthday).format("DD-MM-YYYY"),
+      render: (role: string) => {
+        switch (role) {
+          case "mentor":
+            return "Mentor";
+          case "ninja":
+            return "Ninja";
+          case "guardian":
+            return "Guardião";
+          case "organizer":
+            return "Organizador";
+        }
+      },
+      filters: [
+        {
+          text: "Mentor",
+          value: "mentor",
+        },
+        {
+          text: "Ninja",
+          value: "ninja",
+        },
+        {
+          text: "Guardião",
+          value: "guardian",
+        },
+        {
+          text: "Organizador",
+          value: "organizer",
+        },
+      ],
+      onFilter: (value: any, record: Item) => record.role.indexOf(value) === 0,
     },
     {
       title: "Verificado",
@@ -308,6 +309,8 @@ function Ninjas() {
       dataIndex: "active",
       editable: true,
       render: (active: boolean) => <Checkbox checked={active} />,
+      sorter: (a: any, b: any) => a.active - b.active,
+      defaultSortOrder: "ascend",
     },
     {
       title: "Registado",
@@ -320,9 +323,6 @@ function Ninjas() {
       dataIndex: "since",
       editable: false,
       render: (since: string) => moment(since).format("DD-MM-YYYY"),
-      sorter: (a: Item, b: Item) =>
-        moment(a.since).unix() - moment(b.since).unix(),
-      defaultSortOrder: "descend",
     },
     {
       title: "Ações",
@@ -333,7 +333,7 @@ function Ninjas() {
         return editable ? (
           <span>
             <Typography.Link
-              onClick={() => save(record.key, record.ninja_id)}
+              onClick={() => save(record.key)}
               style={{ marginRight: 8 }}
             >
               Guardar
@@ -347,9 +347,6 @@ function Ninjas() {
           </span>
         ) : (
           <span>
-            <Link href={`/profile/ninja/${record?.ninja_id}`}>
-              <a style={{ marginRight: 8 }}>Ver</a>
-            </Link>
             <Typography.Link
               disabled={editingKey !== ""}
               onClick={() => edit(record)}
@@ -383,7 +380,7 @@ function Ninjas() {
 
   return (
     <AppLayout>
-      <Title level={2}>Ninjas</Title>
+      <Title level={2}>Utilizadores</Title>
       <Form form={form} component={false}>
         <Table
           components={{
@@ -392,7 +389,7 @@ function Ninjas() {
             },
           }}
           bordered
-          dataSource={ninjas}
+          dataSource={users}
           columns={mergedColumns}
           pagination={{
             onChange: cancel,
@@ -403,4 +400,4 @@ function Ninjas() {
   );
 }
 
-export default withAuth(Ninjas);
+export default withAuth(Users);

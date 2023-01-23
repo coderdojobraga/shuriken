@@ -21,6 +21,7 @@
     "prettier:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx}\""
   },
   "devDependencies": {
+    "@types/react-highlight-words": "^0.16.4",
     "eslint-config-coderdojobraga": "*",
     "prettier": "latest",
     "prettier-plugin-tailwindcss": "latest",
@@ -30,6 +31,5 @@
     "npm": ">=7.0.0",
     "node": ">=16 <17"
   },
-  "dependencies": {},
   "packageManager": "npm@8.15.0"
 }

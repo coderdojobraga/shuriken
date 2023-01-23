@@ -134,6 +134,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
                   <Item key="/admin/ninjas">Ninjas</Item>
                   <Item key="/admin/mentors">Mentores</Item>
                   <Item key="/admin/guardians">Guardiões</Item>
+                  <Item key="/admin/users">Todos</Item>
                 </SubMenu>
                 <SubMenu icon={<CalendarOutlined />} title="Eventos">
                   <Item key="/events">Listar eventos</Item>

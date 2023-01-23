@@ -26,7 +26,7 @@ function Document({ id, title, description, document, editable = false }) {
         setInfo(response.data);
         notifyInfo("O ficheiro foi editado com sucesso");
       })
-      .catch((error) => {
+      .catch((_error) => {
         notifyError("Ocorreu um erro", "Não foi possível editar o ficheiro");
       });
   };

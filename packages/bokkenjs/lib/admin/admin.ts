@@ -1,5 +1,21 @@
 import { API } from "../api";
 
+export async function getUsersAsAdmin() {
+  const response = await API.get(`/api/admin/users`);
+
+  return response.data;
+}
+
+export async function updateUserAsAdmin(values: any) {
+  const data = Object.assign({}, values);
+
+  const response = await API.post("api/admin/user", data, {
+    headers: undefined,
+  });
+
+  return response.data;
+}
+
 export async function getMentorsAsAdmin() {
   const response = await API.get(`/api/admin/mentors`);
 
