@@ -7,6 +7,7 @@ import {
   DownloadOutlined,
   EditOutlined,
   ExclamationCircleFilled,
+  LoadingOutlined,
   PaperClipOutlined,
   SaveOutlined,
 } from "@ant-design/icons";
@@ -23,6 +24,7 @@ function Document({
   editable = false,
   onFileDeletion,
 }) {
+  const [isSaveLoading, setIsSaveLoading] = useState(false);
   const [isEditing, setEditing] = useState(false);
   const [doc, setDoc] = useState({ title, description });
   const [info, setInfo] = useState({ title, description });
@@ -52,17 +54,15 @@ function Document({
     }
   };
 
-  const updateInfo = () => {
-    api
-      .editFile(id, info)
-      .then((response) => {
-        setDoc(response.data);
-        setInfo(response.data);
-        notifyInfo("O ficheiro foi editado com sucesso");
-      })
-      .catch((error) => {
-        notifyError("Ocorreu um erro", "Não foi possível editar o ficheiro");
-      });
+  const updateInfo = async () => {
+    try {
+      const response = await api.editFile(id, info);
+      setDoc(response.data);
+      setInfo(response.data);
+      notifyInfo("O ficheiro foi editado com sucesso");
+    } catch (error) {
+      notifyError("Ocorreu um erro", "Não foi possível editar o ficheiro");
+    }
   };
 
   return (
@@ -96,13 +96,26 @@ function Document({
                   showDeleteConfirmationModal();
                 }}
               />,
-              <SaveOutlined
-                key="save"
-                onClick={() => {
-                  updateInfo();
-                  setEditing(!isEditing);
-                }}
-              />,
+              isSaveLoading ? (
+                <LoadingOutlined
+                  key="loading"
+                  spin
+                  style={{
+                    cursor: "default",
+                    color: "rgba(0, 0, 0, 0.45)",
+                  }}
+                />
+              ) : (
+                <SaveOutlined
+                  key="save"
+                  onClick={async () => {
+                    setIsSaveLoading(true);
+                    await updateInfo();
+                    setIsSaveLoading(false);
+                    setEditing(!isEditing);
+                  }}
+                />
+              ),
             ]
           : [
               <EditOutlined
