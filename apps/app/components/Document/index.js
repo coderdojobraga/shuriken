@@ -97,7 +97,14 @@ function Document({
                 }}
               />,
               isSaveLoading ? (
-                <LoadingOutlined key="loading" spin />
+                <LoadingOutlined
+                  key="loading"
+                  spin
+                  style={{
+                    cursor: "default",
+                    color: "rgba(0, 0, 0, 0.45)",
+                  }}
+                />
               ) : (
                 <SaveOutlined
                   key="save"
