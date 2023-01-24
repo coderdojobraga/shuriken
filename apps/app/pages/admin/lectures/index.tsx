@@ -148,69 +148,77 @@ function Lectures() {
           ))}
         </Select>
       </Row>
-      {selectedLectures.map((lecture) => (
-        <Card
-          title={lecture.event?.title}
-          style={{ maxWidth: 460, margin: 15 }}
-          extra={
-            <Popconfirm
-              title="Tens a certeza que queres eliminar esta sessão?"
-              onConfirm={() => {
-                deleteLecture(lecture);
-              }}
-              okText="Sim"
-              cancelText="Não"
-            >
-              <Button type="primary" shape="circle" icon={<CloseOutlined />} />
-            </Popconfirm>
-          }
-        >
-          <Space
-            align="end"
-            direction="horizontal"
-            wrap={(screens.sm && !screens.md) || screens.xs}
+      <Row>
+        {selectedLectures.map((lecture) => (
+          <Card
+            title={lecture.event?.title}
+            style={{ maxWidth: 460, margin: 15 }}
+            extra={
+              <Popconfirm
+                title="Tens a certeza que queres eliminar esta sessão?"
+                onConfirm={() => {
+                  deleteLecture(lecture);
+                }}
+                okText="Sim"
+                cancelText="Não"
+              >
+                <Button
+                  type="primary"
+                  shape="circle"
+                  icon={<CloseOutlined />}
+                />
+              </Popconfirm>
+            }
           >
-            <Descriptions size="small" column={1} layout="horizontal">
-              <Descriptions.Item
-                labelStyle={labelStyle}
-                label={
-                  <span>
-                    <UserAddOutlined /> Ninja
-                  </span>
-                }
-                span={1}
-              >
-                <Link href={`/profile/ninja/${lecture.ninja?.id}`}>
-                  {lecture.ninja?.first_name + " " + lecture.ninja?.last_name}
-                </Link>
-              </Descriptions.Item>
-              <Descriptions.Item
-                labelStyle={labelStyle}
-                label={
-                  <span>
-                    <UserOutlined /> Mentor
-                  </span>
-                }
-              >
-                <Link href={`/profile/mentor/${lecture.mentor?.id}`}>
-                  {lecture.mentor?.first_name + " " + lecture.mentor?.last_name}
-                </Link>
-              </Descriptions.Item>
-              <Descriptions.Item
-                labelStyle={labelStyle}
-                label={
-                  <span>
-                    <EnvironmentOutlined /> Localização
-                  </span>
-                }
-                span={1}
-              >
-                {selectedLocation?.address}
-              </Descriptions.Item>
-            </Descriptions>
-          </Space>
-        </Card>
-      ))}
+            <Space
+              align="end"
+              direction="horizontal"
+              wrap={(screens.sm && !screens.md) || screens.xs}
+            >
+              <Descriptions size="small" column={1} layout="horizontal">
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <UserAddOutlined /> Ninja
+                    </span>
+                  }
+                  span={1}
+                >
+                  <Link href={`/profile/ninja/${lecture.ninja?.id}`}>
+                    {lecture.ninja?.first_name + " " + lecture.ninja?.last_name}
+                  </Link>
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <UserOutlined /> Mentor
+                    </span>
+                  }
+                >
+                  <Link href={`/profile/mentor/${lecture.mentor?.id}`}>
+                    {lecture.mentor?.first_name +
+                      " " +
+                      lecture.mentor?.last_name}
+                  </Link>
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <EnvironmentOutlined /> Localização
+                    </span>
+                  }
+                  span={1}
+                >
+                  {selectedLocation?.address}
+                </Descriptions.Item>
+              </Descriptions>
+            </Space>
+          </Card>
+        ))}
+      </Row>
     </AppLayout>
   );
 }
