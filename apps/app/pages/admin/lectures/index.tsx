@@ -5,6 +5,7 @@ import {
   Card,
   Descriptions,
   Grid,
+  Modal,
   Popconfirm,
   Row,
   Select,
@@ -46,6 +47,8 @@ type Lecture = {
     last_name: string;
     photo: string;
   };
+  summary: string;
+  notes: string;
 };
 
 type Location = {
@@ -103,7 +106,6 @@ function Lectures() {
     }
   }, [selectedLectures, locations]);
 
-  // call api to delete lecture
   const deleteLecture = (lecture: Lecture) => {
     api
       .deleteLecture(lecture.id)
@@ -114,6 +116,23 @@ function Lectures() {
       })
       .catch(() => {});
   };
+
+  console.log(selectedLectures);
+  const [open, setOpen] = useState(false);
+  const showModal = () => {
+    setOpen(true);
+  };
+
+  const handleOk = () => {
+    setTimeout(() => {
+      setOpen(false);
+    }, 1);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
+
   return (
     <AppLayout>
       <Row justify="space-between">
@@ -153,6 +172,7 @@ function Lectures() {
           <Card
             title={lecture.event?.title}
             style={{ maxWidth: 460, margin: 15 }}
+            onClick={showModal}
             extra={
               <Popconfirm
                 title="Tens a certeza que queres eliminar esta sessão?"
@@ -216,6 +236,69 @@ function Lectures() {
                 </Descriptions.Item>
               </Descriptions>
             </Space>
+            <Modal
+              title={lecture.event?.title}
+              open={open}
+              onOk={handleOk}
+              onCancel={handleOk}
+            >
+              <Descriptions size="small" column={1} layout="horizontal">
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <UserAddOutlined /> Ninja
+                    </span>
+                  }
+                  span={1}
+                >
+                  <Link href={`/profile/ninja/${lecture.ninja?.id}`}>
+                    {lecture.ninja?.first_name + " " + lecture.ninja?.last_name}
+                  </Link>
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <UserOutlined /> Mentor
+                    </span>
+                  }
+                >
+                  <Link href={`/profile/mentor/${lecture.mentor?.id}`}>
+                    {lecture.mentor?.first_name +
+                      " " +
+                      lecture.mentor?.last_name}
+                  </Link>
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <EnvironmentOutlined /> Localização
+                    </span>
+                  }
+                  span={1}
+                >
+                  {selectedLocation?.address}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={<span>Notas</span>}
+                  span={1}
+                >
+                  {lecture?.notes == null ? "Não há notas" : lecture?.notes}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={<span>Sumário</span>}
+                  span={1}
+                >
+                  {lecture?.summary == null
+                    ? "Não há sumário"
+                    : lecture?.summary}
+                </Descriptions.Item>
+              </Descriptions>
+            </Modal>
           </Card>
         ))}
       </Row>
