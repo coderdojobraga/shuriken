@@ -118,6 +118,7 @@ function Lectures() {
   };
 
   console.log(selectedLectures);
+  console.log(selectedLectures[0]?.notes == null);
   const [open, setOpen] = useState(false);
   const showModal = () => {
     setOpen(true);
@@ -172,7 +173,6 @@ function Lectures() {
           <Card
             title={lecture.event?.title}
             style={{ maxWidth: 460, margin: 15 }}
-            onClick={showModal}
             extra={
               <Popconfirm
                 title="Tens a certeza que queres eliminar esta sessão?"
@@ -235,6 +235,10 @@ function Lectures() {
                   {selectedLocation?.address}
                 </Descriptions.Item>
               </Descriptions>
+              <Button type="primary" onClick={showModal}>
+                {" "}
+                Ver mais{" "}
+              </Button>
             </Space>
             <Modal
               title={lecture.event?.title}
@@ -281,20 +285,25 @@ function Lectures() {
                 >
                   {selectedLocation?.address}
                 </Descriptions.Item>
-                <Descriptions.Item
-                  labelStyle={labelStyle}
-                  label={<span>Notas</span>}
-                  span={1}
-                >
-                  {lecture?.notes == null ? "Não há notas" : lecture?.notes}
-                </Descriptions.Item>
+                {lecture?.notes != null ? (
+                  <Descriptions.Item
+                    labelStyle={labelStyle}
+                    label={<span>Notas</span>}
+                    span={1}
+                  >
+                    {lecture?.notes}
+                  </Descriptions.Item>
+                ) : (
+                  <></>
+                )}
+
                 <Descriptions.Item
                   labelStyle={labelStyle}
                   label={<span>Sumário</span>}
                   span={1}
                 >
                   {lecture?.summary == null
-                    ? "Não há sumário"
+                    ? "O mentor ainda não preencheu o sumário da sessão."
                     : lecture?.summary}
                 </Descriptions.Item>
               </Descriptions>
