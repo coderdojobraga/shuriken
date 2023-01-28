@@ -128,10 +128,6 @@ function Lectures() {
     }, 1);
   };
 
-  const handleCancel = () => {
-    setOpen(false);
-  };
-
   return (
     <AppLayout>
       <Row justify="space-between">
