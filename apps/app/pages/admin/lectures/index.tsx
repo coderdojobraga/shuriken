@@ -117,8 +117,6 @@ function Lectures() {
       .catch(() => {});
   };
 
-  console.log(selectedLectures);
-  console.log(selectedLectures[0]?.notes == null);
   const [open, setOpen] = useState(false);
   const showModal = () => {
     setOpen(true);
