@@ -5,6 +5,8 @@ import {
   Card,
   Descriptions,
   Grid,
+  Modal,
+  Popconfirm,
   Row,
   Select,
   Space,
@@ -45,6 +47,8 @@ type Lecture = {
     last_name: string;
     photo: string;
   };
+  summary: string;
+  notes: string;
 };
 
 type Location = {
@@ -102,7 +106,6 @@ function Lectures() {
     }
   }, [selectedLectures, locations]);
 
-  // call api to delete lecture
   const deleteLecture = (lecture: Lecture) => {
     api
       .deleteLecture(lecture.id)
@@ -113,10 +116,22 @@ function Lectures() {
       })
       .catch(() => {});
   };
+
+  const [open, setOpen] = useState(false);
+  const showModal = () => {
+    setOpen(true);
+  };
+
+  const handleOk = () => {
+    setTimeout(() => {
+      setOpen(false);
+    }, 1);
+  };
+
   return (
     <AppLayout>
       <Row justify="space-between">
-        <Title level={2}>Criar uma Sessão</Title>
+        <Title level={2}>Sessões</Title>
         <Link href="/admin/lectures/new">
           <Button
             shape="circle"
@@ -128,9 +143,18 @@ function Lectures() {
       </Row>
       <Row justify="space-around" gutter={[10, 10]}>
         <Select
+          showSearch
           defaultValue="Selecione um Evento"
           style={{ width: 400 }}
           onChange={setSelectedEvent}
+          filterOption={(input, option) =>
+            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+          }
+          optionFilterProp="children"
+          options={events.map((event) => ({
+            label: event.title,
+            value: event.id,
+          }))}
           value={selectedEvent == "" ? undefined : selectedEvent}
         >
           {events.map((event) => (
@@ -138,67 +162,149 @@ function Lectures() {
           ))}
         </Select>
       </Row>
-      {selectedLectures.map((lecture) => (
-        <Card
-          title={lecture.event?.title}
-          style={{ maxWidth: 460, margin: 15 }}
-          extra={
-            <Button
-              type="primary"
-              shape="circle"
-              icon={<CloseOutlined />}
-              onClick={() => {
-                deleteLecture(lecture);
-              }}
-            />
-          }
-        >
-          <Space
-            align="end"
-            direction="horizontal"
-            wrap={(screens.sm && !screens.md) || screens.xs}
+      <Row>
+        {selectedLectures.map((lecture) => (
+          <Card
+            title={lecture.event?.title}
+            style={{ maxWidth: 460, margin: 15 }}
+            extra={
+              <Popconfirm
+                title="Tens a certeza que queres eliminar esta sessão?"
+                onConfirm={() => {
+                  deleteLecture(lecture);
+                }}
+                okText="Sim"
+                cancelText="Não"
+              >
+                <Button
+                  type="primary"
+                  shape="circle"
+                  icon={<CloseOutlined />}
+                />
+              </Popconfirm>
+            }
           >
-            <Descriptions size="small" column={1} layout="horizontal">
-              <Descriptions.Item
-                labelStyle={labelStyle}
-                label={
-                  <span>
-                    <UserAddOutlined /> Ninja
-                  </span>
-                }
-                span={1}
-              >
-                <Link href={`/profile/ninja/${lecture.ninja?.id}`}>
-                  {lecture.ninja?.first_name + " " + lecture.ninja?.last_name}
-                </Link>
-              </Descriptions.Item>
-              <Descriptions.Item
-                labelStyle={labelStyle}
-                label={
-                  <span>
-                    <UserOutlined /> Mentor
-                  </span>
-                }
-              >
-                <Link href={`/profile/mentor/${lecture.mentor?.id}`}>
-                  {lecture.mentor?.first_name + " " + lecture.mentor?.last_name}
-                </Link>
-              </Descriptions.Item>
-              <Descriptions.Item
-                labelStyle={labelStyle}
-                label={
-                  <span>
-                    <EnvironmentOutlined /> Localização
-                  </span>
-                }
-                span={1}
-              >
-                {selectedLocation?.address}
-              </Descriptions.Item>
-            </Descriptions>
-          </Space>
-        </Card>
-      ))}
+            <Space
+              align="end"
+              direction="horizontal"
+              wrap={(screens.sm && !screens.md) || screens.xs}
+            >
+              <Descriptions size="small" column={1} layout="horizontal">
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <UserAddOutlined /> Ninja
+                    </span>
+                  }
+                  span={1}
+                >
+                  <Link href={`/profile/ninja/${lecture.ninja?.id}`}>
+                    {lecture.ninja?.first_name + " " + lecture.ninja?.last_name}
+                  </Link>
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <UserOutlined /> Mentor
+                    </span>
+                  }
+                >
+                  <Link href={`/profile/mentor/${lecture.mentor?.id}`}>
+                    {lecture.mentor?.first_name +
+                      " " +
+                      lecture.mentor?.last_name}
+                  </Link>
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <EnvironmentOutlined /> Localização
+                    </span>
+                  }
+                  span={1}
+                >
+                  {selectedLocation?.address}
+                </Descriptions.Item>
+              </Descriptions>
+              <Button type="primary" onClick={showModal}>
+                {" "}
+                Ver mais{" "}
+              </Button>
+            </Space>
+            <Modal
+              title={lecture.event?.title}
+              open={open}
+              onOk={handleOk}
+              onCancel={handleOk}
+            >
+              <Descriptions size="small" column={1} layout="horizontal">
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <UserAddOutlined /> Ninja
+                    </span>
+                  }
+                  span={1}
+                >
+                  <Link href={`/profile/ninja/${lecture.ninja?.id}`}>
+                    {lecture.ninja?.first_name + " " + lecture.ninja?.last_name}
+                  </Link>
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <UserOutlined /> Mentor
+                    </span>
+                  }
+                >
+                  <Link href={`/profile/mentor/${lecture.mentor?.id}`}>
+                    {lecture.mentor?.first_name +
+                      " " +
+                      lecture.mentor?.last_name}
+                  </Link>
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={
+                    <span>
+                      <EnvironmentOutlined /> Localização
+                    </span>
+                  }
+                  span={1}
+                >
+                  {selectedLocation?.address}
+                </Descriptions.Item>
+                {lecture?.notes != null ? (
+                  <Descriptions.Item
+                    labelStyle={labelStyle}
+                    label={<span>Notas</span>}
+                    span={1}
+                  >
+                    {lecture?.notes}
+                  </Descriptions.Item>
+                ) : (
+                  <></>
+                )}
+
+                <Descriptions.Item
+                  labelStyle={labelStyle}
+                  label={<span>Sumário</span>}
+                  span={1}
+                >
+                  {lecture?.summary == null
+                    ? "O mentor ainda não preencheu o sumário da sessão."
+                    : lecture?.summary}
+                </Descriptions.Item>
+              </Descriptions>
+            </Modal>
+          </Card>
+        ))}
+      </Row>
     </AppLayout>
   );
 }

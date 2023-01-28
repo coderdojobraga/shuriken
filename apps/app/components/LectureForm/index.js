@@ -89,6 +89,24 @@ export default function LectureForm({ id }) {
     [ninjas, lectures]
   );
 
+  const [filteredMentors, setFilteredMentors] = useState([]);
+  useEffect(() => {
+    const filtered = mentors.filter((mentor) => {
+      const lecture = lectures.find(
+        (lecture) =>
+          lecture.mentor.id === mentor.id && lecture.event.id === selectedEvent
+      );
+      return !lecture;
+    });
+    setFilteredMentors(filtered);
+  }, [mentors, selectedEvent, lectures, handleEventChange]);
+
+  useEffect(() => {
+    setFilteredNinjas(
+      filteredNinjas.sort((a, b) => a.first_name.localeCompare(b.first_name))
+    );
+  }, [filteredNinjas]);
+
   useEffect(() => {
     const filtered = ninjas.filter((ninja) => {
       const lecture = lectures.find(
@@ -99,6 +117,12 @@ export default function LectureForm({ id }) {
     });
     setFilteredNinjas(filtered);
   }, [ninjas, selectedEvent, lectures, handleEventChange]);
+
+  useEffect(() => {
+    setFilteredMentors(
+      filteredMentors.sort((a, b) => a.first_name.localeCompare(b.first_name))
+    );
+  }, [filteredMentors]);
 
   const onFinish = (values) => {
     if (Object.keys(selectedEvent).length != 0) {
@@ -153,8 +177,19 @@ export default function LectureForm({ id }) {
                 rules={[{ required: true }]}
               >
                 <Select
+                  showSearch
                   placeholder={"Escolha um evento"}
                   style={{ width: "75%" }}
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  optionFilterProp="children"
+                  options={events.map((event) => ({
+                    label: event.title,
+                    value: event.id,
+                  }))}
                   onChange={handleEventChange}
                   value={
                     Object.keys(selectedEvent).length === 0
@@ -176,6 +211,7 @@ export default function LectureForm({ id }) {
                 rules={[{ required: true }]}
               >
                 <Select
+                  showSearch
                   placeholder={"Escolha um evento"}
                   style={{ width: "75%" }}
                   value={selectedEvent}
@@ -196,6 +232,7 @@ export default function LectureForm({ id }) {
               rules={[{ required: true }]}
             >
               <Select
+                showSearch
                 placeholder="Escolha pelo menos um Ninja"
                 style={{ width: "75%" }}
                 onChange={setSelectedNinja}
@@ -204,6 +241,16 @@ export default function LectureForm({ id }) {
                     ? undefined
                     : selectedNinja
                 }
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                optionFilterProp="children"
+                options={filteredNinjas.map((ninja) => ({
+                  label: `${ninja.first_name} ${ninja.last_name}`,
+                  value: ninja.id,
+                }))}
               >
                 {filteredNinjas.map((ninja) => (
                   <Select.Option key={ninja.id} value={ninja.id}>
@@ -219,6 +266,7 @@ export default function LectureForm({ id }) {
               rules={[{ required: true }]}
             >
               <Select
+                showSearch
                 placeholder="Escolha pelo menos um Mentor"
                 style={{ width: "75%" }}
                 onChange={setSelectedMentor}
@@ -227,8 +275,18 @@ export default function LectureForm({ id }) {
                     ? undefined
                     : selectedMentor
                 }
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                optionFilterProp="children"
+                options={filteredMentors.map((mentor) => ({
+                  label: `${mentor.first_name} ${mentor.last_name}`,
+                  value: mentor.id,
+                }))}
               >
-                {mentors.map((mentor) => (
+                {filteredMentors.map((mentor) => (
                   <Select.Option key={mentor.id} value={mentor.id}>
                     <div>{`${mentor.first_name} ${mentor.last_name}  `}</div>
                   </Select.Option>
