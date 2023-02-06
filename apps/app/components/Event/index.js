@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import EventInfo from "~/components/Event/EventInfo";
 import { useAuth } from "@coderdojobraga/ui";
-import { EUser, notify_selected} from "bokkenjs";
+import { EUser, notify_selected } from "bokkenjs";
 
 const { useBreakpoint } = Grid;
 
@@ -120,6 +120,34 @@ const Event = ({
               </Descriptions>
             ) : (
               <EventInfo {...event} />
+            )}
+            {role === EUser.Organizer ? (
+              <Popconfirm
+                title="Tens a certeza que queres notificar?"
+                cancelText="Não"
+                okText="Sim"
+                onConfirm={(_) => notify_signup()}
+              >
+                <Button onClick={() => notify_signup()} type="primary">
+                  Notificar abertura
+                </Button>
+              </Popconfirm>
+            ) : (
+              <></>
+            )}
+            {role === EUser.Organizer ? (
+              <Popconfirm
+                title="Tens a certeza que queres notificar?"
+                cancelText="Não"
+                okText="Sim"
+                onConfirm={(_) => notify_selected()}
+              >
+                <Button onClick={() => notify_selected()} type="primary">
+                  Notificar selecionados
+                </Button>
+              </Popconfirm>
+            ) : (
+              <></>
             )}
             {role === EUser.Organizer ? (
               <>
