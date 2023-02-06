@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import EventInfo from "~/components/Event/EventInfo";
 import { useAuth } from "@coderdojobraga/ui";
-import { EUser, notify_selected } from "bokkenjs";
+import { EUser, notify_selected} from "bokkenjs";
 
 const { useBreakpoint } = Grid;
 
