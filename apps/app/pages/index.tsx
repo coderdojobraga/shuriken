@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import { Col, Row, Typography, notification } from "antd";
+import { Col, Row, Typography } from "antd";
 import { useAuth } from "@coderdojobraga/ui";
 import { withAuth } from "~/components/Auth/withAuth";
 import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
-import Badge from "~/components/Badge";
 import { useBadges } from "~/hooks/badges";
 import { EUser, getNinjas } from "bokkenjs";
 import Ninja from "~/components/Ninja";
 import { useEvents } from "~/hooks/events";
+import { notifyError } from "~/components/Notification";
 
 import styles from "~/styles/Dashboard.module.css";
+import moment from "moment";
 
 const { Title } = Typography;
 
@@ -22,11 +23,28 @@ function Dashboard() {
   const { data: events, isLoading: isLoadingEvents } = useEvents();
   const { data: badges, isLoading: isLoadingBadges } = useBadges();
 
+  const nextEvent = () => {
+    const cur = moment();
+
+    const sorted_events = events
+      .filter((e: any) => cur.diff(e.start_time) < 0)
+      .sort((e1: any, e2: any) => {
+        cur.diff(e1.start_time) > cur.diff(e2.start_time);
+      });
+
+    return sorted_events[0] != undefined ? sorted_events[0] : false;
+  };
+
   useEffect(() => {
     if (role === EUser.Guardian) {
       getNinjas()
         .then((response: any) => setNinjas(response.data))
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter informação sobre os seus ninjas"
+          );
+        });
     }
   }, [role]);
 
@@ -35,13 +53,15 @@ function Dashboard() {
       <Title level={2}>Painel Principal</Title>
       <Title level={3}>Próximo Evento</Title>
       <Row className={styles.row} align="top" justify="space-between">
-        {events?.length > 0 ? (
+        {events?.length > 0 && nextEvent() ? (
           <Event
-            event={events[0]}
+            event={nextEvent()}
             collapsed={false}
             isLoading={isLoadingEvents}
           />
-        ) : null}
+        ) : (
+          <Typography>Aguarda que o próximo evento seja divulgado</Typography>
+        )}
       </Row>
       <Title level={3}>Eventos</Title>
       <Row className={styles.row} align="top" justify="start" gutter={[16, 16]}>

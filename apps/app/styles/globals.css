@@ -1,15 +1,6 @@
+@import "~/styles/tailwind.css";
+
 @import "~/styles/antd.css";
-
-@import "koi/fish1-animation.css";
-@import "koi/fish2-animation.css";
-@import "koi/fish3-animation.css";
-@import "koi/fish4-animation.css";
-@import "koi/fish5-animation.css";
-@import "koi/koi-animation.css";
-@import "koi/silhouette-animation.css";
-
-@tailwind components;
-@tailwind utilities;
 
 html {
   overflow-x: hidden;

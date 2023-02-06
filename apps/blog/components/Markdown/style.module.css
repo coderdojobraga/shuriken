@@ -39,7 +39,7 @@
 }
 
 .markdown {
-  max-width: 1536px;
+  max-width: 700px;
   /*width: 100vw!important;*/
   height: auto;
   margin: auto;
@@ -47,16 +47,22 @@
 }
 
 .markdown h1 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
   font-size: 2.5rem !important;
   font-weight: bold;
 }
 
 .markdown h2 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
   font-size: 2rem !important;
   font-weight: bold;
 }
 
 .markdown h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
   font-size: 1.5rem !important;
   font-weight: bold;
 }
@@ -72,13 +78,22 @@
 
 .markdown ul {
   list-style: disc;
+  margin-block: 0.5rem;
+  padding-inline-start: 2rem;
 }
 
 .markdown ol {
   list-style: decimal;
+  margin-block: 0.5rem;
+  padding-inline-start: 2rem;
+}
+
+.markdown li {
+  margin-block: 0.5rem;
 }
 
 .markdown p {
+  margin-block: 0.5rem;
   font-size: 1rem;
   font-weight: normal;
 }
@@ -98,4 +113,26 @@
 .markdown img {
   max-width: 100%;
   height: auto;
+}
+
+.markdown blockquote {
+  margin-block: 0.75rem;
+  padding: 1rem;
+  background-color: rgb(248, 248, 248);
+  border-radius: 5px;
+  border-left: 5px solid rgb(148, 148, 148);
+}
+
+.dark blockquote {
+  background-color: rgb(41, 41, 41);
+  border-radius: 5px;
+  border-left: 5px solid rgb(97, 97, 97);
+}
+
+.markdown blockquote>p {
+  margin: 0;
+}
+
+.markdown hr {
+  margin-block: 2rem;
 }

@@ -16,8 +16,6 @@ function Login() {
 
   return (
     <Form name="login" onFinish={onFinish}>
-      <Koi />
-
       <Title>Iniciar sessão</Title>
       <Form.Item
         name="email"

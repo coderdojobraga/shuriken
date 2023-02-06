@@ -27,6 +27,9 @@ import Emoji from "~/components/Emoji";
 import styles from "./style.module.css";
 import { useState } from "react";
 import { EUser } from "bokkenjs";
+import { notifyError, notifyInfo } from "~/components/Notification";
+
+import { getIcon } from "~/lib/utils";
 
 const { Option } = Select;
 
@@ -45,16 +48,31 @@ function Register({ cities }: any) {
   const [isLoading, setLoading] = useState(false);
   const [errors, setErrors] = useState();
   const [avatar, setAvatar] = useState(null);
-  const [socials] = useState(["Codewars", "GitHub", "GitLab", "Scratch"]);
+  const [socials] = useState([
+    "Scratch",
+    "Codewars",
+    "GitHub",
+    "GitLab",
+    "Trello",
+    "Discord",
+    "Slack",
+  ]);
 
   const onFinish = (values: any) => {
     setLoading(true);
     api
       .registerUser(values)
       .then(() => {
+        notifyInfo("O registo foi concluído com sucesso", "");
         router.push("/dashboard");
       })
-      .catch((error) => setErrors(error?.data?.errors))
+      .catch((error) => {
+        setErrors(error?.data?.errors);
+        notifyError(
+          "Não foi possível completar o registo",
+          "Tente novamente mais tarde"
+        );
+      })
       .finally(() => setLoading(false));
   };
 
@@ -168,6 +186,16 @@ function Register({ cities }: any) {
               </Form.Item>
             )}
 
+            <Form.Item name="user[t_shirt]" label="Tamanho da T-Shirt">
+              <Select defaultValue="medium">
+                <Option value="extra_small">Muito Pequeno (XS)</Option>
+                <Option value="small">Pequeno (S)</Option>
+                <Option value="medium">Médio (M)</Option>
+                <Option value="large">Grande (L)</Option>
+                <Option value="extra_large">Muito Grande (XL)</Option>
+              </Select>
+            </Form.Item>
+
             <Form.Item
               name="user[photo]"
               label="Foto de perfil"
@@ -209,7 +237,7 @@ function Register({ cities }: any) {
                                   key={item}
                                   value={item.toLocaleLowerCase()}
                                 >
-                                  {item}
+                                  {getIcon(item)} {item}
                                 </Option>
                               ))}
                             </Select>

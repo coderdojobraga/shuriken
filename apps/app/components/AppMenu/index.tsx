@@ -13,9 +13,10 @@ import {
   StarOutlined,
   UserAddOutlined,
   UserOutlined,
+  UsergroupAddOutlined,
 } from "@ant-design/icons";
 import { useAuth } from "@coderdojobraga/ui";
-import { EUser } from "bokkenjs";
+import { EUser, IUser } from "bokkenjs";
 
 import styles from "./style.module.css";
 
@@ -26,6 +27,19 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
   const { user, logout } = useAuth();
   const router = useRouter();
   const { asPath } = router;
+
+  const getUserProfileUrl = (user: IUser | undefined) => {
+    switch (user?.role) {
+      case EUser.Guardian:
+        return `/guardian/${user.guardian_id}`;
+      case EUser.Mentor:
+        return `/mentor/${user.mentor_id}`;
+      case EUser.Ninja:
+        return `/ninja/${user.ninja_id}`;
+    }
+
+    return "/";
+  };
 
   // These states and handlers are needed in order to sync both menus.
   // Without this, each menu would behave independently
@@ -80,13 +94,17 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
         {!hidePrimaryMenu && (
           <>
             <div className={styles.user}>
-              <Avatar
-                src={user?.photo}
-                size="large"
-                alt="Avatar"
-                icon={<UserOutlined />}
-                className={styles.avatar}
-              />
+              <Link href={`/profile/${getUserProfileUrl(user)}`}>
+                <a>
+                  <Avatar
+                    src={user?.photo}
+                    size="large"
+                    alt="Avatar"
+                    icon={<UserOutlined />}
+                    className={styles.avatar}
+                  />
+                </a>
+              </Link>
               {!collapsed && (
                 <Title level={5}>
                   {`${user?.first_name} ${user?.last_name}`}
@@ -120,6 +138,10 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
                 <SubMenu icon={<CalendarOutlined />} title="Eventos">
                   <Item key="/events">Listar eventos</Item>
                   <Item key="/admin/event">Criar evento</Item>
+                </SubMenu>
+                <SubMenu icon={<UsergroupAddOutlined />} title="Sessões">
+                  <Item key="/admin/lectures">Listar sessões</Item>
+                  <Item key="/admin/lectures/new">Criar sessão</Item>
                 </SubMenu>
               </>
             )}

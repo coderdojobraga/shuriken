@@ -15,23 +15,41 @@ import {
   notification,
 } from "antd";
 import moment from "moment";
-import { UploadOutlined } from "@ant-design/icons";
+import {
+  MinusCircleOutlined,
+  PlusOutlined,
+  UploadOutlined,
+} from "@ant-design/icons";
 import { getBase64 } from "~/lib/images";
 import { useAuth } from "@coderdojobraga/ui";
+import { notifyError } from "~/components/Notification";
+import { getIcon } from "~/lib/utils";
 import {
   EUser,
   addMentorSkills,
   addNinjaSkills,
   deleteMentorSkills,
   deleteNinjaSkills,
+  getMentor,
   getMentorSkills,
   getNinjaSkills,
   getSkills,
 } from "bokkenjs";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
+import {
+  SiCodewars,
+  SiDiscord,
+  SiGithub,
+  SiGitlab,
+  SiPython,
+  SiScratch,
+  SiSlack,
+  SiTrello,
+} from "react-icons/si";
 
 const { Title } = Typography;
+const { Option } = Select;
 
 const Section = ({ title }: { title: string }) => (
   <Divider orientation="left">
@@ -50,12 +68,28 @@ function Settings() {
   const [userSkills, setUserSkills] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<any[]>([]);
+  const [mentorSocials, setMentorSocials] = useState([]);
+  const [socials] = useState([
+    "Scratch",
+    "Codewars",
+    "GitHub",
+    "GitLab",
+    "Trello",
+    "Discord",
+    "Slack",
+  ]);
 
   const getAllSkills = () => {
     getSkills()
       .then((response) => setSkills(response.data))
-      .catch((error) => notification["error"](error.data?.errors));
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter os conhecimentos"
+        );
+      });
   };
+
   const getUserSkills = useCallback(() => {
     switch (user?.role) {
       case EUser.Mentor:
@@ -64,15 +98,26 @@ function Settings() {
             setUserSkills(response.data);
             setSelectedSkills(response.data.map((skill: any) => skill.id));
           })
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível obter os conhecimentos"
+            );
+          });
         break;
+
       case EUser.Ninja:
         getNinjaSkills(user?.ninja_id!)
           .then((response) => {
             setUserSkills(response.data);
             setSelectedSkills(response.data.map((skill: any) => skill.id));
           })
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível obter as linguagens do ninja"
+            );
+          });
         break;
     }
   }, [user]);
@@ -82,12 +127,23 @@ function Settings() {
       case EUser.Mentor:
         deleteMentorSkills(user?.mentor_id!, skill_id)
           .then((_) => getUserSkills())
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível alterar os conhecimentos"
+            );
+          });
         break;
+
       case EUser.Ninja:
         deleteNinjaSkills(user?.ninja_id!, skill_id)
           .then((_) => getUserSkills())
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível alterar as linguagens"
+            );
+          });
         break;
     }
   };
@@ -97,12 +153,23 @@ function Settings() {
       case EUser.Mentor:
         addMentorSkills(user?.mentor_id!, skill_id)
           .then((_) => getUserSkills())
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível alterar os conhecimentos"
+            );
+          });
         break;
+
       case EUser.Ninja:
         addNinjaSkills(user?.ninja_id!, skill_id)
           .then((_) => getUserSkills())
-          .catch((error) => notification["error"](error.data?.errors));
+          .catch((error) => {
+            notifyError(
+              "Ocorreu um erro",
+              "Não foi possível alterar as linguagens"
+            );
+          });
         break;
     }
   };
@@ -115,6 +182,7 @@ function Settings() {
     for (const skill of deleted) {
       deleteSkill(skill);
     }
+
     const added = selectedSkills.filter(
       (skill) => !userSkills.map((s1: any) => s1.id).includes(skill)
     );
@@ -123,6 +191,19 @@ function Settings() {
       addSkill(skill);
     }
   };
+
+  useEffect(() => {
+    if (user?.role === EUser.Mentor) {
+      getMentor(user?.mentor_id!)
+        .then((response) => {
+          setMentorSocials(response.data?.socials);
+          formPersonal.setFieldsValue({
+            "user[socials]": response.data?.socials,
+          });
+        })
+        .catch((error) => notification["error"](error.data?.errors));
+    }
+  }, [user?.role, user?.mentor_id, formPersonal]);
 
   useEffect(() => {
     setAvatar(user?.photo);
@@ -218,7 +299,7 @@ function Settings() {
           </Col>
         </Row>
 
-        {user?.role == EUser.Guardian || (
+        {user?.role === EUser.Mentor && (
           <>
             <Section title="Conhecimentos" />
             <Row gutter={24}>
@@ -232,12 +313,61 @@ function Settings() {
                 >
                   {skills.map((skill: any) => (
                     <Select.Option key={skill.id} value={skill.id}>
-                      {skill.name}
+                      <div style={{ marginTop: "3px" }}>
+                        {getIcon(skill.name)} {skill.name}
+                      </div>
                     </Select.Option>
                   ))}
                 </Select>
               </Col>
             </Row>
+            <Section title="Redes Sociais" />
+            <Form.Item name="user[socials]" initialValue={mentorSocials}>
+              <Form.List name="user[socials]">
+                {(fields, { add, remove }) => (
+                  <Space direction="vertical" style={{ width: "100%" }}>
+                    {fields.map((field) => (
+                      <Space key={field.key} align="baseline">
+                        <Form.Item {...field} name={[field.name, "name"]}>
+                          <Select
+                            placeholder="Rede Social"
+                            style={{ width: 130 }}
+                          >
+                            {socials?.map((item: string) => (
+                              <Option
+                                key={item}
+                                value={item.toLocaleLowerCase()}
+                              >
+                                {getIcon(item)} {item}
+                              </Option>
+                            ))}
+                          </Select>
+                        </Form.Item>
+                        <Form.Item {...field} name={[field.name, "username"]}>
+                          <Input placeholder="Username" />
+                        </Form.Item>
+                        <MinusCircleOutlined
+                          onClick={() => {
+                            remove(field.name);
+                          }}
+                        />
+                      </Space>
+                    ))}
+
+                    <Form.Item>
+                      <Button
+                        type="dashed"
+                        onClick={() => add()}
+                        block
+                        icon={<PlusOutlined />}
+                      >
+                        Adicionar Rede Social
+                      </Button>
+                    </Form.Item>
+                  </Space>
+                )}
+              </Form.List>
+            </Form.Item>
           </>
         )}
       </Form>

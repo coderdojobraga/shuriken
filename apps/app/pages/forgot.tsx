@@ -5,6 +5,7 @@ import { Button, Form, Input, Typography, notification } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import Visibility from "~/components/Visibility";
 import * as api from "bokkenjs";
+import { notifyError } from "~/components/Notification";
 
 interface IFormFields {
   email: string;
@@ -24,14 +25,10 @@ const Forgot = () => {
         setRequestSent(true);
         setIsLoading(false);
       })
-      .catch((_) => {
-        notification.error({
-          message: "Ocorreu um erro",
-          description: "Tente novamente mais tarde.",
-          duration: 7,
-        });
-        setIsLoading(false);
-      });
+      .catch((error) => {
+        notifyError("Ocorreu um erro", "Tente novamente mais tarde");
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (

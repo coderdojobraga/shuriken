@@ -11,21 +11,26 @@
   },
   {
     "picture": "vitorlelis.jpg",
-    "name": "Vitor Lélis",
+    "name": "Vitor Lelis",
     "role": "Co-Champion"
   },
   {
-    "picture": "ruilopes.png",
+    "picture": "ruilopes.jpg",
     "name": "Rui Lopes",
     "role": "Responsável Tecnologia e Desenvolvimento"
   },
   {
-    "picture": "juliopinto.png",
+    "picture": "juliopinto.jpg",
     "name": "Júlio Pinto",
     "role": "Responsável Comunicação e Marketing"
   },
   {
-    "picture": "ninja.jpg",
+    "picture": "henriquepereira.jpg",
+    "name": "Henrique Pereira",
+    "role": "Responsável Comunicação e Marketing"
+  },
+  {
+    "picture": "martasilva.jpg",
     "name": "Marta Silva",
     "role": "Responsável Recrutamento e Formação"
   },
@@ -43,5 +48,97 @@
     "picture": "ninja.jpg",
     "name": "Rui Ribeiro",
     "role": "Responsável Currículo e Material"
+  },
+  {
+    "picture": "gersonjunior.jpg",
+    "name": "Gerson Júnior",
+    "role": "Responsável Merch e Patrocínios"
+  },
+  {
+    "picture": "guardapedropereira.jpg",
+    "name": "Pedro Pereira",
+    "role": "Responsável Merch e Patrocínios"
+  },
+  {
+    "picture": "filipefelicio.jpg",
+    "name": "Filipe Felício",
+    "role": "Mentor, Ex-Champion"
+  },
+  {
+    "picture": "afonsopimenta.jpg",
+    "name": "Afonso Pimenta",
+    "role": "Mentor"
+  },
+  {
+    "picture": "catarinacruz.jpg",
+    "name": "Catarina Cruz",
+    "role": "Mentora"
+  },
+  {
+    "picture": "gonçalocosta.jpg",
+    "name": "Gonçalo Costa",
+    "role": "Mentor"
+  },
+  {
+    "picture": "heldergomes.jpg",
+    "name": "Hélder Gomes",
+    "role": "Mentor"
+  },
+  {
+    "picture": "joaoalvim.jpg",
+    "name": "João Alvim",
+    "role": "Mentor"
+  },
+  {
+    "picture": "joséoliveira.jpg",
+    "name": "José Oliveira",
+    "role": "Mentor"
+  },
+  {
+    "picture": "lararegina.jpg",
+    "name": "Lara Regina",
+    "role": "Mentora"
+  },
+  {
+    "picture": "manelcarvalho.jpg",
+    "name": "Manuel Carvalho",
+    "role": "Mentor"
+  },
+  {
+    "picture": "mariorodrigues.jpg",
+    "name": "Mário Rodrigues",
+    "role": "Mentor"
+  },
+  {
+    "picture": "martimferreira.jpg",
+    "name": "Martim Ferreira",
+    "role": "Mentor"
+  },
+  {
+    "picture": "pedrolopes.jpg",
+    "name": "Pedro Lopes",
+    "role": "Mentor"
+  },
+  {
+    "picture": "pedropereira.jpg",
+    "name": "Pedro Pereira",
+    "role": "Mentor"
+  },
+  {
+    "picture": "ricardolucena.jpg",
+    "name": "Ricardo Lucena",
+    "role": "Mentor"
+  },
+  {
+    "picture": "rodrigopereira.jpg",
+    "name": "Rodrigo Pereira",
+    "role": "Mentor"
+  },
+  {
+    "picture": "simaoquintela.jpg",
+    "name": "Simão Quintela",
+    "role": "Mentor"
   }
+  
+
 ]

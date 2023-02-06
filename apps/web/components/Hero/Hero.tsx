@@ -12,13 +12,13 @@ const Hero = () => (
         </h2>
       </div>
       <div className="-mt-4 flex flex-col gap-12 sm:flex-row">
-        <Link href="/dashboard/signup">
-          <button className="bg-primary transform rounded-3xl px-4 py-2 text-white duration-300 hover:scale-110">
+        <a href="https://forms.gle/PhHEYZhEjKnqPb6h7">
+          <button className="bg-primary m-auto block transform rounded-3xl px-4 py-2 text-white duration-300 hover:scale-110">
             Quero ser Ninja
           </button>
-        </Link>
+        </a>
         <Link href="/recruitment">
-          <button className="bg-dark transform rounded-3xl px-4 py-2 text-white duration-300 hover:scale-110">
+          <button className="bg-dark m-auto block transform rounded-3xl px-4 py-2 text-white duration-300 hover:scale-110">
             Quero ser Voluntário
           </button>
         </Link>
