@@ -21,6 +21,10 @@ function Files() {
       });
   }, []);
 
+  const onFileDeletion = (id) => {
+    setFiles((previous) => previous.filter((file) => file.id != id));
+  };
+
   return (
     <AppLayout>
       <Row justify="space-between">
@@ -35,7 +39,12 @@ function Files() {
       </Row>
       <Row justify="start" align="top">
         {files.map((file) => (
-          <Document key={file.id} editable {...file} />
+          <Document
+            key={file.id}
+            editable
+            onFileDeletion={onFileDeletion}
+            {...file}
+          />
         ))}
       </Row>
     </AppLayout>

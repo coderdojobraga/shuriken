@@ -12,11 +12,7 @@ featured: false
 
 ---
 
-&nbsp;
-
 Este é o primeiro post de uma série em que vamos discutir as plataformas do CoderDojo Braga. Como foram feitas, dificuldades técnicas, histórias engraçadas e o seu futuro são alguns dos temas que podem esperar daqui. Espero sinceramente que, antes de um blog técnico, isto seja um blog educativo, e que demonstre o trabalho necessário para fazer uma aplicação que vai ser usada por várias pessoas, trazendo assim uma maior sensibilidade para a engenharia de software.
-
-&nbsp;
 
 ## O nascimento
 
@@ -41,8 +37,6 @@ Este post está a ser escrito em [Markdown](https://markdownguide.org), e precis
 
 A outra funcionalidade que se destacou, e esta não foi implementada por mim (créditos ao [Daniel Pereira](https://github.com/danielsp45)), foi o algoritmo de emparelhamento entre ninjas e mentores antes de uma sessão. Foi uma tarefa bastante complexa do ponto de vista algorítmico, e foi resolvida implementando o [algoritmo húngaro](https://en.wikipedia.org/wiki/Hungarian_algorithm)
 
-&nbsp;
-
 ## Publicação
 
 Com a plataforma desenvolvida, chega o momento de a publicar. Como há dois projetos desenvolvidos, é preciso publicar a plataforma em duas frentes. O site em si foi publicado no [Netlify](https://www.netlify.com/). O processo é bastante simples, basta ligar o Netlify ao repositório no Github que o site é publicado praticamente instantaneamente. Exceto que é preciso fazer isso 3 vezes. Porquê 3 vezes? Porque o site está, na verdade, dividido em 3 subsites: a página web, o blog e a aplicação, cada um a ter de ser publicado em separado. Isto causou algumas frustrações com reencaminhamentos entre os 3 subsites, mas isso é história para outro dia.
@@ -50,8 +44,6 @@ Com a plataforma desenvolvida, chega o momento de a publicar. Como há dois proj
 O backend, por seu lado, foi publicado num servidor do Departamento de Informática, através de containers [Docker](https://www.docker.com/). Isto traz-nos responsabilidade acrescida, pois somos nós os responsáveis por fazer os backups dos dados.
 
 Finalmente, o último passo é configurar o [DNS](https://pt.wikipedia.org/wiki/Sistema_de_Nomes_de_Dom%C3%ADnio), que, no nosso caso, faz-se no [Namecheap](https://www.namecheap.com/).
-
-&nbsp;
 
 ## E agora?
 

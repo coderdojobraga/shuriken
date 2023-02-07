@@ -1,8 +1,6 @@
-@import "~/styles/antd.css";
+@import "~/styles/tailwind.css";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "~/styles/antd.css";
 
 html {
   overflow-x: hidden;

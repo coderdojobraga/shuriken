@@ -15,7 +15,7 @@ const Post = ({ title, author, date, content }: Props) => {
     >
       <div className="m-16">
         <div className="mb-16">
-          <h1 className="my-4 block text-6xl font-bold dark:text-white">
+          <h1 className="my-4 block text-5xl font-bold dark:text-white">
             {title}
           </h1>
 
