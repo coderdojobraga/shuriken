@@ -29,7 +29,6 @@ interface Item {
   ninja_id: string;
   photo: any;
   name: string;
-  email: string;
   birthday: string;
   active: boolean;
   verified: boolean;
@@ -136,7 +135,6 @@ function Ninjas() {
   const edit = (record: Partial<Item> & { key: React.Key }) => {
     form.setFieldsValue({
       name: "",
-      email: "",
       birthday: "",
       verified: false,
       active: false,
@@ -284,12 +282,6 @@ function Ninjas() {
       dataIndex: "name",
       editable: false,
       ...getColumnSearchProps("name"),
-    },
-    {
-      title: "E-mail",
-      dataIndex: "email",
-      editable: false,
-      ...getColumnSearchProps("email"),
     },
     {
       title: "Data de nascimento",
