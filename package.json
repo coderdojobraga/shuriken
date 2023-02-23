@@ -24,12 +24,11 @@
     "eslint-config-coderdojobraga": "*",
     "prettier": "latest",
     "prettier-plugin-tailwindcss": "latest",
-    "turbo": "latest"
+    "turbo": "^1.8.2"
   },
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=16 <17"
   },
-  "dependencies": {},
   "packageManager": "npm@8.15.0"
 }
