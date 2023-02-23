@@ -31,7 +31,7 @@ function AppLayout({ children, hidePrimaryMenu = false }) {
       setCollapsed(false);
       return (
         <Drawer
-          visible={drawerVisible}
+          open={drawerVisible}
           placement="left"
           bodyStyle={{ padding: 0 }}
           onClose={() => setDrawerVisible(false)}
