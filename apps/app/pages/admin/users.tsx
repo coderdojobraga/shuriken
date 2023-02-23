@@ -148,13 +148,14 @@ function Users() {
     const row = (await form.validateFields()) as Item;
 
     const user = {
-      user_id: key,
-      verified: row.verified,
-      active: row.active,
-      registered: row.registered,
+      user: {
+        verified: row.verified,
+        active: row.active,
+        registered: row.registered,
+      },
     };
 
-    updateUserAsAdmin(user);
+    updateUserAsAdmin(key, user);
 
     setEditingKey("");
   };

@@ -3,10 +3,10 @@ import type { InputRef } from "antd";
 import {
   Avatar,
   Button,
-  Checkbox,
   Form,
   Input,
   Popconfirm,
+  Select,
   Space,
   Table,
   Typography,
@@ -19,20 +19,19 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { withAuth } from "~/components/Auth";
+import Belt from "~/components/Belt";
 import { notifyError } from "~/components/Notification";
 import AppLayout from "~/layouts/AppLayout";
 
 const { Title } = Typography;
+const { Option } = Select;
 
 interface Item {
   key: string;
-  ninja_id: string;
   photo: any;
   name: string;
   birthday: string;
-  active: boolean;
-  verified: boolean;
-  registered: boolean;
+  belt: string;
   since: string;
 }
 
@@ -40,7 +39,7 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
   dataIndex: string;
   title: any;
-  inputType: "string" | "checkbox";
+  inputType: "string" | "belt";
   record: Item;
   index: number;
   children: React.ReactNode;
@@ -56,42 +55,15 @@ const EditableCell: React.FC<EditableCellProps> = ({
   children,
   ...restProps
 }) => {
-  const checkBoxValue = (): boolean => {
-    switch (dataIndex) {
-      case "verified":
-        return record?.verified;
-      case "active":
-        return record?.active;
-      case "registered":
-        return record?.registered;
-    }
-
-    return false;
-  };
-
   const inputNode =
-    inputType === "string" ? (
-      <Input />
-    ) : (
-      <Checkbox defaultChecked={checkBoxValue()} />
-    );
+    inputType === "belt" ? <Option value="white">White</Option> : <Input />;
 
   return (
     <td {...restProps}>
       {editing ? (
-        inputType === "checkbox" ? (
-          <Form.Item
-            valuePropName="checked"
-            name={dataIndex}
-            style={{ margin: 0 }}
-          >
-            {inputNode}
-          </Form.Item>
-        ) : (
-          <Form.Item name={dataIndex} style={{ margin: 0 }}>
-            {inputNode}
-          </Form.Item>
-        )
+        <Form.Item name={dataIndex} style={{ margin: 0 }}>
+          {inputNode}
+        </Form.Item>
       ) : (
         children
       )}
@@ -118,8 +90,7 @@ function Ninjas() {
             return {
               ...ninja,
               name: `${ninja.first_name} ${ninja.last_name}`,
-              key: ninja.user_id,
-              ninja_id: ninja.id,
+              key: ninja.id,
             };
           })
         );
@@ -136,9 +107,6 @@ function Ninjas() {
     form.setFieldsValue({
       name: "",
       birthday: "",
-      verified: false,
-      active: false,
-      registered: false,
       since: "",
       ...record,
     });
@@ -150,23 +118,11 @@ function Ninjas() {
     setEditingKey("");
   };
 
-  const save = async (key: React.Key, ninja_id: string) => {
+  const save = async (key: React.Key) => {
     const row = (await form.validateFields()) as Item;
 
-    const user = {
-      user_id: key,
-      verified: row.verified,
-      active: row.active,
-      registered: row.registered,
-    };
-
-    const ninja = {
-      id: ninja_id,
-    };
-
     const data = {
-      user,
-      ninja,
+      id: key,
     };
 
     updateNinjaAsAdmin(data);
@@ -199,9 +155,7 @@ function Ninjas() {
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           ref={searchInput}
-          placeholder={`Pesquisar ${
-            dataIndex == "email" ? "e-mail" : dataIndex
-          }`}
+          placeholder={`Pesquisar ${dataIndex}`}
           value={selectedKeys[0]}
           onChange={(e) =>
             setSelectedKeys(e.target.value ? [e.target.value] : [])
@@ -284,28 +238,16 @@ function Ninjas() {
       ...getColumnSearchProps("name"),
     },
     {
+      title: "Cinturão",
+      dataIndex: "belt",
+      editable: true,
+      render: (belt: string) => <Belt belt={belt} />,
+    },
+    {
       title: "Data de nascimento",
       dataIndex: "birthday",
       editable: false,
       render: (birthday: string) => moment(birthday).format("DD-MM-YYYY"),
-    },
-    {
-      title: "Verificado",
-      dataIndex: "verified",
-      editable: true,
-      render: (verified: boolean) => <Checkbox checked={verified} />,
-    },
-    {
-      title: "Ativo",
-      dataIndex: "active",
-      editable: true,
-      render: (active: boolean) => <Checkbox checked={active} />,
-    },
-    {
-      title: "Registado",
-      dataIndex: "registered",
-      editable: true,
-      render: (registered: boolean) => <Checkbox checked={registered} />,
     },
     {
       title: "Data de inscrição",
@@ -325,7 +267,7 @@ function Ninjas() {
         return editable ? (
           <span>
             <Typography.Link
-              onClick={() => save(record.key, record.ninja_id)}
+              onClick={() => save(record.key)}
               style={{ marginRight: 8 }}
             >
               Guardar
@@ -339,7 +281,7 @@ function Ninjas() {
           </span>
         ) : (
           <span>
-            <Link href={`/profile/ninja/${record?.ninja_id}`}>
+            <Link href={`/profile/ninja/${record.key}`}>
               <a style={{ marginRight: 8 }}>Ver</a>
             </Link>
             <Typography.Link
@@ -363,9 +305,7 @@ function Ninjas() {
       ...col,
       onCell: (record: Item) => ({
         record,
-        inputType: ["verified", "active", "registered"].includes(col.dataIndex)
-          ? "checkbox"
-          : "string",
+        inputType: col.dataIndex == "belt" ? "belt" : "string",
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),

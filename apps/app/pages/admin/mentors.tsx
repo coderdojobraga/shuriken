@@ -26,7 +26,7 @@ const { Title } = Typography;
 
 interface Item {
   key: string;
-  mentor_id: string;
+  user_id: string;
   photo: any;
   name: string;
   email: string;
@@ -121,15 +121,15 @@ function Mentors() {
             return {
               ...mentor,
               name: `${mentor.first_name} ${mentor.last_name}`,
-              key: mentor.user_id,
-              mentor_id: mentor.id,
+              key: mentor.id,
+              user_id: mentor.user_id,
             };
           })
         );
       })
       .catch((_error) =>
         notifyError(
-          "Ocorre um erro",
+          "Ocorreu um erro",
           "Não foi possível obter os dados dos mentores"
         )
       );
@@ -156,26 +156,25 @@ function Mentors() {
     setEditingKey("");
   };
 
-  const save = async (key: React.Key, mentor_id: string) => {
+  const save = async (key: React.Key, user_id: string) => {
     const row = (await form.validateFields()) as Item;
 
     const user = {
-      user_id: key,
+      user_id: user_id,
       verified: row.verified,
       active: row.active,
       registered: row.registered,
     };
 
-    const mentor = {
-      id: mentor_id,
-    };
+    // Add here the related mentor fields that you want to update
+    const mentor = {};
 
     const data = {
       user,
       mentor,
     };
 
-    updateMentorAsAdmin(data);
+    updateMentorAsAdmin(key, data);
 
     setEditingKey("");
   };
@@ -347,7 +346,7 @@ function Mentors() {
         return editable ? (
           <span>
             <Typography.Link
-              onClick={() => save(record.key, record.mentor_id)}
+              onClick={() => save(record.key, record.user_id)}
               style={{ marginRight: 8 }}
             >
               Guardar
@@ -361,7 +360,7 @@ function Mentors() {
           </span>
         ) : (
           <span>
-            <Link href={`/profile/mentor/${record?.mentor_id}`}>
+            <Link href={`/profile/mentor/${record.key}`}>
               <a style={{ marginRight: 8 }}>Ver</a>
             </Link>
             <Typography.Link
