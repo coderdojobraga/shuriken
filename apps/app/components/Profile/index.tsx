@@ -12,8 +12,6 @@ import {
   notification,
 } from "antd";
 import { ClockCircleOutlined, UserOutlined } from "@ant-design/icons";
-import moment from "moment";
-import "moment/locale/pt";
 import Badge from "~/components/Badge";
 import Belt from "~/components/Belt";
 import Document from "~/components/Document";
@@ -22,6 +20,11 @@ import * as socials from "~/lib/social";
 import { notifyError, notifyInfo } from "~/components/Notification";
 import styles from "./style.module.css";
 import { EUser } from "bokkenjs";
+
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
+import "dayjs/locale/pt";
 
 import { BsFileEarmarkPersonFill } from "react-icons/bs";
 
@@ -97,7 +100,7 @@ function Profile({ id, role }: Props) {
   }, [id, role]);
 
   useEffect(() => {
-    setDate(moment(info.since).format("DD/MM/YYYY"));
+    setDate(dayjs(info.since).format("DD/MM/YYYY"));
   }, [info]);
 
   return (
@@ -175,7 +178,7 @@ function Profile({ id, role }: Props) {
           <Timeline mode="alternate">
             <Timeline.Item dot={<ClockCircleOutlined />}>
               Registou-se na plataforma{" "}
-              {moment(info.since).locale("pt").fromNow()}
+              {dayjs(info.since).locale("pt").fromNow()}
             </Timeline.Item>
           </Timeline>
         </TabPane>

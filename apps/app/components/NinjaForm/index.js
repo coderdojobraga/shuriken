@@ -14,7 +14,7 @@ import {
   Typography,
   notification,
 } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
 import * as api from "bokkenjs";
 import { notifyError, notifyInfo } from "~/components/Notification";
@@ -191,7 +191,7 @@ export default function NinjaForm({ id }) {
               name="ninja[birthday]"
               rules={[{ required: true }]}
               initialValue={
-                id && ninja ? moment(ninja.birthday, "YYYY-MM-DD") : null
+                id && ninja ? dayjs(ninja.birthday, "YYYY-MM-DD") : null
               }
             >
               <DatePicker />

@@ -14,7 +14,7 @@ import {
   Upload,
   notification,
 } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   MinusCircleOutlined,
   PlusOutlined,
@@ -291,8 +291,8 @@ function Settings() {
               <DatePicker
                 showToday={false}
                 defaultValue={
-                  (user?.birthday && moment(user.birthday, "YYYY-MM-DD")) ||
-                  moment()
+                  (user?.birthday && dayjs(user.birthday, "YYYY-MM-DD")) ||
+                  dayjs()
                 }
               />
             </Form.Item>

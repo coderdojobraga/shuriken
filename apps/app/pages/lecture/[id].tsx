@@ -16,7 +16,7 @@ import * as api from "bokkenjs";
 import { useAuth } from "@coderdojobraga/ui";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
-import moment from "moment";
+import dayjs from "dayjs";
 import { EUser } from "bokkenjs";
 import { notifyError, notifyInfo } from "~/components/Notification";
 
@@ -115,7 +115,7 @@ function Lectures() {
           <Col>
             <Text>
               {!lecture.event ||
-                moment(new Date(lecture.event.start_time)).format("DD/MM/YYYY")}
+                dayjs(new Date(lecture.event.start_time)).format("DD/MM/YYYY")}
             </Text>
           </Col>
         </Row>

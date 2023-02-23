@@ -62,27 +62,19 @@ function Shuriken({ Component, pageProps }: AppProps) {
   };
 
   return (
-    <ConfigProvider
-      form={{ validateMessages }}
-      locale={ptPT}
-      theme={{
-        token: {
-          colorPrimary: "#722ed1",
-        },
-      }}
-    >
-      <ThemeProvider>
-        <QueryClientProvider client={queryClient}>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ConfigProvider form={{ validateMessages }} locale={ptPT}>
           <AuthProvider>
             <Head>
               <title>CoderDojo Braga</title>
             </Head>
             <Component {...pageProps} />
-            <ReactQueryDevtools position="bottom-right" />
           </AuthProvider>
-        </QueryClientProvider>
-      </ThemeProvider>
-    </ConfigProvider>
+        </ConfigProvider>
+        <ReactQueryDevtools position="bottom-right" />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 
