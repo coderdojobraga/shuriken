@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Drawer } from "antd";
 import {
   BookOutlined,
+  CrownOutlined,
   DashboardOutlined,
   LoginOutlined,
   LogoutOutlined,
@@ -22,6 +23,7 @@ const icons = {
   "/web/curriculum": <SnippetsOutlined />,
   "/web/recruitment": <PlusOutlined />,
   "/web/team": <TeamOutlined />,
+  "/web/hall-of-fame": <CrownOutlined />,
   "/blog": <BookOutlined />,
 };
 
