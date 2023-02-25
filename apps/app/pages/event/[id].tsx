@@ -6,7 +6,6 @@ import { withAuth } from "~/components/Auth";
 import {
   Avatar,
   Button,
-  Checkbox,
   Col,
   Divider,
   Input,
@@ -32,6 +31,8 @@ import {
   updateAvailability,
 } from "bokkenjs";
 
+import styles from "./style.module.css";
+
 const { Title } = Typography;
 
 function EventPage() {
@@ -46,7 +47,7 @@ function EventPage() {
   const [availabilities, setAvailabilities] = useState([]);
   const [mentors, setMentors] = useState<any[]>([]);
   const [availableMentors, setAvailableMentors] = useState([]);
-  const [availability, setAvailability] = useState(false);
+  const [availability, setAvailability] = useState(true);
   const [notes, setNotes] = useState("");
   const [changeAvailability, setChangeAvailability] = useState(false);
 
@@ -234,11 +235,6 @@ function EventPage() {
         {role === EUser.Mentor ? (
           !isMentorAlreadyRegistered() || changeAvailability ? (
             <>
-              <Row style={{ marginBottom: "8px", marginTop: "8px" }}>
-                <Checkbox onChange={(e) => setAvailability(e.target.checked)}>
-                  Estás disponível?
-                </Checkbox>
-              </Row>
               <Row>
                 <Input.TextArea
                   placeholder="Alguma nota sobre a tua disponibilidade? Escreve-a aqui"
@@ -248,6 +244,25 @@ function EventPage() {
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                 />
+              </Row>
+              <Row style={{ marginBottom: "8px", marginTop: "8px" }}>
+                <Button
+                  type={availability ? "primary" : "default"}
+                  onClick={(_) => setAvailability(true)}
+                  className={
+                    availability ? styles.successPrimary : styles.successDefault
+                  }
+                >
+                  Estou disponível
+                </Button>
+                <Button
+                  type={!availability ? "primary" : "default"}
+                  danger
+                  style={{ marginLeft: "8px" }}
+                  onClick={(_) => setAvailability(false)}
+                >
+                  Não estou disponível
+                </Button>
               </Row>
             </>
           ) : (
