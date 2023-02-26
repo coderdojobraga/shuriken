@@ -31,6 +31,8 @@ import {
   updateAvailability,
 } from "bokkenjs";
 
+import styles from "./style.module.css";
+
 const { Title } = Typography;
 
 function EventPage() {
@@ -260,8 +262,8 @@ function EventPage() {
                 <Button
                   type="default"
                   danger
-                  style={{ marginLeft: "8px" }}
                   onClick={(_) => registerOrUpdateAvailability(false)}
+                  className={styles.dangerButton}
                 >
                   Não estou disponível
                 </Button>
