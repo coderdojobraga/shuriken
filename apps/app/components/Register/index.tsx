@@ -13,6 +13,7 @@ import {
   Typography,
   Upload,
 } from "antd";
+import ImgCrop from 'antd-img-crop';
 import {
   MinusCircleOutlined,
   PlusOutlined,
@@ -195,30 +196,33 @@ function Register({ cities }: any) {
                 <Option value="extra_large">Muito Grande (XL)</Option>
               </Select>
             </Form.Item>
-
-            <Form.Item
-              name="user[photo]"
-              label="Foto de perfil"
-              valuePropName="avatar"
-            >
-              <Upload
-                name="avatar"
-                accept="image/*"
-                beforeUpload={(file) => {
-                  getBase64(file, (imageUrl: any) => setAvatar(imageUrl));
-                  return false;
-                }}
-                onRemove={() => setAvatar(null)}
-                multiple={false}
-                maxCount={1}
-                showUploadList={{
-                  showDownloadIcon: false,
-                  showPreviewIcon: false,
-                  showRemoveIcon: true,
-                }}
+              
+              <Form.Item
+                name="user[photo]"
+                label="Foto de perfil"
+                valuePropName="avatar"
               >
-                <Button icon={<UploadOutlined />}>Selecionar</Button>
-              </Upload>
+                <ImgCrop rotate>
+                    <Upload
+                      name="avatar"
+                      accept="image/*"
+                      beforeUpload={(file) => {
+                      getBase64(file, (imageUrl: any) => setAvatar(imageUrl));  
+                      return false;
+                      }}
+                      onRemove={() => setAvatar(null)}
+                      multiple={false}
+                      maxCount={1}
+                      showUploadList={{
+                        showDownloadIcon: false,
+                        showPreviewIcon: false,
+                        showRemoveIcon: true,
+                      }}
+                  > 
+
+                      <Button icon={<UploadOutlined />}>Selecionar</Button>
+                    </Upload>
+                </ImgCrop>
             </Form.Item>
             {user?.role == EUser.Mentor && (
               <Form.Item name="user[socials]" label="Redes Sociais">
