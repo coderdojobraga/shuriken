@@ -30,6 +30,5 @@
     "npm": ">=7.0.0",
     "node": ">=16 <17"
   },
-  "dependencies": {},
   "packageManager": "npm@8.15.0"
 }
