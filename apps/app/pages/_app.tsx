@@ -8,6 +8,8 @@ import { AuthProvider, ThemeProvider } from "@coderdojobraga/ui";
 
 import "~/styles/globals.css";
 
+import theme from "~/configs/theme";
+
 const queryClient = new QueryClient();
 
 function Shuriken({ Component, pageProps }: AppProps) {
@@ -64,7 +66,7 @@ function Shuriken({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
-        <ConfigProvider form={{ validateMessages }} locale={ptPT}>
+        <ConfigProvider form={{ validateMessages }} locale={ptPT} theme={theme}>
           <AuthProvider>
             <Head>
               <title>CoderDojo Braga</title>

@@ -3,15 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "npm run next:dev",
-    "build": "npm run next:build",
+    "dev": "next dev --port 3000",
+    "build": "next build",
     "start": "next start",
     "lint": "npm run lint:fix",
     "lint:fix": "next lint --fix",
-    "lint:check": "next lint",
-    "next": "next",
-    "next:build": "next build",
-    "next:dev": "next dev"
+    "lint:check": "next lint"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",

@@ -3,15 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "npm run next:dev",
-    "build": "npm run next:build",
+    "dev": "next dev --port 3002",
+    "build": "next build",
     "start": "next start",
     "lint": "npm run lint:fix",
     "lint:fix": "next lint --fix",
-    "lint:check": "next lint",
-    "next": "next",
-    "next:build": "next build",
-    "next:dev": "next dev --port 3002"
+    "lint:check": "next lint"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.5.6",
@@ -37,7 +34,6 @@
     "eslint": "^8.23.0",
     "eslint-config-coderdojobraga": "*",
     "next-transpile-modules": "9.0.0",
-    "tailwind-config-coderdojobraga": "*",
     "tsconfig": "*",
     "typescript": "^4.5.3"
   }
