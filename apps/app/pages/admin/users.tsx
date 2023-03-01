@@ -155,9 +155,14 @@ function Users() {
       },
     };
 
-    updateUserAsAdmin(key, user);
+    updateUserAsAdmin(key, user).catch((_error: any) =>
+      notifyError(
+        "Ocorreu um erro",
+        "Não foi possível atualizar os dados do utilizador"
+      )
+    );
 
-    setEditingKey("");
+    cancel();
   };
 
   const handleSearch = (

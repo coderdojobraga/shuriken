@@ -26,7 +26,7 @@ const { Title } = Typography;
 
 interface Item {
   key: string;
-  guardian_id: string;
+  user_id: string;
   photo: any;
   name: string;
   mobile: string;
@@ -120,8 +120,7 @@ function Guardians() {
             return {
               ...guardian,
               name: `${guardian.first_name} ${guardian.last_name}`,
-              key: guardian.user_id,
-              guardian_id: guardian.id,
+              key: guardian.id,
             };
           })
         );
@@ -155,28 +154,32 @@ function Guardians() {
     setEditingKey("");
   };
 
-  const save = async (key: React.Key, guardian_id: string) => {
+  const save = async (key: React.Key, user_id: string) => {
     const row = (await form.validateFields()) as Item;
 
     const user = {
-      user_id: key,
+      user_id: user_id,
       verified: row.verified,
       active: row.active,
       registered: row.registered,
     };
 
-    const guardian = {
-      id: guardian_id,
-    };
+    // Add here the related guardian fields that you want to update
+    const guardian = {};
 
     const data = {
       user,
       guardian,
     };
 
-    updateGuardianAsAdmin(data);
+    updateGuardianAsAdmin(key, data).catch((_error) =>
+      notifyError(
+        "Ocorreu um erro",
+        "Não foi possível atualizar os dados do guardião"
+      )
+    );
 
-    setEditingKey("");
+    cancel();
   };
 
   const handleSearch = (
@@ -204,9 +207,7 @@ function Guardians() {
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           ref={searchInput}
-          placeholder={`Pesquisar ${
-            dataIndex == "email" ? "e-mail" : dataIndex
-          }`}
+          placeholder={getPlaceHolder(dataIndex)}
           value={selectedKeys[0]}
           onChange={(e) =>
             setSelectedKeys(e.target.value ? [e.target.value] : [])
@@ -275,6 +276,17 @@ function Guardians() {
       ),
   });
 
+  const getPlaceHolder = (dataIndex: string) => {
+    switch (dataIndex) {
+      case "name":
+        return "Pesquisar por nome";
+      case "email":
+        return "Pesquisar por e-mail";
+      default:
+        return "Pesquisar por ${dataIndex}";
+    }
+  };
+
   const columns = [
     {
       title: "Foto",
@@ -340,7 +352,7 @@ function Guardians() {
         return editable ? (
           <span>
             <Typography.Link
-              onClick={() => save(record.key, record.guardian_id)}
+              onClick={() => save(record.key, record.user_id)}
               style={{ marginRight: 8 }}
             >
               Guardar
@@ -354,7 +366,7 @@ function Guardians() {
           </span>
         ) : (
           <span>
-            <Link href={`/profile/guardian/${record?.guardian_id}`}>
+            <Link href={`/profile/guardian/${record.key}`}>
               <a style={{ marginRight: 8 }}>Ver</a>
             </Link>
             <Typography.Link

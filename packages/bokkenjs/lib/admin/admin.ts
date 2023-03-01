@@ -30,12 +30,8 @@ export async function getNinjasAsAdmin() {
   return response.data;
 }
 
-export async function updateNinjaAsAdmin(values: any) {
-  const data = Object.assign({}, values);
-
-  const response = await API.post("api/admin/ninjas", data, {
-    headers: undefined,
-  });
+export async function updateNinjaAsAdmin(id: any, params: any) {
+  const response = await API.put(`api/admin/ninjas/${id}`, params);
 
   return response.data;
 }
@@ -46,12 +42,8 @@ export async function getGuardiansAsAdmin() {
   return response.data;
 }
 
-export async function updateGuardianAsAdmin(values: any) {
-  const data = Object.assign({}, values);
-
-  const response = await API.post("api/admin/guardians", data, {
-    headers: undefined,
-  });
+export async function updateGuardianAsAdmin(id: any, params: any) {
+  const response = await API.put(`api/admin/guardians/${id}`, params);
 
   return response.data;
 }

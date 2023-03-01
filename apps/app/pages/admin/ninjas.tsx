@@ -13,13 +13,14 @@ import {
 } from "antd";
 import type { ColumnType } from "antd/es/table";
 import { FilterConfirmProps } from "antd/lib/table/interface";
-import { getNinjasAsAdmin, updateNinjaAsAdmin } from "bokkenjs";
+import { EBelt, getNinjasAsAdmin, updateNinjaAsAdmin } from "bokkenjs";
 import moment from "moment";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { withAuth } from "~/components/Auth";
 import Belt from "~/components/Belt";
+import { BELT_PT } from "~/lib/belt";
 import { notifyError } from "~/components/Notification";
 import AppLayout from "~/layouts/AppLayout";
 
@@ -32,6 +33,10 @@ interface Item {
   name: string;
   birthday: string;
   belt: string;
+  guardian: {
+    id: string;
+    name: string;
+  };
   since: string;
 }
 
@@ -39,7 +44,7 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
   dataIndex: string;
   title: any;
-  inputType: "string" | "belt";
+  inputType: "string" | "select";
   record: Item;
   index: number;
   children: React.ReactNode;
@@ -56,7 +61,17 @@ const EditableCell: React.FC<EditableCellProps> = ({
   ...restProps
 }) => {
   const inputNode =
-    inputType === "belt" ? <Option value="white">White</Option> : <Input />;
+    inputType === "string" ? (
+      <Input />
+    ) : (
+      <Select>
+        {Object.keys(BELT_PT).map((belt) => (
+          <Option key={belt} value={belt}>
+            <Belt belt={belt as EBelt} />
+          </Option>
+        ))}
+      </Select>
+    );
 
   return (
     <td {...restProps}>
@@ -91,6 +106,7 @@ function Ninjas() {
               ...ninja,
               name: `${ninja.first_name} ${ninja.last_name}`,
               key: ninja.id,
+              guardian: buildGuardian(ninja.guardian),
             };
           })
         );
@@ -103,10 +119,19 @@ function Ninjas() {
       );
   }, [editingKey]);
 
+  const buildGuardian = (guardian: any) => {
+    return {
+      id: guardian?.id,
+      name: `${guardian?.first_name} ${guardian?.last_name}`,
+    };
+  };
+
   const edit = (record: Partial<Item> & { key: React.Key }) => {
     form.setFieldsValue({
       name: "",
       birthday: "",
+      belt: "",
+      guardian: "",
       since: "",
       ...record,
     });
@@ -121,13 +146,23 @@ function Ninjas() {
   const save = async (key: React.Key) => {
     const row = (await form.validateFields()) as Item;
 
-    const data = {
-      id: key,
+    // Add here the related ninja fields that you want to update
+    const ninja = {
+      belt: row.belt,
     };
 
-    updateNinjaAsAdmin(data);
+    const data = {
+      ninja,
+    };
 
-    setEditingKey("");
+    updateNinjaAsAdmin(key, data).catch((_error) =>
+      notifyError(
+        "Ocorreu um erro",
+        "Não foi possível atualizar os dados do ninja"
+      )
+    );
+
+    cancel();
   };
 
   const handleSearch = (
@@ -155,7 +190,7 @@ function Ninjas() {
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           ref={searchInput}
-          placeholder={`Pesquisar ${dataIndex}`}
+          placeholder={getPlaceHolder(dataIndex)}
           value={selectedKeys[0]}
           onChange={(e) =>
             setSelectedKeys(e.target.value ? [e.target.value] : [])
@@ -224,6 +259,17 @@ function Ninjas() {
       ),
   });
 
+  const getPlaceHolder = (dataIndex: string) => {
+    switch (dataIndex) {
+      case "name":
+        return "Pesquisar por nome";
+      case "guardian":
+        return "Pesquisar por guardião";
+      default:
+        return `Pesquisar por ${dataIndex}`;
+    }
+  };
+
   const columns = [
     {
       title: "Foto",
@@ -248,6 +294,16 @@ function Ninjas() {
       dataIndex: "birthday",
       editable: false,
       render: (birthday: string) => moment(birthday).format("DD-MM-YYYY"),
+    },
+    {
+      title: "Guardião",
+      dataIndex: "guardian",
+      editable: false,
+      render: (guardian: any) => (
+        <Link href={`/profile/guardian/${guardian.id}`}>
+          <a>{guardian.name}</a>
+        </Link>
+      ),
     },
     {
       title: "Data de inscrição",
@@ -305,7 +361,7 @@ function Ninjas() {
       ...col,
       onCell: (record: Item) => ({
         record,
-        inputType: col.dataIndex == "belt" ? "belt" : "string",
+        inputType: col.dataIndex == "belt" ? "select" : "string",
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),

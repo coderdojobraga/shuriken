@@ -122,7 +122,6 @@ function Mentors() {
               ...mentor,
               name: `${mentor.first_name} ${mentor.last_name}`,
               key: mentor.id,
-              user_id: mentor.user_id,
             };
           })
         );
@@ -174,9 +173,14 @@ function Mentors() {
       mentor,
     };
 
-    updateMentorAsAdmin(key, data);
+    updateMentorAsAdmin(key, data).catch((_error) =>
+      notifyError(
+        "Ocorreu um erro",
+        "Não foi possível atualizar os dados do mentor"
+      )
+    );
 
-    setEditingKey("");
+    cancel();
   };
 
   const handleSearch = (
@@ -204,9 +208,7 @@ function Mentors() {
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           ref={searchInput}
-          placeholder={`Pesquisar ${
-            dataIndex == "email" ? "e-mail" : dataIndex
-          }`}
+          placeholder={getPlaceHolder(dataIndex)}
           value={selectedKeys[0]}
           onChange={(e) =>
             setSelectedKeys(e.target.value ? [e.target.value] : [])
@@ -274,6 +276,17 @@ function Mentors() {
         text
       ),
   });
+
+  const getPlaceHolder = (dataIndex: string) => {
+    switch (dataIndex) {
+      case "name":
+        return "Pesquisar por nome";
+      case "email":
+        return "Pesquisar por e-mail";
+      default:
+        return `Pesquisar por ${dataIndex}`;
+    }
+  };
 
   const columns = [
     {
