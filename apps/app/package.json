@@ -19,7 +19,7 @@
     "@coderdojobraga/ui": "*",
     "@netlify/plugin-nextjs": "^4.29.2",
     "antd": "^4.22.8",
-    "antd-img-add": "^4.7.0",
+    "antd-img-crop": "^4.7.0",
     "bokkenjs": "*",
     "lodash-es": "^4.17.21",
     "moment": "^2.29.4",
