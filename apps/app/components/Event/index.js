@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button, Card, Descriptions, Grid, Skeleton, Space } from "antd";
+import { Button, Card, Descriptions, Grid, Skeleton, Space, Popconfirm } from "antd";
 import {
   CalendarOutlined,
   ClockCircleOutlined,
@@ -120,34 +120,6 @@ const Event = ({
               </Descriptions>
             ) : (
               <EventInfo {...event} />
-            )}
-            {role === EUser.Organizer ? (
-              <Popconfirm
-                title="Tens a certeza que queres notificar?"
-                cancelText="Não"
-                okText="Sim"
-                onConfirm={(_) => notify_signup()}
-              >
-                <Button onClick={() => notify_signup()} type="primary">
-                  Notificar abertura
-                </Button>
-              </Popconfirm>
-            ) : (
-              <></>
-            )}
-            {role === EUser.Organizer ? (
-              <Popconfirm
-                title="Tens a certeza que queres notificar?"
-                cancelText="Não"
-                okText="Sim"
-                onConfirm={(_) => notify_selected()}
-              >
-                <Button onClick={() => notify_selected()} type="primary">
-                  Notificar selecionados
-                </Button>
-              </Popconfirm>
-            ) : (
-              <></>
             )}
             {role === EUser.Organizer ? (
               <>
