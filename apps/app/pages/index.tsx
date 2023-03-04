@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { Col, Row, Typography } from "antd";
+import { Col, Row, Typography, Popconfirm, Button } from "antd";
 import { useAuth } from "@coderdojobraga/ui";
 import { withAuth } from "~/components/Auth/withAuth";
 import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
 import { useBadges } from "~/hooks/badges";
-import { EUser, getNinjas } from "bokkenjs";
+import { EUser, getNinjas, notify_selected, notify_signup  } from "bokkenjs";
 import Ninja from "~/components/Ninja";
 import { useEvents } from "~/hooks/events";
-import { notifyError } from "~/components/Notification";
-
+import { notifyError, notifyInfo } from "~/components/Notification";
 import styles from "~/styles/Dashboard.module.css";
 import moment from "moment";
 
@@ -35,6 +34,14 @@ function Dashboard() {
     return sorted_events[0] != undefined ? sorted_events[0] : false;
   };
 
+  const notify_signup_ninjas = () => {
+    notify_signup().then(() => { notifyInfo("Emails enviados com sucesium"); }).catch((error) => { notifyError("Não foi enviado nada"); })
+  };
+
+  const notify_selected_ninjas = () => {
+    notify_selected().then(() => { notifyInfo("Emails enviados com sucesium"); }).catch((error) => { notifyError("Não foi enviado nada"); })
+  };
+
   useEffect(() => {
     if (role === EUser.Guardian) {
       getNinjas()
@@ -50,7 +57,37 @@ function Dashboard() {
 
   return (
     <AppLayout>
-      <Title level={2}>Painel Principal</Title>
+      <Row>
+        <Title level={2}>Painel Principal</Title>
+        {role === EUser.Organizer ? (
+          <Popconfirm
+            title="Tens a certeza que queres notificar?"
+            cancelText="Não"
+            okText="Sim"
+            onConfirm={(_) => notify_signup_ninjas()}
+          >
+            <Button type="primary">
+              Notificar abertura
+            </Button>
+          </Popconfirm>
+        ) : (
+          <></>
+        )}
+        {role === EUser.Organizer ? (
+          <Popconfirm
+            title="Tens a certeza que queres notificar?"
+            cancelText="Não"
+            okText="Sim"
+            onConfirm={(_) => notify_selected_ninjas()}
+          >
+            <Button type="primary">
+              Notificar selecionados
+            </Button>
+          </Popconfirm>
+        ) : (
+          <></>
+        )}
+      </Row>
       <Title level={3}>Próximo Evento</Title>
       <Row className={styles.row} align="top" justify="space-between">
         {events?.length > 0 && nextEvent() ? (
