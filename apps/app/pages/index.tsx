@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Col, Row, Typography, Popconfirm, Button } from "antd";
+import { Button, Col, Popconfirm, Row, Typography } from "antd";
 import { useAuth } from "@coderdojobraga/ui";
 import { withAuth } from "~/components/Auth/withAuth";
 import AppLayout from "~/layouts/AppLayout";
@@ -35,11 +35,23 @@ function Dashboard() {
   };
 
   const notify_signup_ninjas = () => {
-    notify_signup().then(() => { notifyInfo("Enviado com sucesso!"); }).catch((error) => { notifyError("Não foi enviado!"); })
+    notify_signup()
+      .then(() => {
+        notifyInfo("Enviado com sucesso!");
+      })
+      .catch((error) => {
+        notifyError("Não foi enviado!");
+      });
   };
 
   const notify_selected_ninjas = () => {
-    notify_selected().then(() => { notifyInfo("Enviado com sucesso!"); }).catch((error) => { notifyError("Não foi enviado!"); })
+    notify_selected()
+      .then(() => {
+        notifyInfo("Enviado com sucesso!");
+      })
+      .catch((error) => {
+        notifyError("Não foi enviado!");
+      });
   };
 
   useEffect(() => {
@@ -68,9 +80,7 @@ function Dashboard() {
                 okText="Sim"
                 onConfirm={(_) => notify_signup_ninjas()}
               >
-                <Button type="primary">
-                  Notificar abertura
-                </Button>
+                <Button type="primary">Notificar abertura</Button>
               </Popconfirm>
             ) : (
               <></>
@@ -84,17 +94,13 @@ function Dashboard() {
                 okText="Sim"
                 onConfirm={(_) => notify_selected_ninjas()}
               >
-                <Button type="primary">
-                  Notificar selecionados
-                </Button>
+                <Button type="primary">Notificar selecionados</Button>
               </Popconfirm>
             ) : (
               <></>
             )}
           </Col>
-
         </Row>
-
       </Row>
       <Title level={3}>Próximo Evento</Title>
       <Row className={styles.row} align="top" justify="space-between">

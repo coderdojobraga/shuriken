@@ -71,13 +71,13 @@ export async function updateNinja(ninja_id: string, values: any) {
   return response.data;
 }
 
-export async function notify_selected(){
+export async function notify_selected() {
   const response = await API.post(`/api/notify_selected/`);
 
   return response.data;
 }
 
-export async function notify_signup(){
+export async function notify_signup() {
   const response = await API.post(`/api/notify_signup/`);
 
   return response.data;
