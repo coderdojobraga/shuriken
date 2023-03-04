@@ -5,7 +5,7 @@ import { withAuth } from "~/components/Auth/withAuth";
 import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
 import { useBadges } from "~/hooks/badges";
-import { EUser, getNinjas, notify_selected, notify_signup  } from "bokkenjs";
+import { EUser, getNinjas, notify_selected, notify_signup } from "bokkenjs";
 import Ninja from "~/components/Ninja";
 import { useEvents } from "~/hooks/events";
 import { notifyError, notifyInfo } from "~/components/Notification";

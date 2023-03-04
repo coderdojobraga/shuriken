@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button, Card, Descriptions, Grid, Skeleton, Space, Popconfirm } from "antd";
+import { Button, Card, Descriptions, Grid, Skeleton, Space } from "antd";
 import {
   CalendarOutlined,
   ClockCircleOutlined,
@@ -8,8 +8,7 @@ import {
 } from "@ant-design/icons";
 import EventInfo from "~/components/Event/EventInfo";
 import { useAuth } from "@coderdojobraga/ui";
-import { EUser, notify_selected, notify_signup } from "bokkenjs";
-import { notifyError, notifyInfo } from "~/components/Notification";
+import { EUser } from "bokkenjs";
 
 const { useBreakpoint } = Grid;
 
@@ -41,14 +40,6 @@ const Event = ({
     const nowDate = new Date();
 
     return enrollmentsOpen < nowDate && enrollmentsClose > nowDate;
-  };
-
-  const notify_signup_ninjas = () => {
-    notify_signup().then(() => { notifyInfo("Emails enviados com sucesium"); }).catch((error) => { notifyError("Não foi enviado nada"); })
-  };
-
-  const notify_selected_ninjas = () => {
-    notify_selected().then(() => { notifyInfo("Emails enviados com sucesium"); }).catch((error) => { notifyError("Não foi enviado nada"); })
   };
 
   return (
@@ -129,34 +120,6 @@ const Event = ({
               </Descriptions>
             ) : (
               <EventInfo {...event} />
-            )}
-            {role === EUser.Organizer ? (
-              <Popconfirm
-                title="Tens a certeza que queres notificar?"
-                cancelText="Não"
-                okText="Sim"
-                onConfirm={(_) => notify_signup_ninjas()}
-              >
-                <Button type="primary">
-                  Notificar abertura
-                </Button>
-              </Popconfirm>
-            ) : (
-              <></>
-            )}
-            {role === EUser.Organizer ? (
-              <Popconfirm
-                title="Tens a certeza que queres notificar?"
-                cancelText="Não"
-                okText="Sim"
-                onConfirm={(_) => notify_selected_ninjas()}
-              >
-                <Button type="primary">
-                  Notificar selecionados
-                </Button>
-              </Popconfirm>
-            ) : (
-              <></>
             )}
             {role === EUser.Organizer ? (
               <>
