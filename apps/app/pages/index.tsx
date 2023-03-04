@@ -35,11 +35,11 @@ function Dashboard() {
   };
 
   const notify_signup_ninjas = () => {
-    notify_signup().then(() => { notifyInfo("Emails enviados com sucesium"); }).catch((error) => { notifyError("Não foi enviado nada"); })
+    notify_signup().then(() => { notifyInfo("Enviado com sucesso!"); }).catch((error) => { notifyError("Não foi enviado!"); })
   };
 
   const notify_selected_ninjas = () => {
-    notify_selected().then(() => { notifyInfo("Emails enviados com sucesium"); }).catch((error) => { notifyError("Não foi enviado nada"); })
+    notify_selected().then(() => { notifyInfo("Enviado com sucesso!"); }).catch((error) => { notifyError("Não foi enviado!"); })
   };
 
   useEffect(() => {
@@ -57,36 +57,44 @@ function Dashboard() {
 
   return (
     <AppLayout>
-      <Row>
+      <Row justify="space-between" gutter={8}>
         <Title level={2}>Painel Principal</Title>
-        {role === EUser.Organizer ? (
-          <Popconfirm
-            title="Tens a certeza que queres notificar?"
-            cancelText="Não"
-            okText="Sim"
-            onConfirm={(_) => notify_signup_ninjas()}
-          >
-            <Button type="primary">
-              Notificar abertura
-            </Button>
-          </Popconfirm>
-        ) : (
-          <></>
-        )}
-        {role === EUser.Organizer ? (
-          <Popconfirm
-            title="Tens a certeza que queres notificar?"
-            cancelText="Não"
-            okText="Sim"
-            onConfirm={(_) => notify_selected_ninjas()}
-          >
-            <Button type="primary">
-              Notificar selecionados
-            </Button>
-          </Popconfirm>
-        ) : (
-          <></>
-        )}
+        <Row gutter={[8, 8]}>
+          <Col>
+            {role === EUser.Organizer ? (
+              <Popconfirm
+                title="Tens a certeza que queres notificar?"
+                cancelText="Não"
+                okText="Sim"
+                onConfirm={(_) => notify_signup_ninjas()}
+              >
+                <Button type="primary">
+                  Notificar abertura
+                </Button>
+              </Popconfirm>
+            ) : (
+              <></>
+            )}
+          </Col>
+          <Col>
+            {role === EUser.Organizer ? (
+              <Popconfirm
+                title="Tens a certeza que queres notificar?"
+                cancelText="Não"
+                okText="Sim"
+                onConfirm={(_) => notify_selected_ninjas()}
+              >
+                <Button type="primary">
+                  Notificar selecionados
+                </Button>
+              </Popconfirm>
+            ) : (
+              <></>
+            )}
+          </Col>
+
+        </Row>
+
       </Row>
       <Title level={3}>Próximo Evento</Title>
       <Row className={styles.row} align="top" justify="space-between">
