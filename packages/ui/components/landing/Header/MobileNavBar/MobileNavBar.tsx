@@ -18,6 +18,13 @@ import { getUserInitials } from "../utils";
 
 import styles from "./style.module.css";
 
+const icons = {
+  "/web/curriculum": <SnippetsOutlined />,
+  "/web/recruitment": <PlusOutlined />,
+  "/web/team": <TeamOutlined />,
+  "/blog": <BookOutlined />,
+};
+
 interface LoginButtonProps {
   isLoading: boolean;
 }
@@ -40,17 +47,6 @@ interface MenuDrawerProps {
 
 const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
   const { user, isLoading, logout } = useAuth();
-
-  const [icons, setIcons] = useState({});
-
-  useEffect(() => {
-    setIcons({
-      "/web/curriculum": <SnippetsOutlined />,
-      "/web/recruitment": <PlusOutlined />,
-      "/web/team": <TeamOutlined />,
-      "/blog": <BookOutlined />,
-    });
-  }, []);
 
   const onDrawerLogOut = () => {
     logout();
