@@ -2,6 +2,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { Grid } from "antd";
 
+import { DashboardOutlined, LogoutOutlined } from "@ant-design/icons";
+
 import { ThemeToggle, useAuth } from "@coderdojobraga/ui";
 import MobileNavBar from "../MobileNavBar/MobileNavBar";
 
@@ -29,13 +31,13 @@ interface UserDropDownProps {
 
 const UserDropDown = ({ logout }: UserDropDownProps) => (
   <ul>
-    <li>
-      <Link href="/dashboard">
-        <a>Dashboard</a>
-      </Link>
+    <li className="flex items-center justify-start gap-x-2">
+      <DashboardOutlined />
+      <Link href="/dashboard">Dashboard</Link>
     </li>
-    <li>
-      <button className="hover:text-primary mt-2" onClick={(_) => logout()}>
+    <li className="flex items-center justify-start gap-x-2">
+      <LogoutOutlined className="mt-2" />
+      <button className="hover:text-primary mt-2" onClick={logout}>
         SAIR
       </button>
     </li>
@@ -54,9 +56,7 @@ const LoginButton = ({ isLoading }: LoginButtonProps) => (
         : "bg-primary m-auto block transform cursor-pointer rounded-3xl px-4 py-2 text-white duration-300 hover:scale-110"
     }
   >
-    <Link href="/dashboard/login">
-      <a>{!isLoading ? "LOGIN" : ""}</a>
-    </Link>
+    <Link href="/dashboard/login">{!isLoading ? "LOGIN" : ""}</Link>
   </li>
 );
 

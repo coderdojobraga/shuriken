@@ -18,6 +18,7 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
   const [user, setUser] = useState<undefined | IUser>();
   const [errors, setErrors] = useState<any | IErrors>();
   const [isLoading, setLoading] = useState<boolean>(false);
+  const [isFirstLoading, setFirstLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setLoading(true);
@@ -30,6 +31,7 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
       .catch(() => {})
       .finally(() => {
         setTimeout(() => setLoading(false), 2000);
+        setFirstLoading(false);
       });
   }, []);
 
@@ -102,5 +104,9 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
     [user, isLoading, errors]
   );
 
-  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={values}>
+      {!isFirstLoading && children}
+    </AuthContext.Provider>
+  );
 }

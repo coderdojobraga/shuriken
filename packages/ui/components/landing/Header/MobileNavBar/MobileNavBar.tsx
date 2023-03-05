@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Drawer } from "antd";
 import {
   BookOutlined,
+  DashboardOutlined,
   LoginOutlined,
   LogoutOutlined,
   SnippetsOutlined,
@@ -27,9 +28,7 @@ const LoginButton = ({ isLoading }: LoginButtonProps) => (
   >
     <div className="flex items-center justify-center gap-x-2">
       {!isLoading && <LoginOutlined />}
-      <Link href="/dashboard/login">
-        <a>{!isLoading ? "LOGIN" : ""}</a>
-      </Link>
+      <Link href="/dashboard/login">{!isLoading ? "LOGIN" : ""}</Link>
     </div>
   </li>
 );
@@ -71,9 +70,7 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
           <li className="hover:text-primary cursor-pointer">
             <div className="flex items-center justify-center gap-x-2">
               {icons[key as keyof typeof icons]}
-              <Link href={key}>
-                <a>{text}</a>
-              </Link>
+              <Link href={key}>{text}</Link>
             </div>
           </li>
         ))}
@@ -82,7 +79,10 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
           <>
             <li className="hover:text-primary cursor-pointer">
               <Link href="/dashboard">
-                <a>Dashboard</a>
+                <div className="flex items-center justify-center gap-x-2">
+                  <DashboardOutlined />
+                  <p className="hover:text-primary cursor-pointer">Dashboard</p>
+                </div>
               </Link>
             </li>
 
@@ -92,15 +92,13 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
             >
               <div className="flex items-center justify-center gap-x-2">
                 <LogoutOutlined />
-                <p className="hover:text-primary cursor-pointer">LOGOUT</p>
+                <p className="hover:text-primary cursor-pointer">SAIR</p>
               </div>
             </button>
           </>
         ) : (
           <Link href="/dashboard/login">
-            <a>
-              <LoginButton isLoading={isLoading} />
-            </a>
+            <LoginButton isLoading={isLoading} />
           </Link>
         )}
       </ul>
