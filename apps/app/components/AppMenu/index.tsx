@@ -69,7 +69,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
         selectedKeys={primarySelectedKeys}
         className={styles.primary}
       >
-        <Link href="/">
+        <Link href="/web">
           {collapsed ? (
             <div className={styles.logo_collapsed}>
               <Image

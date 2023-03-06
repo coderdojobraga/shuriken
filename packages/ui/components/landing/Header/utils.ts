@@ -1,10 +1,10 @@
 import { IUser } from "bokkenjs";
 
-const getLastChar = (text: string | undefined): string => {
+const getFirstChar = (text: string | undefined): string => {
   if (text === undefined) return "";
 
   return text[0];
 };
 
 export const getUserInitials = (user: IUser) =>
-  getLastChar(user?.first_name) + getLastChar(user?.last_name);
+  getFirstChar(user?.first_name) + getFirstChar(user?.last_name);
