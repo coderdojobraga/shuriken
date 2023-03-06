@@ -16,8 +16,11 @@ export default function HallOfFame() {
   
           <div className="bg-primary h-8/12 container mx-auto w-6/12 py-0.5 text-center text-2xl lg:w-3/12" />
   
-          <p className="mx-2 mt-4 mb-4 text-center text-2xl leading-relaxed text-black lg:mx-12">
-          O CoderDojo Braga é um projeto mantido e acarinhado por pessoas dedicadas e apaixonadas pelo trabalho que fazem! Aqui, poderás conhecer alguns dos voluntários que tornaram esta iniciativa tão especial e naquilo que é hoje.           
+          <p className="mx-2 mt-4 text-center text-2xl leading-relaxed text-black lg:mx-12">
+            O CoderDojo Braga é um projeto mantido e acarinhado por pessoas dedicadas e apaixonadas pelo trabalho que fazem!         
+          </p>
+          <p className="mx-2 mb-4 text-center text-2xl leading-relaxed text-black lg:mx-12">
+            Aqui, poderás conhecer alguns dos voluntários que tornaram esta iniciativa tão especial e naquilo que é hoje.  
           </p>
         </div>
   
