@@ -71,8 +71,8 @@ function Dashboard() {
     <AppLayout>
       <Title level={2}>Painel Principal</Title>
       <Row justify="space-between" gutter={8}>
-      <Title level={3}>Próximo Evento</Title>
-      <Row gutter={[8, 8]}>
+        <Title level={3}>Próximo Evento</Title>
+        <Row gutter={[8, 8]}>
           <Col>
             {role === EUser.Organizer ? (
               <Popconfirm
