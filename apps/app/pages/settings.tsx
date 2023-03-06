@@ -79,6 +79,15 @@ function Settings() {
     "Slack",
   ]);
 
+  const [sizes] = useState({
+    "extra_small": "XS",
+    "small": "S",
+    "medium": "M",
+    "large": "L",
+    "extra_large": "XL",
+    "extra_extra_large": "XXL"
+  });
+
   const getAllSkills = () => {
     getSkills()
       .then((response) => setSkills(response.data))
@@ -298,6 +307,24 @@ function Settings() {
             </Form.Item>
           </Col>
         </Row>
+
+        {user?.role === EUser.Mentor && (
+          <>
+            <Row gutter={24}>
+              <Col {...breakpoints}>
+                <Form.Item name="mentor[t_shirt]" label="Tamanho T-Shirt">
+                  <Select defaultValue={sizes[user.t_shirt]}>
+                    {Object.keys(sizes).map((key) => (
+                      <Select.Option key={key} value={sizes[key]}>
+                        {sizes[key]}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
+          </>
+        )}
 
         {user?.role === EUser.Mentor && (
           <>
