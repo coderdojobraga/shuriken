@@ -1,5 +1,5 @@
 import { Footer, Header } from "@coderdojobraga/ui";
-import Champions from "~/components/Champions";
+import Champion from "~/components/Champion";
 
 import hof from "~/data/hall_of_fame.json";
 import honorable from "~/data/honorable.json";
@@ -30,7 +30,7 @@ export default function HallOfFame() {
         <div className="container mx-auto pt-20">
           <div className="mx-2 -mt-12 flex flex-wrap lg:mx-12">
             {hof.map((entry) => (
-              <Champions key={entry.name} {...entry} />
+              <Champion key={entry.name} {...entry} />
             ))}
           </div>
         </div>
@@ -48,7 +48,7 @@ export default function HallOfFame() {
         <div className="container mx-auto pt-20">
           <div className="mx-2 -mt-12 flex flex-wrap lg:mx-12">
             {honorable.map((entry) => (
-              <Champions key={entry.name} {...entry} />
+              <Champion key={entry.name} {...entry} />
             ))}
           </div>
         </div>
