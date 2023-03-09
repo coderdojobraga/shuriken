@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Popconfirm, Row, Typography } from "antd";
+import { Button, Col, Modal, Popconfirm, Row, Typography } from "antd";
 import { useAuth } from "@coderdojobraga/ui";
 import { withAuth } from "~/components/Auth/withAuth";
 import AppLayout from "~/layouts/AppLayout";
@@ -21,6 +21,12 @@ function Dashboard() {
   const [ninjas, setNinjas] = useState([]);
   const { data: events, isLoading: isLoadingEvents } = useEvents();
   const { data: badges, isLoading: isLoadingBadges } = useBadges();
+  const [emails_sucess, setEmails_sucess] = useState([]);
+  const [emails_fail, setEmails_fail] = useState([]);
+  const [visible_signup, setVisible_signup] = useState(false);
+  const [visible_selected, setVisible_selected] = useState(false);
+  const [confirmed_signup, setConfirmed_signup] = useState(false);
+  const [confirmed_selected, setConfirmed_selected] = useState(false);
 
   const nextEvent = () => {
     const cur = moment();
@@ -34,9 +40,20 @@ function Dashboard() {
     return sorted_events[0] != undefined ? sorted_events[0] : false;
   };
 
+  const handleCloseModal_signup = () => {
+    setVisible_signup(false);
+  };
+
+  const handleCloseModal_selected = () => {
+    setVisible_selected(false);
+  };
+
   const notify_signup_ninjas = () => {
     notify_signup()
-      .then(() => {
+      .then((response) => {
+        setEmails_sucess(response.success);
+        setEmails_fail(response.fail);
+        setVisible_signup(true);
         notifyInfo("Enviado com sucesso!");
       })
       .catch((error) => {
@@ -46,7 +63,10 @@ function Dashboard() {
 
   const notify_selected_ninjas = () => {
     notify_selected()
-      .then(() => {
+      .then((response) => {
+        setEmails_sucess(response.success);
+        setEmails_fail(response.fail);
+        setVisible_selected(true);
         notifyInfo("Enviado com sucesso!");
       })
       .catch((error) => {
@@ -79,8 +99,71 @@ function Dashboard() {
                 title="Tens a certeza que queres notificar?"
                 cancelText="Não"
                 okText="Sim"
-                onConfirm={(_) => notify_signup_ninjas()}
+                onConfirm={(_) => {
+                  notify_signup_ninjas();
+                  setConfirmed_signup(true);
+                }}
+                disabled={confirmed_signup}
               >
+                <Modal
+                  visible={visible_signup}
+                  onCancel={handleCloseModal_signup}
+                  centered={true}
+                  closable={false}
+                  title="Lista de Emails"
+                  footer={[
+                    <Button
+                      key="close"
+                      type="primary"
+                      onClick={handleCloseModal_signup}
+                    >
+                      Close
+                    </Button>,
+                  ]}
+                >
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <div
+                      style={{
+                        width: "45%",
+                        height: "500px",
+                        overflowY: "scroll",
+                        overflowX: "scroll",
+                      }}
+                    >
+                      <div
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <Button type="primary">Entregues</Button>
+                      </div>
+                      <ul>
+                        {emails_sucess.map((email, index) => (
+                          <li key={index}>{email}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div
+                      style={{
+                        width: "45%",
+                        height: "500px",
+                        overflowY: "scroll",
+                        overflowX: "scroll",
+                      }}
+                    >
+                      <div
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <Button type="primary">Entregues</Button>
+                      </div>
+                      <ul>
+                        {emails_fail.map((email, index) => (
+                          <li key={index}>{email}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </Modal>
                 <Button type="primary">Notificar abertura</Button>
               </Popconfirm>
             ) : (
@@ -93,8 +176,71 @@ function Dashboard() {
                 title="Tens a certeza que queres notificar?"
                 cancelText="Não"
                 okText="Sim"
-                onConfirm={(_) => notify_selected_ninjas()}
+                onConfirm={(_) => {
+                  notify_selected_ninjas();
+                  setConfirmed_selected(true);
+                }}
+                disabled={confirmed_selected}
               >
+                <Modal
+                  visible={visible_selected}
+                  onCancel={handleCloseModal_selected}
+                  centered={true}
+                  closable={false}
+                  title="Lista de Emails"
+                  footer={[
+                    <Button
+                      key="close"
+                      type="primary"
+                      onClick={handleCloseModal_selected}
+                    >
+                      Close
+                    </Button>,
+                  ]}
+                >
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <div
+                      style={{
+                        width: "45%",
+                        height: "500px",
+                        overflowY: "scroll",
+                        overflowX: "scroll",
+                      }}
+                    >
+                      <div
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <Button type="primary">Entregues</Button>
+                      </div>
+                      <ul>
+                        {emails_sucess.map((email, index) => (
+                          <li key={index}>{email}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div
+                      style={{
+                        width: "45%",
+                        height: "500px",
+                        overflowY: "scroll",
+                        overflowX: "scroll",
+                      }}
+                    >
+                      <div
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <Button type="primary">Não entregues</Button>
+                      </div>
+                      <ul>
+                        {emails_fail.map((email, index) => (
+                          <li key={index}>{email}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </Modal>
                 <Button type="primary">Notificar selecionados</Button>
               </Popconfirm>
             ) : (
