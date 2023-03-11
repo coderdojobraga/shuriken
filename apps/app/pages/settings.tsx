@@ -22,7 +22,7 @@ import {
 } from "@ant-design/icons";
 import { getBase64 } from "~/lib/images";
 import { useAuth } from "@coderdojobraga/ui";
-import { notifyError } from "~/components/Notification";
+import { notifyError, notifyInfo } from "~/components/Notification";
 import { getIcon } from "~/lib/utils";
 import {
   EUser,
@@ -239,6 +239,7 @@ function Settings() {
               onClick={() => {
                 changeSkills();
                 formPersonal.submit();
+                notifyInfo("Atualizado com sucesso!");
               }}
               type="primary"
             >
