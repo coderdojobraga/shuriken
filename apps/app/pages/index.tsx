@@ -154,7 +154,7 @@ function Dashboard() {
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
                       >
-                        <Button type="primary">Entregues</Button>
+                        <Button type="primary">Não entregues</Button>
                       </div>
                       <ul>
                         {emails_fail.map((email, index) => (
