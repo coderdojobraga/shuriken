@@ -192,6 +192,16 @@ function Settings() {
     }
   };
 
+  const editUser = () => {
+    edit_user
+      .then(() => {
+        notifyInfo("Atualizado com sucesso!");
+      })
+      .catch((error) => [
+        notifyError("Não foi possível atualizar.")
+      ]);
+  };
+
   useEffect(() => {
     if (user?.role === EUser.Mentor) {
       getMentor(user?.mentor_id!)
@@ -239,7 +249,6 @@ function Settings() {
               onClick={() => {
                 changeSkills();
                 formPersonal.submit();
-                notifyInfo("Atualizado com sucesso!");
               }}
               type="primary"
             >
@@ -248,7 +257,7 @@ function Settings() {
           </Space>
         </Col>
       </Row>
-      <Form form={formPersonal} onFinish={edit_user} layout="vertical">
+      <Form form={formPersonal} onFinish={editUser} layout="vertical">
         <Section title="Foto de Perfil" />
         <Space>
           <Avatar size={100} src={avatar} />
