@@ -2,8 +2,8 @@ import Image from "next/image";
 
 const MaintenancePage = () => {
   return (
-    <div className="flex min-h-screen flex-col">
-      <main className="flex flex-grow items-center justify-center bg-white">
+    <div className="grid h-screen grid-cols-1 md:grid-cols-2">
+      <div className="flex items-center justify-center bg-white p-4">
         <section className="bg-white dark:bg-gray-900 sm:pl-10 md:pl-20 lg:pl-36">
           <div className="mx-auto max-w-screen-md py-8 px-4 text-center lg:py-16 lg:px-12">
             <svg
@@ -25,18 +25,12 @@ const MaintenancePage = () => {
             </p>
           </div>
         </section>
-
-        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="md:flex md:items-center md:justify-between">
-            <Image src="/img/logo.svg" width={400} height={400} />
-            {/* <img
-              className="mx-auto h-16 sm:h-32 lg:h-48 w-16 sm:w-32 lg:w-48"
-              src={"/img/logo.svg"}
-              alt="CoderDojo Braga logo"
-            /> */}
-          </div>
-        </section>
-      </main>
+      </div>
+      <div className="flex items-center justify-center bg-white p-4">
+        <div className="mx-auto max-w-xs md:max-w-full">
+          <Image src="/img/logo.svg" width={400} height={400} alt="logo" />
+        </div>
+      </div>
     </div>
   );
 };
