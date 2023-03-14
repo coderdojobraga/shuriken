@@ -21,12 +21,13 @@ function Dashboard() {
   const [ninjas, setNinjas] = useState([]);
   const { data: events, isLoading: isLoadingEvents } = useEvents();
   const { data: badges, isLoading: isLoadingBadges } = useBadges();
-  const [emails_sucess, setEmails_sucess] = useState([]);
+  const [emails_success, setEmails_success] = useState([]);
   const [emails_fail, setEmails_fail] = useState([]);
   const [visible_signup, setVisible_signup] = useState(false);
   const [visible_selected, setVisible_selected] = useState(false);
   const [confirmed_signup, setConfirmed_signup] = useState(false);
   const [confirmed_selected, setConfirmed_selected] = useState(false);
+  const [showInfoA, setShowInfoA] = useState(true);
 
   const nextEvent = () => {
     const cur = moment();
@@ -51,10 +52,10 @@ function Dashboard() {
   const notify_signup_ninjas = () => {
     notify_signup()
       .then((response) => {
-        setEmails_sucess(response.success);
+        setEmails_success(response.success);
         setEmails_fail(response.fail);
         setVisible_signup(true);
-        notifyInfo("Enviado com sucesso!");
+        notifyInfo("Enviado com successo!");
       })
       .catch((error) => {
         notifyError("Não foi enviado!");
@@ -64,10 +65,10 @@ function Dashboard() {
   const notify_selected_ninjas = () => {
     notify_selected()
       .then((response) => {
-        setEmails_sucess(response.success);
+        setEmails_success(response.success);
         setEmails_fail(response.fail);
         setVisible_selected(true);
-        notifyInfo("Enviado com sucesso!");
+        notifyInfo("Enviado com successo!");
       })
       .catch((error) => {
         notifyError("Não foi enviado!");
@@ -110,7 +111,11 @@ function Dashboard() {
                   onCancel={handleCloseModal_signup}
                   centered={true}
                   closable={false}
-                  title="Lista de Emails"
+                  title={
+                    <div style={{ textAlign: "center" }}>
+                      Relatório de envio de emails
+                    </div>
+                  }
                   footer={[
                     <Button
                       key="close"
@@ -121,46 +126,110 @@ function Dashboard() {
                     </Button>,
                   ]}
                 >
-                  <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <div
-                      style={{
-                        width: "45%",
-                        height: "500px",
-                        overflowY: "scroll",
-                        overflowX: "scroll",
-                      }}
-                    >
-                      <div
-                        style={{ display: "flex", justifyContent: "center" }}
+                  <div className="h-96 p-4">
+                    <div className="flex justify-center">
+                      <button
+                        className={`mr-2 rounded-t-lg px-4 py-2 ${
+                          showInfoA
+                            ? "bg-primary text-white"
+                            : "bg-gray-200 text-gray-700"
+                        }`}
+                        onClick={() => setShowInfoA(true)}
                       >
-                        <Button type="primary">Entregues</Button>
-                      </div>
-                      <ul>
-                        {emails_sucess.map((email, index) => (
-                          <li key={index}>{email}</li>
-                        ))}
-                      </ul>
+                        &nbsp; Entregues &nbsp;
+                      </button>
+                      <button
+                        className={`rounded-t-lg px-4 py-2 ${
+                          !showInfoA
+                            ? "bg-primary text-white"
+                            : "bg-gray-200 text-gray-700"
+                        }`}
+                        onClick={() => setShowInfoA(false)}
+                      >
+                        Não entregues
+                      </button>
                     </div>
-                    <div
-                      style={{
-                        width: "45%",
-                        height: "500px",
-                        overflowY: "scroll",
-                        overflowX: "scroll",
-                      }}
-                    >
-                      <div
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <Button type="primary">Não entregues</Button>
-                      </div>
-                      <ul>
-                        {emails_fail.map((email, index) => (
-                          <li key={index}>{email}</li>
-                        ))}
-                      </ul>
+
+                    <div className="min-h-max rounded-lg border p-4">
+                      {showInfoA ? (
+                        <>
+                          {emails_success.length > 0 ? (
+                            <ul
+                              style={{
+                                height: "275px",
+                                overflowY: "scroll",
+                                overflowX: "scroll",
+                              }}
+                            >
+                              {emails_success.map((email, index) => (
+                                <li
+                                  key={index}
+                                  style={{
+                                    borderTop:
+                                      index !== 0
+                                        ? "1px solid #e0e0e0"
+                                        : "none",
+                                    padding: "8px 0",
+                                    color: "#555",
+                                  }}
+                                >
+                                  {email}
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <div
+                              style={{
+                                height: "275px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <p>Sem emails para mostrar</p>
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {emails_fail.length > 0 ? (
+                            <ul
+                              style={{
+                                height: "275px",
+                                overflowY: "scroll",
+                                overflowX: "scroll",
+                              }}
+                            >
+                              {emails_fail.map((email, index) => (
+                                <li
+                                  key={index}
+                                  style={{
+                                    borderTop:
+                                      index !== 0
+                                        ? "1px solid #e0e0e0"
+                                        : "none",
+                                    padding: "8px 0",
+                                    color: "#555",
+                                  }}
+                                >
+                                  {email}
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <div
+                              style={{
+                                height: "275px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <p>Sem emails para mostrar</p>
+                            </div>
+                          )}
+                        </>
+                      )}
                     </div>
                   </div>
                 </Modal>
@@ -170,6 +239,7 @@ function Dashboard() {
               <></>
             )}
           </Col>
+
           <Col>
             {role === EUser.Organizer ? (
               <Popconfirm
@@ -187,7 +257,11 @@ function Dashboard() {
                   onCancel={handleCloseModal_selected}
                   centered={true}
                   closable={false}
-                  title="Lista de Emails"
+                  title={
+                    <div style={{ textAlign: "center" }}>
+                      Relatório de envio de emails
+                    </div>
+                  }
                   footer={[
                     <Button
                       key="close"
@@ -198,46 +272,110 @@ function Dashboard() {
                     </Button>,
                   ]}
                 >
-                  <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <div
-                      style={{
-                        width: "45%",
-                        height: "500px",
-                        overflowY: "scroll",
-                        overflowX: "scroll",
-                      }}
-                    >
-                      <div
-                        style={{ display: "flex", justifyContent: "center" }}
+                  <div className="h-96 p-4">
+                    <div className="flex justify-center">
+                      <button
+                        className={`mr-2 rounded-t-lg px-4 py-2 ${
+                          showInfoA
+                            ? "bg-primary text-white"
+                            : "bg-gray-200 text-gray-700"
+                        }`}
+                        onClick={() => setShowInfoA(true)}
                       >
-                        <Button type="primary">Entregues</Button>
-                      </div>
-                      <ul>
-                        {emails_sucess.map((email, index) => (
-                          <li key={index}>{email}</li>
-                        ))}
-                      </ul>
+                        &nbsp; Entregues &nbsp;
+                      </button>
+                      <button
+                        className={`rounded-t-lg px-4 py-2 ${
+                          !showInfoA
+                            ? "bg-primary text-white"
+                            : "bg-gray-200 text-gray-700"
+                        }`}
+                        onClick={() => setShowInfoA(false)}
+                      >
+                        Não entregues
+                      </button>
                     </div>
-                    <div
-                      style={{
-                        width: "45%",
-                        height: "500px",
-                        overflowY: "scroll",
-                        overflowX: "scroll",
-                      }}
-                    >
-                      <div
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <Button type="primary">Não entregues</Button>
-                      </div>
-                      <ul>
-                        {emails_fail.map((email, index) => (
-                          <li key={index}>{email}</li>
-                        ))}
-                      </ul>
+
+                    <div className="min-h-max rounded-lg border p-4">
+                      {showInfoA ? (
+                        <>
+                          {emails_success.length > 0 ? (
+                            <ul
+                              style={{
+                                height: "275px",
+                                overflowY: "scroll",
+                                overflowX: "scroll",
+                              }}
+                            >
+                              {emails_success.map((email, index) => (
+                                <li
+                                  key={index}
+                                  style={{
+                                    borderTop:
+                                      index !== 0
+                                        ? "1px solid #e0e0e0"
+                                        : "none",
+                                    padding: "8px 0",
+                                    color: "#555",
+                                  }}
+                                >
+                                  {email}
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <div
+                              style={{
+                                height: "275px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <p>Sem emails para mostrar</p>
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {emails_fail.length > 0 ? (
+                            <ul
+                              style={{
+                                height: "275px",
+                                overflowY: "scroll",
+                                overflowX: "scroll",
+                              }}
+                            >
+                              {emails_fail.map((email, index) => (
+                                <li
+                                  key={index}
+                                  style={{
+                                    borderTop:
+                                      index !== 0
+                                        ? "1px solid #e0e0e0"
+                                        : "none",
+                                    padding: "8px 0",
+                                    color: "#555",
+                                  }}
+                                >
+                                  {email}
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <div
+                              style={{
+                                height: "275px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <p>Sem emails para mostrar</p>
+                            </div>
+                          )}
+                        </>
+                      )}
                     </div>
                   </div>
                 </Modal>
