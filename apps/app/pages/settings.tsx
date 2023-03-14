@@ -12,7 +12,6 @@ import {
   Space,
   Typography,
   Upload,
-  notification,
 } from "antd";
 import moment from "moment";
 import {
@@ -203,7 +202,7 @@ function Settings() {
         })
         .catch((error) => {
           notifyError({
-            message: "Error",
+            message: "Erro",
             description: error.data?.errors,
           });
         });
