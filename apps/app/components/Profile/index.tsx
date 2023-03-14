@@ -9,7 +9,6 @@ import {
   Tag,
   Timeline,
   Typography,
-  notification,
 } from "antd";
 import { ClockCircleOutlined, UserOutlined } from "@ant-design/icons";
 import moment from "moment";
