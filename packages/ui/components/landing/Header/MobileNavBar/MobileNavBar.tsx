@@ -24,6 +24,7 @@ const icons = {
   "/web/recruitment": <PlusOutlined />,
   "/web/team": <TeamOutlined />,
   "/web/hall-of-fame": <CrownOutlined />,
+  "/web/dojocon": <CrownOutlined />,
   "/blog": <BookOutlined />,
 };
 
