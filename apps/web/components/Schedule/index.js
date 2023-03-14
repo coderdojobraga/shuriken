@@ -1,6 +1,6 @@
 export default function Schedule({ tittle, details, description }) {
   return (
-    <div className="flex-container justify flex pl-10 xl:justify-center">
+    <div className="flex-container justify flex pl-10 xl:justify-left xl:mx-96">
       <ol className="relative border-l border-gray-200 dark:border-gray-700">
         <li className="mb-10 ml-6">
           <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 ring-8 ring-white dark:bg-purple-900 dark:ring-gray-900">
@@ -21,7 +21,7 @@ export default function Schedule({ tittle, details, description }) {
           <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
             {tittle}
           </h3>
-          <time className="mb-2 block text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+          <time className="mb-2 block text-base font-normal leading-none text-gray-700 dark:text-gray-500">
             {details}
           </time>
           <p className="hidden text-base font-normal text-gray-500 dark:text-gray-400 sm:block">

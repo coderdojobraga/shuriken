@@ -1,11 +1,16 @@
 import { Footer, Header } from "@coderdojobraga/ui";
+import { useState } from 'react';
 import Speaker from "~/components/Speaker";
 import Schedule from "~/components/Schedule";
 
 import speakers from "~/data/speakers.json";
-import activities from "~/data/activities.json";
+import activities_day_one from "~/data/activities_day_one.json";
+import activities_day_two from "~/data/activities_day_two.json";
 
 export default function DojoCon() {
+
+  const [showInfoA, setShowInfoA] = useState(true);
+
   return (
     <>
       <Header landing={true} />
@@ -34,9 +39,40 @@ export default function DojoCon() {
 
         <div className="bg-primary h-8/12 container mx-auto w-6/12 py-0.5 text-center text-2xl lg:w-3/12" />
       </div>
-      {activities.map((entry) => (
-        <Schedule key={entry.tittle} {...entry} />
-      ))}
+
+      <div className="flex justify-center">
+        <button
+          className={`px-4 py-2 lg:text-2xl rounded-t-lg mr-2 ${showInfoA ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'
+            }`}
+          onClick={() => setShowInfoA(true)}
+        >
+          &nbsp; &nbsp; &nbsp; Dia 24/03 &nbsp; &nbsp; &nbsp;
+        </button>
+        <button
+          className={`px-4 py-2 lg:text-2xl rounded-t-lg ${!showInfoA ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'
+            }`}
+          onClick={() => setShowInfoA(false)}
+        >
+          &nbsp; &nbsp; &nbsp; Dia 25/03 &nbsp; &nbsp; &nbsp;
+        </button>
+      </div>
+      <div className="p-4 border-t-4 border-b-4">
+        {showInfoA ? (
+          <>
+            {activities_day_one.map((entry) => (
+              <Schedule key={entry.tittle} {...entry} />
+            ))
+            }
+          </>
+        ) : (
+          <>
+            {activities_day_two.map((entry) => (
+              <Schedule key={entry.tittle} {...entry} />
+            ))
+            }
+          </>
+        )}
+      </div>
 
       <div className="container mx-auto mt-12">
         <h1 className="m-4 text-center text-4xl font-bold sm:text-5xl">

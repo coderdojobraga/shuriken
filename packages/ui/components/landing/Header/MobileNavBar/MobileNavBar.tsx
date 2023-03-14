@@ -9,6 +9,7 @@ import {
   LogoutOutlined,
   SnippetsOutlined,
   PlusOutlined,
+  CalendarOutlined,
   TeamOutlined,
   MenuOutlined,
 } from "@ant-design/icons";
@@ -24,7 +25,7 @@ const icons = {
   "/web/recruitment": <PlusOutlined />,
   "/web/team": <TeamOutlined />,
   "/web/hall-of-fame": <CrownOutlined />,
-  "/web/dojocon": <CrownOutlined />,
+  "/web/dojocon": <CalendarOutlined />,
   "/blog": <BookOutlined />,
 };
 
