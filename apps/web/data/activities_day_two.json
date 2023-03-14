@@ -2,31 +2,31 @@
     {
         "tittle": "Sessão",
         "details": "10:00 - 12:30",
-        "description": "Lorem ipsum dolnisi, blandit id justo eget, auctor tincidunt est."
+        "description": "Sessão habitual no Departamento de Informática."
     },
     {
         "tittle": "Almoço",
         "details": "12:30 - 14:30",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "description": ""
     },
     {
         "tittle": "Apresentação de Projetos",
         "details": "14:30 - 15:30",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "description": "Atividade para apresentação dinâmica dos projetos desenvolvidos para o evento."
     },
     {
         "tittle": "Atribuição de Prémios",
         "details": "15:30 - 16:00",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "description": "Celebração da participação no evento e entrega de prémios."
     },
     {
         "tittle": "Encerramento",
         "details": "16:00 - 16:30",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "description": ""
     },
     {
         "tittle": "Coffee Break",
         "details": "16:30 - 17:30",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "description": ""
     }
 ]

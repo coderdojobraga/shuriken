@@ -1,6 +1,6 @@
 export default function Schedule({ tittle, details, description }) {
   return (
-    <div className="flex-container justify flex pl-10 xl:justify-left xl:mx-96">
+    <div className="flex-container justify xl:justify-left flex pl-10 xl:mx-96">
       <ol className="relative border-l border-gray-200 dark:border-gray-700">
         <li className="mb-10 ml-6">
           <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 ring-8 ring-white dark:bg-purple-900 dark:ring-gray-900">

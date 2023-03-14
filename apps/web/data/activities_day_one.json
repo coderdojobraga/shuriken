@@ -1,47 +1,47 @@
 [
     {
-        "tittle": "Mini sessão de abertura",
+        "tittle": "Sessão de abertura",
         "details": "10:00 - 10:30 || Júlio Pinto - Organizador DojoCon",
-        "description": "Lorem ipsum dolnisi, blandit id justo eget, auctor tincidunt est."
-    },
-    {
-        "tittle": "Apresentação CoderDojo Braga e Projetos",
-        "details": "10:30 - 11:30 || Champion, Co-Champion e Mentores",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "description": ""
     },
     {
         "tittle": "Coffee Break⠀",
-        "details": "11:30 - 12:00",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "details": "10:30 - 11:00",
+        "description": ""
+    },
+    {
+        "tittle": "Apresentação CoderDojo Braga e Projetos",
+        "details": "11:00 - 12:00 || Champion, Co-Champions e Mentores",
+        "description": "Apresentação da metodologia e dos diferentes projetos do CoderDojo Braga 2022/23."
     },
     {
         "tittle": "Sumo Hacking Challenge",
         "details": "12:00 - 13:00 || Rui Oliveira, Rui Lopes e Tiago Bacelar",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "description": "Competição de programação num ambiente de descontração e animação."
     },
     {
         "tittle": "Almoço",
         "details": "13:00 - 15:00",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "description": ""
     },
     {
-        "tittle": "Talk JNO",
-        "details": "15:00 - 16:00 || JNO",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "tittle": "Talk Ensico",
+        "details": "15:00 - 16:00 || José Oliveira",
+        "description": "Palestra sobre iniciativa coordenada pelo professor no âmbito da programação."
     },
     {
         "tittle": "Quiz",
         "details": "16:00 - 17:00 || Jéssica Fernandes e Martim Ferreira",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "description": "Atividade recreativa orientada à descoberta de curiosidades do Dojo."
     },
     {
         "tittle": "Coffee Break",
         "details": "17:00 - 17:30",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "description": ""
     },
     {
         "tittle": "Tertúlia de Champions",
         "details": "17:30 - 19:00 || Ex-Champions",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+        "description": "Debate sobre o conceito de Dojo, no sentido de comentar sobre a sua evolução e aplicação."
     }
 ]
