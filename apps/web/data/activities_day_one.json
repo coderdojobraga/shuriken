@@ -17,7 +17,7 @@
     {
         "tittle": "Sumo Hacking Challenge",
         "details": "12:00 - 13:00 || Rui Oliveira, Rui Lopes e Tiago Bacelar",
-        "description": "Competição de programação num ambiente de descontração e animação."
+        "description": "Competição de programação de peso com a fasquia elevada e contra-relógio."
     },
     {
         "tittle": "Almoço",
@@ -27,7 +27,7 @@
     {
         "tittle": "Talk Ensico",
         "details": "15:00 - 16:00 || José Oliveira",
-        "description": "Palestra sobre iniciativa coordenada pelo professor no âmbito da programação."
+        "description": "Palestra sobre a iniciativa coordenada pelo professor no âmbito da programação no ensino ao jovens."
     },
     {
         "tittle": "Quiz",
@@ -42,6 +42,6 @@
     {
         "tittle": "Tertúlia de Champions",
         "details": "17:30 - 19:00 || Ex-Champions",
-        "description": "Debate sobre o conceito de Dojo, no sentido de comentar sobre a sua evolução e aplicação."
+        "description": "Conversa descontraída de Ex-Champions sobre as suas experiências no Dojo."
     }
 ]

@@ -2,7 +2,7 @@
     {
         "tittle": "Sessão",
         "details": "10:00 - 12:30",
-        "description": "Sessão habitual no Departamento de Informática."
+        "description": "Sessão temática da DojoCon no Departamento de Informática."
     },
     {
         "tittle": "Almoço",
@@ -12,7 +12,7 @@
     {
         "tittle": "Apresentação de Projetos",
         "details": "14:30 - 15:30",
-        "description": "Atividade para apresentação dinâmica dos projetos desenvolvidos para o evento."
+        "description": "Demonstração dos projetos desenvolvidos para o evento."
     },
     {
         "tittle": "Atribuição de Prémios",
