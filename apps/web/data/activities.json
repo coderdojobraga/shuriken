@@ -1,0 +1,47 @@
+[
+    {
+        "tittle": "Mini sessão de abertura",
+        "details": "10:00 - 10:30 || Júlio Pinto - Organizador DojoCon",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+    },
+    {
+        "tittle": "Apresentação CoderDojo Braga e Projetos",
+        "details": "10:30 - 11:30 || Champion, Co-Champion e Mentores",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+    },
+    {
+        "tittle": "Coffee Break",
+        "details": "11:30 - 12:00",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+    },
+    {
+        "tittle": "Sumo Hacking Challenge",
+        "details": "12:00 - 13:00 || Rui Oliveira, Rui Lopes e Tiago Bacelar",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+    },
+    {
+        "tittle": "Almoço",
+        "details": "13:00 - 15:00",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+    },
+    {
+        "tittle": "Talk JNO",
+        "details": "15:00 - 16:00 || JNO",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+    },
+    {
+        "tittle": "Quiz",
+        "details": "16:00 - 17:00 || Jéssica Fernandes e Martim Ferreira",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+    },
+    {
+        "tittle": "Coffee Break",
+        "details": "17:00 - 17:30",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+    },
+    {
+        "tittle": "Tertúlia de Champions",
+        "details": "17:30 - 19:00 || Ex-Champions",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros nisi, blandit id justo eget, auctor tincidunt est."
+    }
+]
