@@ -8,6 +8,7 @@ import {
   LoginOutlined,
   LogoutOutlined,
   SnippetsOutlined,
+  QuestionCircleOutlined,
   PlusOutlined,
   TeamOutlined,
   MenuOutlined,
@@ -24,7 +25,7 @@ const icons = {
   "/web/recruitment": <PlusOutlined />,
   "/web/team": <TeamOutlined />,
   "/web/hall-of-fame": <CrownOutlined />,
-  "/web/faqs": <CrownOutlined />,
+  "/web/faqs": <QuestionCircleOutlined />,
   "/blog": <BookOutlined />,
 };
 
