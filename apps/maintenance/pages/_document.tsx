@@ -7,7 +7,6 @@ export default function Document() {
        <title>CoderDojo Braga</title>
       </Head>
       <body>
-        <Main />
         <NextScript />
       </body>
     </Html>
