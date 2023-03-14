@@ -201,7 +201,12 @@ function Settings() {
             "user[socials]": response.data?.socials,
           });
         })
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError({
+            message: "Error",
+            description: error.data?.errors,
+          });
+        });
     }
   }, [user?.role, user?.mentor_id, formPersonal]);
 
