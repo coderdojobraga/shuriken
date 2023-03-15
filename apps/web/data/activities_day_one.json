@@ -1,0 +1,47 @@
+[
+    {
+        "tittle": "Sessão de abertura",
+        "details": "10:00 - 10:30 || Júlio Pinto - Organizador DojoCon",
+        "description": ""
+    },
+    {
+        "tittle": "Coffee Break⠀",
+        "details": "10:30 - 11:00",
+        "description": ""
+    },
+    {
+        "tittle": "Apresentação CoderDojo Braga e Projetos",
+        "details": "11:00 - 12:00 || Champion, Co-Champions e Mentores",
+        "description": "Apresentação da metodologia e dos diferentes projetos do CoderDojo Braga 2022/23."
+    },
+    {
+        "tittle": "Sumo Hacking Challenge",
+        "details": "12:00 - 13:00 || Rui Oliveira, Rui Lopes e Tiago Bacelar",
+        "description": "Competição de programação de peso com a fasquia elevada e contra-relógio."
+    },
+    {
+        "tittle": "Almoço",
+        "details": "13:00 - 15:00",
+        "description": ""
+    },
+    {
+        "tittle": "Talk Ensico",
+        "details": "15:00 - 16:00 || José Oliveira",
+        "description": "Palestra sobre a iniciativa coordenada pelo professor no âmbito da programação no ensino ao jovens."
+    },
+    {
+        "tittle": "Quiz",
+        "details": "16:00 - 17:00 || Jéssica Fernandes e Martim Ferreira",
+        "description": "Atividade recreativa orientada à descoberta de curiosidades do Dojo."
+    },
+    {
+        "tittle": "Coffee Break",
+        "details": "17:00 - 17:30",
+        "description": ""
+    },
+    {
+        "tittle": "Tertúlia de Champions",
+        "details": "17:30 - 19:00 || Ex-Champions",
+        "description": "Conversa descontraída de Ex-Champions sobre as suas experiências no Dojo."
+    }
+]
