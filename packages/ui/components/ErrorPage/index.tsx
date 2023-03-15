@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 
+import styles from "./style.module.css";
+
 interface IProps {
   status: string;
   title: string;
@@ -12,17 +14,18 @@ const DefaultActions = () => {
   const router = useRouter();
 
   return (
-    <div className="m-auto mt-5">
-      <div className="m-auto block w-fit">
+    <div style={{ margin: "auto", marginTop: "20px" }}>
+      <div className={styles.buttonsContainer}>
         <button
-          className="mx-2 border p-2"
+          className={styles.button}
           onClick={() => router.back()}
           key="back"
         >
           Voltar
         </button>
         <button
-          className="mx-2 border bg-[#722ed1] p-2 text-white"
+          className={styles.button}
+          style={{ backgroundColor: "#722ed1", color: "white" }}
           onClick={() => router.push("/")}
           key="home"
         >
@@ -40,15 +43,15 @@ const ErrorPage = ({
   actions = <DefaultActions />,
 }: IProps) => {
   return (
-    <div className="m-auto flex h-screen max-w-screen-md items-center justify-center">
+    <div className={styles.main}>
       <div>
-        <div className="m-auto block text-center">
+        <div className={styles.logo}>
           <Image src="/img/logo.svg" width={200} height={200} />
         </div>
-        <div className="text-center">
-          <h1 className="text-md mt-12 font-bold sm:text-3xl">{title}</h1>
-          <p className="mt-6 text-sm sm:text-lg">{subtitle}</p>
-          <h2 className="mt-3 text-sm sm:text-xl">Erro {status}</h2>
+        <div style={{ textAlign: "center" }}>
+          <h1 className={styles.title}>{title}</h1>
+          <p className={styles.subtitle}>{subtitle}</p>
+          <h2 className={styles.status}>Erro {status}</h2>
         </div>
         <div>{actions}</div>
       </div>

@@ -2,11 +2,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "~/configs/*": ["configs/*"],
       "~/components/*": ["components/*"],
       "~/hooks/*": ["hooks/*"],
       "~/layouts/*": ["layouts/*"],
       "~/lib/*": ["lib/*"],
-      "~/styles/*": ["styles/*"]
+      "~/styles/*": ["styles/*"],
     }
   },
   "extends": "tsconfig/nextjs.json",

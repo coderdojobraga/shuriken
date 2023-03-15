@@ -6,7 +6,7 @@ import { CalendarOutlined, EditOutlined } from "@ant-design/icons";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import * as api from "bokkenjs";
-import moment from "moment";
+import dayjs from "dayjs";
 import { EUser } from "bokkenjs";
 import { notifyError } from "~/components/Notification";
 
@@ -94,7 +94,7 @@ function Lectures() {
               </Col>
               <Col>
                 <Text>
-                  {moment(new Date(lecture.event.start_time)).format(
+                  {dayjs(new Date(lecture.event.start_time)).format(
                     "DD/MM/YYYY"
                   )}
                 </Text>

@@ -10,7 +10,7 @@ import Ninja from "~/components/Ninja";
 import { useEvents } from "~/hooks/events";
 import { notifyError, notifyInfo } from "~/components/Notification";
 import styles from "~/styles/Dashboard.module.css";
-import moment from "moment";
+import dayjs from "dayjs";
 
 const { Title } = Typography;
 
@@ -23,7 +23,7 @@ function Dashboard() {
   const { data: badges, isLoading: isLoadingBadges } = useBadges();
 
   const nextEvent = () => {
-    const cur = moment();
+    const cur = dayjs();
 
     const sorted_events = events
       .filter((e: any) => cur.diff(e.start_time) < 0)
