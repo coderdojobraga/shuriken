@@ -39,7 +39,7 @@ const MaintenancePage = () => {
                 width={400}
                 height={400}
                 alt="logo"
-                className="md:animate-spin"
+                className="animate-spin"
                 style={{ animationDuration: "14s" }}
               />
             </div>
