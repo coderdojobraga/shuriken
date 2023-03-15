@@ -71,7 +71,7 @@ function Navbar({ selected }) {
           }
         >
           <Menu.Item key="logout" onClick={logout}>
-            Logout
+            Sair
           </Menu.Item>
         </Menu.SubMenu>
       ) : null}

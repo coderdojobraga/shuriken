@@ -1,11 +1,18 @@
-import { useEffect, useMemo, useState, PropsWithChildren } from "react";
+import {
+  useEffect,
+  useMemo,
+  useState,
+  PropsWithChildren,
+  ReactNode,
+} from "react";
 import * as api from "bokkenjs";
 import { IUser } from "bokkenjs";
 import { IErrors } from "./types";
 import AuthContext from "./AuthContext";
-import LoadingOverlay from "@coderdojobraga/ui/components/LoadingOverlay";
 
-interface Props {}
+interface Props {
+  children: ReactNode;
+}
 
 export function AuthProvider({ children }: PropsWithChildren<Props>) {
   const [user, setUser] = useState<undefined | IUser>();
@@ -14,6 +21,8 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
   const [isFirstLoading, setFirstLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    setLoading(true);
+
     api
       .getCurrentUser()
       .then((user) => {
@@ -21,9 +30,8 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
       })
       .catch(() => {})
       .finally(() => {
-        setTimeout(() => {
-          setFirstLoading(false);
-        }, 2000);
+        setTimeout(() => setLoading(false), 2000);
+        setFirstLoading(false);
       });
   }, []);
 
@@ -98,7 +106,7 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
 
   return (
     <AuthContext.Provider value={values}>
-      {isFirstLoading ? <LoadingOverlay /> : children}
+      {!isFirstLoading && children}
     </AuthContext.Provider>
   );
 }

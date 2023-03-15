@@ -1,7 +1,9 @@
 export const MENU_ENTRIES = [
-  { path: "/web/curriculum", text: "Currículo" },
-  { path: "/web/recruitment", text: "Recrutamento" },
+  { key: "/web/curriculum", text: "Currículo" },
+  { key: "/web/recruitment", text: "Recrutamento" },
   //   { path: "/projects", text: "Projetos" },
-  { path: "/web/team", text: "Equipa" },
-  { path: "/blog", text: "Blog" },
+  { key: "/web/team", text: "Equipa" },
+  { key: "/web/hall-of-fame", text: "Hall of Fame" },
+  { key: "/web/dojocon", text: "DojoCon" },
+  { key: "/blog", text: "Blog" },
 ];

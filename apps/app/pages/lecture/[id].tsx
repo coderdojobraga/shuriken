@@ -1,16 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  Avatar,
-  Button,
-  Col,
-  Form,
-  Input,
-  Row,
-  Space,
-  Typography,
-  notification,
-} from "antd";
+import { Avatar, Button, Col, Form, Input, Row, Space, Typography } from "antd";
 import { CalendarOutlined, UserOutlined } from "@ant-design/icons";
 import * as api from "bokkenjs";
 import { useAuth } from "@coderdojobraga/ui";
