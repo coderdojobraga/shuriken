@@ -15,7 +15,10 @@ export default function DojoCon() {
       <Header landing={true} />
 
       <div className="container mx-auto mt-12">
-        <h1 className="m-4 text-center text-4xl font-bold sm:text-5xl">
+        <h1
+          className="m-4 text-center font-bold"
+          style={{ fontFamily: "Bankai", fontSize: "5rem" }}
+        >
           Evento DojoCon
         </h1>
 

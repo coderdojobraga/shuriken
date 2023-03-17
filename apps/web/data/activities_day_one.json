@@ -16,7 +16,7 @@
     },
     {
         "tittle": "Sumo Hacking Challenge",
-        "details": "12:00 - 13:00 || Rui Oliveira, Rui Lopes e Tiago Bacelar",
+        "details": "12:00 - 13:00",
         "description": "Competição de programação de peso com a fasquia elevada e contra-relógio."
     },
     {
@@ -25,14 +25,14 @@
         "description": ""
     },
     {
-        "tittle": "Talk Ensico",
-        "details": "15:00 - 16:00 || José Oliveira",
-        "description": "Palestra sobre a iniciativa coordenada pelo professor no âmbito da programação no ensino ao jovens."
+        "tittle": "Quiz",
+        "details": "15:00 - 16:00",
+        "description": "Atividade recreativa orientada à descoberta de curiosidades do Dojo."
     },
     {
-        "tittle": "Quiz",
-        "details": "16:00 - 17:00 || Jéssica Fernandes e Martim Ferreira",
-        "description": "Atividade recreativa orientada à descoberta de curiosidades do Dojo."
+        "tittle": "Talk Ensico",
+        "details": "16:00 - 17:00 || José Oliveira",
+        "description": "Palestra sobre a iniciativa coordenada pelo professor no âmbito da programação no ensino ao jovens."
     },
     {
         "tittle": "Coffee Break",
