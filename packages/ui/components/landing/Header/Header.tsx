@@ -28,7 +28,7 @@ export function Header({ landing = false }: Props) {
               </Link>
             </div>
 
-            <NavBar />
+            <NavBar landing={landing} />
           </nav>
         </header>
       </div>
