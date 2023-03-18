@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Footer, Header } from "@coderdojobraga/ui";
 import { Disclosure } from "@headlessui/react";
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
