@@ -1,5 +1,10 @@
 @import "~/styles/antd.css";
 
+@font-face {
+    font-family: Bankai;
+    src: url("/fonts/bankai/bankai.otf") format("opentype");
+  }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

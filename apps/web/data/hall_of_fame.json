@@ -2,7 +2,7 @@
     {
       "picture": "jess.jpg",
       "name": "Jéssica Fernandes",
-      "role": "Current Champion"
+      "role": "Champion atual"
     },
     {
       "picture": "filipefelicio.jpg",
@@ -43,6 +43,20 @@
       "picture": "ninja.jpg",
       "name": "Luís Miranda",
       "role": "Co-Fundador"
-    }
-
+    },
+    {
+      "picture": "ninja.jpg",
+      "name": "Carlos Ferreira",
+      "role": "Ex-Voluntário"
+   },
+   {
+    "picture": "ninja.jpg",
+    "name": "Catarina Machado",
+    "role": "Ex-Voluntária"
+   },
+   {
+      "picture": "ninja.jpg",
+      "name": "Bruno Cancelinha",
+      "role": "Ex-Voluntário"
+   }
 ]

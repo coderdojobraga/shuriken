@@ -12,7 +12,6 @@ import {
   Select,
   Space,
   Typography,
-  notification,
 } from "antd";
 import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
 import { notifyError, notifyInfo } from "~/components/Notification";

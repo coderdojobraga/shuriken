@@ -8,12 +8,16 @@
         "answer": "A inscrição no Dojo tem um processo muito simples, basta aceder à nossa 'Home Page' e premir o botão 'Quero ser Ninja' ou 'Quero ser Voluntário'. Serás redirecionado para um formulário de inscrição e rapidamente entramos em contacto."
     },
     {
+        "question": "O que se faz numa sessão?",
+        "answer": "As nossas sessões têm uma organização muito prática! Começamos por receber os Ninjas e iniciamos o projeto, fazemos uma pausa para lanchar (oferecido pelo Dojo 😁), continuamos os projetos e finalizamos com um alegre encerramento."
+    },
+    {
         "question": "Quero ser voluntário, o que tenho de fazer e quais são as expectativas?",
         "answer": "Para ser voluntário do Dojo deves preencher o formulário de inscrição disponível no botão 'Quero ser Voluntário' na nossa 'Home Page'. Da equipa do Dojo podes esperar um acolhimento agradável e reconfortante, uma dinâmica simples e gratificante, que permite que a experiência de todos na iniciativa seja mais do que positiva."
     },
     {
         "question": "O que preciso de levar para as sessões?",
-        "answer": "O único material imprescindível para as sessões é o teu computador (se não conseguires também temos solução ;) ), boa disposição e vontade de aprender!"
+        "answer": "O único material imprescindível para as sessões é o teu computador (se não conseguires também temos solução 😉), boa disposição e vontade de aprender!"
     },
     {
         "question": "Participar no Dojo dá-me currículo?",
@@ -26,5 +30,13 @@
     {
         "question": "Existem outras atividades sem ser as sessões habituais?",
         "answer": "Pontualmente, o Dojo realiza sessões extra que são atempadamente divulgadas."
+    },
+    {
+        "question": "Se me inscrever no Dojo tenho que lidar com crianças?",
+        "answer": "Não, a participação no Dojo não implica lidar com crianças, é possível ser mentor e ensinar os Ninjas e/ou colaborar como voluntário e contribuir para a gestão de toda a iniciativa (Visita a nossa página de 'Recrutamento')."
+    },
+    {
+        "question": "Quais são as reponsabilidades e conhecimentos necessários num voluntário?",
+        "answer": "No Dojo preservamos o respeito e partilha, os conhecimentos são assegurados pela nossa equipa de formação em toda a jornada do voluntário."
     }
 ]

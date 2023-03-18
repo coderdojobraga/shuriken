@@ -10,6 +10,7 @@ import {
   SnippetsOutlined,
   QuestionCircleOutlined,
   PlusOutlined,
+  CalendarOutlined,
   TeamOutlined,
   MenuOutlined,
 } from "@ant-design/icons";
@@ -26,6 +27,7 @@ const icons = {
   "/web/team": <TeamOutlined />,
   "/web/hall-of-fame": <CrownOutlined />,
   "/web/faqs": <QuestionCircleOutlined />,
+  "/web/dojocon": <CalendarOutlined />,
   "/blog": <BookOutlined />,
 };
 
