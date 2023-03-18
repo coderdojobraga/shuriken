@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Drawer } from "antd";
 import {
@@ -13,8 +13,9 @@ import {
   CalendarOutlined,
   TeamOutlined,
   MenuOutlined,
+  CloseCircleOutlined,
 } from "@ant-design/icons";
-import { useAuth } from "@coderdojobraga/ui";
+import { ThemeToggle, useAuth, useTheme } from "@coderdojobraga/ui";
 
 import { MENU_ENTRIES } from "../config";
 import { getUserInitials } from "../utils";
@@ -33,13 +34,18 @@ const icons = {
 
 interface LoginButtonProps {
   isLoading: boolean;
+  isDark: boolean;
 }
 
-const LoginButton = ({ isLoading }: LoginButtonProps) => (
+const LoginButton = ({ isLoading, isDark }: LoginButtonProps) => (
   <li
     className={isLoading ? styles.loader : "hover:text-primary cursor-pointer"}
   >
-    <div className="flex items-center justify-center gap-x-2">
+    <div
+      className={`flex items-center justify-center gap-x-2 ${
+        isDark && "text-white"
+      }`}
+    >
       {!isLoading && <LoginOutlined />}
       <Link href="/dashboard/login">{!isLoading ? "LOGIN" : ""}</Link>
     </div>
@@ -53,6 +59,7 @@ interface MenuDrawerProps {
 
 const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
   const { user, isLoading, logout } = useAuth();
+  const { isDark } = useTheme();
 
   const onDrawerLogOut = () => {
     logout();
@@ -64,13 +71,32 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
       className="flex md:hidden"
       placement="right"
       onClose={() => setVisibleDrawer(false)}
-      visible={isDrawerVisible}
+      open={isDrawerVisible}
       zIndex={50}
+      bodyStyle={{
+        backgroundColor: isDark ? "#262626" : "#ffffff",
+      }}
+      headerStyle={{
+        backgroundColor: isDark ? "#262626" : "#ffffff",
+      }}
+      closeIcon={
+        <div
+          className={`flex items-center justify-center gap-x-2 ${
+            isDark && "text-white"
+          }`}
+        >
+          <CloseCircleOutlined />
+        </div>
+      }
     >
       <ul className="flex flex-col items-center gap-6 text-xl uppercase">
         {MENU_ENTRIES.map(({ key, text }) => (
           <li className="hover:text-primary cursor-pointer">
-            <div className="flex items-center justify-center gap-x-2">
+            <div
+              className={`flex items-center justify-center gap-x-2 ${
+                isDark && "text-white"
+              }`}
+            >
               {icons[key as keyof typeof icons]}
               <Link href={key}>{text}</Link>
             </div>
@@ -81,7 +107,11 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
           <>
             <li className="hover:text-primary cursor-pointer">
               <Link href="/dashboard">
-                <div className="flex items-center justify-center gap-x-2">
+                <div
+                  className={`flex items-center justify-center gap-x-2 ${
+                    isDark && "text-white"
+                  }`}
+                >
                   <DashboardOutlined />
                   <p className="hover:text-primary cursor-pointer">Dashboard</p>
                 </div>
@@ -92,7 +122,11 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
               className="hover:text-primary cursor-pointer"
               onClick={(_) => onDrawerLogOut()}
             >
-              <div className="flex items-center justify-center gap-x-2">
+              <div
+                className={`flex items-center justify-center gap-x-2 ${
+                  isDark && "text-white"
+                }`}
+              >
                 <LogoutOutlined />
                 <p className="hover:text-primary cursor-pointer">SAIR</p>
               </div>
@@ -100,7 +134,7 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
           </>
         ) : (
           <Link href="/dashboard/login">
-            <LoginButton isLoading={isLoading} />
+            <LoginButton isLoading={isLoading} isDark={isDark} />
           </Link>
         )}
       </ul>
@@ -108,13 +142,15 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
   );
 };
 
-function MobileNavBar() {
+function MobileNavBar({ landing = false }: { landing?: boolean }) {
   const { user } = useAuth();
 
   const [isDrawerVisible, setVisibleDrawer] = useState(false);
 
   return (
-    <div className="flex flex-1 justify-end px-2 md:hidden">
+    <div className="flex flex-1 justify-end space-x-4 px-2 md:hidden">
+      <ThemeToggle visible={!landing} />
+
       {user ? (
         <>
           <button type="button" onClick={(_) => setVisibleDrawer(true)}>
