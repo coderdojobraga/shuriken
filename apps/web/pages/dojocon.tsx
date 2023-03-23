@@ -31,6 +31,10 @@ export default function DojoCon() {
           jovens, através de talks, tertúlias e debates, onde os convidados irão
           partilhar e comentar ideias e perspetivas para fomentar o pensamento
           crítico e promover a melhoria das nossas iniciativas!
+          <p className="p-4">
+            Junta-te a nós no Departamento de Informática (Edifício 7 - Campus
+            de Gualtar) da Universidade do Minho!
+          </p>
         </p>
       </div>
 
