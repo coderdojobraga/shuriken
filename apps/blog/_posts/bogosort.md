@@ -65,7 +65,7 @@ Eis algumas das complexidades mais comuns, ordenadas por performance decrescente
 - O(1) → diz-se que é **constante**, o algoritmo não varia consoante o tamanho do _input_ (num mundo ideal todos os algoritmos seriam assim, mas não é uma situação realista para ordenação)
 - O(log N) → diz-se que é **logarítmico**, o algoritmo cresce em complexidade a um ritmo mais lento que o aumento do tamanho do _input_
 - O(N) → diz-se que é **linear**, o algoritmo cresce em complexidade ao mesmo ritmo que o tamanho do _input_ aumenta
-- O(N^2) → diz-se que é **exponencial**, o algoritmo cresce em complexidade a um ritmo mais rápido que o aumento do tamanho do _input_
+- O(N^2) → diz-se que é **quadrático**, o algoritmo cresce em complexidade a um ritmo mais rápido que o aumento do tamanho do _input_
 
 Como a performance também depende da própria constituição da lista dada, como veremos a seguir, geralmente avaliamos três casos: **o melhor**, **o pior** e **o médio**, sendo que o caso médio é normalmente o mais importante na escolha de que algoritmo usar.
 
@@ -77,7 +77,7 @@ No melhor dos casos, voltando ao exemplo das cartas, atiramos o baralho ao ar e 
 
 No pior dos casos, temos algo que não é caracterizável pela notação _Big O_, já que é possível que a lista nunca venha a ficar ordenada, independentemente do número de iterações.
 
-Por fim, no caso médio, temos O(N × N!), algo com um crescimento de complexidade ainda maior que o exponencial. A explicação matemática para isto já foge um pouco do âmbito do artigo (e é mais complexa!), por isso iremos deixar de lado.
+Por fim, no caso médio, temos O(N × N!), algo com um crescimento de complexidade ainda maior que o quadrático. A explicação matemática para isto já foge um pouco do âmbito do artigo (e é mais complexa!), por isso iremos deixar de lado.
 
 ### Performance do _bubble sort_
 
