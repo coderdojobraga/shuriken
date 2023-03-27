@@ -2,11 +2,13 @@
     {
         "title": "DojoCon '23",
         "description": "A DojoCon é ... (help)",
-        "link": "coderdojobraga.org/web/dojocon"
+        "link": "/dojocon",
+        "button": "Site 2023"
     },
     {
         "title": "CoderCamp '23",
         "description": "O CoderCamp é . . . (help)",
-        "link": ""
+        "link": "",
+        "button": ""
     }
 ]

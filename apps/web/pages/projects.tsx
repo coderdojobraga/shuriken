@@ -1,5 +1,7 @@
 import { Footer, Header } from "@coderdojobraga/ui";
-import Member from "~/components/Member";
+import Event from "~/components/Event";
+
+import projects from "~/data/projects.json";
 
 export default function Projects() {
     return (
@@ -15,7 +17,9 @@ export default function Projects() {
                     Aqui vais poder encontrá-los a todos, tanto as versões mais recentes, como as primeiras iterações.
                 </p>
             </div>
-            <Event />
+            {projects.map((entry) => (
+                <Event key={entry.title} {...entry} />
+            ))}
             <Footer bgColor="dark" fgColor="white" />
         </>
     );
