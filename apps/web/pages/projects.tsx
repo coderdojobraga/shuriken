@@ -20,6 +20,7 @@ export default function Projects() {
             {projects.map((entry) => (
                 <Event key={entry.title} {...entry} />
             ))}
+            <div className="my-12"></div>
             <Footer bgColor="dark" fgColor="white" />
         </>
     );

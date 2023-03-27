@@ -10,17 +10,21 @@ export default function Event({ title, description, link, button }) {
                         <p className="mt-4 mb-4 text-lg font-light leading-relaxed text-white">
                             {description}
                         </p>
-                        <a href={link}
-                            className="text-primary hover:text-primary mt-4
-                        mr-1 mb-1 inline-block rounded-3xl bg-white
-                        px-6 py-4 text-sm font-bold uppercase shadow
-                        outline-none hover:bg-purple-100"
-                        >
-                            {button}
-                        </a>
+                        {button ? (
+                            <a href={link}
+                                className="text-primary hover:text-primary mt-4
+                                mr-1 mb-1 inline-block rounded-3xl bg-white
+                                px-6 py-4 text-sm font-bold uppercase shadow
+                                outline-none hover:bg-purple-100"
+                            >
+                                {button}
+                            </a>) : (
+                            <></>
+                        )}
                     </div>
                 </div>
             </div>
         </section >
     );
+
 }

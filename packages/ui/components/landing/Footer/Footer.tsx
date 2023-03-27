@@ -29,7 +29,7 @@ export const Footer = ({ bgColor, fgColor }: Props) => (
           )}
         </div>
         <div className="order-first flex flex-row justify-center md:order-last md:justify-end">
-          <a className="hover:text-primary" href="/docs/terms-of-service.pdf">
+          <a className="mt-4 hover:text-primary" href="/docs/terms-of-service.pdf">
             Termos de Serviço
           </a>
         </div>

@@ -14,6 +14,7 @@ import {
   TeamOutlined,
   MenuOutlined,
   CloseCircleOutlined,
+  ExperimentOutlined,
 } from "@ant-design/icons";
 import { ThemeToggle, useAuth, useTheme } from "@coderdojobraga/ui";
 
@@ -29,6 +30,7 @@ const icons = {
   "/web/hall-of-fame": <CrownOutlined />,
   "/web/faqs": <QuestionCircleOutlined />,
   "/web/dojocon": <CalendarOutlined />,
+  "web/projects": <ExperimentOutlined />,
   "/blog": <BookOutlined />,
 };
 
@@ -42,9 +44,8 @@ const LoginButton = ({ isLoading, isDark }: LoginButtonProps) => (
     className={isLoading ? styles.loader : "hover:text-primary cursor-pointer"}
   >
     <div
-      className={`flex items-center justify-center gap-x-2 ${
-        isDark && "text-white"
-      }`}
+      className={`flex items-center justify-center gap-x-2 ${isDark && "text-white"
+        }`}
     >
       {!isLoading && <LoginOutlined />}
       <Link href="/dashboard/login">{!isLoading ? "LOGIN" : ""}</Link>
@@ -81,9 +82,8 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
       }}
       closeIcon={
         <div
-          className={`flex items-center justify-center gap-x-2 ${
-            isDark && "text-white"
-          }`}
+          className={`flex items-center justify-center gap-x-2 ${isDark && "text-white"
+            }`}
         >
           <CloseCircleOutlined />
         </div>
@@ -93,9 +93,8 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
         {MENU_ENTRIES.map(({ key, text }) => (
           <li className="hover:text-primary cursor-pointer">
             <div
-              className={`flex items-center justify-center gap-x-2 ${
-                isDark && "text-white"
-              }`}
+              className={`flex items-center justify-center gap-x-2 ${isDark && "text-white"
+                }`}
             >
               {icons[key as keyof typeof icons]}
               <Link href={key}>{text}</Link>
@@ -108,9 +107,8 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
             <li className="hover:text-primary cursor-pointer">
               <Link href="/dashboard">
                 <div
-                  className={`flex items-center justify-center gap-x-2 ${
-                    isDark && "text-white"
-                  }`}
+                  className={`flex items-center justify-center gap-x-2 ${isDark && "text-white"
+                    }`}
                 >
                   <DashboardOutlined />
                   <p className="hover:text-primary cursor-pointer">Dashboard</p>
@@ -123,9 +121,8 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
               onClick={(_) => onDrawerLogOut()}
             >
               <div
-                className={`flex items-center justify-center gap-x-2 ${
-                  isDark && "text-white"
-                }`}
+                className={`flex items-center justify-center gap-x-2 ${isDark && "text-white"
+                  }`}
               >
                 <LogoutOutlined />
                 <p className="hover:text-primary cursor-pointer">SAIR</p>
