@@ -3,9 +3,9 @@ import { useState } from "react";
 import Speaker from "~/components/Speaker";
 import Schedule from "~/components/Schedule";
 
-import speakers from "~/data/speakers.json";
-import activities_day_one from "~/data/activities_day_one.json";
-import activities_day_two from "~/data/activities_day_two.json";
+import speakers from "~/data/dojocon23/speakers.json";
+import activities_day_one from "~/data/dojocon23/activities_day_one.json";
+import activities_day_two from "~/data/dojocon23/activities_day_two.json";
 
 export default function DojoCon() {
   const [showInfoA, setShowInfoA] = useState(true);
@@ -48,17 +48,15 @@ export default function DojoCon() {
 
       <div className="flex justify-center">
         <button
-          className={`mr-2 rounded-t-lg px-4 py-2 lg:text-2xl ${
-            showInfoA ? "bg-primary text-white" : "bg-gray-200 text-gray-700"
-          }`}
+          className={`mr-2 rounded-t-lg px-4 py-2 lg:text-2xl ${showInfoA ? "bg-primary text-white" : "bg-gray-200 text-gray-700"
+            }`}
           onClick={() => setShowInfoA(true)}
         >
           &nbsp; &nbsp; &nbsp; Dia 24/03 &nbsp; &nbsp; &nbsp;
         </button>
         <button
-          className={`rounded-t-lg px-4 py-2 lg:text-2xl ${
-            !showInfoA ? "bg-primary text-white" : "bg-gray-200 text-gray-700"
-          }`}
+          className={`rounded-t-lg px-4 py-2 lg:text-2xl ${!showInfoA ? "bg-primary text-white" : "bg-gray-200 text-gray-700"
+            }`}
           onClick={() => setShowInfoA(false)}
         >
           &nbsp; &nbsp; &nbsp; Dia 25/03 &nbsp; &nbsp; &nbsp;
