@@ -30,7 +30,7 @@ const icons = {
   "/web/hall-of-fame": <CrownOutlined />,
   "/web/faqs": <QuestionCircleOutlined />,
   "/web/dojocon": <CalendarOutlined />,
-  "web/projects": <ExperimentOutlined />,
+  "/web/projects": <ExperimentOutlined />,
   "/blog": <BookOutlined />,
 };
 

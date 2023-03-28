@@ -1,13 +1,13 @@
 export default function Event({ title, description, link, button }) {
     return (
-        <section className="bg-primary mt-12 overflow-hidden">
+        <section className="bg-white mt-12 overflow-hidden">
             <div className="container mx-auto mb-20">
                 <div className="flex flex-wrap justify-center">
                     <div className="ml-auto mr-auto mt-20 w-full px-12 md:w-5/12 md:px-4">
-                        <h3 className="mb-2 text-3xl font-semibold leading-normal text-white">
+                        <h3 className="mb-2 text-3xl font-semibold leading-normal text-primary" style={{ fontFamily: "Bankai", fontSize: "3rem" }} >
                             {title}
                         </h3>
-                        <p className="mt-4 mb-4 text-lg font-light leading-relaxed text-white">
+                        <p className="mt-4 mb-4 text-lg font-light leading-relaxed text-primary">
                             {description}
                         </p>
                         {button ? (
