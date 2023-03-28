@@ -21,7 +21,7 @@ O Paradigma Funcional é usado em várias linguagens, como por exemplo [Haskell]
 
 ## Paradigma Imperativo
 
-O Paradigma Imperativo é o mais antigo da computação. A sua característica central é a definição sequencial de instruções que representam uma modificação no estado do programa. O Paradigma Imperativo centra-se muito na [arquitetura de Von Neumann’s](https://www.youtube.com/watch?v=tZ5W2LpdcEw), ou seja, a memória armazena informações e instruções do programa que podem ser alterados a partir de operações aritméticas ou atribuídos a variáveis.
+O Paradigma Imperativo é o mais antigo da computação. A sua característica central é a definição sequencial de instruções que representam uma modificação no estado do programa. O Paradigma Imperativo centra-se muito na [arquitetura de Von Neumann’s](https://www.youtube.com/watch?v=tZ5W2LpdcEw), ou seja, a memória armazena informações e instruções do programa que podem ser alteradas a partir de operações aritméticas ou atribuídas a variáveis.
 As linguagens mais conhecidas neste paradigma são, por exemplo, [C](https://www.youtube.com/watch?v=U3aXWizDbQ4) e [Rust](https://www.youtube.com/watch?v=5C_HPTJg5ek)
 
 ## Paradigma Orientado a Objetos
