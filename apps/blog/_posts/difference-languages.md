@@ -27,7 +27,7 @@ As linguagens mais conhecidas neste paradigma são, por exemplo, [C](https://www
 ## Paradigma Orientado a Objetos
 
 O Paradigma Orientado a Objetos é baseado em, como o próprio nome indica, objetos (que contêm dados e métodos), que têm como objetivo modularizar e permitir reutilização de código. Objetos são, geralmente, instâncias de classes usadas para interagir entre si para criar aplicações e programas.
-Mas agora uma questão premente: afinal, o que são classes e instâncias de classes? 
+Mas agora uma questão premente: afinal, o que são classes e instâncias de classes?
 Um exemplo:
 
 ```
@@ -55,5 +55,5 @@ Dois bons exemplos de linguagem multiparadigma são [Python](https://www.youtube
 ## Mas, afinal, qual é o melhor paradigma?
 
 Pessoalmente, eu prefiro desenvolver com uma [stack](https://blog.betrybe.com/tecnologia/stack-tecnologico/) que use um paradigma ou uma linguagem funcionais, uma vez que se torna possível desenvolver bons projetos com relativamente poucas linhas face à sua dimensão (é claro que, com um projeto de tamanho astronómico, torna-se impossível de desenvolver com meia dúzia de linhas, mas acabamos sempre por escrever menos, comparando a outras linguagens de programação).
-Todavia,  a realidade é que não existe um paradigma melhor. Cada paradigma têm estruturas diferentes para desenvolver projetos, assim como vantagens e desvantagens. Procurem a melhor [stack](https://blog.betrybe.com/tecnologia/stack-tecnologico/) possível e mais favorável à construção do vosso projeto desejado e estudem projetos semelhantes, de forma a perceber porque é que uma certa [stack](https://blog.betrybe.com/tecnologia/stack-tecnologico/) foi usada pelo programador ou equipa.
+Todavia, a realidade é que não existe um paradigma melhor. Cada paradigma têm estruturas diferentes para desenvolver projetos, assim como vantagens e desvantagens. Procurem a melhor [stack](https://blog.betrybe.com/tecnologia/stack-tecnologico/) possível e mais favorável à construção do vosso projeto desejado e estudem projetos semelhantes, de forma a perceber porque é que uma certa [stack](https://blog.betrybe.com/tecnologia/stack-tecnologico/) foi usada pelo programador ou equipa.
 Entretanto, explora os vários paradigmas e vê com o qual é que te sentes mais confortável. O que importa é programar e aprender!
