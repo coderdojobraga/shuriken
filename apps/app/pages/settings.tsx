@@ -12,7 +12,6 @@ import {
   Space,
   Typography,
   Upload,
-  notification,
 } from "antd";
 import moment from "moment";
 import {
@@ -22,7 +21,7 @@ import {
 } from "@ant-design/icons";
 import { getBase64 } from "~/lib/images";
 import { useAuth } from "@coderdojobraga/ui";
-import { notifyError } from "~/components/Notification";
+import { notifyError, notifyInfo } from "~/components/Notification";
 import { getIcon } from "~/lib/utils";
 import {
   EUser,
@@ -201,7 +200,12 @@ function Settings() {
             "user[socials]": response.data?.socials,
           });
         })
-        .catch((error) => notification["error"](error.data?.errors));
+        .catch((error) => {
+          notifyError({
+            message: "Erro",
+            description: error.data?.errors,
+          });
+        });
     }
   }, [user?.role, user?.mentor_id, formPersonal]);
 
@@ -230,6 +234,7 @@ function Settings() {
               onClick={() => {
                 formPersonal.resetFields();
                 setAvatar(user?.photo);
+                notifyInfo("Atualizado com sucesso!");
               }}
             >
               Cancelar

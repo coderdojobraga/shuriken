@@ -113,7 +113,7 @@ function NavBar({ landing = true }: any) {
     );
   }
 
-  return <MobileNavBar />;
+  return <MobileNavBar landing={landing} />;
 }
 
 export default NavBar;
