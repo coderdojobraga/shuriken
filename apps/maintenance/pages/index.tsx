@@ -4,8 +4,7 @@ import React from "react";
 const MaintenancePage = () => {
   return (
     <div className="relative">
-      <div className="absolute inset-0 z-0">
-      </div>
+      <div className="absolute inset-0 z-0"></div>
       <div className="relative z-10">
         <div className="grid h-screen grid-cols-1 md:grid-cols-2">
           <div className="flex items-center justify-center p-4">
