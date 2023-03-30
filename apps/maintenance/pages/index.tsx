@@ -5,7 +5,6 @@ const MaintenancePage = () => {
   return (
     <div className="relative">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-blue-300"></div>
       </div>
       <div className="relative z-10">
         <div className="grid h-screen grid-cols-1 md:grid-cols-2">
@@ -13,7 +12,7 @@ const MaintenancePage = () => {
             <section className="dark:bg-gray-900 sm:pl-10 md:pl-20 lg:pl-36">
               <div className="mx-auto max-w-screen-md py-8 px-4 text-center lg:py-16 lg:px-12">
                 <svg
-                  className="mx-auto mb-4 h-10 w-10 text-white"
+                  className="mx-auto mb-4 h-10 w-10 text-gray-300"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                 >
@@ -25,14 +24,14 @@ const MaintenancePage = () => {
                 <h1 className="mb-4 text-2xl font-bold leading-none tracking-tight text-gray-900 dark:text-white md:text-4xl lg:mb-6 lg:text-5xl xl:text-6xl">
                   O nosso site está em manutenção.
                 </h1>
-                <p className="text-base font-light text-white dark:text-gray-400 md:text-lg lg:text-xl">
+                <p className="text-base font-light text-gray-900 dark:text-gray-400 md:text-lg lg:text-xl">
                   Pedimos desculpa por qualquer inconveniente e obrigado pela
                   sua paciência.
                 </p>
-                <p className="hidden text-base font-light text-white dark:text-gray-400 md:block md:text-lg lg:text-xl">
+                <p className="hidden text-base font-light text-gray-900 dark:text-gray-400 md:block md:text-lg lg:text-xl">
                   Clique no dinossauro e dê o seu melhor!
                 </p>
-                <p className="text-base font-light text-white dark:text-gray-400 md:text-lg lg:text-xl">
+                <p className="text-base font-light text-gray-900 dark:text-gray-400 md:text-lg lg:text-xl">
                   Estaremos de volta em breve!
                 </p>
                 <div className="pt-26">
