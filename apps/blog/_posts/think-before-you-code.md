@@ -5,7 +5,7 @@ author:
   name: "Miguel Ângelo Freitas"
   photo: "mikefreitas.jpg"
   username: "MrNameless10"
-draft: true
+draft: false
 topic: "Programação"
 featured: false
 ---
@@ -24,7 +24,7 @@ Como **estudante** de **Ciências da Computação**, aprendi que programar é um
 
 Essencialmente, significa reservar um tempo para pensar no que desejas fazer antes de começar a escrever o código. Isso pode envolver desenhar diagramas, listar ou simplesmente pensar nas etapas que de precisas seguir para resolver um problema específico.  Para isso, tens de pegar no problema e dividi-lo em partes menores e mais simples e, posteriormente, criar um plano de ação. Este processo costuma ser chamado de **"pensamento algorítmico"** e é uma habilidade fundamental que os cientistas da computação e engenheiros informáticos usam para abordar problemas complexos..
 
-<img src="https://drive.google.com/uc?id=1qxVVXLmGSCKLswQgBzXc61LcwbT7zxlr"
+<img src="../public/img/blog/mike_problem_to_solution_resized.png"
         alt="CoderDojo_ThinkBeforeYouCode"
         style="display: block; margin: 0 auto" />
 
