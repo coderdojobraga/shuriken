@@ -1,9 +1,9 @@
 import { Footer, Header } from "@coderdojobraga/ui";
 import Member from "~/components/Member";
 
-import team from "~/data/team.json";
+import { ITeamMember } from "~/lib/types";
 
-export default function Team() {
+export default function Team({ team }: { team: ITeamMember[] }) {
   return (
     <>
       <Header landing={true} />
@@ -38,4 +38,20 @@ export default function Team() {
       <Footer bgColor="white" fgColor="dark" />
     </>
   );
+}
+
+import fsPromises from "fs/promises";
+import path from "path";
+
+export async function getStaticProps() {
+  const filePath = path.join(process.cwd(), "data", "team.json");
+  const jsonData = await fsPromises.readFile(filePath, "utf-8");
+  const parsedData = JSON.parse(jsonData);
+
+  return {
+    props: {
+      team: parsedData,
+    },
+    revalidate: 3600, // 1 hour in seconds
+  };
 }

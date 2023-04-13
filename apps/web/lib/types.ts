@@ -15,3 +15,9 @@ export interface IBelt {
   image: string;
   requirements: string[];
 }
+
+export interface ITeamMember {
+  picture: string;
+  name: string;
+  role: string;
+}
