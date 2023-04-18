@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { withAuth } from "~/components/Auth";
-import { Avatar, Col, Divider, List, Row, Typography } from "antd";
+import { Avatar, Button, Col, Divider, List, Row, Typography } from "antd";
 import { useEvent } from "~/hooks/events";
 import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
@@ -20,11 +20,18 @@ function EventPage() {
 
   const [mentors, setMentors] = useState<any[]>([]);
   const [enrolledNinjas, setEnrolledNinjas] = useState([]);
-
+  const [availableMentors, setAvailableMentors] = useState<any[]>([]);
+  const [unavailableMentors, setUnavailableMentors] = useState<any[]>([]);
+  const [available, setAvailable] = useState<boolean>(true);
   useEffect(() => {
     getAvailableMentors(event_id as string)
       .then((response: any) => {
-        setMentors(response.data);
+        setAvailableMentors(
+          response.data.filter((mentor: any) => mentor.is_available)
+        );
+        setUnavailableMentors(
+          response.data.filter((mentor: any) => !mentor.is_available)
+        );
       })
       .catch((error) => {
         notifyError(
@@ -57,27 +64,65 @@ function EventPage() {
         />
       </Row>
       <Divider />
-      <Col>
-        <Title level={2}>Mentores disponíveis</Title>
-        <List
-          itemLayout="vertical"
-          dataSource={mentors}
-          renderItem={(mentor: any) => (
-            <List.Item>
-              <Link href={`/profile/mentor/${mentor.id}`}>
-                <List.Item.Meta
-                  avatar={<Avatar size={64} src={mentor.photo} />}
-                  title={`${mentor.first_name} ${mentor.last_name}`}
-                  description={mentor.notes ? `Notas: ${mentor.notes}` : ""}
-                />
-              </Link>
-              <div style={{ fontWeight: "500" }}>
-                {mentor.is_available ? "Disponível" : "Não disponível"}
-              </div>
-            </List.Item>
-          )}
-        />
-      </Col>
+      <>
+        {available ? (
+          <>
+            <Row style={{ display: "flex", justifyContent: "space-between" }}>
+              <Title level={2}>Mentores disponíveis</Title>
+              <Button
+                type="primary"
+                style={{ float: "right" }}
+                onClick={(_) => setAvailable(!available)}
+              >
+                Mentores indisponíveis
+              </Button>
+            </Row>
+            <List
+              itemLayout="vertical"
+              dataSource={availableMentors}
+              renderItem={(mentor: any) => (
+                <List.Item style={{ cursor: "pointer" }}>
+                  <Link href={`/profile/mentor/${mentor.id}`}>
+                    <List.Item.Meta
+                      avatar={<Avatar size={64} src={mentor.photo} />}
+                      title={`${mentor.first_name} ${mentor.last_name}`}
+                      description={mentor.notes ? `Notas: ${mentor.notes}` : ""}
+                    />
+                  </Link>
+                </List.Item>
+              )}
+            />
+          </>
+        ) : (
+          <>
+            <Row style={{ display: "flex", justifyContent: "space-between" }}>
+              <Title level={2}>Mentores indisponíveis</Title>
+              <Button
+                type="primary"
+                style={{ float: "right" }}
+                onClick={(_) => setAvailable(!available)}
+              >
+                Mentores disponíveis
+              </Button>
+            </Row>
+            <List
+              itemLayout="vertical"
+              dataSource={unavailableMentors}
+              renderItem={(mentor: any) => (
+                <List.Item style={{ cursor: "pointer" }}>
+                  <Link href={`/profile/mentor/${mentor.id}`}>
+                    <List.Item.Meta
+                      avatar={<Avatar size={64} src={mentor.photo} />}
+                      title={`${mentor.first_name} ${mentor.last_name}`}
+                      description={mentor.notes ? `Notas: ${mentor.notes}` : ""}
+                    />
+                  </Link>
+                </List.Item>
+              )}
+            />
+          </>
+        )}
+      </>
       <Divider />
       <Col>
         <Title level={2}>Ninjas inscritos</Title>
