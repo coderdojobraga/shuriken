@@ -23,7 +23,7 @@ const Belt = ({ colour, description, requirements, hex }: any) => {
           </div>
           <div className="ml-auto">
             <div className="block h-48 w-48">
-              <NinjaSVG width={200} height={200} colour={hex}/>
+              <NinjaSVG width={200} height={200} colour={hex} />
             </div>
           </div>
         </div>
