@@ -12,8 +12,8 @@ export enum EBelt {
 export interface IBelt {
   colour: EBelt;
   description: string;
-  image: string;
   requirements: string[];
+  hex: string;
 }
 
 export interface ITeamMember {

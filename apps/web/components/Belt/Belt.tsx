@@ -1,6 +1,7 @@
 import Image from "next/image";
+import NinjaSVG from "./Ninja";
 
-const Belt = ({ colour, description, image, requirements }: any) => {
+const Belt = ({ colour, description, requirements, hex }: any) => {
   return (
     <div className="container mx-auto">
       <section id={colour} className="relative mx-2 md:my-28 lg:mx-12 xl:mx-20">
@@ -22,12 +23,7 @@ const Belt = ({ colour, description, image, requirements }: any) => {
           </div>
           <div className="ml-auto">
             <div className="block h-48 w-48">
-              <Image
-                src={`/img/ninjas/${image}`}
-                width={300}
-                height={300}
-                alt={colour}
-              />
+              <NinjaSVG width={200} height={200} colour={hex} />
             </div>
           </div>
         </div>
