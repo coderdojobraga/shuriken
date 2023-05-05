@@ -10,7 +10,6 @@ topic: "Programação"
 featured: false
 ---
 
----
 
 Se estás ansioso para começar a programar, isso é **fantástico**! A programação é um campo empolgante que permite criar, projetar e construir coisas incríveis. Porém, antes de mergulhar na codificação, há um princípio importante que tens de ter em mente: **pensar antes de teclar**.
 
