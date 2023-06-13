@@ -59,7 +59,7 @@ function Register({ cities }: any) {
     "Slack",
   ]);
   const onFinish = (values: any) => {
-    console.log(values);
+    
     setLoading(true);
     api
       .registerUser(values)
