@@ -48,7 +48,7 @@ function Register({ cities }: any) {
   const { user } = useAuth();
   const [isLoading, setLoading] = useState(false);
   const [errors, setErrors] = useState();
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState<string | ArrayBuffer | null>(null);
   const [socials] = useState([
     "Scratch",
     "Codewars",
@@ -59,7 +59,9 @@ function Register({ cities }: any) {
     "Slack",
   ]);
   const onFinish = (values: any) => {
-    
+    console.log(avatar);
+    values["user[photo]"] = avatar;
+
     setLoading(true);
     api
       .registerUser(values)
@@ -204,24 +206,34 @@ function Register({ cities }: any) {
               label="Foto de perfil"
               valuePropName="avatar"
             >
-              <Upload
-                name="avatar"
-                accept="image/*"
-                beforeUpload={(file) => {
-                  getBase64(file, (imageUrl: any) => setAvatar(imageUrl));
-                  return false;
-                }}
-                onRemove={() => setAvatar(null)}
-                multiple={false}
-                maxCount={1}
-                showUploadList={{
-                  showDownloadIcon: false,
-                  showPreviewIcon: false,
-                  showRemoveIcon: true,
-                }}
-              >
-                <Button icon={<UploadOutlined />}>Selecionar</Button>
-              </Upload>
+              <ImgCrop>
+                <Upload
+                  name="avatar"
+                  accept="image/*"
+                  beforeUpload={(file: File) => {
+                    const reader = new FileReader();
+
+                    reader.onload = function (event) {
+                      if (event.target) {
+                        console.log(typeof event.target.result);
+                        setAvatar(event.target.result);
+                      }
+                    };
+                    reader.readAsDataURL(file);
+                    return false;
+                  }}
+                  //onRemove={() => setAvatar(null)}
+                  multiple={false}
+                  maxCount={1}
+                  showUploadList={{
+                    showDownloadIcon: false,
+                    showPreviewIcon: false,
+                    showRemoveIcon: true,
+                  }}
+                >
+                  <Button icon={<UploadOutlined />}>Selecionar</Button>
+                </Upload>
+              </ImgCrop>
             </Form.Item>
             {user?.role == EUser.Mentor && (
               <Form.Item name="user[socials]" label="Redes Sociais">
