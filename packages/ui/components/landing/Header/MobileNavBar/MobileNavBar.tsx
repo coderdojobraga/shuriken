@@ -28,7 +28,7 @@ const icons = {
   "/web/team": <TeamOutlined />,
   "/web/hall-of-fame": <CrownOutlined />,
   "/web/faqs": <QuestionCircleOutlined />,
-  "/web/dojocon": <CalendarOutlined />,
+  "/web/codercamp": <CalendarOutlined />,
   "/blog": <BookOutlined />,
 };
 
