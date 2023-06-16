@@ -11,7 +11,7 @@ const CoderCamp = () => (
         className="m-4 text-center text-4xl font-bold sm:text-5xl"
         style={{ fontFamily: "Bankai", fontSize: "5rem", lineHeight: "5rem" }}
       >
-        Coder Camp
+        Coder Camp &apos; 23
       </h1>
       <div className="bg-primary h-8/12 mx-auto w-6/12 py-0.5 text-2xl lg:w-5/12" />
       <p className="m-4 pt-6 text-center text-3xl font-normal sm:text-3xl">
@@ -35,15 +35,6 @@ const CoderCamp = () => (
               aprendizagem da programação num contexto informal e de convívio,
               na companhia de outros Ninjas e dos nossos Mentores.
             </p>
-            <a
-              href=""
-              className="bg-primary mt-4 mr-1
-                                       mb-1 inline-block rounded-3xl px-6 py-4
-                                       text-center text-sm font-bold uppercase text-white shadow
-                                       outline-none hover:bg-purple-600 hover:text-white"
-            >
-              Inscrições abrem em breve
-            </a>
           </div>
           <div className="mr-auto ml-auto mt-20 flex w-full items-center justify-center px-4 sm:w-3/4 md:w-6/12">
             <Image
@@ -100,12 +91,14 @@ const CoderCamp = () => (
               para uma semana recheada de diversão!
             </p>
           </div>
-          <div className="relative mr-auto ml-auto w-6/12 sm:pl-80 sm:pt-20">
-            <div className="flex h-full items-center justify-center">
-              <button className="bg-primary items-center justify-center rounded-full px-6 py-2 text-center text-4xl font-bold text-white ">
-                A anunciar
-              </button>
-            </div>
+          <div className="ml-auto mr-auto mt-20 w-full px-12 md:w-5/12 md:px-4">
+            <Image
+              alt="Coder Camp"
+              src="/img/codercamp_horario.png"
+              width={2000}
+              height={1000}
+              className=""
+            />
           </div>
         </div>
       </div>
