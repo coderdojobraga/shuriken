@@ -56,7 +56,7 @@ export async function editUser(values: any) {
 
     switch (key) {
       case "user[photo]":
-        data.append(key, values[key].file);
+        data.append(key, values[key]);
         break;
 
       case "user[birthday]":
@@ -132,3 +132,5 @@ export async function registerUser(values: any) {
 
   return response.data;
 }
+
+

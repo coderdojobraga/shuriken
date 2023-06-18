@@ -13,6 +13,7 @@ import {
   Typography,
   Upload,
 } from "antd";
+import ImgCrop from "antd-img-crop";
 import moment from "moment";
 import {
   MinusCircleOutlined,
@@ -62,7 +63,7 @@ function Settings() {
   const { user, edit_user, isLoading } = useAuth();
   const [formPersonal] = Form.useForm();
   const [formPassword] = Form.useForm();
-  const [avatar, setAvatar] = useState<undefined | string>();
+  const [avatar, setAvatar] = useState<undefined| string  >();
 
   const [userSkills, setUserSkills] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
@@ -77,6 +78,14 @@ function Settings() {
     "Discord",
     "Slack",
   ]);
+
+  const onSubmit = (values: any) => {
+    if (avatar) {
+      values["user[photo]"] = avatar;
+    }
+
+    edit_user(values);
+  };
 
   const getAllSkills = () => {
     getSkills()
@@ -210,9 +219,11 @@ function Settings() {
   }, [user?.role, user?.mentor_id, formPersonal]);
 
   useEffect(() => {
-    setAvatar(user?.photo);
-    getUserSkills();
-    getAllSkills();
+    if (user?.photo) {
+      setAvatar(user?.photo);
+    };
+   getUserSkills();
+   getAllSkills();
   }, [user, getUserSkills]);
 
   const breakpoints = {
@@ -252,22 +263,25 @@ function Settings() {
           </Space>
         </Col>
       </Row>
-      <Form form={formPersonal} onFinish={edit_user} layout="vertical">
+      <Form form={formPersonal} onFinish={onSubmit} layout="vertical">
         <Section title="Foto de Perfil" />
         <Space>
           <Avatar size={100} src={avatar} />
           <Form.Item name="user[photo]">
-            <Upload
-              accept="image/*"
-              maxCount={1}
-              beforeUpload={(file) => {
-                getBase64(file, (imageUrl: any) => setAvatar(imageUrl));
-                return false;
-              }}
-              onRemove={() => setAvatar(user?.photo)}
-            >
-              <Button icon={<UploadOutlined />}>Upload</Button>
-            </Upload>
+            <ImgCrop>
+              <Upload
+                accept="image/*"
+                maxCount={1}
+                beforeUpload={(file) => {
+                  console.log(file);
+                  setAvatar(file.name);
+                  return false;
+                }}
+                onRemove={() => setAvatar(user?.photo as File | undefi)}
+              >
+                <Button icon={<UploadOutlined />}>Upload</Button>
+              </Upload>
+            </ImgCrop>
           </Form.Item>
         </Space>
         <Section title="Informações Pessoais" />

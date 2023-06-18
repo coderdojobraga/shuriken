@@ -240,6 +240,55 @@ function Lectures() {
               onOk={handleOk}
               onCancel={handleOk}
             >
+
+
+
+          {/* const PresenceList: React.FC<PresenceListProps> = ({ attendees }) => {
+            const [presence, setPresence] = useState<boolean[]>(Array(attendees.length).fill(false));
+
+            const handlePresenceChange = (index: number) => {
+              const updatedPresence = [...presence];
+              updatedPresence[index] = !updatedPresence[index];
+              setPresence(updatedPresence);
+            };
+
+            return (
+              <div>
+                {attendees.map((attendee, index) => (
+                  <div key={index}>
+                    <input
+                      type="checkbox"
+                      checked={presence[index]}
+                      onChange={() => handlePresenceChange(index)}
+                    />
+                    <label>{attendee}</label>
+                  </div>
+                ))}
+              </div>
+            );
+          };
+
+          export default PresenceList; 
+ */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               <Descriptions size="small" column={1} layout="horizontal">
                 <Descriptions.Item
                   labelStyle={labelStyle}
