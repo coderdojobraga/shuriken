@@ -63,7 +63,7 @@ function Settings() {
   const { user, edit_user, isLoading } = useAuth();
   const [formPersonal] = Form.useForm();
   const [formPassword] = Form.useForm();
-  const [avatar, setAvatar] = useState<undefined| string  >();
+  const [avatar, setAvatar] = useState<void | string>();
 
   const [userSkills, setUserSkills] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
@@ -182,6 +182,12 @@ function Settings() {
     }
   };
 
+  const base64 = (file: any) => {
+    getBase64(file, (result: string) => {
+      setAvatar(result);
+    });
+  };
+
   const changeSkills = () => {
     const deleted = userSkills
       .map((skill: any) => skill.id)
@@ -273,11 +279,10 @@ function Settings() {
                 accept="image/*"
                 maxCount={1}
                 beforeUpload={(file) => {
-                  console.log(file);
-                  setAvatar(file.name);
+                  base64(file);
                   return false;
                 }}
-                onRemove={() => setAvatar(user?.photo as File | undefi)}
+                onRemove={() => setAvatar(user?.photo)}
               >
                 <Button icon={<UploadOutlined />}>Upload</Button>
               </Upload>
