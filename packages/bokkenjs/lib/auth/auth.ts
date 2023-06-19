@@ -132,5 +132,3 @@ export async function registerUser(values: any) {
 
   return response.data;
 }
-
-

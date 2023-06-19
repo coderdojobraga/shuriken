@@ -22,18 +22,17 @@ import {
 } from "@ant-design/icons";
 import { useAuth } from "@coderdojobraga/ui";
 import * as api from "bokkenjs";
-import {dataURLtoFile} from "~/lib/images";
+import { getAvatarSrc, getBase64 } from "~/lib/images";
 import Emoji from "~/components/Emoji";
 
 import styles from "./style.module.css";
 import { useState } from "react";
-import { EUser } from "bokkenjs";
+import { API_URL, EUser } from "bokkenjs";
 import { notifyError, notifyInfo } from "~/components/Notification";
 
 import { getIcon } from "~/lib/utils";
 
-
-
+const [avatarPreview, setAvatarPreview] = useState<null | string>();
 
 const { Option } = Select;
 
@@ -51,7 +50,7 @@ function Register({ cities }: any) {
   const { user } = useAuth();
   const [isLoading, setLoading] = useState(false);
   const [errors, setErrors] = useState();
-  const [avatar, setAvatar] = useState< File | null>(null);
+  const [avatar, setAvatar] = useState<void | File | string>();
   const [socials] = useState([
     "Scratch",
     "Codewars",
@@ -61,6 +60,7 @@ function Register({ cities }: any) {
     "Discord",
     "Slack",
   ]);
+
   const onFinish = (values: any) => {
     console.log(avatar);
     values["user[photo]"] = avatar;
@@ -81,6 +81,18 @@ function Register({ cities }: any) {
       })
       .finally(() => setLoading(false));
   };
+
+  let avatarSrc;
+  if (
+    !avatarPreview &&
+    typeof user?.photo === "string" &&
+    user?.photo.startsWith("/uploads/")
+  ) {
+    const previewUrl = `${API_URL}${user.photo}`;
+    avatarSrc = previewUrl;
+  } else {
+    avatarSrc = user?.photo;
+  }
 
   return (
     <>
@@ -211,39 +223,18 @@ function Register({ cities }: any) {
             >
               <ImgCrop>
                 <Upload
-                  name="avatar"
                   accept="image/*"
+                  maxCount={1}
                   beforeUpload={(file: File) => {
-                    
-                    const reader = new FileReader();
-
-                    reader.onload = function (event) {
-                      if (event.target) {
-
-                        // Access the uploaded file data as a string
-                        const imageDataURL = event.target.result as string;
-
-                        // Perform any necessary actions with the image data URL
-                        console.log(typeof imageDataURL);
-
-                        // Convert the data URL back to a file object
-                        const convertedFile = dataURLtoFile(imageDataURL, file.name);
-                        setAvatar(convertedFile);
-                      }
-                    };
-                    reader.readAsDataURL(file);
+                    setAvatar(file);
+                    getBase64(file, (result: string) => {
+                      setAvatarPreview(result);
+                    });
                     return false;
                   }}
-                  //onRemove={() => setAvatar(null)}
-                  multiple={false}
-                  maxCount={1}
-                  showUploadList={{
-                    showDownloadIcon: false,
-                    showPreviewIcon: false,
-                    showRemoveIcon: true,
-                  }}
+                  onRemove={() => setAvatar(user?.photo)}
                 >
-                  <Button icon={<UploadOutlined />}>Selecionar</Button>
+                  <Button icon={<UploadOutlined />}>Upload</Button>
                 </Upload>
               </ImgCrop>
             </Form.Item>

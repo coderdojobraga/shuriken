@@ -16,7 +16,7 @@ import {
   UsergroupAddOutlined,
 } from "@ant-design/icons";
 import { useAuth } from "@coderdojobraga/ui";
-import { EUser, IUser } from "bokkenjs";
+import { API_URL, EUser, IUser } from "bokkenjs";
 
 import styles from "./style.module.css";
 
@@ -49,6 +49,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
   const [secondarySelectedKeys, setSecondarySelectedKeys] = useState<string[]>(
     []
   );
+  const [avatarPreview] = useState<null | string>();
   const handleClickPrimary = ({ key }: { key: string }) => {
     router.push(key);
     setPrimarySelectedKeys([key]);
@@ -60,6 +61,17 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
     setPrimarySelectedKeys([]);
     setSecondarySelectedKeys([key]);
   };
+  let avatarSrc;
+  if (
+    !avatarPreview &&
+    typeof user?.photo === "string" &&
+    user?.photo.startsWith("/uploads/")
+  ) {
+    const previewUrl = `${API_URL}${user.photo}`;
+    avatarSrc = previewUrl;
+  } else {
+    avatarSrc = user?.photo;
+  }
 
   return (
     <div className={styles.menu}>
@@ -97,7 +109,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
               <Link href={`/profile/${getUserProfileUrl(user)}`}>
                 <a>
                   <Avatar
-                    src={user?.photo}
+                    src={avatarSrc}
                     size="large"
                     alt="Avatar"
                     icon={<UserOutlined />}

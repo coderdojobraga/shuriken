@@ -240,10 +240,7 @@ function Lectures() {
               onOk={handleOk}
               onCancel={handleOk}
             >
-
-
-
-          {/* const PresenceList: React.FC<PresenceListProps> = ({ attendees }) => {
+              {/* const PresenceList: React.FC<PresenceListProps> = ({ attendees }) => {
             const [presence, setPresence] = useState<boolean[]>(Array(attendees.length).fill(false));
 
             const handlePresenceChange = (index: number) => {
@@ -270,24 +267,6 @@ function Lectures() {
 
           export default PresenceList; 
  */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
               <Descriptions size="small" column={1} layout="horizontal">
                 <Descriptions.Item

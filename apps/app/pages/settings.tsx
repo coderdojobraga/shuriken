@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+
 import {
   Avatar,
   Button,
@@ -16,15 +17,17 @@ import {
 import ImgCrop from "antd-img-crop";
 import moment from "moment";
 import {
+  ConsoleSqlOutlined,
   MinusCircleOutlined,
   PlusOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
-import { getBase64 } from "~/lib/images";
+import { getAvatarSrc, getBase64 } from "~/lib/images";
 import { useAuth } from "@coderdojobraga/ui";
 import { notifyError, notifyInfo } from "~/components/Notification";
 import { getIcon } from "~/lib/utils";
 import {
+  API_URL,
   EUser,
   addMentorSkills,
   addNinjaSkills,
@@ -63,7 +66,10 @@ function Settings() {
   const { user, edit_user, isLoading } = useAuth();
   const [formPersonal] = Form.useForm();
   const [formPassword] = Form.useForm();
-  const [avatar, setAvatar] = useState<void | string>();
+  const [avatar, setAvatar] = useState<null | File | string>();
+  const [avatarPreview, setAvatarPreview] = useState<
+    null | string | undefined
+  >();
 
   const [userSkills, setUserSkills] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
@@ -78,6 +84,20 @@ function Settings() {
     "Discord",
     "Slack",
   ]);
+
+  // const avatarSrc = getAvatarSrc(avatarPreview, user?.photo, API_URL);
+  // if (avatarSrc !== avatarPreview) {
+  //   setAvatarPreview(avatarSrc);
+  // }
+
+  if (
+    !avatarPreview &&
+    typeof avatar === "string" &&
+    avatar.startsWith("/uploads/")
+  ) {
+    console.log("avatar", API_URL + avatar);
+    setAvatarPreview(API_URL + avatar);
+  }
 
   const onSubmit = (values: any) => {
     if (avatar) {
@@ -182,12 +202,6 @@ function Settings() {
     }
   };
 
-  const base64 = (file: any) => {
-    getBase64(file, (result: string) => {
-      setAvatar(result);
-    });
-  };
-
   const changeSkills = () => {
     const deleted = userSkills
       .map((skill: any) => skill.id)
@@ -227,9 +241,9 @@ function Settings() {
   useEffect(() => {
     if (user?.photo) {
       setAvatar(user?.photo);
-    };
-   getUserSkills();
-   getAllSkills();
+    }
+    getUserSkills();
+    getAllSkills();
   }, [user, getUserSkills]);
 
   const breakpoints = {
@@ -272,14 +286,17 @@ function Settings() {
       <Form form={formPersonal} onFinish={onSubmit} layout="vertical">
         <Section title="Foto de Perfil" />
         <Space>
-          <Avatar size={100} src={avatar} />
+          <Avatar size={100} src={avatarPreview} />
           <Form.Item name="user[photo]">
             <ImgCrop>
               <Upload
                 accept="image/*"
                 maxCount={1}
-                beforeUpload={(file) => {
-                  base64(file);
+                beforeUpload={(file: File) => {
+                  setAvatar(file);
+                  getBase64(file, (result: string) => {
+                    setAvatarPreview(result);
+                  });
                   return false;
                 }}
                 onRemove={() => setAvatar(user?.photo)}

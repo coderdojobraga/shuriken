@@ -97,7 +97,8 @@ function Lectures() {
                   {moment(new Date(lecture.event.start_time)).format(
                     "DD/MM/YYYY"
                   )}
-                </Text>1
+                </Text>
+                1
               </Col>
             </Row>
             <Row align="middle" gutter={[16, 16]}>
