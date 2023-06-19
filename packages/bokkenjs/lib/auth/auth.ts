@@ -103,7 +103,6 @@ export async function registerUser(values: any) {
   const data = new FormData();
 
   for (const key in values) {
-    console.log(key, values[key]);
     if (!values[key]) continue;
 
     switch (key) {

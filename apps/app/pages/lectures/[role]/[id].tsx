@@ -98,7 +98,6 @@ function Lectures() {
                     "DD/MM/YYYY"
                   )}
                 </Text>
-                1
               </Col>
             </Row>
             <Row align="middle" gutter={[16, 16]}>

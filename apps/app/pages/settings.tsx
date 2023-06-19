@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-
 import {
   Avatar,
   Button,
@@ -22,7 +21,7 @@ import {
   PlusOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
-import { getAvatarSrc, getBase64 } from "~/lib/images";
+import { getBase64 } from "~/lib/images";
 import { useAuth } from "@coderdojobraga/ui";
 import { notifyError, notifyInfo } from "~/components/Notification";
 import { getIcon } from "~/lib/utils";

@@ -81,7 +81,6 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
 
   function edit_user(values: any) {
     setLoading(true);
-    console.log(values);
 
     api
       .editUser(values)

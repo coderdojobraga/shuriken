@@ -22,7 +22,7 @@ import {
 } from "@ant-design/icons";
 import { useAuth } from "@coderdojobraga/ui";
 import * as api from "bokkenjs";
-import { getAvatarSrc, getBase64 } from "~/lib/images";
+import { getBase64 } from "~/lib/images";
 import Emoji from "~/components/Emoji";
 
 import styles from "./style.module.css";
@@ -62,7 +62,6 @@ function Register({ cities }: any) {
   ]);
 
   const onFinish = (values: any) => {
-    console.log(avatar);
     values["user[photo]"] = avatar;
 
     setLoading(true);
