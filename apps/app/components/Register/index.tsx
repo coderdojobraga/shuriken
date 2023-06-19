@@ -58,7 +58,6 @@ function Register({ cities }: any) {
     "Discord",
     "Slack",
   ]);
-
   const onFinish = (values: any) => {
     console.log(values);
     setLoading(true);
