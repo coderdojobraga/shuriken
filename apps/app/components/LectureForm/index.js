@@ -33,11 +33,16 @@ export default function LectureForm({ id }) {
       setEvents(response.data);
     });
   }, []);
+  1;
 
   useEffect(() => {
     if (id !== "new") {
       listEvents().then((response) => {
         const event = response.data.find((event) => event.id === id);
+        console.log("id", id);
+        console.log("idAPI", event.id);
+        console.log("response", response);
+        console.log("event", event);
         setSelectedEvent(event);
       });
     }
@@ -46,6 +51,7 @@ export default function LectureForm({ id }) {
   const [lectures, setLectures] = useState([]);
   useEffect(() => {
     listLectures().then((response) => {
+      console.log("response.data", response.data);
       setLectures(response.data);
     });
   }, []);
@@ -137,6 +143,12 @@ export default function LectureForm({ id }) {
         });
     }
   };
+
+  console.log(selectedEvent);
+
+  if (!selectedEvent) {
+    return <></>;
+  }
 
   return (
     <>
