@@ -67,8 +67,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
     typeof user?.photo === "string" &&
     user?.photo.startsWith("/uploads/")
   ) {
-    const previewUrl = `${API_URL}${user.photo}`;
-    avatarSrc = previewUrl;
+    avatarSrc = `${API_URL}${user.photo}`;
   } else {
     avatarSrc = user?.photo;
   }
