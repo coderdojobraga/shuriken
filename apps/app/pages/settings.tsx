@@ -84,17 +84,11 @@ function Settings() {
     "Slack",
   ]);
 
-  // const avatarSrc = getAvatarSrc(avatarPreview, user?.photo, API_URL);
-  // if (avatarSrc !== avatarPreview) {
-  //   setAvatarPreview(avatarSrc);
-  // }
-
   if (
     !avatarPreview &&
     typeof avatar === "string" &&
     avatar.startsWith("/uploads/")
   ) {
-    console.log("avatar", API_URL + avatar);
     setAvatarPreview(API_URL + avatar);
   }
 

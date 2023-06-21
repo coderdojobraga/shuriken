@@ -105,8 +105,7 @@ function Profile({ id, role }: Props) {
     typeof info?.photo === "string" &&
     info?.photo.startsWith("/uploads/")
   ) {
-    const previewUrl = `${API_URL}${info.photo}`;
-    avatarSrc = previewUrl;
+    avatarSrc = `${API_URL}${info.photo}`;
   } else {
     avatarSrc = info?.photo;
   }
