@@ -54,12 +54,12 @@ export default function LectureForm({ id }) {
 
   let promise;
 
-  const fetchData = () => {
+  const fetchData = useCallback(() => {
     if (!promise) {
       promise = Promise.all(events.map((event) => getNinjaEvents(event.id)));
     }
     return promise;
-  };
+  }, [events]);
 
   useEffect(() => {
     fetchData().then((responses) => {
@@ -71,7 +71,7 @@ export default function LectureForm({ id }) {
         )
       );
     });
-  }, [events]);
+  }, [fetchData]);
 
   const [filteredNinjas, setFilteredNinjas] = useState([]);
   const handleEventChange = useCallback(

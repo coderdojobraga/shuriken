@@ -32,8 +32,6 @@ import { notifyError, notifyInfo } from "~/components/Notification";
 
 import { getIcon } from "~/lib/utils";
 
-const [avatarPreview, setAvatarPreview] = useState<null | string>();
-
 const { Option } = Select;
 
 const CountrySelect = () => (
@@ -51,6 +49,7 @@ function Register({ cities }: any) {
   const [isLoading, setLoading] = useState(false);
   const [errors, setErrors] = useState();
   const [avatar, setAvatar] = useState<void | File | string>();
+  const [avatarPreview, setAvatarPreview] = useState<null | string>();
   const [socials] = useState([
     "Scratch",
     "Codewars",
