@@ -34,3 +34,17 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  linkChecker:
+    name: Link Checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --require-https --no-progress --exclude-path apps/app/lib/social.tsx './**/*.md' './**/*.html' './**/*.json' './**/*.tsx' './**/*.ts' './**/*.js' './**/*.tex' 
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
