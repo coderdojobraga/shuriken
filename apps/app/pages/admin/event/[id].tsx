@@ -8,7 +8,7 @@ import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
 import Belt from "~/components/Belt";
 import { notifyError, notifyInfo } from "~/components/Notification";
-import { getAvailableMentors, getEnrolledNinjas } from "bokkenjs";
+import { getEnrolledNinjas, getMentors } from "bokkenjs";
 
 const { Title } = Typography;
 
@@ -17,14 +17,12 @@ function EventPage() {
   const { id: event_id } = router.query;
 
   const { data: event, isLoading } = useEvent(event_id as string);
-
-  const [mentors, setMentors] = useState<any[]>([]);
   const [enrolledNinjas, setEnrolledNinjas] = useState([]);
   const [availableMentors, setAvailableMentors] = useState<any[]>([]);
   const [unavailableMentors, setUnavailableMentors] = useState<any[]>([]);
   const [available, setAvailable] = useState<boolean>(true);
   useEffect(() => {
-    getAvailableMentors(event_id as string)
+    getMentors(event_id as string)
       .then((response: any) => {
         setAvailableMentors(
           response.data.filter((mentor: any) => mentor.is_available)
@@ -51,7 +49,6 @@ function EventPage() {
         );
       });
   }, [event_id]);
-
   return (
     <AppLayout>
       <Title level={2}>Detalhes do evento</Title>

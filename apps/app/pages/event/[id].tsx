@@ -25,8 +25,8 @@ import {
   createAvailability,
   createEnrollment,
   getAvailabilities,
-  getAvailableMentors,
   getEnrolledNinjas,
+  getMentors,
   getNinjas,
   updateAvailability,
 } from "bokkenjs";
@@ -58,7 +58,7 @@ function EventPage() {
 
   useEffect(() => {
     if (role === EUser.Mentor) {
-      getAvailableMentors(event_id as string)
+      getMentors(event_id as string)
         .then((response: any) => {
           setAvailableMentors(
             response.data.filter((mentor: any) => mentor.is_available)

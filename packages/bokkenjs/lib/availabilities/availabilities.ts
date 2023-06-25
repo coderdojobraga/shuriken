@@ -6,7 +6,7 @@ export async function getAvailabilities(event_id: string) {
   return response.data;
 }
 
-export async function getAvailableMentors(event_id: string) {
+export async function getMentors(event_id: string) {
   const response = await API.get(`/api/events/${event_id}/availabilities`);
 
   return response.data;
