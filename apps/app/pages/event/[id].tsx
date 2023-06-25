@@ -25,9 +25,10 @@ import {
   createAvailability,
   createEnrollment,
   getAvailabilities,
+  getAvailableMentors,
   getEnrolledNinjas,
-  getMentors,
   getNinjas,
+  getUnavailableMentors,
   updateAvailability,
 } from "bokkenjs";
 
@@ -58,19 +59,25 @@ function EventPage() {
 
   useEffect(() => {
     if (role === EUser.Mentor) {
-      getMentors(event_id as string)
+      getAvailableMentors(event_id as string)
         .then((response: any) => {
-          setAvailableMentors(
-            response.data.filter((mentor: any) => mentor.is_available)
-          );
-          setUnavailableMentors(
-            response.data.filter((mentor: any) => !mentor.is_available)
-          );
+          setAvailableMentors(response.availabilities);
         })
         .catch((_error) => {
           notifyError(
             "Ocorreu um erro",
             "Não foi possível obter os mentores disponíveis"
+          );
+        });
+
+      getUnavailableMentors(event_id as string)
+        .then((response: any) => {
+          setUnavailableMentors(response.unavailabilities);
+        })
+        .catch((_error) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os mentores indisponíveis"
           );
         });
     }

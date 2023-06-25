@@ -8,7 +8,11 @@ import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
 import Belt from "~/components/Belt";
 import { notifyError, notifyInfo } from "~/components/Notification";
-import { getEnrolledNinjas, getMentors } from "bokkenjs";
+import {
+  getAvailableMentors,
+  getEnrolledNinjas,
+  getUnavailableMentors,
+} from "bokkenjs";
 
 const { Title } = Typography;
 
@@ -22,19 +26,25 @@ function EventPage() {
   const [unavailableMentors, setUnavailableMentors] = useState<any[]>([]);
   const [available, setAvailable] = useState<boolean>(true);
   useEffect(() => {
-    getMentors(event_id as string)
+    getAvailableMentors(event_id as string)
       .then((response: any) => {
-        setAvailableMentors(
-          response.data.filter((mentor: any) => mentor.is_available)
-        );
-        setUnavailableMentors(
-          response.data.filter((mentor: any) => !mentor.is_available)
-        );
+        setAvailableMentors(response.availabilities);
       })
-      .catch((error) => {
+      .catch((_error) => {
         notifyError(
           "Ocorreu um erro",
           "Não foi possível obter os mentores disponíveis"
+        );
+      });
+
+    getUnavailableMentors(event_id as string)
+      .then((response: any) => {
+        setUnavailableMentors(response.unavailabilities);
+      })
+      .catch((_error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter os mentores indisponíveis"
         );
       });
   }, [event_id]);
