@@ -1,23 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  Button,
-  Checkbox,
-  Col,
-  Form,
-  Row,
-  Select,
-  Space,
-  Table,
-  Typography,
-} from "antd";
-import {
-  CloseOutlined,
-  EditOutlined,
-  SaveOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
+import { Button, Row, Select, Space, Table, Typography } from "antd";
+import { CloseOutlined, EditOutlined, SaveOutlined } from "@ant-design/icons";
 
 import {
   getNinjaEvents,
@@ -67,6 +51,22 @@ export default function Presences() {
   const [lectures, setLectures] = useState<Lecture[]>([]);
   const [selectedLectures, setSelectedLectures] = useState<Lecture[]>([]);
   const [locations, setLocations] = useState<any[]>([]);
+  const router = useRouter();
+  const { id } = router.query;
+
+  const onFinish = (values: any, lectureId: string) => {
+    api
+      .updateLecture(lectureId, values)
+      .then(() => {
+        notifyInfo("Os dados da sessão foram atualizados com sucesso", "");
+      })
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível atualizar os dados da sessão"
+        );
+      });
+  };
 
   useEffect(() => {
     api
@@ -123,6 +123,17 @@ export default function Presences() {
   };
 
   const handleSaveButtonClick = () => {
+    const hasChanges = JSON.stringify(data) !== JSON.stringify(originalData);
+
+    if (hasChanges) {
+      data.forEach((item) => {
+        const lectureId = item.key;
+        const values = { presences: item.presences };
+
+        onFinish(values, lectureId);
+      });
+    }
+
     setOriginalData([...data]);
     setSaveButtonVisible(false);
     setCancelButtonVisible(false);
@@ -144,6 +155,20 @@ export default function Presences() {
     }
   };
 
+  const getPresencesLabel = (value: string) => {
+    switch (value) {
+      case "both_absent":
+        return "Nenhum";
+      case "ninja_absent":
+        return "Ninja Faltou";
+      case "mentor_absent":
+        return "Mentor Faltou";
+      case "both_present":
+        return "Presentes";
+      default:
+        return "";
+    }
+  };
   const columns = [
     {
       title: "Ninja",
@@ -160,8 +185,9 @@ export default function Presences() {
       dataIndex: "presences",
       width: "33%",
       render: (_: any, record: any) => {
+        const label = getPresencesLabel(record.presences);
         if (editButtonVisible) {
-          return <span>{record.presences}</span>; // Render static text when not in edit mode
+          return <span>{label}</span>;
         } else {
           return (
             <Select
@@ -169,10 +195,10 @@ export default function Presences() {
               onChange={handleComboBoxChange(record.key)}
               style={{ width: 160 }}
             >
-              <Select.Option value="Nenhum">Nenhum</Select.Option>
-              <Select.Option value="Ninja Faltou">Ninja Faltou</Select.Option>
-              <Select.Option value="Mentor Faltou">Mentor Faltou</Select.Option>
-              <Select.Option value="Presentes">Presentes</Select.Option>
+              <Select.Option value="both_absent">Nenhum</Select.Option>
+              <Select.Option value="ninja_absent">Ninja Faltou</Select.Option>
+              <Select.Option value="mentor_absent">Mentor Faltou</Select.Option>
+              <Select.Option value="both_present">Presentes</Select.Option>
             </Select>
           );
         }
