@@ -1,20 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  Button,
-  Col,
-  Form,
-  Row,
-  Select,
-  Space,
-  Typography,
-} from "antd";
-import {
-  CloseOutlined,
-  SaveOutlined,
-
-} from "@ant-design/icons";
+import { Button, Col, Form, Row, Select, Space, Typography } from "antd";
+import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
 
 import {
   getNinjaEvents,

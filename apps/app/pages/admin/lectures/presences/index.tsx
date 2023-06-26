@@ -60,15 +60,13 @@ export default function Presences() {
   const [editButtonVisible, setEditButtonVisible] = useState(true);
   const [saveButtonVisible, setSaveButtonVisible] = useState(false);
   const [cancelButtonVisible, setCancelButtonVisible] = useState(false);
-  const [data, setData] = useState(generateData());
-  const [originalData, setOriginalData] = useState(generateData());
-  const [modifiedData, setModifiedData] = useState(null);
+  const [data, setData] = useState<any[]>([]);
+  const [originalData, setOriginalData] = useState<any[]>([]);
   const [events, setEvents] = useState<Event[]>([]);
-  const [selectedEvent, setSelectedEvent] = useState(String);
+  const [selectedEvent, setSelectedEvent] = useState<string>("");
   const [lectures, setLectures] = useState<Lecture[]>([]);
   const [selectedLectures, setSelectedLectures] = useState<Lecture[]>([]);
   const [locations, setLocations] = useState<any[]>([]);
-
 
   useEffect(() => {
     api
@@ -92,25 +90,31 @@ export default function Presences() {
   }, []);
 
   useEffect(() => {
-    if (selectedEvent != "") {
+    if (selectedEvent !== "") {
       setSelectedLectures(
         lectures.filter((lecture) => lecture.event.id === selectedEvent)
       );
     }
   }, [selectedEvent, lectures]);
 
-  function generateData() {
-    const newData = [];
-    for (let i = 0; i < 100; i++) {
-      newData.push({
-        key: i,
-        ninja: `ninja ${i}`,
-        mentor: `mentor do ninja ${i}`,
-        presences: false, // Initialize with false
+  useEffect(() => {
+    generateData();
+  }, [selectedLectures]);
+
+  const generateData = () => {
+    const data: any[] = [];
+
+    selectedLectures.forEach((lecture) => {
+      data.push({
+        ninja: `${lecture.ninja.first_name} ${lecture.ninja.last_name}`,
+        mentor: `${lecture.mentor.first_name} ${lecture.mentor.last_name}`,
+        presences: "Nenhum",
+        key: lecture.id,
       });
-    }
-    return newData;
-  }
+    });
+
+    setData(data);
+  };
 
   const handleEditButtonClick = () => {
     setEditButtonVisible(false);
@@ -119,31 +123,24 @@ export default function Presences() {
   };
 
   const handleSaveButtonClick = () => {
-    setOriginalData([...data]); 
-    setModifiedData( [...data]);
+    setOriginalData([...data]);
     setSaveButtonVisible(false);
     setCancelButtonVisible(false);
     setEditButtonVisible(true);
   };
 
   const handleCancelButtonClick = () => {
-    if (modifiedData) {
-      setData(originalData); // Revert data to the original state
-      setModifiedData(null);
-    }
     setSaveButtonVisible(false);
     setCancelButtonVisible(false);
     setEditButtonVisible(true);
   };
 
-  const handleComboBoxChange = (key:any) => (value:any) => {
+  const handleComboBoxChange = (key: string) => (value: string) => {
     const updatedData = [...data];
     const dataIndex = updatedData.findIndex((item) => item.key === key);
     if (dataIndex > -1) {
       updatedData[dataIndex].presences = value;
-      
       setData(updatedData);
-      setModifiedData(updatedData); // Update modifiedData with the updated data
     }
   };
 
@@ -151,21 +148,18 @@ export default function Presences() {
     {
       title: "Ninja",
       dataIndex: "ninja",
-      //width: 208,
       width: "33%",
     },
     {
       title: "Mentor",
       dataIndex: "mentor",
-      //width: 208,
       width: "33%",
     },
     {
       title: "Presenças",
       dataIndex: "presences",
-      //width: 208,
       width: "33%",
-      render: (_:any, record:any) => {
+      render: (_: any, record: any) => {
         if (editButtonVisible) {
           return <span>{record.presences}</span>; // Render static text when not in edit mode
         } else {
@@ -176,8 +170,8 @@ export default function Presences() {
               style={{ width: 160 }}
             >
               <Select.Option value="Nenhum">Nenhum</Select.Option>
-              <Select.Option value="Ninja Faltou">Ninja faltou</Select.Option>
-              <Select.Option value="Mentor Faltou">Mentor faltou</Select.Option>
+              <Select.Option value="Ninja Faltou">Ninja Faltou</Select.Option>
+              <Select.Option value="Mentor Faltou">Mentor Faltou</Select.Option>
               <Select.Option value="Presentes">Presentes</Select.Option>
             </Select>
           );
@@ -193,15 +187,14 @@ export default function Presences() {
           <Title level={2}>Presenças</Title>
           <Space>
             {editButtonVisible && (
-              
-                <Button
-                  shape="circle"
-                  type="primary"
-                  size="large"
-                  icon={<EditOutlined />}
-                  onClick={handleEditButtonClick}
-                  disabled={!editButtonVisible}
-                />
+              <Button
+                shape="circle"
+                type="primary"
+                size="large"
+                icon={<EditOutlined />}
+                onClick={handleEditButtonClick}
+                disabled={!editButtonVisible}
+              />
             )}
             {saveButtonVisible && (
               <Button
@@ -247,7 +240,7 @@ export default function Presences() {
             ))}
           </Select>
         </Row>
-        <div style={{ marginBottom: 25}} />
+        <div style={{ marginBottom: 25 }} />
         <Table
           columns={columns}
           dataSource={data}
@@ -255,7 +248,7 @@ export default function Presences() {
             pageSize: 40,
           }}
           scroll={{
-            y: 480,
+            y: 490,
           }}
         />
       </AppLayout>
