@@ -7,6 +7,7 @@ import { useEvent } from "~/hooks/events";
 import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
 import Belt from "~/components/Belt";
+import Availability from "~/components/Availability";
 import { notifyError, notifyInfo } from "~/components/Notification";
 import {
   getAvailableMentors,
@@ -25,6 +26,7 @@ function EventPage() {
   const [availableMentors, setAvailableMentors] = useState<any[]>([]);
   const [unavailableMentors, setUnavailableMentors] = useState<any[]>([]);
   const [available, setAvailable] = useState<boolean>(true);
+
   useEffect(() => {
     getAvailableMentors(event_id as string)
       .then((response: any) => {
@@ -73,61 +75,21 @@ function EventPage() {
       <Divider />
       <>
         {available ? (
-          <>
-            <Row style={{ display: "flex", justifyContent: "space-between" }}>
-              <Title level={2}>Mentores disponíveis</Title>
-              <Button
-                type="primary"
-                style={{ float: "right" }}
-                onClick={(_) => setAvailable(!available)}
-              >
-                Mentores indisponíveis
-              </Button>
-            </Row>
-            <List
-              itemLayout="vertical"
-              dataSource={availableMentors}
-              renderItem={(mentor: any) => (
-                <List.Item style={{ cursor: "pointer" }}>
-                  <Link href={`/profile/mentor/${mentor.id}`}>
-                    <List.Item.Meta
-                      avatar={<Avatar size={64} src={mentor.photo} />}
-                      title={`${mentor.first_name} ${mentor.last_name}`}
-                      description={mentor.notes ? `Notas: ${mentor.notes}` : ""}
-                    />
-                  </Link>
-                </List.Item>
-              )}
-            />
-          </>
+          <Availability
+            title="Mentores disponíveis"
+            buttonTitle="Mentores indisponíveis"
+            mentors={availableMentors}
+            available={available}
+            setAvailable={setAvailable}
+          />
         ) : (
-          <>
-            <Row style={{ display: "flex", justifyContent: "space-between" }}>
-              <Title level={2}>Mentores indisponíveis</Title>
-              <Button
-                type="primary"
-                style={{ float: "right" }}
-                onClick={(_) => setAvailable(!available)}
-              >
-                Mentores disponíveis
-              </Button>
-            </Row>
-            <List
-              itemLayout="vertical"
-              dataSource={unavailableMentors}
-              renderItem={(mentor: any) => (
-                <List.Item style={{ cursor: "pointer" }}>
-                  <Link href={`/profile/mentor/${mentor.id}`}>
-                    <List.Item.Meta
-                      avatar={<Avatar size={64} src={mentor.photo} />}
-                      title={`${mentor.first_name} ${mentor.last_name}`}
-                      description={mentor.notes ? `Notas: ${mentor.notes}` : ""}
-                    />
-                  </Link>
-                </List.Item>
-              )}
-            />
-          </>
+          <Availability
+            title="Mentores indisponíveis"
+            buttonTitle="Mentores disponíveis"
+            mentors={unavailableMentors}
+            available={available}
+            setAvailable={setAvailable}
+          />
         )}
       </>
       <Divider />
