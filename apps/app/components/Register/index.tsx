@@ -113,7 +113,7 @@ function Register({ cities }: any) {
       </Row>
 
       <Row justify="center">
-        <Avatar src={avatar} size={70} icon={<UserOutlined />} />
+        <Avatar src={avatarPreview} size={90} icon={<UserOutlined />} />
       </Row>
 
       <Row justify="center">

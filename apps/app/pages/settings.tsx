@@ -66,10 +66,7 @@ function Settings() {
   const [formPersonal] = Form.useForm();
   const [formPassword] = Form.useForm();
   const [avatar, setAvatar] = useState<null | File | string>();
-  const [avatarPreview, setAvatarPreview] = useState<
-    null | string | undefined
-  >();
-
+  const [avatarPreview, setAvatarPreview] = useState<null | string>();
   const [userSkills, setUserSkills] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<any[]>([]);
