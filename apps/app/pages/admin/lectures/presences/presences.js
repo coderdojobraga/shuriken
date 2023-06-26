@@ -1,21 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  Button,
-  Col,
-  Form,
-  Row,
-  Select,
-  Space,
-  Typography,
-} from "antd";
-import {
-  CloseOutlined,
-  SaveOutlined,
-
-} from "@ant-design/icons";
-
+import { Button, Col, Form, Row, Select, Space, Typography } from "antd";
+import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
 import {
   getNinjaEvents,
   listEvents,
@@ -26,7 +13,7 @@ import * as api from "bokkenjs";
 import { notifyError, notifyInfo } from "~/components/Notification";
 const { Title } = Typography;
 
-export default function LectureForm({ id }) {
+export default function presenceForum({ id }) {
   const router = useRouter();
   const [form] = Form.useForm();
   const [selectedMentor, setSelectedMentor] = useState({});
@@ -46,8 +33,10 @@ export default function LectureForm({ id }) {
       setEvents(response.data);
     });
   }, []);
+  1;
+
   useEffect(() => {
-    if (id !== "new") {
+    if (id !== "presences") {
       listEvents().then((response) => {
         const event = response.data.find((event) => event.id === id);
         setSelectedEvent(event);
@@ -149,6 +138,7 @@ export default function LectureForm({ id }) {
         });
     }
   };
+
   return (
     <>
       <Row justify="space-between">
