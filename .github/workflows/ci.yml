@@ -37,6 +37,7 @@ jobs:
 
   link-checker:
     name: Link Checker
+    timeout-minutes: 2
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -44,7 +45,7 @@ jobs:
       - name: Link Checker
         uses: lycheeverse/lychee-action@v1
         with:
-          args: --require-https --no-progress --exclude-path apps/app/lib/social.tsx packages/ui/components/landing/Footer/config.tsx './**/*.md' './**/*.html' './**/*.json' './**/*.tsx' './**/*.ts' './**/*.js' './**/*.tex'
+          args: --require-https --no-progress --exclude-path apps/app/lib/social.tsx --exclude-path packages/ui/components/landing/Footer/config.tsx './**/*.md' './**/*.html' './**/*.json' './**/*.tsx' './**/*.ts' './**/*.js' './**/*.tex'
           fail: true
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
