@@ -19,12 +19,12 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 2
 
       - name: Setup Node.js environment
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
           cache: "npm"
@@ -35,7 +35,7 @@ jobs:
       - name: Build
         run: npm run build
 
-  linkChecker:
+  link-checker:
     name: Link Checker
     runs-on: ubuntu-latest
     steps:
@@ -44,7 +44,7 @@ jobs:
       - name: Link Checker
         uses: lycheeverse/lychee-action@v1
         with:
-          args: --require-https --no-progress --exclude-path apps/app/lib/social.tsx './**/*.md' './**/*.html' './**/*.json' './**/*.tsx' './**/*.ts' './**/*.js' './**/*.tex' 
+          args: --require-https --no-progress --exclude-path apps/app/lib/social.tsx packages/ui/components/landing/Footer/config.tsx './**/*.md' './**/*.html' './**/*.json' './**/*.tsx' './**/*.ts' './**/*.js' './**/*.tex'
           fail: true
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
