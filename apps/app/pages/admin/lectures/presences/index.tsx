@@ -38,6 +38,7 @@ type Lecture = {
   };
   summary: string;
   notes: string;
+  attendance: string;
 };
 
 export default function Presences() {
@@ -52,10 +53,11 @@ export default function Presences() {
   const [selectedLectures, setSelectedLectures] = useState<Lecture[]>([]);
   const [locations, setLocations] = useState<any[]>([]);
   const router = useRouter();
-  const { id } = router.query;
 
   const onFinish = (values: any, lectureId: string) => {
+    console.log("change", values);
     api
+
       .updateLecture(lectureId, values)
       .then(() => {
         notifyInfo("Os dados da sessão foram atualizados com sucesso", "");
@@ -100,15 +102,18 @@ export default function Presences() {
   useEffect(() => {
     generateData();
   }, [selectedLectures]);
-
+  console.log(selectedLectures);
   const generateData = () => {
     const data: any[] = [];
 
     selectedLectures.forEach((lecture) => {
+      if (lecture.attendance == null) {
+        lecture.attendance = "both_absent";
+      }
       data.push({
         ninja: `${lecture.ninja.first_name} ${lecture.ninja.last_name}`,
         mentor: `${lecture.mentor.first_name} ${lecture.mentor.last_name}`,
-        presences: "Nenhum",
+        presences: `${lecture.attendance}`,
         key: lecture.id,
       });
     });
@@ -128,7 +133,7 @@ export default function Presences() {
     if (hasChanges) {
       data.forEach((item) => {
         const lectureId = item.key;
-        const values = { presences: item.presences };
+        const values = { attendance: item.presences };
 
         onFinish(values, lectureId);
       });
@@ -249,7 +254,7 @@ export default function Presences() {
           <Select
             showSearch
             defaultValue="Selecione um Evento"
-            style={{ width: 400 }}
+            style={{ width: 450 }}
             onChange={setSelectedEvent}
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
