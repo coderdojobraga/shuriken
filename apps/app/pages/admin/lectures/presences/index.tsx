@@ -18,26 +18,11 @@ const { Title } = Typography;
 type Event = {
   id: string;
   title: string;
-  location_id: string;
 };
 
 type Lecture = {
   id: string;
   event: Event;
-  mentor: {
-    id: string;
-    first_name: string;
-    last_name: string;
-    photo: string;
-  };
-  ninja: {
-    id: string;
-    first_name: string;
-    last_name: string;
-    photo: string;
-  };
-  summary: string;
-  notes: string;
   attendance: string;
 };
 
@@ -55,7 +40,6 @@ export default function Presences() {
   const router = useRouter();
 
   const onFinish = (values: any, lectureId: string) => {
-    console.log("change", values);
     api
 
       .updateLecture(lectureId, values)
@@ -81,7 +65,18 @@ export default function Presences() {
     api
       .listLectures()
       .then((response: any) => setLectures(response.data))
+
       .catch(() => {});
+
+    selectedLectures.forEach((lecture) => {
+      if (lecture.attendance == null) {
+        lecture.attendance = "both_absent";
+      }
+      data.push({
+        presences: `${lecture.attendance}`,
+        key: lecture.id,
+      });
+    });
   }, []);
 
   useEffect(() => {
@@ -98,15 +93,14 @@ export default function Presences() {
       );
     }
   }, [selectedEvent, lectures]);
-
   useEffect(() => {
     generateData();
   }, [selectedLectures]);
-  console.log(selectedLectures);
+
   const generateData = () => {
     const data: any[] = [];
 
-    selectedLectures.forEach((lecture) => {
+    selectedLectures.map((lecture: any) => {
       if (lecture.attendance == null) {
         lecture.attendance = "both_absent";
       }
