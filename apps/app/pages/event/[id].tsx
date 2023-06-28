@@ -26,10 +26,9 @@ import {
   createAvailability,
   createEnrollment,
   getAvailabilities,
-  getAvailableMentors,
   getEnrolledNinjas,
+  getMentorsAvailabilities,
   getNinjas,
-  getUnavailableMentors,
   updateAvailability,
 } from "bokkenjs";
 
@@ -60,7 +59,7 @@ function EventPage() {
 
   useEffect(() => {
     if (role === EUser.Mentor) {
-      getMentors(event_id as string)
+      getMentorsAvailabilities(event_id as string)
         .then((response: any) => {
           setAvailableMentors(response.availabilities);
           setUnavailableMentors(response.unavailabilities);

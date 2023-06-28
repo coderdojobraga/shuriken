@@ -9,11 +9,7 @@ import Event from "~/components/Event";
 import Belt from "~/components/Belt";
 import Availability from "~/components/Availability";
 import { notifyError, notifyInfo } from "~/components/Notification";
-import {
-  getAvailableMentors,
-  getEnrolledNinjas,
-  getUnavailableMentors,
-} from "bokkenjs";
+import { getEnrolledNinjas, getMentorsAvailabilities } from "bokkenjs";
 
 const { Title } = Typography;
 
@@ -28,7 +24,7 @@ function EventPage() {
   const [available, setAvailable] = useState<boolean>(true);
 
   useEffect(() => {
-    getMentors(event_id as string)
+    getMentorsAvailabilities(event_id as string)
       .then((response: any) => {
         setAvailableMentors(response.availabilities);
         setUnavailableMentors(response.unavailabilities);
