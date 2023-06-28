@@ -28,25 +28,15 @@ function EventPage() {
   const [available, setAvailable] = useState<boolean>(true);
 
   useEffect(() => {
-    getAvailableMentors(event_id as string)
+    getMentors(event_id as string)
       .then((response: any) => {
         setAvailableMentors(response.availabilities);
-      })
-      .catch((_error) => {
-        notifyError(
-          "Ocorreu um erro",
-          "Não foi possível obter os mentores disponíveis"
-        );
-      });
-
-    getUnavailableMentors(event_id as string)
-      .then((response: any) => {
         setUnavailableMentors(response.unavailabilities);
       })
       .catch((_error) => {
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível obter os mentores indisponíveis"
+          "Não foi possível obter os mentores disponíveis"
         );
       });
   }, [event_id]);
