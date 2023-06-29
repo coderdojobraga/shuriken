@@ -336,7 +336,6 @@ function EventPage() {
             {available ? (
               <Availability
                 title="Mentores disponíveis"
-                buttonTitle="Mentores indisponíveis"
                 mentors={availableMentors}
                 available={available}
                 setAvailable={setAvailable}
@@ -344,7 +343,6 @@ function EventPage() {
             ) : (
               <Availability
                 title="Mentores indisponíveis"
-                buttonTitle="Mentores disponíveis"
                 mentors={unavailableMentors}
                 available={available}
                 setAvailable={setAvailable}

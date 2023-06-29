@@ -1,6 +1,5 @@
-import { Avatar, Button, List, Row, Typography } from "antd";
+import { Avatar, List, Row, Switch, Typography } from "antd";
 import Link from "next/link";
-import { useState } from "react";
 
 const { Title } = Typography;
 
@@ -15,13 +14,11 @@ function Availability({
     <>
       <Row style={{ display: "flex", justifyContent: "space-between" }}>
         <Title level={2}>{title}</Title>
-        <Button
-          type="primary"
+        <Switch
+          defaultChecked={available}
           style={{ float: "right" }}
           onClick={(_) => setAvailable(!available)}
-        >
-          {buttonTitle}
-        </Button>
+        />
       </Row>
       <List
         itemLayout="vertical"
