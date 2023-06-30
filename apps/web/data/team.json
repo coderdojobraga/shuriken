@@ -40,7 +40,7 @@
     "role": "Responsável Recrutamento e Formação"
   },
   {
-    "picture": "ninja.jpg",
+    "picture": "diogoneto.png",
     "name": "Diogo Neto",
     "role": "Responsável Currículo e Material"
   },
@@ -78,6 +78,11 @@
     "picture": "analeite.png",
     "name": "Ana Leite",
     "role": "Mentora"
+  },
+  {
+    "picture": "andremota.png",
+    "name": "André Mota",
+    "role": "Mentor"
   },
   {
     "picture": "cralos.png",
