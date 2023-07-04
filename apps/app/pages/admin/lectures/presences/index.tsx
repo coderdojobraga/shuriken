@@ -38,21 +38,6 @@ export default function Presences() {
   const [selectedLectures, setSelectedLectures] = useState<Lecture[]>([]);
   const [locations, setLocations] = useState<any[]>([]);
   const router = useRouter();
-
-  // const onFinish = (values: any, lectureId: string) => {
-  //   api
-
-  //     .updateLecture(lectureId, values)
-  //     .then(() => {
-  //       notifyInfo("Os dados da sessão foram atualizados com sucesso", "");
-  //     })
-  //     .catch((error) => {
-  //       notifyError(
-  //         "Ocorreu um erro",
-  //         "Não foi possível atualizar os dados da sessão"
-  //       );
-  //     });
-  // };
   const onFinish = (values: any, lectureId: string) => {
     api
       .updateLecture(lectureId, values)
