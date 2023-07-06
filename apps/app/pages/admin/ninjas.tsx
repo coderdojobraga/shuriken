@@ -105,8 +105,8 @@ function Ninjas() {
       .then((response: any) => {
         setNinjas(
           response.data.map((ninja: any) => {
-            const ninjaData ={
-              id:ninja.id,
+            const ninjaData = {
+              id: ninja.id,
               name: `${ninja?.first_name} ${ninja?.last_name}`,
             };
             return {
@@ -187,7 +187,7 @@ function Ninjas() {
     setSearchText("");
   };
 
-  const getColumnSearchProps = (dataIndex: string): ColumnType<any> => ({
+  const getColumnSearchProps = (dataIndex: any): ColumnType<any> => ({
     filterDropdown: ({
       setSelectedKeys,
       selectedKeys,
@@ -204,7 +204,7 @@ function Ninjas() {
           }
           onPressEnter={() =>
             handleSearch(selectedKeys as string[], confirm, dataIndex)
-          } 
+          }
           style={{ marginBottom: 8, display: "block" }}
         />
         <Space>
@@ -276,7 +276,6 @@ function Ninjas() {
         return `Pesquisar por ${dataIndex}`;
     }
   };
-
   const columns = [
     {
       title: "Foto",
@@ -288,13 +287,12 @@ function Ninjas() {
       title: "Nome",
       dataIndex: "ninja",
       editable: false,
-      render: (ninja:any) => (
-        console.log(ninja),
+      ...getColumnSearchProps("name"),
+      render: (ninja: any) => (
         <Link href={`/profile/ninja/${ninja.id}`}>
           <a>{ninja.name}</a>
         </Link>
       ),
-      // ...getColumnSearchProps("ninja.name"),
     },
 
     {

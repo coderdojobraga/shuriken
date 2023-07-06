@@ -40,7 +40,6 @@ function Profile({ id, role }: Props) {
   const [projects, setProjects] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
   const [date, setDate] = useState<String>("");
-
   useEffect(() => {
     api
       .getUserByRole({ id, role })
@@ -72,7 +71,6 @@ function Profile({ id, role }: Props) {
             "Não foi possível obter os crachás do ninja"
           );
         });
-
       api
         .getNinjaFiles(id)
         .then((response) => setProjects(response.data))
@@ -94,7 +92,6 @@ function Profile({ id, role }: Props) {
         });
     }
   }, [id, role]);
-
   useEffect(() => {
     setDate(moment(info.since).format("DD/MM/YYYY"));
   }, [info]);
@@ -123,7 +120,8 @@ function Profile({ id, role }: Props) {
             </Col>
             <Col span={24}>
               <Title className={styles.capitalize} level={4}>
-                <BsFileEarmarkPersonFill /> {role}
+                <BsFileEarmarkPersonFill />
+                {role}
               </Title>
             </Col>
             <Col span={24}>
@@ -134,8 +132,8 @@ function Profile({ id, role }: Props) {
               <Col span={24}>
                 <Belt belt={info.belt} />
               </Col>
-            )}  
-            
+            )}
+
             <Col span={24}>
               <Space style={{ fontSize: 20 }}>
                 {info?.socials?.map((social: any) =>

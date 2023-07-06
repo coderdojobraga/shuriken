@@ -30,7 +30,7 @@ interface Item {
   photo: any;
   mentor: {
     id: string;
-    name: string;  
+    name: string;
   };
   email: string;
   birthday: string;
@@ -121,10 +121,10 @@ function Mentors() {
       .then((response: any) => {
         setMentors(
           response.data.map((mentor: any) => {
-            const mentorData={
+            const mentorData = {
               id: mentor.id,
               name: `${mentor.first_name} ${mentor.last_name}`,
-            }
+            };
             return {
               ...mentor,
               name: `${mentor.first_name} ${mentor.last_name}`,
@@ -307,11 +307,11 @@ function Mentors() {
       title: "Nome",
       dataIndex: "mentor",
       editable: false,
-      render: (mentor:any) => (
+      ...getColumnSearchProps("name"),
+      render: (mentor: any) => (
         <Link href={`/profile/mentor/${mentor.id}`}>
           <a>{mentor.name}</a>
         </Link>
-      //...getColumnSearchProps("name"),
       ),
     },
     {
