@@ -13,6 +13,7 @@ export async function updateLecture(lecture_id: string, data: any) {
       lecture: {
         summary: data.summary,
         notes: data.notes,
+        attendance: data.attendance,
       },
     },
     {
