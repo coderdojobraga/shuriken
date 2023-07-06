@@ -134,8 +134,8 @@ function Profile({ id, role }: Props) {
               <Col span={24}>
                 <Belt belt={info.belt} />
               </Col>
-            )}
-
+            )}  
+            
             <Col span={24}>
               <Space style={{ fontSize: 20 }}>
                 {info?.socials?.map((social: any) =>

@@ -30,7 +30,10 @@ const { Option } = Select;
 interface Item {
   key: string;
   photo: any;
-  name: string;
+  ninja: {
+    id: string;
+    name: string;
+  };
   birthday: string;
   belt: string;
   guardian: {
@@ -102,11 +105,15 @@ function Ninjas() {
       .then((response: any) => {
         setNinjas(
           response.data.map((ninja: any) => {
+            const ninjaData ={
+              id:ninja.id,
+              name: `${ninja?.first_name} ${ninja?.last_name}`,
+            };
             return {
               ...ninja,
-              name: `${ninja.first_name} ${ninja.last_name}`,
-              key: ninja.id,
+              key: ninja?.id,
               guardian: buildGuardian(ninja.guardian),
+              ninja: ninjaData,
             };
           })
         );
@@ -128,7 +135,7 @@ function Ninjas() {
 
   const edit = (record: Partial<Item> & { key: React.Key }) => {
     form.setFieldsValue({
-      name: "",
+      ninja: "",
       birthday: "",
       belt: "",
       guardian: "",
@@ -197,7 +204,7 @@ function Ninjas() {
           }
           onPressEnter={() =>
             handleSearch(selectedKeys as string[], confirm, dataIndex)
-          }
+          } 
           style={{ marginBottom: 8, display: "block" }}
         />
         <Space>
@@ -279,10 +286,17 @@ function Ninjas() {
     },
     {
       title: "Nome",
-      dataIndex: "name",
+      dataIndex: "ninja",
       editable: false,
-      ...getColumnSearchProps("name"),
+      render: (ninja:any) => (
+        console.log(ninja),
+        <Link href={`/profile/ninja/${ninja.id}`}>
+          <a>{ninja.name}</a>
+        </Link>
+      ),
+      // ...getColumnSearchProps("ninja.name"),
     },
+
     {
       title: "Cinturão",
       dataIndex: "belt",

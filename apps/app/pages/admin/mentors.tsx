@@ -28,7 +28,10 @@ interface Item {
   key: string;
   user_id: string;
   photo: any;
-  name: string;
+  mentor: {
+    id: string;
+    name: string;  
+  };
   email: string;
   birthday: string;
   mobile: string;
@@ -118,10 +121,15 @@ function Mentors() {
       .then((response: any) => {
         setMentors(
           response.data.map((mentor: any) => {
+            const mentorData={
+              id: mentor.id,
+              name: `${mentor.first_name} ${mentor.last_name}`,
+            }
             return {
               ...mentor,
               name: `${mentor.first_name} ${mentor.last_name}`,
               key: mentor.id,
+              mentor: mentorData,
             };
           })
         );
@@ -297,9 +305,14 @@ function Mentors() {
     },
     {
       title: "Nome",
-      dataIndex: "name",
+      dataIndex: "mentor",
       editable: false,
-      ...getColumnSearchProps("name"),
+      render: (mentor:any) => (
+        <Link href={`/profile/mentor/${mentor.id}`}>
+          <a>{mentor.name}</a>
+        </Link>
+      //...getColumnSearchProps("name"),
+      ),
     },
     {
       title: "E-mail",
