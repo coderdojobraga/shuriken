@@ -82,7 +82,12 @@ export default function Presences() {
       .listLectures()
       .then((response: any) => setLectures(response.data))
 
-      .catch(() => {});
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível atualizar os dados da sessão"
+        );
+      });
 
     selectedLectures.forEach((lecture) => {
       if (lecture.attendance == null) {
