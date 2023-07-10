@@ -15,6 +15,7 @@ import {
   FontSizeOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+
 import moment from "moment";
 import "moment/locale/pt";
 import Badge from "~/components/Badge";
@@ -24,12 +25,14 @@ import * as api from "bokkenjs";
 import * as socials from "~/lib/social";
 import { notifyError, notifyInfo } from "~/components/Notification";
 import styles from "./style.module.css";
-import { EUser } from "bokkenjs";
+import { EUser, getNinjasAsAdmin, updateGuardianAsAdmin } from "bokkenjs";
 
 import { BsFileEarmarkPersonFill } from "react-icons/bs";
+import Link from "next/link";
 
-import { getImg } from "~/lib/utils";
-import guardians from "pages/admin/guardians";
+import { getIcon, getImg } from "~/lib/utils";
+import Guardian from "pages/admin/guardians";
+import { icons } from "react-icons";
 
 const { TabPane } = Tabs;
 
@@ -45,63 +48,102 @@ function Profile({ id, role }: Props) {
   const [badges, setBadges] = useState<any[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
-  const [date, setDate] = useState<String>("");
+  const [date, setDate] = useState<string>("");
+  const [guardian, setGuardians] = useState<any[]>([]);
+  const [ninja, setNinja] = useState<any[]>([]);
 
   useEffect(() => {
-    api
-      .getUserByRole({ id, role })
-      .then((response) => setInfo(response.data))
-      .catch((error) => {
+    const fetchUserByRole = async () => {
+      try {
+        const response = await api.getUserByRole({ id, role });
+        setInfo(response.data);
+      } catch (error) {
         notifyError(
           "Ocorreu um erro",
           "Não foi possível obter os dados do utilizador"
         );
-      });
+      }
+    };
 
-    if (role == EUser.Mentor) {
-      api
-        .getMentorSkills(id)
-        .then((response) => setSkills(response.data))
-        .catch((error) => {
-          notifyError(
-            "Ocorreu um erro",
-            "Não foi possível obter os conhecimentos do mentor"
-          );
-        });
-    } else if (role == EUser.Ninja) {
-      api
-        .getNinjaBadges(id)
-        .then((response) => setBadges(response.data))
-        .catch((error) => {
-          notifyError(
-            "Ocorreu um erro",
-            "Não foi possível obter os crachás do ninja"
-          );
-        });
-      api
-        .getNinjaFiles(id)
-        .then((response) => setProjects(response.data))
-        .catch((error) => {
-          notifyError(
-            "Ocorreu um erro",
-            "Não foi possível obter os ficheiros do ninja"
-          );
-        });
+    const fetchMentorSkills = async () => {
+      try {
+        const response = await api.getMentorSkills(id);
+        setSkills(response.data);
+      } catch (error) {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter os conhecimentos do mentor"
+        );
+      }
+    };
 
+    const fetchNinjaBadges = async () => {
+      try {
+        const response = await api.getNinjaBadges(id);
+        setBadges(response.data);
+      } catch (error) {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter os crachás do ninja"
+        );
+      }
+    };
+
+    const fetchNinjaFiles = async () => {
+      try {
+        const response = await api.getNinjaFiles(id);
+        setProjects(response.data);
+      } catch (error) {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter os ficheiros do ninja"
+        );
+      }
+    };
+
+    const fetchNinjaSkills = async () => {
+      try {
+        const response = await api.getNinjaSkills(id);
+        setSkills(response.data);
+      } catch (error) {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter as linguagens do ninja"
+        );
+      }
+    };
+
+    fetchUserByRole();
+
+    if (role === EUser.Mentor) {
+      fetchMentorSkills();
+    } else if (role === EUser.Ninja) {
+      fetchNinjaBadges();
+      fetchNinjaFiles();
+      fetchNinjaSkills();
+    }
+  }, [id, role]);
+
+  useEffect(() => {
+    if (info.since) {
+      setDate(moment(info.since).format("DD/MM/YYYY"));
+    }
+  }, [info.since]);
+
+  useEffect(() => {
+    if (role === EUser.Ninja) {
       api
-        .getNinjaSkills(id)
-        .then((response) => setSkills(response.data))
-        .catch((error) => {
+        .getGuardian(info.guardian_id)
+        .then((response: any) => setGuardians(response.data))
+        .catch((error: any) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível obter as linguagens do ninja"
+            "Não foi possível obter os dados do guardião"
           );
         });
     }
-  }, [id, role]);
-  useEffect(() => {
-    setDate(moment(info.since).format("DD/MM/YYYY"));
-  }, [info]);
+  }, [info.guardian_id, role]);
+  console.log(badges);
 
   return (
     <>
@@ -127,21 +169,14 @@ function Profile({ id, role }: Props) {
               {role.charAt(0).toUpperCase() + role.slice(1)}
               {role === EUser.Ninja && (
                 <>
-                  <span style={{ marginLeft: "10px", fontSize: "15px" }}>
-                    Guardian: {guardians.name}
+                  <span style={{ marginLeft: "6px", fontSize: "18px" }}>
+                    de{" "}
+                    <Link href={`/profile/guardian/${guardian.id}`}>
+                      <a>
+                        {guardian.first_name} {guardian.last_name}
+                      </a>
+                    </Link>
                   </span>
-                  <Row justify="start" align="middle">
-                    {badges.map((badge) => (
-                      <Col
-                        key={badge.id}
-                        {...{ xs: 24, md: 12, xl: 8, xxl: 6 }}
-                      >
-                        <Space>
-                          <Badge {...badge} />
-                        </Space>
-                      </Col>
-                    ))}
-                  </Row>
                 </>
               )}
             </p>
@@ -151,12 +186,11 @@ function Profile({ id, role }: Props) {
             <p style={{ marginBottom: "5px", marginTop: "3px" }}>
               <Belt belt={info.belt} />
             </p>
-
             <p style={{ marginBottom: "2px" }}>
               <Space style={{ fontSize: 20 }}>
                 {info?.socials?.map((social: any) =>
-                  social?.name == "discord" || social?.name == "slack" ? (
-                    <a title={social.username}>
+                  social?.name === "discord" || social?.name === "slack" ? (
+                    <a key={social.id} title={social.username}>
                       {socials.ICONS[social.name as keyof typeof socials.URLS]}
                     </a>
                   ) : (
@@ -174,11 +208,17 @@ function Profile({ id, role }: Props) {
                 )}
               </Space>
             </p>
-
-            <p style={{ marginLeft: "-3px" }}>
-              {skills.map((s) => (
-                <div style={{ display: "inline-block" }} key={s.id}>
-                  {getImg(s.name)}
+            <p>
+              {skills.map((s: any) => (
+                <div
+                  style={{
+                    display: "inline-block",
+                    fontSize: 20,
+                    marginRight: "6px",
+                  }}
+                  key={s.id}
+                >
+                  {getIcon(s.name)}
                 </div>
               ))}
             </p>
