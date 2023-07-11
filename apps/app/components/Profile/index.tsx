@@ -126,7 +126,7 @@ function Profile({ id, role }: Props) {
         .catch((error: any) => {});
     }
   }, [info.guardian_id, role]);
-  console.log(badges);
+
 
   return (
     <>
