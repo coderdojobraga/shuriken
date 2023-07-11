@@ -136,11 +136,7 @@ function Profile({ id, role }: Props) {
         .getGuardian(info.guardian_id)
         .then((response: any) => setGuardians(response.data))
         .catch((error: any) => {
-          notifyError(
-            "Ocorreu um erro",
-            "Não foi possível obter os dados do guardião"
-          );
-        });
+});
     }
   }, [info.guardian_id, role]);
   console.log(badges);
@@ -215,6 +211,7 @@ function Profile({ id, role }: Props) {
                     display: "inline-block",
                     fontSize: 20,
                     marginRight: "6px",
+                    color:"#424549"
                   }}
                   key={s.id}
                 >
