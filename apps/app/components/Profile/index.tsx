@@ -23,10 +23,9 @@ import { EUser, getNinjasAsAdmin, updateGuardianAsAdmin } from "bokkenjs";
 import Link from "next/link";
 import { getIcon } from "~/lib/utils";
 
-
 const { TabPane } = Tabs;
 
-const { Title,Text } = Typography;
+const { Title, Text } = Typography;
 
 interface Props {
   id: string;
@@ -209,7 +208,6 @@ function Profile({ id, role }: Props) {
           </Col>
         </Space>
       </Row>
-      z
       <Tabs defaultActiveKey="1" centered>
         <TabPane tab="Eventos" key="1">
           <Timeline mode="alternate">

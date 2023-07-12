@@ -75,7 +75,7 @@ export default function Presences() {
           "Não foi possível atualizar os dados da sessão"
         );
       });
-  }, []);
+  }, [data, selectedLectures]);
 
   useEffect(() => {
     api
@@ -125,7 +125,7 @@ export default function Presences() {
 
     useEffect(() => {
       generateData();
-    }, [selectedLectures]);
+    });
 
     selectedLectures.map((lecture: any) => {
       if (lecture.attendance == null) {
