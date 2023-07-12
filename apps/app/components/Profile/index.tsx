@@ -18,13 +18,15 @@ import Document from "~/components/Document";
 import * as api from "bokkenjs";
 import * as socials from "~/lib/social";
 import { notifyError, notifyInfo } from "~/components/Notification";
+import styles from "./style.module.css";
 import { EUser, getNinjasAsAdmin, updateGuardianAsAdmin } from "bokkenjs";
 import Link from "next/link";
 import { getIcon } from "~/lib/utils";
 
+
 const { TabPane } = Tabs;
 
-const { Title } = Typography;
+const { Title,Text } = Typography;
 
 interface Props {
   id: string;
@@ -122,12 +124,7 @@ function Profile({ id, role }: Props) {
       api
         .getGuardian(info.guardian_id)
         .then((response: any) => setGuardians(response.data))
-        .catch((error: any) => {
-          notifyError(
-            "Ocorreu um erro",
-            "Não foi possível obter os dados do encarregado"
-          );
-        });
+        .catch((error: any) => {});
     }
   }, [info.guardian_id, role]);
 
@@ -201,7 +198,7 @@ function Profile({ id, role }: Props) {
                     display: "inline-block",
                     fontSize: 20,
                     marginRight: "6px",
-                    color: "#424549"
+                    color: "#424549",
                   }}
                   key={s.id}
                 >
