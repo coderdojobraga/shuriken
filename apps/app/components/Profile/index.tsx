@@ -37,7 +37,7 @@ function Profile({ id, role }: Props) {
   const [projects, setProjects] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
   const [date, setDate] = useState<string>("");
-  const [guardian, setGuardians] = useState<any | null>([]);
+  const [guardian, setGuardians] = useState<any>([]);
 
   useEffect(() => {
     const fetchUserByRole = async () => {
@@ -201,7 +201,7 @@ function Profile({ id, role }: Props) {
                     display: "inline-block",
                     fontSize: 20,
                     marginRight: "6px",
-                    color: "#424549",
+                    color: "#424549"
                   }}
                   key={s.id}
                 >
