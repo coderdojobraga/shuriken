@@ -71,7 +71,7 @@ export default function LectureForm({ id }) {
         )
       );
     });
-  }, [events,promise]);
+  }, [events]);
 
   const [filteredNinjas, setFilteredNinjas] = useState([]);
   const handleEventChange = useCallback(

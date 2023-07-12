@@ -98,7 +98,7 @@ export default function Presences() {
         key: lecture.id,
       });
     });
-  }, [data, selectedLectures]);
+  }, []);
 
   useEffect(() => {
     api
@@ -122,11 +122,10 @@ export default function Presences() {
 
   const generateData = () => {
     const data: any[] = [];
-  
+
     useEffect(() => {
       generateData();
     }, [selectedLectures]);
-
 
     selectedLectures.map((lecture: any) => {
       if (lecture.attendance == null) {

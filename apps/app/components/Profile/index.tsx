@@ -10,7 +10,6 @@ import {
   Typography,
 } from "antd";
 import { ClockCircleOutlined, UserOutlined } from "@ant-design/icons";
-
 import moment from "moment";
 import "moment/locale/pt";
 import Badge from "~/components/Badge";
@@ -128,11 +127,9 @@ function Profile({ id, role }: Props) {
             "Ocorreu um erro",
             "Não foi possível obter os dados do encarregado"
           );
-
         });
     }
   }, [info.guardian_id, role]);
-
 
   return (
     <>
@@ -215,6 +212,7 @@ function Profile({ id, role }: Props) {
           </Col>
         </Space>
       </Row>
+      z
       <Tabs defaultActiveKey="1" centered>
         <TabPane tab="Eventos" key="1">
           <Timeline mode="alternate">
