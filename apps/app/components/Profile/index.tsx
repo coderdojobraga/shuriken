@@ -123,7 +123,13 @@ function Profile({ id, role }: Props) {
       api
         .getGuardian(info.guardian_id)
         .then((response: any) => setGuardians(response.data))
-        .catch((error: any) => {});
+        .catch((error: any) => {
+          notifyError(
+            "Ocorreu um erro",
+            "Não foi possível obter os dados do encarregado"
+          );
+
+        });
     }
   }, [info.guardian_id, role]);
 
@@ -209,7 +215,6 @@ function Profile({ id, role }: Props) {
           </Col>
         </Space>
       </Row>
-
       <Tabs defaultActiveKey="1" centered>
         <TabPane tab="Eventos" key="1">
           <Timeline mode="alternate">
