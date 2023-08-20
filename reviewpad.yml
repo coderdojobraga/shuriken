@@ -24,13 +24,13 @@ workflows:
       - if: $rule("Open PR state")
         then:
           - forEach:
-            key: $filePattern
-            value: $label
-            in: $dictionary("Label per file path")
-            do:
-              - if: $containsFilePattern($filePattern)
-                then:
-                  - $addLabel($label)
+              key: $filePattern
+              value: $label
+              in: $dictionary("Label per file path")
+              do:
+                - if: $containsFilePattern($filePattern)
+                  then:
+                    - $addLabel($label)
 
   - name: Request review from maintainers
     run:
