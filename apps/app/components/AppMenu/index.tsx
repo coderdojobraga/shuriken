@@ -154,6 +154,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
                 <SubMenu icon={<UsergroupAddOutlined />} title="Sessões">
                   <Item key="/admin/lectures">Listar sessões</Item>
                   <Item key="/admin/lectures/new">Criar sessão</Item>
+                  <Item key="/admin/lectures/presences">Presenças</Item>
                 </SubMenu>
               </>
             )}

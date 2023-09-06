@@ -19,14 +19,15 @@ import { useEvent } from "~/hooks/events";
 import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
 import Belt from "~/components/Belt";
+import Availability from "~/components/Availability";
 import { notifyError, notifyInfo } from "~/components/Notification";
 import {
   EUser,
   createAvailability,
   createEnrollment,
   getAvailabilities,
-  getAvailableMentors,
   getEnrolledNinjas,
+  getMentorsAvailabilities,
   getNinjas,
   updateAvailability,
 } from "bokkenjs";
@@ -53,15 +54,15 @@ function EventPage() {
   const [ninjas, setNinjas] = useState([]);
   const [selectedNinjas, setSelectedNinjas] = useState([]);
   const [enrolledNinjas, setEnrolledNinjas] = useState([]);
+  const [unavailableMentors, setUnavailableMentors] = useState([]);
+  const [available, setAvailable] = useState(true);
 
   useEffect(() => {
     if (role === EUser.Mentor) {
-      getAvailableMentors(event_id as string)
+      getMentorsAvailabilities(event_id as string)
         .then((response: any) => {
-          setMentors(response.data);
-          setAvailableMentors(
-            response.data.filter((mentor: any) => mentor.is_available)
-          );
+          setAvailableMentors(response.availabilities);
+          setUnavailableMentors(response.unavailabilities);
         })
         .catch((_error) => {
           notifyError(
@@ -244,7 +245,7 @@ function EventPage() {
             <>
               <Row>
                 <Input.TextArea
-                  placeholder="Alguma nota sobre a tua disponibilidade? Escreve-a aqui"
+                  placeholder="Alguma nota sobre a tua disponibilidade? Escreve-a aqui. Atenção a tua nota será visível para todos os mentores."
                   style={{ width: "50%" }}
                   rows={6}
                   autoSize={{ minRows: 6, maxRows: 18 }}
@@ -332,22 +333,21 @@ function EventPage() {
         <Divider />
         {role === EUser.Mentor ? (
           <>
-            <Title level={2}>Mentores disponíveis</Title>
-            <List
-              itemLayout="vertical"
-              dataSource={availableMentors}
-              renderItem={(mentor: any) => (
-                <List.Item style={{ cursor: "pointer" }}>
-                  <Link href={`/profile/mentor/${mentor.id}`}>
-                    <List.Item.Meta
-                      avatar={<Avatar size={64} src={mentor.photo} />}
-                      title={`${mentor.first_name} ${mentor.last_name}`}
-                      description={mentor.notes ? `Notas: ${mentor.notes}` : ""}
-                    />
-                  </Link>
-                </List.Item>
-              )}
-            />
+            {available ? (
+              <Availability
+                title="Mentores disponíveis"
+                mentors={availableMentors}
+                available={available}
+                setAvailable={setAvailable}
+              />
+            ) : (
+              <Availability
+                title="Mentores indisponíveis"
+                mentors={unavailableMentors}
+                available={available}
+                setAvailable={setAvailable}
+              />
+            )}
           </>
         ) : (
           <>

@@ -40,12 +40,12 @@
     "role": "Responsável Recrutamento e Formação"
   },
   {
-    "picture": "ninja.jpg",
+    "picture": "diogoneto.png",
     "name": "Diogo Neto",
     "role": "Responsável Currículo e Material"
   },
   {
-    "picture": "ninja.jpg",
+    "picture": "ruiribeiro.png",
     "name": "Rui Ribeiro",
     "role": "Responsável Currículo e Material"
   },
@@ -65,8 +65,28 @@
     "role": "Mentor, Ex-Champion"
   },
   {
+    "picture": "adrianafrazao.png",
+    "name": "Adriana Frazão",
+    "role": "Mentora"
+  },
+  {
     "picture": "afonsopimenta.jpg",
     "name": "Afonso Pimenta",
+    "role": "Mentor"
+  },
+  {
+    "picture": "analeite.png",
+    "name": "Ana Leite",
+    "role": "Mentora"
+  },
+  {
+    "picture": "andremota.png",
+    "name": "André Mota",
+    "role": "Mentor"
+  },
+  {
+    "picture": "cralos.png",
+    "name": "Carlos Barbosa",
     "role": "Mentor"
   },
   {
@@ -75,8 +95,38 @@
     "role": "Mentora"
   },
   {
+    "picture": "diogolameira.png",
+    "name": "Diogo Lameira",
+    "role": "Mentor"
+  },
+  {
+    "picture": "eduardofaria.png",
+    "name": "Eduardo Faria",
+    "role": "Mentor"
+  },
+  {
+    "picture": "eduardoreis.png",
+    "name": "Eduardo Reis",
+    "role": "Mentor"
+  },
+  {
+    "picture": "franciscacosta.png",
+    "name": "Francisca Costa",
+    "role": "Mentora"
+  },
+  {
     "picture": "gonçalocosta.jpg",
     "name": "Gonçalo Costa",
+    "role": "Mentor"
+  },
+  {
+    "picture": "guilhermevara.png",
+    "name": "Guilherme Vara",
+    "role": "Mentor"
+  },
+  {
+    "picture": "gustavocastro.png",
+    "name": "Gustavo Castro",
     "role": "Mentor"
   },
   {
@@ -85,8 +135,28 @@
     "role": "Mentor"
   },
   {
+    "picture": "joanafernandes.png",
+    "name": "Joana Fernandes",
+    "role": "Mentora"
+  },
+  {
+    "picture": "joanapereira.png",
+    "name": "Joana Pereira",
+    "role": "Mentora"
+  },
+  {
     "picture": "joaoalvim.jpg",
     "name": "João Alvim",
+    "role": "Mentor"
+  },
+  {
+    "picture": "joaolobo.png",
+    "name": "João Lobo",
+    "role": "Mentor"
+  },
+  {
+    "picture": "jorgeteixeira.png",
+    "name": "Jorge Teixeira",
     "role": "Mentor"
   },
   {
@@ -110,8 +180,23 @@
     "role": "Mentor"
   },
   {
+    "picture": "martarodrigues.png",
+    "name": "Marta Rodrigues",
+    "role": "Mentora"
+  },
+  {
     "picture": "martimferreira.jpg",
     "name": "Martim Ferreira",
+    "role": "Mentor"
+  },
+  {
+    "picture": "nelsonalmeida.png",
+    "name": "Nelson Almeida",
+    "role": "Mentor"
+  },
+  {
+    "picture": "nunocosta.png",
+    "name": "Nuno Costa",
     "role": "Mentor"
   },
   {
@@ -125,9 +210,19 @@
     "role": "Mentor"
   },
   {
+    "picture": "pedrosousa.png",
+    "name": "Pedro Sousa",
+    "role": "Mentor"
+  },
+  {
     "picture": "ricardolucena.jpg",
     "name": "Ricardo Lucena",
     "role": "Mentor"
+  },
+  {
+    "picture": "ritacamacho.png",
+    "name": "Rita Camacho",
+    "role": "Mentora"
   },
   {
     "picture": "rodrigopereira.jpg",
@@ -135,10 +230,23 @@
     "role": "Mentor"
   },
   {
+    "picture": "ruipinto.png",
+    "name": "Rui Pinto",
+    "role": "Mentor"
+  },
+  {
     "picture": "simaoquintela.jpg",
     "name": "Simão Quintela",
     "role": "Mentor"
+  },
+  {
+    "picture": "tales.png",
+    "name": "Tales Machado",
+    "role": "Mentor"
+  },
+  {
+    "picture": "tiagorodrigues.png",
+    "name": "Tiago Rodrigues",
+    "role": "Mentor"
   }
-  
-
 ]

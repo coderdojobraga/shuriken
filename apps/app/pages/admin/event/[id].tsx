@@ -2,13 +2,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { withAuth } from "~/components/Auth";
-import { Avatar, Col, Divider, List, Row, Typography } from "antd";
+import { Avatar, Button, Col, Divider, List, Row, Typography } from "antd";
 import { useEvent } from "~/hooks/events";
 import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
 import Belt from "~/components/Belt";
+import Availability from "~/components/Availability";
 import { notifyError, notifyInfo } from "~/components/Notification";
-import { getAvailableMentors, getEnrolledNinjas } from "bokkenjs";
+import { getEnrolledNinjas, getMentorsAvailabilities } from "bokkenjs";
 
 const { Title } = Typography;
 
@@ -17,16 +18,18 @@ function EventPage() {
   const { id: event_id } = router.query;
 
   const { data: event, isLoading } = useEvent(event_id as string);
-
-  const [mentors, setMentors] = useState<any[]>([]);
   const [enrolledNinjas, setEnrolledNinjas] = useState([]);
+  const [availableMentors, setAvailableMentors] = useState<any[]>([]);
+  const [unavailableMentors, setUnavailableMentors] = useState<any[]>([]);
+  const [available, setAvailable] = useState<boolean>(true);
 
   useEffect(() => {
-    getAvailableMentors(event_id as string)
+    getMentorsAvailabilities(event_id as string)
       .then((response: any) => {
-        setMentors(response.data);
+        setAvailableMentors(response.availabilities);
+        setUnavailableMentors(response.unavailabilities);
       })
-      .catch((error) => {
+      .catch((_error) => {
         notifyError(
           "Ocorreu um erro",
           "Não foi possível obter os mentores disponíveis"
@@ -44,7 +47,6 @@ function EventPage() {
         );
       });
   }, [event_id]);
-
   return (
     <AppLayout>
       <Title level={2}>Detalhes do evento</Title>
@@ -57,27 +59,25 @@ function EventPage() {
         />
       </Row>
       <Divider />
-      <Col>
-        <Title level={2}>Mentores disponíveis</Title>
-        <List
-          itemLayout="vertical"
-          dataSource={mentors}
-          renderItem={(mentor: any) => (
-            <List.Item>
-              <Link href={`/profile/mentor/${mentor.id}`}>
-                <List.Item.Meta
-                  avatar={<Avatar size={64} src={mentor.photo} />}
-                  title={`${mentor.first_name} ${mentor.last_name}`}
-                  description={mentor.notes ? `Notas: ${mentor.notes}` : ""}
-                />
-              </Link>
-              <div style={{ fontWeight: "500" }}>
-                {mentor.is_available ? "Disponível" : "Não disponível"}
-              </div>
-            </List.Item>
-          )}
-        />
-      </Col>
+      <>
+        {available ? (
+          <Availability
+            title="Mentores disponíveis"
+            buttonTitle="Mentores indisponíveis"
+            mentors={availableMentors}
+            available={available}
+            setAvailable={setAvailable}
+          />
+        ) : (
+          <Availability
+            title="Mentores indisponíveis"
+            buttonTitle="Mentores disponíveis"
+            mentors={unavailableMentors}
+            available={available}
+            setAvailable={setAvailable}
+          />
+        )}
+      </>
       <Divider />
       <Col>
         <Title level={2}>Ninjas inscritos</Title>
