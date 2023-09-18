@@ -23,7 +23,7 @@ export default function Mentor() {
               nomeadamente a forma como comunicas com os outros.
             </p>
             <a
-              href="https://forms.gle/2e3DUeorMrxYdANz7"
+              href="https://forms.gle/iEjGdnxfGYbk9rFy6"
               className="bg-primary mt-4 mr-1
                                        mb-1 inline-block rounded-3xl px-6 py-4
                                        text-sm font-bold uppercase text-white shadow outline-none
