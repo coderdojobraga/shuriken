@@ -25,7 +25,6 @@ import {
   EUser,
   createAvailability,
   createEnrollment,
-  getAvailabilities,
   getEnrolledNinjas,
   getMentorsAvailabilities,
   getNinjas,
@@ -45,15 +44,14 @@ function EventPage() {
 
   const { data: event, isLoading } = useEvent(event_id as string);
 
-  const [availabilities, setAvailabilities] = useState([]);
-  const [mentors, setMentors] = useState<any[]>([]);
-  const [availableMentors, setAvailableMentors] = useState([]);
   const [notes, setNotes] = useState("");
   const [changeAvailability, setChangeAvailability] = useState(false);
 
   const [ninjas, setNinjas] = useState([]);
   const [selectedNinjas, setSelectedNinjas] = useState([]);
   const [enrolledNinjas, setEnrolledNinjas] = useState([]);
+
+  const [availableMentors, setAvailableMentors] = useState([]);
   const [unavailableMentors, setUnavailableMentors] = useState([]);
   const [available, setAvailable] = useState(true);
 
@@ -64,19 +62,6 @@ function EventPage() {
           setAvailableMentors(response.availabilities);
           setUnavailableMentors(response.unavailabilities);
         })
-        .catch((_error) => {
-          notifyError(
-            "Ocorreu um erro",
-            "Não foi possível obter os mentores disponíveis"
-          );
-        });
-    }
-  }, [event_id, role]);
-
-  useEffect(() => {
-    if (role === EUser.Mentor) {
-      getAvailabilities(event_id as string)
-        .then((response: any) => setAvailabilities(response.data))
         .catch((_error) => {
           notifyError(
             "Ocorreu um erro",
@@ -154,15 +139,14 @@ function EventPage() {
   const isMentorAlreadyRegistered = () => {
     let flag = false;
 
-    if (role === EUser.Mentor) {
-      const mentor_id = user?.mentor_id!;
+    const mentor_id = user?.mentor_id!;
+    let mentors = availableMentors.concat(unavailableMentors);
 
-      mentors.map((mentor: any) => {
-        if (mentor.id === mentor_id) {
-          flag = true;
-        }
-      });
-    }
+    mentors.map((mentor: any) => {
+      if (mentor.id === mentor_id) {
+        flag = true;
+      }
+    });
 
     return flag;
   };
@@ -192,7 +176,9 @@ function EventPage() {
   };
 
   const changeMentorAvailability = (is_available: boolean) => {
-    availabilities.map((element: any) => {
+    let mentors = availableMentors.concat(unavailableMentors);
+
+    mentors.map((element: any) => {
       if (element.id === user?.mentor_id) {
         updateAvailability(
           element.availability_id,
