@@ -337,7 +337,7 @@ function EventPage() {
           </>
         ) : (
           <>
-            <Title level={2}>Ninjas inscritos</Title>
+            <Title level={2}>Ninjas inscritos ({enrolledNinjas.length})</Title>
             <List
               itemLayout="vertical"
               dataSource={enrolledNinjas}
