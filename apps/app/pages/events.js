@@ -11,11 +11,13 @@ const { Title } = Typography;
 function Events() {
   const { data: events, isLoading } = useEvents();
 
+  let reversedEvents = events ? events.slice().reverse() : [];
+
   return (
     <AppLayout>
       <Title level={2}>Eventos</Title>
       <Row className={styles.row} align="top" justify="start" gutter={[16, 16]}>
-        {events?.map((info) => (
+        {reversedEvents?.map((info) => (
           <Col key={info.id}>
             <Event event={info} loading={isLoading} />
           </Col>
