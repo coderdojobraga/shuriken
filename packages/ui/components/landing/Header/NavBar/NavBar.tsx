@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Link from "next/link";
-import { Grid, Space } from "antd";
+import { Grid } from "antd";
 
-import { DownOutlined, DashboardOutlined, LogoutOutlined } from "@ant-design/icons";
+import { DashboardOutlined, LogoutOutlined } from "@ant-design/icons";
 
 import { ThemeToggle, useAuth } from "@coderdojobraga/ui";
 import MobileNavBar from "../MobileNavBar/MobileNavBar";
@@ -12,8 +12,6 @@ import { getUserInitials } from "../utils";
 
 import styles from "./style.module.css";
 
-import { Fragment } from 'react'
-import { Transition, Menu } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 
@@ -140,6 +138,9 @@ function NavBar({ landing = true }: any) {
             <LoginButton isLoading={isLoading} />
           )
         }
+         <li>
+          <ThemeToggle visible={!landing} />
+        </li>
       </ul >
     );
   }
