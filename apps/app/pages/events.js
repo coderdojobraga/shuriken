@@ -10,8 +10,7 @@ const { Title } = Typography;
 
 function Events() {
   const { data: events, isLoading } = useEvents();
-
-  let reversedEvents = events ? events.slice().reverse() : [];
+  let reversedEvents = events ? [...events].reverse() : [];
 
   return (
     <AppLayout>
