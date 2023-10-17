@@ -12,7 +12,7 @@ import { getUserInitials } from "../utils";
 
 import styles from "./style.module.css";
 
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon } from '@heroicons/react/24/solid'
 
 
 
@@ -96,9 +96,9 @@ function NavBar({ landing = true }: any) {
             <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
           </div>
           {eventosDropdownVisible && (
-            <div className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 text-base uppercase text-black focus:outline-none">
-              <a href="/web/dojocon" className="block px-3 py-2 text-xs">Dojo Con</a>
-              <a href="/web/codercamp" className="block px-3 py-2 text-xs">Coder Camp</a>
+            <div className="absolute right-0 z-30 mt-2 h-35 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 text-base uppercase text-black focus:outline-none">
+              <a href="/web/dojocon" className="block px-4 py-2 text-base">Dojo Con</a>
+              <a href="/web/codercamp" className="block px-4 py-2 text-base">Coder Camp</a>
               {/* <a href="/web/dojocare" className="block px-3 py-2 text-xs">Dojo Care</a> */}
             </div>
           )}
