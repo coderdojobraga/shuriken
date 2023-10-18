@@ -142,14 +142,14 @@ function Register({ cities }: any) {
               rules={[
                 {
                   required: true,
-                  pattern: /^\+3519[12356]\d{7}$/,
+                  pattern: /^\9[12356]\d{7}$/,
                   message: "Não é um número de telemóvel válido",
                 },
               ]}
             >
               <Input
                 addonBefore={<CountrySelect />}
-                placeholder="+3519x0011222"
+                placeholder="9x0011222"
                 type="tel"
               />
             </Form.Item>
