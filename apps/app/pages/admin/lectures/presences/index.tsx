@@ -112,34 +112,29 @@ export default function Presences() {
         );
       });
   }, []);
-  const generateData = () => {
-    const data: any[] = [];
+  useEffect(() => {
+    const generateData = () => {
+      const data: any[] = [];
 
-    selectedLectures.map((lecture: any) => {
-      if (lecture.attendance == null) {
-        lecture.attendance = "both_absent";
-      }
-      data.push({
-        ninja: `${lecture.ninja.first_name} ${lecture.ninja.last_name}`,
-        mentor: `${lecture.mentor.first_name} ${lecture.mentor.last_name}`,
-        presences: `${lecture.attendance}`,
-        key: lecture.id,
+      selectedLectures.forEach((lecture: any) => {
+        if (lecture.attendance == null) {
+          lecture.attendance = "both_absent";
+        }
+        data.push({
+          ninja: `${lecture.ninja.first_name} ${lecture.ninja.last_name}`,
+          mentor: `${lecture.mentor.first_name} ${lecture.mentor.last_name}`,
+          presences: `${lecture.attendance}`,
+          key: lecture.id,
+        });
       });
-    });
 
-    setData(data);
-  };
-  useEffect(() => {
-    if (selectedEvent !== "") {
-      setSelectedLectures(
-        lectures.filter((lecture) => lecture.event.id === selectedEvent)
-      );
+      setData(data);
+    };
+
+    if (selectedLectures.length > 0) {
+      generateData();
     }
-  }, [selectedEvent, lectures]);
-
-  useEffect(() => {
-    generateData();
-  }, [selectedLectures, generateData]);
+  }, [selectedLectures]);
 
   const handleEditButtonClick = () => {
     setEditButtonVisible(false);

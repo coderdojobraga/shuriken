@@ -34,6 +34,7 @@ export default function LectureForm({ id }) {
       setEvents(response.data);
     });
   }, []);
+
   useEffect(() => {
     if (id !== "new") {
       listEvents().then((response) => {
@@ -59,7 +60,7 @@ export default function LectureForm({ id }) {
       promise = Promise.all(events.map((event) => getNinjaEvents(event.id)));
     }
     return promise;
-  });
+  }, [events]);
 
   useEffect(() => {
     fetchData().then((responses) => {
@@ -71,7 +72,7 @@ export default function LectureForm({ id }) {
         )
       );
     });
-  }, [events, fetchData]);
+  }, [fetchData]);
 
   const [filteredNinjas, setFilteredNinjas] = useState([]);
   const handleEventChange = useCallback(
@@ -94,7 +95,8 @@ export default function LectureForm({ id }) {
     const filtered = mentors.filter((mentor) => {
       const lecture = lectures.find(
         (lecture) =>
-          lecture.mentor.id === mentor.id && lecture.event.id === selectedEvent
+          lecture.mentor.id === mentor.id &&
+          lecture.event.id === selectedEvent.id
       );
       return !lecture;
     });
@@ -108,24 +110,13 @@ export default function LectureForm({ id }) {
   }, [filteredNinjas]);
 
   useEffect(() => {
-    const filtered = ninjas.filter((ninja) => {
-      const lecture = lectures.find(
-        (lecture) =>
-          lecture.ninja.id === ninja.id && lecture.event.id === selectedEvent
-      );
-      return !lecture;
-    });
-    setFilteredNinjas(filtered);
-  }, [ninjas, selectedEvent, lectures, handleEventChange]);
-
-  useEffect(() => {
     setFilteredMentors(
       filteredMentors.sort((a, b) => a.first_name.localeCompare(b.first_name))
     );
   }, [filteredMentors]);
 
   const onFinish = (values) => {
-    if (Object.keys(selectedEvent).length != 0) {
+    if (Object.keys(selectedEvent).length !== 0) {
       api
         .createLecture(values)
         .then(() => {
