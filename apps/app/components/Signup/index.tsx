@@ -23,6 +23,7 @@ function Signup() {
   const { Title, Text } = Typography;
   const { errors, isLoading, sign_up } = useAuth();
   const [size, setSize] = useState("");
+
   const handleSizeChange = (e: any) => {
     setSize(e.target.value);
   };
@@ -46,6 +47,7 @@ function Signup() {
       >
         <Input prefix={<MailOutlined />} placeholder="Email" type="email" />
       </Form.Item>
+
       <Form.Item
         name="password"
         rules={[
@@ -70,21 +72,22 @@ function Signup() {
           },
         ]}
       >
-        <Radio.Group>
+        <Radio.Group value={size} onChange={handleSizeChange}>
           <Space direction="vertical">
             <Radio value="guardian" className="mb-2">
               Guardião
-              <label
-                id="mentor-description" className="ml-2 text-gray-500">
+              <label id="mentor-description" className="ml-2 text-gray-500">
                 Responsável da criança.
               </label>
             </Radio>
+
             <Radio value="mentor" className="mb-2">
               Mentor
               <label id="mentor-description" className="ml-5 text-gray-500">
                 Voluntário pela iniciativa.
               </label>
             </Radio>
+
             <Tooltip
               className={styles.option}
               title="Inicia sessão como Guardião para inscreveres um Ninja"
@@ -100,6 +103,7 @@ function Signup() {
           </Space>
         </Radio.Group>
       </Form.Item>
+
       <Form.Item
         name="terms"
         valuePropName="checked"
@@ -115,7 +119,7 @@ function Signup() {
           },
         ]}
       >
-        <Checkbox >
+        <Checkbox>
           <Text>
             Eu li e aceito a{" "}
             <Link href="/docs/terms-of-service.pdf" target="_blank">
@@ -124,6 +128,7 @@ function Signup() {
           </Text>
         </Checkbox>
       </Form.Item>
+
       <Form.Item
         className={styles.button}
         validateStatus={errors && "error"}
@@ -138,6 +143,7 @@ function Signup() {
           Registar
         </Button>
       </Form.Item>
+
       <Text>
         Já tens uma conta?{" "}
         <Link href="/dashboard/login">Inicia sessão aqui</Link>
@@ -145,5 +151,6 @@ function Signup() {
     </Form>
   );
 }
+
 
 export default Signup;

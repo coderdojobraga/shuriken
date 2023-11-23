@@ -98,7 +98,7 @@ export default function Presences() {
         key: lecture.id,
       });
     });
-  }, []);
+  }, [selectedLectures, data]);
 
   useEffect(() => {
     api
