@@ -77,17 +77,16 @@ function Signup() {
             <Radio value="guardian" className="mb-2">
               Guardião
               <label id="mentor-description" className="ml-2 text-gray-500">
-                Responsável da criança.
+                Responsável pela criança.
               </label>
             </Radio>
 
             <Radio value="mentor" className="mb-2">
               Mentor
               <label id="mentor-description" className="ml-5 text-gray-500">
-                Voluntário pela iniciativa.
+                Voluntário na organização.
               </label>
             </Radio>
-
             <Tooltip
               className={styles.option}
               title="Inicia sessão como Guardião para inscreveres um Ninja"
@@ -114,8 +113,8 @@ function Signup() {
               value
                 ? Promise.resolve()
                 : Promise.reject(
-                    "É necessário concordar com os termos e condições"
-                  ),
+                  "É necessário concordar com os termos e condições"
+                ),
           },
         ]}
       >
