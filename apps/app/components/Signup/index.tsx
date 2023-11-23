@@ -114,8 +114,8 @@ function Signup() {
               value
                 ? Promise.resolve()
                 : Promise.reject(
-                  "É necessário concordar com os termos e condições"
-                ),
+                    "É necessário concordar com os termos e condições"
+                  ),
           },
         ]}
       >
@@ -151,6 +151,5 @@ function Signup() {
     </Form>
   );
 }
-
 
 export default Signup;

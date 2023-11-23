@@ -38,6 +38,7 @@ export default function Presences() {
   const [selectedLectures, setSelectedLectures] = useState<Lecture[]>([]);
   const [locations, setLocations] = useState<any[]>([]);
   const router = useRouter();
+
   const onFinish = (values: any, lectureId: string) => {
     api
       .updateLecture(lectureId, values)
@@ -111,19 +112,6 @@ export default function Presences() {
         );
       });
   }, []);
-
-  useEffect(() => {
-    if (selectedEvent !== "") {
-      setSelectedLectures(
-        lectures.filter((lecture) => lecture.event.id === selectedEvent)
-      );
-    }
-  }, [selectedEvent, lectures]);
-
-  useEffect(() => {
-    generateData();
-  }, [selectedLectures]);
-
   const generateData = () => {
     const data: any[] = [];
 
@@ -141,6 +129,17 @@ export default function Presences() {
 
     setData(data);
   };
+  useEffect(() => {
+    if (selectedEvent !== "") {
+      setSelectedLectures(
+        lectures.filter((lecture) => lecture.event.id === selectedEvent)
+      );
+    }
+  }, [selectedEvent, lectures]);
+
+  useEffect(() => {
+    generateData();
+  }, [selectedLectures, generateData]);
 
   const handleEditButtonClick = () => {
     setEditButtonVisible(false);
