@@ -77,13 +77,13 @@ function Signup() {
             <Radio value="guardian" className="mb-2">
               Guardião
               <label id="mentor-description" className="ml-2 text-gray-500">
-                Responsável pela criança.
+                Tutor legal da criança.
               </label>
             </Radio>
 
             <Radio value="mentor" className="mb-2">
               Mentor
-              <label id="mentor-description" className="ml-5 text-gray-500">
+              <label id="mentor-description" className="ml-6 text-gray-500">
                 Voluntário na organização.
               </label>
             </Radio>
