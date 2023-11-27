@@ -52,13 +52,13 @@ export default function LectureForm({ id }) {
   }, []);
 
   const [ninjas, setNinjas] = useState([]);
-
-  let promise;
-
   const fetchData = useCallback(() => {
+    let promise;
+
     if (!promise) {
       promise = Promise.all(events.map((event) => getNinjaEvents(event.id)));
     }
+
     return promise;
   }, [events]);
 
