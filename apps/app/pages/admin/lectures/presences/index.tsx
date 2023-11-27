@@ -43,8 +43,6 @@ export default function Presences() {
       .updateLecture(lectureId, values)
       .then(() => {
         notifyInfo("Os dados da sessão foram atualizados com sucesso", "");
-
-        // Update the corresponding lecture in lectures state with the new data
         const updatedLectures = lectures.map((lecture) => {
           if (lecture.id === lectureId) {
             return {
@@ -75,7 +73,7 @@ export default function Presences() {
           "Não foi possível atualizar os dados da sessão"
         );
       });
-  }, []);
+  }, [data, selectedLectures]);
 
   useEffect(() => {
     api
@@ -121,26 +119,19 @@ export default function Presences() {
   }, [selectedEvent, lectures]);
 
   useEffect(() => {
-    generateData();
-  }, [selectedLectures]);
-
-  const generateData = () => {
-    const data: any[] = [];
-
-    selectedLectures.map((lecture: any) => {
+    const data = selectedLectures.map((lecture: any) => {
       if (lecture.attendance == null) {
         lecture.attendance = "both_absent";
       }
-      data.push({
+      return {
         ninja: `${lecture.ninja.first_name} ${lecture.ninja.last_name}`,
         mentor: `${lecture.mentor.first_name} ${lecture.mentor.last_name}`,
         presences: `${lecture.attendance}`,
         key: lecture.id,
-      });
+      };
     });
-
     setData(data);
-  };
+  }, [selectedLectures]);
 
   const handleEditButtonClick = () => {
     setEditButtonVisible(false);

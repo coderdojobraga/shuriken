@@ -117,10 +117,15 @@ function Guardians() {
       .then((response: any) => {
         setGuardians(
           response.data.map((guardian: any) => {
+            const guardianData = {
+              id: guardian.id,
+              name: `${guardian.first_name} ${guardian.last_name}`,
+            };
             return {
               ...guardian,
               name: `${guardian.first_name} ${guardian.last_name}`,
               key: guardian.id,
+              guardian: guardianData,
             };
           })
         );
@@ -296,9 +301,14 @@ function Guardians() {
     },
     {
       title: "Nome",
-      dataIndex: "name",
+      dataIndex: "guardian",
       editable: false,
       ...getColumnSearchProps("name"),
+      render: (guardian: any) => (
+        <Link href={`/profile/guardian/${guardian.id}`}>
+          <a>{guardian.name}</a>
+        </Link>
+      ),
     },
     {
       title: "E-mail",

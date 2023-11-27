@@ -5,7 +5,8 @@ import {
   FaSlack,
   FaTrello,
 } from "react-icons/fa";
-import { SiCodewars, SiScratch } from "react-icons/si";
+import { SiCodewars, SiScratch, SiSurveymonkey } from "react-icons/si";
+import { AiOutlineReddit } from "react-icons/ai";
 
 export const ICONS = {
   scratch: <SiScratch />,
@@ -15,6 +16,8 @@ export const ICONS = {
   trello: <FaTrello />,
   discord: <FaDiscord />,
   slack: <FaSlack />,
+  lightbot: <AiOutlineReddit />,
+  codemonkey: <SiSurveymonkey />,
 };
 
 export const URLS = {

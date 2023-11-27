@@ -52,16 +52,16 @@ export default function LectureForm({ id }) {
 
   const [ninjas, setNinjas] = useState([]);
 
-  let promise;
-
-  const fetchData = () => {
-    if (!promise) {
-      promise = Promise.all(events.map((event) => getNinjaEvents(event.id)));
-    }
-    return promise;
-  };
-
   useEffect(() => {
+    let promise;
+
+    const fetchData = () => {
+      if (!promise) {
+        promise = Promise.all(events.map((event) => getNinjaEvents(event.id)));
+      }
+      return promise;
+    };
+
     fetchData().then((responses) => {
       const allNinjas = responses.flatMap((response) => response.data);
       setNinjas(
