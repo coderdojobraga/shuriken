@@ -1,4 +1,4 @@
-import { Col, Row, Typography } from "antd";
+import { Col, Row, Typography, Alert } from "antd";
 import AppLayout from "~/layouts/AppLayout";
 import { withAuth } from "~/components/Auth";
 import Event from "~/components/Event";
@@ -13,6 +13,7 @@ function Events() {
 
   return (
     <AppLayout>
+      <Alert message="A sessão do dia 15 será realizada as 16" type="warning" showIcon closable />
       <Title level={2}>Eventos</Title>
       <Row className={styles.row} align="top" justify="start" gutter={[16, 16]}>
         {events?.map((info) => (
