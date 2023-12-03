@@ -37,7 +37,7 @@ function CreateEvent() {
       .catch((error) => {
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível obter as localizações",
+          "Não foi possível obter as localizações"
         );
       });
   }, []);
@@ -73,8 +73,8 @@ function CreateEvent() {
       .then(() =>
         notifyInfo(
           "Info",
-          `O Evento ${values["event[title]"]} foi criado com sucesso`,
-        ),
+          `O Evento ${values["event[title]"]} foi criado com sucesso`
+        )
       )
       .then(() => router.push("/events"))
       .catch((error) => {
@@ -148,7 +148,7 @@ function CreateEvent() {
                     value > 0
                       ? Promise.resolve()
                       : Promise.reject(
-                          "O número de lugares disponíveis tem de ser superior a 0",
+                          "O número de lugares disponíveis tem de ser superior a 0"
                         ),
                 },
               ]}

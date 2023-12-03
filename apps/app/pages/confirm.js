@@ -43,7 +43,7 @@ export async function getServerSideProps({ query }) {
           };
         default:
           throw new Error(
-            `Unknown error code ${error.status}: ${error.data?.errors.detail}`,
+            `Unknown error code ${error.status}: ${error.data?.errors.detail}`
           );
       }
     });
@@ -97,8 +97,8 @@ const ResendEmailActions = () => {
           .finally(() => setLoading(false));
       },
       5000,
-      { trailing: false },
-    ),
+      { trailing: false }
+    )
   );
 
   return (

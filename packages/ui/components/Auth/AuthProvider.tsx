@@ -101,7 +101,7 @@ export function AuthProvider({ children }: PropsWithChildren<Props>) {
       edit_user,
     }),
     // eslint-disable-next-line
-    [user, isLoading, errors],
+    [user, isLoading, errors]
   );
 
   return (

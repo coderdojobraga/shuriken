@@ -37,7 +37,7 @@ export default function NinjaForm({ id }) {
       .catch((error) => {
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível obter as linguages disponíveis",
+          "Não foi possível obter as linguages disponíveis"
         );
       });
   };
@@ -52,7 +52,7 @@ export default function NinjaForm({ id }) {
         .catch((error) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível obter as linguages que o ninja quer aprender",
+            "Não foi possível obter as linguages que o ninja quer aprender"
           );
         });
     }
@@ -75,7 +75,7 @@ export default function NinjaForm({ id }) {
       deleteSkill(ninja_id, skill);
     }
     const added = selectedSkills.filter(
-      (s) => !userSkills.map((s1) => s1.id).includes(s),
+      (s) => !userSkills.map((s1) => s1.id).includes(s)
     );
 
     for (const skill of added) {
@@ -110,7 +110,7 @@ export default function NinjaForm({ id }) {
         .catch((error) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível atualizar os dados do ninja",
+            "Não foi possível atualizar os dados do ninja"
           );
         });
     } else {

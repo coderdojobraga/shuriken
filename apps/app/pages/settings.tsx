@@ -84,7 +84,7 @@ function Settings() {
       .catch((error) => {
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível obter os conhecimentos",
+          "Não foi possível obter os conhecimentos"
         );
       });
   };
@@ -100,7 +100,7 @@ function Settings() {
           .catch((error) => {
             notifyError(
               "Ocorreu um erro",
-              "Não foi possível obter os conhecimentos",
+              "Não foi possível obter os conhecimentos"
             );
           });
         break;
@@ -114,7 +114,7 @@ function Settings() {
           .catch((error) => {
             notifyError(
               "Ocorreu um erro",
-              "Não foi possível obter as linguagens do ninja",
+              "Não foi possível obter as linguagens do ninja"
             );
           });
         break;
@@ -129,7 +129,7 @@ function Settings() {
           .catch((error) => {
             notifyError(
               "Ocorreu um erro",
-              "Não foi possível alterar os conhecimentos",
+              "Não foi possível alterar os conhecimentos"
             );
           });
         break;
@@ -140,7 +140,7 @@ function Settings() {
           .catch((error) => {
             notifyError(
               "Ocorreu um erro",
-              "Não foi possível alterar as linguagens",
+              "Não foi possível alterar as linguagens"
             );
           });
         break;
@@ -155,7 +155,7 @@ function Settings() {
           .catch((error) => {
             notifyError(
               "Ocorreu um erro",
-              "Não foi possível alterar os conhecimentos",
+              "Não foi possível alterar os conhecimentos"
             );
           });
         break;
@@ -166,7 +166,7 @@ function Settings() {
           .catch((error) => {
             notifyError(
               "Ocorreu um erro",
-              "Não foi possível alterar as linguagens",
+              "Não foi possível alterar as linguagens"
             );
           });
         break;
@@ -183,7 +183,7 @@ function Settings() {
     }
 
     const added = selectedSkills.filter(
-      (skill) => !userSkills.map((s1: any) => s1.id).includes(skill),
+      (skill) => !userSkills.map((s1: any) => s1.id).includes(skill)
     );
 
     for (const skill of added) {

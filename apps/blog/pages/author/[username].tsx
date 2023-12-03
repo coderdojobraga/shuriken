@@ -15,7 +15,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const posts = getPosts();
 
   const authorPosts = posts.filter(
-    ({ author: { username } }) => username === params?.username,
+    ({ author: { username } }) => username === params?.username
   );
 
   const featuredPosts = posts.filter(({ featured }) => featured);
@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     posts
       .map(({ author }: IPost) => author)
       .filter(({ username }: IAuthor) => username !== params?.username),
-    ({ username }: IAuthor) => username,
+    ({ username }: IAuthor) => username
   );
 
   return {

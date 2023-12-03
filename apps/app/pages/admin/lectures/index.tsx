@@ -92,7 +92,7 @@ function Lectures() {
   useEffect(() => {
     if (selectedEvent != "") {
       setSelectedLectures(
-        lectures.filter((lecture) => lecture.event.id === selectedEvent),
+        lectures.filter((lecture) => lecture.event.id === selectedEvent)
       );
     }
   }, [selectedEvent, lectures]);
@@ -100,7 +100,7 @@ function Lectures() {
   useEffect(() => {
     if (selectedLectures.length > 0) {
       const location = locations.find(
-        (location) => location.id === selectedLectures[0].event.location_id,
+        (location) => location.id === selectedLectures[0].event.location_id
       );
       setSelectedLocation(location);
     }
@@ -111,7 +111,7 @@ function Lectures() {
       .deleteLecture(lecture.id)
       .then(() => {
         setSelectedLectures(
-          selectedLectures.filter((l) => l.id !== lecture.id),
+          selectedLectures.filter((l) => l.id !== lecture.id)
         );
       })
       .catch(() => {});

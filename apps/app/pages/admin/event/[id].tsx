@@ -32,7 +32,7 @@ function EventPage() {
       .catch((_error) => {
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível obter os mentores disponíveis",
+          "Não foi possível obter os mentores disponíveis"
         );
       });
   }, [event_id]);
@@ -43,7 +43,7 @@ function EventPage() {
       .catch((error) => {
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível obter os ninjas inscritos",
+          "Não foi possível obter os ninjas inscritos"
         );
       });
   }, [event_id]);

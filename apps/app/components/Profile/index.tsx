@@ -48,7 +48,7 @@ function Profile({ id, role }: Props) {
       .catch((error) => {
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível obter os dados do utilizador",
+          "Não foi possível obter os dados do utilizador"
         );
       });
 
@@ -59,7 +59,7 @@ function Profile({ id, role }: Props) {
         .catch((error) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível obter os conhecimentos do mentor",
+            "Não foi possível obter os conhecimentos do mentor"
           );
         });
     } else if (role == EUser.Ninja) {
@@ -69,7 +69,7 @@ function Profile({ id, role }: Props) {
         .catch((error) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível obter os crachás do ninja",
+            "Não foi possível obter os crachás do ninja"
           );
         });
 
@@ -79,7 +79,7 @@ function Profile({ id, role }: Props) {
         .catch((error) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível obter os ficheiros do ninja",
+            "Não foi possível obter os ficheiros do ninja"
           );
         });
 
@@ -89,7 +89,7 @@ function Profile({ id, role }: Props) {
         .catch((error) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível obter as linguagens do ninja",
+            "Não foi possível obter as linguagens do ninja"
           );
         });
     }
@@ -154,7 +154,7 @@ function Profile({ id, role }: Props) {
                     >
                       {socials.ICONS[social.name as keyof typeof socials.URLS]}
                     </a>
-                  ),
+                  )
                 )}
               </Space>
             </Col>

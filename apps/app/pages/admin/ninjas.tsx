@@ -108,14 +108,14 @@ function Ninjas() {
               key: ninja.id,
               guardian: buildGuardian(ninja.guardian),
             };
-          }),
+          })
         );
       })
       .catch((_error) =>
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível obter os dados dos ninjas",
-        ),
+          "Não foi possível obter os dados dos ninjas"
+        )
       );
   }, [editingKey]);
 
@@ -158,8 +158,8 @@ function Ninjas() {
     updateNinjaAsAdmin(key, data).catch((_error) =>
       notifyError(
         "Ocorreu um erro",
-        "Não foi possível atualizar os dados do ninja",
-      ),
+        "Não foi possível atualizar os dados do ninja"
+      )
     );
 
     cancel();
@@ -168,7 +168,7 @@ function Ninjas() {
   const handleSearch = (
     selectedKeys: string[],
     confirm: (param?: FilterConfirmProps) => void,
-    dataIndex: string,
+    dataIndex: string
   ) => {
     confirm();
     setSearchText(selectedKeys[0]);

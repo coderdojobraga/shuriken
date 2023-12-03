@@ -6,7 +6,7 @@ import RegisterForm from "~/components/Register";
 
 export async function getStaticProps(_context) {
   const res = await fetch(
-    "https://raw.githubusercontent.com/coderdojobraga/bokken/main/data/pt/cities.json",
+    "https://raw.githubusercontent.com/coderdojobraga/bokken/main/data/pt/cities.json"
   );
   const cities = await res.json();
 

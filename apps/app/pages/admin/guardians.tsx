@@ -122,14 +122,14 @@ function Guardians() {
               name: `${guardian.first_name} ${guardian.last_name}`,
               key: guardian.id,
             };
-          }),
+          })
         );
       })
       .catch((_error) =>
         notifyError(
           "Ocorre um erro",
-          "Não foi possível obter os dados dos guardiões",
-        ),
+          "Não foi possível obter os dados dos guardiões"
+        )
       );
   }, [editingKey]);
 
@@ -175,8 +175,8 @@ function Guardians() {
     updateGuardianAsAdmin(key, data).catch((_error) =>
       notifyError(
         "Ocorreu um erro",
-        "Não foi possível atualizar os dados do guardião",
-      ),
+        "Não foi possível atualizar os dados do guardião"
+      )
     );
 
     cancel();
@@ -185,7 +185,7 @@ function Guardians() {
   const handleSearch = (
     selectedKeys: string[],
     confirm: (param?: FilterConfirmProps) => void,
-    dataIndex: string,
+    dataIndex: string
   ) => {
     confirm();
     setSearchText(selectedKeys[0]);

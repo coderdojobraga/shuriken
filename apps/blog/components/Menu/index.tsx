@@ -46,18 +46,18 @@ const Menu = ({ posts, topics, authors, featured, author, topic }: Props) => {
 
   if (st.increasingOrder == 1)
     posts.sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
   else
     posts.sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
 
   const postsPerPage = 24;
   let postCount = posts.length;
   posts = posts.slice(
     postsPerPage * (st.page - 1),
-    Math.min(posts.length, postsPerPage * st.page),
+    Math.min(posts.length, postsPerPage * st.page)
   );
 
   return (

@@ -68,8 +68,8 @@ export default function LectureForm({ id }) {
       setNinjas(
         allNinjas.filter(
           (ninja, index, self) =>
-            index === self.findIndex((t) => t.id === ninja.id),
-        ),
+            index === self.findIndex((t) => t.id === ninja.id)
+        )
       );
     });
   }, [fetchData]);
@@ -81,13 +81,13 @@ export default function LectureForm({ id }) {
       const filtered = ninjas.filter((ninja) => {
         const lecture = lectures.find(
           (lecture) =>
-            lecture.ninja.id === ninja.id && lecture.event.id === event,
+            lecture.ninja.id === ninja.id && lecture.event.id === event
         );
         return !lecture;
       });
       setFilteredNinjas(filtered);
     },
-    [ninjas, lectures],
+    [ninjas, lectures]
   );
 
   const [filteredMentors, setFilteredMentors] = useState([]);
@@ -96,7 +96,7 @@ export default function LectureForm({ id }) {
       const lecture = lectures.find(
         (lecture) =>
           lecture.mentor.id === mentor.id &&
-          lecture.event.id === selectedEvent.id,
+          lecture.event.id === selectedEvent.id
       );
       return !lecture;
     });
@@ -105,13 +105,13 @@ export default function LectureForm({ id }) {
 
   useEffect(() => {
     setFilteredNinjas(
-      filteredNinjas.sort((a, b) => a.first_name.localeCompare(b.first_name)),
+      filteredNinjas.sort((a, b) => a.first_name.localeCompare(b.first_name))
     );
   }, [filteredNinjas]);
 
   useEffect(() => {
     setFilteredMentors(
-      filteredMentors.sort((a, b) => a.first_name.localeCompare(b.first_name)),
+      filteredMentors.sort((a, b) => a.first_name.localeCompare(b.first_name))
     );
   }, [filteredMentors]);
 

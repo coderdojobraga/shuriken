@@ -25,7 +25,7 @@ export const Footer = ({ bgColor, fgColor }: Props) => (
               >
                 {Icon}
               </a>
-            ),
+            )
           )}
         </div>
         <div className="order-first flex flex-row justify-center md:order-last md:justify-end">

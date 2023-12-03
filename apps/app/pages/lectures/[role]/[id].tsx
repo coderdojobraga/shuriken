@@ -28,7 +28,7 @@ function Lectures() {
           .catch((error) => {
             notifyError(
               "Ocorreu um erro",
-              "Não foi possível obter as sessões do mentor",
+              "Não foi possível obter as sessões do mentor"
             );
           });
         break;
@@ -39,7 +39,7 @@ function Lectures() {
           .catch((error) => {
             notifyError(
               "Ocorreu um erro",
-              "Não foi possível obter as sessões do ninja",
+              "Não foi possível obter as sessões do ninja"
             );
           });
         break;
@@ -54,7 +54,7 @@ function Lectures() {
         .catch((error) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível obter os dados do ninja",
+            "Não foi possível obter os dados do ninja"
           );
         });
     }
@@ -95,7 +95,7 @@ function Lectures() {
               <Col>
                 <Text>
                   {moment(new Date(lecture.event.start_time)).format(
-                    "DD/MM/YYYY",
+                    "DD/MM/YYYY"
                   )}
                 </Text>
               </Col>
