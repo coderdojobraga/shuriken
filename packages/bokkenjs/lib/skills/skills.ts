@@ -22,7 +22,7 @@ export async function addMentorSkills(mentor_id: string, skill_id: string) {
 
 export async function deleteMentorSkills(mentor_id: string, skill_id: string) {
   const response = await API.delete(
-    `/api/mentors/${mentor_id}/skills/${skill_id}`
+    `/api/mentors/${mentor_id}/skills/${skill_id}`,
   );
 
   return response.data;
@@ -45,7 +45,7 @@ export async function addNinjaSkills(ninja_id: string, skill_id: string) {
 
 export async function deleteNinjaSkills(ninja_id: string, skill_id: string) {
   const response = await API.delete(
-    `/api/ninjas/${ninja_id}/skills/${skill_id}`
+    `/api/ninjas/${ninja_id}/skills/${skill_id}`,
   );
 
   return response.data;

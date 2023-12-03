@@ -69,7 +69,7 @@ function checkCollision(rect1, rect2) {
 function checkGameOver() {
   const dinoRect = getDinoRect();
   return getCactusRects().some((rect) =>
-    checkCollision(rect, dinoRect)
+    checkCollision(rect, dinoRect),
   ); /* check collision with any of the cactus */
 }
 
@@ -115,7 +115,7 @@ function updateGround(delta, speedScale) {
     incrementCustomProperty(
       ground,
       "--left",
-      delta * speedScale * GROUND_SPEED * -1
+      delta * speedScale * GROUND_SPEED * -1,
     ); /* moves the ground according to game speed */
 
     if (getCustomProperty(ground, "--left") <= -300) {
@@ -146,7 +146,7 @@ function setupDino() {
   setCustomProperty(dino, "--bottom", 0);
   document.removeEventListener(
     "keydown",
-    onJump
+    onJump,
   ); /* reset the dinosaur if the player dies while jumping */
   document.addEventListener("keydown", onJump);
 }
@@ -218,7 +218,7 @@ function updateCactus(delta, speedScale) {
     incrementCustomProperty(
       cactus,
       "--left",
-      delta * speedScale * CACTUS_SPEED * -1
+      delta * speedScale * CACTUS_SPEED * -1,
     );
     if (getCustomProperty(cactus, "--left") <= -100) {
       cactus.remove(); /* remove cactus off screen so it doesn't impair game performance */
@@ -249,6 +249,6 @@ function createCactus() {
 
 function randomizer(min, max) {
   return Math.floor(
-    Math.random() * (max - min + 1) + min
+    Math.random() * (max - min + 1) + min,
   ); /* choose a number between minimum and maximum */
 }

@@ -82,50 +82,50 @@ function Document({
               </Link>,
             ]
           : isEditing
-          ? [
-              <CloseOutlined
-                key="close"
-                onClick={() => {
-                  setInfo(doc);
-                  setEditing(!isEditing);
-                }}
-              />,
-              <DeleteOutlined
-                key="delete"
-                onClick={() => {
-                  showDeleteConfirmationModal();
-                }}
-              />,
-              isSaveLoading ? (
-                <LoadingOutlined
-                  key="loading"
-                  spin
-                  style={{
-                    cursor: "default",
-                    color: "rgba(0, 0, 0, 0.45)",
-                  }}
-                />
-              ) : (
-                <SaveOutlined
-                  key="save"
-                  onClick={async () => {
-                    setIsSaveLoading(true);
-                    await updateInfo();
-                    setIsSaveLoading(false);
+            ? [
+                <CloseOutlined
+                  key="close"
+                  onClick={() => {
+                    setInfo(doc);
                     setEditing(!isEditing);
                   }}
-                />
-              ),
-            ]
-          : [
-              <EditOutlined
-                key="edit"
-                onClick={() => setEditing(!isEditing)}
-              />,
-              <Link key="download" target="_blank" href={document}>
-                <DownloadOutlined />
-              </Link>,
-            ]
+                />,
+                <DeleteOutlined
+                  key="delete"
+                  onClick={() => {
+                    showDeleteConfirmationModal();
+                  }}
+                />,
+                isSaveLoading ? (
+                  <LoadingOutlined
+                    key="loading"
+                    spin
+                    style={{
+                      cursor: "default",
+                      color: "rgba(0, 0, 0, 0.45)",
+                    }}
+                  />
+                ) : (
+                  <SaveOutlined
+                    key="save"
+                    onClick={async () => {
+                      setIsSaveLoading(true);
+                      await updateInfo();
+                      setIsSaveLoading(false);
+                      setEditing(!isEditing);
+                    }}
+                  />
+                ),
+              ]
+            : [
+                <EditOutlined
+                  key="edit"
+                  onClick={() => setEditing(!isEditing)}
+                />,
+                <Link key="download" target="_blank" href={document}>
+                  <DownloadOutlined />
+                </Link>,
+              ]
       }
     >
       <Meta

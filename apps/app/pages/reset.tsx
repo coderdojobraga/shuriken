@@ -34,7 +34,7 @@ const Forgot = () => {
         .catch((error) => {
           notifyError(
             "Ocorreu um erro",
-            "Tente novamente mais tarde. Se o problema persistir, peça outro link para alterar a password"
+            "Tente novamente mais tarde. Se o problema persistir, peça outro link para alterar a password",
           );
         })
         .finally(() => setIsLoading(false));
@@ -81,7 +81,7 @@ const Forgot = () => {
                     return Promise.resolve();
                   }
                   return Promise.reject(
-                    new Error("As palavras passe não coincidem")
+                    new Error("As palavras passe não coincidem"),
                   );
                 },
               }),

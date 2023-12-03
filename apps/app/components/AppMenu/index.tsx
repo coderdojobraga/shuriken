@@ -47,7 +47,7 @@ function AppMenu({ hidePrimaryMenu, collapsed }: any) {
     asPath,
   ]);
   const [secondarySelectedKeys, setSecondarySelectedKeys] = useState<string[]>(
-    []
+    [],
   );
   const handleClickPrimary = ({ key }: { key: string }) => {
     router.push(key);

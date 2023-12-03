@@ -21,12 +21,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const topics = uniq(
     posts
       .map(({ topic }) => topic)
-      .filter((topic: string) => topic !== params?.topic)
+      .filter((topic: string) => topic !== params?.topic),
   );
 
   const authors = uniqBy(
     posts.map(({ author }: IPost) => author),
-    ({ username }: IAuthor) => username
+    ({ username }: IAuthor) => username,
   );
 
   return {

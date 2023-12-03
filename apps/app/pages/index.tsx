@@ -61,7 +61,7 @@ function Dashboard() {
         .catch((error) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível obter informação sobre os seus ninjas"
+            "Não foi possível obter informação sobre os seus ninjas",
           );
         });
     }

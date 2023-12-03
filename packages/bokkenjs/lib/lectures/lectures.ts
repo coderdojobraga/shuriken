@@ -18,7 +18,7 @@ export async function updateLecture(lecture_id: string, data: any) {
     },
     {
       headers: undefined,
-    }
+    },
   );
 
   return response.data;

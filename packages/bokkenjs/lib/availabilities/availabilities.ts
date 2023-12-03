@@ -16,7 +16,7 @@ export async function createAvailability(
   mentor_id: string,
   event_id: string,
   is_available: boolean,
-  notes?: string
+  notes?: string,
 ) {
   const response = await API.post(`/api/events/${event_id}/availabilities`, {
     availability: {
@@ -35,7 +35,7 @@ export async function updateAvailability(
   mentor_id: string,
   event_id: string,
   is_available: boolean,
-  notes?: string
+  notes?: string,
 ) {
   const response = await API.put(
     `/api/events/${event_id}/availabilities/${id}`,
@@ -47,7 +47,7 @@ export async function updateAvailability(
         is_available: is_available,
         notes: notes,
       },
-    }
+    },
   );
 
   return response.data.data;
