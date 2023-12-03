@@ -75,21 +75,21 @@ function Signup() {
         <Radio.Group value={size} onChange={handleSizeChange}>
           <Space direction="vertical">
             <Radio value="guardian" className="mb-2">
-              <span className="incline-block w-20">Guardião</span>
-              <label id="mentor-description" className="ml-2 text-gray-500">
+              <span className="inline-block w-20">Guardião</span>
+              <label id="mentor-description" className="text-gray-500">
                 Tutor legal da criança.
               </label>
             </Radio>
             <Radio value="mentor" className="mb-2">
-              <span className="incline-block w-20">Mentor</span>
-              <label id="mentor-description" className="ml-5 text-gray-500">
+              <span className="inline-block w-20">Mentor</span>
+              <label id="mentor-description" className="text-gray-500">
                 Voluntário na organização.
               </label>
             </Radio>
             <Tooltip title="Inicia sessão como Guardião para inscreveres um Ninja">
               <Radio disabled value="1">
-                <span className="incline-block w-20">Ninja</span>
-                <label id="mentor-description" className="ml-8 text-gray-500">
+                <span className="inline-block w-20">Ninja</span>
+                <label id="mentor-description" className=" text-gray-500">
                   Criança participante. &nbsp;
                 </label>
                 <InfoCircleOutlined />
