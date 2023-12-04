@@ -70,7 +70,7 @@ function Dashboard() {
   return (
     <>
       <AppLayout>
-        <Alert message="A sessão do dia 15 será realizada as 16" type="warning" showIcon closable />
+        <Alert message="A sessão do dia 16 de Dezembro será realizada ás 14:30." type="warning" showIcon closable />
         <Title level={2}>Painel Principal</Title>
         <Row justify="space-between" gutter={8}>
           <Title level={3}>Próximo Evento</Title>
