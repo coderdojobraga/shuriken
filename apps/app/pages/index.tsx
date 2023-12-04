@@ -75,6 +75,7 @@ function Dashboard() {
           type="warning"
           showIcon
           closable
+          style={{ marginBottom: "1rem" }}
         />
         <Title level={2}>Painel Principal</Title>
         <Row justify="space-between" gutter={8}>

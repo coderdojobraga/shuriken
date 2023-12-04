@@ -18,6 +18,7 @@ function Events() {
         type="warning"
         showIcon
         closable
+        style={{ marginBottom: "1rem" }}
       />
       <Title level={2}>Eventos</Title>
       <Row className={styles.row} align="top" justify="start" gutter={[16, 16]}>
