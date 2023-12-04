@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Popconfirm, Row, Typography, Alert } from "antd";
+import { Alert, Button, Col, Popconfirm, Row, Typography } from "antd";
 import { useAuth } from "@coderdojobraga/ui";
 import { withAuth } from "~/components/Auth/withAuth";
 import AppLayout from "~/layouts/AppLayout";
@@ -70,7 +70,12 @@ function Dashboard() {
   return (
     <>
       <AppLayout>
-        <Alert message="A sessão do dia 16 de Dezembro será realizada ás 14:30." type="warning" showIcon closable />
+        <Alert
+          message="A sessão do dia 16 de Dezembro será realizada ás 14:30."
+          type="warning"
+          showIcon
+          closable
+        />
         <Title level={2}>Painel Principal</Title>
         <Row justify="space-between" gutter={8}>
           <Title level={3}>Próximo Evento</Title>
@@ -117,7 +122,12 @@ function Dashboard() {
           )}
         </Row>
         <Title level={3}>Eventos</Title>
-        <Row className={styles.row} align="top" justify="start" gutter={[16, 16]}>
+        <Row
+          className={styles.row}
+          align="top"
+          justify="start"
+          gutter={[16, 16]}
+        >
           {events?.slice(0, 3).map((event: any) => (
             <Col key={event.id}>
               <Event event={event} isLoading={isLoadingEvents} />
