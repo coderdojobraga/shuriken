@@ -38,6 +38,7 @@ export default function Presences() {
   const [selectedLectures, setSelectedLectures] = useState<Lecture[]>([]);
   const [locations, setLocations] = useState<any[]>([]);
   const router = useRouter();
+
   const onFinish = (values: any, lectureId: string) => {
     api
       .updateLecture(lectureId, values)
@@ -98,7 +99,7 @@ export default function Presences() {
         key: lecture.id,
       });
     });
-  }, []);
+  }, [selectedLectures, data]);
 
   useEffect(() => {
     api
@@ -111,36 +112,29 @@ export default function Presences() {
         );
       });
   }, []);
-
   useEffect(() => {
-    if (selectedEvent !== "") {
-      setSelectedLectures(
-        lectures.filter((lecture) => lecture.event.id === selectedEvent)
-      );
-    }
-  }, [selectedEvent, lectures]);
+    const generateData = () => {
+      const data: any[] = [];
 
-  useEffect(() => {
-    generateData();
-  }, [selectedLectures]);
-
-  const generateData = () => {
-    const data: any[] = [];
-
-    selectedLectures.map((lecture: any) => {
-      if (lecture.attendance == null) {
-        lecture.attendance = "both_absent";
-      }
-      data.push({
-        ninja: `${lecture.ninja.first_name} ${lecture.ninja.last_name}`,
-        mentor: `${lecture.mentor.first_name} ${lecture.mentor.last_name}`,
-        presences: `${lecture.attendance}`,
-        key: lecture.id,
+      selectedLectures.forEach((lecture: any) => {
+        if (lecture.attendance == null) {
+          lecture.attendance = "both_absent";
+        }
+        data.push({
+          ninja: `${lecture.ninja.first_name} ${lecture.ninja.last_name}`,
+          mentor: `${lecture.mentor.first_name} ${lecture.mentor.last_name}`,
+          presences: `${lecture.attendance}`,
+          key: lecture.id,
+        });
       });
-    });
 
-    setData(data);
-  };
+      setData(data);
+    };
+
+    if (selectedLectures.length > 0) {
+      generateData();
+    }
+  }, [selectedLectures]);
 
   const handleEditButtonClick = () => {
     setEditButtonVisible(false);
