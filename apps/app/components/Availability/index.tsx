@@ -3,17 +3,13 @@ import Link from "next/link";
 
 const { Title } = Typography;
 
-function Availability({
-  title,
-  buttonTitle,
-  mentors,
-  available,
-  setAvailable,
-}: any) {
+function Availability({ title, mentors, available, setAvailable }: any) {
   return (
     <>
       <Row style={{ display: "flex", justifyContent: "space-between" }}>
-        <Title level={2}>{title}</Title>
+        <Title level={2}>
+          {title} ({mentors.length})
+        </Title>
         <Switch
           defaultChecked={available}
           style={{ float: "right" }}

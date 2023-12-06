@@ -6,6 +6,7 @@ import {
   Form,
   Input,
   Radio,
+  Space,
   Tooltip,
   Typography,
 } from "antd";
@@ -15,21 +16,19 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 import { useAuth } from "@coderdojobraga/ui";
-import Koi from "~/components/Koi";
 
 import styles from "./style.module.css";
 
 function Signup() {
   const { Title, Text } = Typography;
   const { errors, isLoading, sign_up } = useAuth();
-
   const [size, setSize] = useState("");
 
-  const handleSizeChange = (e) => {
+  const handleSizeChange = (e: any) => {
     setSize(e.target.value);
   };
 
-  const onFinish = ({ email, password, role }) => {
+  const onFinish = ({ email, password, role }: any) => {
     sign_up({ email, password, role });
   };
 
@@ -73,26 +72,30 @@ function Signup() {
           },
         ]}
       >
-        <Radio.Group
-          className={styles.select}
-          value={size}
-          onChange={handleSizeChange}
-        >
-          <Radio.Button className={styles.option} value="guardian">
-            Guardião
-          </Radio.Button>
-          <Radio.Button className={styles.option} value="mentor">
-            Mentor
-          </Radio.Button>
-          <Tooltip
-            className={styles.option}
-            title="Inicia sessão como Guardião para inscreveres um Ninja"
-          >
-            <Radio.Button disabled>
-              Ninja &#160;
-              <InfoCircleOutlined />
-            </Radio.Button>
-          </Tooltip>
+        <Radio.Group value={size} onChange={handleSizeChange}>
+          <Space direction="vertical">
+            <Radio value="guardian" className="mb-2">
+              <span className="inline-block w-20">Guardião</span>
+              <label id="mentor-description" className="text-gray-500">
+                Tutor legal da criança.
+              </label>
+            </Radio>
+            <Radio value="mentor" className="mb-2">
+              <span className="inline-block w-20">Mentor</span>
+              <label id="mentor-description" className="text-gray-500">
+                Voluntário na organização.
+              </label>
+            </Radio>
+            <Tooltip title="Inicia sessão como Guardião para inscreveres um Ninja">
+              <Radio disabled value="1">
+                <span className="inline-block w-20">Ninja</span>
+                <label id="mentor-description" className=" text-gray-500">
+                  Criança participante. &nbsp;
+                </label>
+                <InfoCircleOutlined />
+              </Radio>
+            </Tooltip>
+          </Space>
         </Radio.Group>
       </Form.Item>
 
@@ -124,7 +127,7 @@ function Signup() {
       <Form.Item
         className={styles.button}
         validateStatus={errors && "error"}
-        help={errors?.email && "Email já registado"}
+        help={errors || "Email já registado"}
       >
         <Button
           type="primary"
