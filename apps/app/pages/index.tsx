@@ -71,7 +71,7 @@ function Dashboard() {
     <>
       <AppLayout>
         <Alert
-          message="A sessão de dia 16 de dezembro será realizada ás 14:30."
+          message="A sessão do dia 16 de dezembro será realizada às 14:30."
           type="warning"
           showIcon
           closable
