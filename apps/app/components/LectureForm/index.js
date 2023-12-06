@@ -20,7 +20,7 @@ export default function LectureForm({ id }) {
   const [selectedMentor, setSelectedMentor] = useState({});
   const [selectedNinja, setSelectedNinja] = useState({});
   const [selectedEvent, setSelectedEvent] = useState({});
-
+  
   const [mentors, setMentors] = useState([]);
   useEffect(() => {
     listMentors().then((response) => {
@@ -52,10 +52,11 @@ export default function LectureForm({ id }) {
   }, []);
 
   const [ninjas, setNinjas] = useState([]);
-  const fetchData = useCallback(() => {
-    let promise;
+
+
 
     const fetchData = useCallback(() => {
+      let promise;
 
       if (!promise) {
         promise = Promise.all(events.map((event) => getNinjaEvents(event.id)));
@@ -74,7 +75,7 @@ export default function LectureForm({ id }) {
           )
         );
       });
-    }, [fetchData]);
+    }, [fetchData,events]);
 
     const [filteredNinjas, setFilteredNinjas] = useState([]);
     const handleEventChange = useCallback(
