@@ -124,11 +124,7 @@ function Signup() {
         </Checkbox>
       </Form.Item>
 
-      <Form.Item
-        className={styles.button}
-        validateStatus={errors && "error"}
-        help={errors || "Email já registado"}
-      >
+      <Form.Item>
         <Button
           type="primary"
           htmlType="submit"
