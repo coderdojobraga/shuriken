@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Col, Popconfirm, Row, Typography } from "antd";
+import { Button, Col, Popconfirm, Row, Typography } from "antd";
 import { useAuth } from "@coderdojobraga/ui";
 import { withAuth } from "~/components/Auth/withAuth";
 import AppLayout from "~/layouts/AppLayout";
@@ -70,13 +70,6 @@ function Dashboard() {
   return (
     <>
       <AppLayout>
-        <Alert
-          message="A sessão do dia 16 de dezembro será realizada às 14:30."
-          type="warning"
-          showIcon
-          closable
-          style={{ marginBottom: "1rem" }}
-        />
         <Title level={2}>Painel Principal</Title>
         <Row justify="space-between" gutter={8}>
           <Title level={3}>Próximo Evento</Title>
