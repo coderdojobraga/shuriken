@@ -52,18 +52,14 @@ function Dashboard() {
   const notify_signup_ninjas = () => {
     notify_signup()
       .then((response) => {
-        const successInfo =
-          response.success || "Nenhuma informação a apresentar";
-        const failInfo = response.fail || "Nenhuma informação a apresentar";
-
         setTabsInfo((prevTabsInfo) => [
           {
             tabTitle: "Enviados",
-            info: successInfo,
+            info: response.success,
           },
           {
             tabTitle: "Não enviados",
-            info: failInfo,
+            info: response.fail,
           },
         ]);
         notifyInfo("Enviado com successo!");
@@ -76,18 +72,14 @@ function Dashboard() {
   const notify_selected_ninjas = () => {
     notify_selected()
       .then((response) => {
-        const successInfo =
-          response.success || "Nenhuma informação a apresentar";
-        const failInfo = response.fail || "Nenhuma informação a apresentar";
-
         setTabsInfo((prevTabsInfo) => [
           {
             tabTitle: "Enviados",
-            info: successInfo,
+            info: response.success,
           },
           {
             tabTitle: "Não enviados",
-            info: failInfo,
+            info: response.fail,
           },
         ]);
         notifyInfo("Enviado com successo!");

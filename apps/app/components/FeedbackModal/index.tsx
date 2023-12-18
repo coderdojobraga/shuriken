@@ -49,9 +49,10 @@ const FeedbackModal: React.FC<DynamicTabsProps> = ({
           <Tabs.TabPane tab={tab.tabTitle} key={tab.tabTitle}>
             <Input.TextArea
               value={tabInfo}
-              disabled
               rows={25}
               style={{ resize: "none" }}
+              placeholder="Nenhuma informação para apresentar"
+              readOnly={true}
             />
           </Tabs.TabPane>
         ))}
