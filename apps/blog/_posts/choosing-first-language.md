@@ -31,15 +31,15 @@ A sua sintaxe é das mais simples que existem atualmente, o que torna Python uma
 
 ## HTML/CSS/Javascript
 
-Aqui temos não 1, mas 3 linguagens distintas, mas que, na prática, se comportam como uma só. HTML, CSS e Javascript são as linguagens utilizadas globalmente para o desenvolvimento de páginas web, tal como esta que está a utilizar de momento.
+Aqui temos não 1, mas 3 linguagens distintas, mas que, na prática, se comportam como uma só. HTML, CSS e Javascript são as linguagens utilizadas globalmente para o desenvolvimento de páginas web, tal como esta que está a ver de momento.
 
 HTML e CSS são linguagens que oferecem desafios bastante diferentes das linguagens anteriores, por serem linguagens cujo objetivo é definir o conteúdo da página web, num ponto de vista visual. Toda a parte lógica é tratada pelo Javascript.
 
-À semelhança de Python, tratam-se de linguagens textuais, pelo que são recomendadas apenas para ninjas mais velhos / avançados que tenham interesse em desenvolvimento de websites.
+À semelhança de Python, tratam-se de linguagens textuais, pelo que são recomendadas apenas para ninjas mais velhos/avançados que tenham interesse em desenvolvimento de websites.
 
 ## C
 
-De todas as linguagens mencionadas até aqui, C é a mais difícil de aprender. Por esse motivo, aconselhamos apenas para ninjas bastante avançados. C é particularmente útil para desenvolvimento de software para microcontroladores, como Arduinos, por exemplo; ou desenvolvimento de sistemas operativos.
+De todas as linguagens mencionadas até aqui, C é a mais difícil de aprender. Por esse motivo, aconselhamos apenas para ninjas bastante avançados. C é particularmente útil para desenvolvimento de software para microcontroladores, como Arduinos, ou desenvolvimento de sistemas operativos.
 Assim sendo, apenas recomendamos C se um destes tópicos for do interesse do ninja, uma vez que o grau acrescido de dificuldade não compensa se o intuito do ninja for desenvolver aplicações.
 
 Qualquer que seja a linguagem a aprender, o importante é o ninja gostar do que está a fazer. Aprender a programar é um processo demorado, e estar motivado é essencial para o seu sucesso.

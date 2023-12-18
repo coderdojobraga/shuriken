@@ -33,7 +33,7 @@ sh create-blog-post.sh your-branch-name your-blog-post-name
 
 ### Note for those not a part of the Coderdojo Braga team
 
-If you are not a member of our team on Github, then instead of creating a branch you need to fork this project. If you don't know how to do that, please [refer to this guide](https://docs.github.com/pt/enterprise-cloud@latest/get-started/quickstart/fork-a-repo).
+If you are not a member of our team on Github, then instead of creating a branch you need to fork this project. If you don't know how to do that, please [refer to this guide](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
 
 ## Bug reports
 
@@ -49,7 +49,7 @@ git commit -m "Your commit message"
 git push
 ```
 
-Now all that is left to do is opening a Pull Request so your post can be published. If you don't know how to open a Pull Request, please refer to [this guide](https://docs.github.com/pt/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). **_Don't forget to select the reviewers_**. At least, you should put [Filipe Felício](https://github.com/feliciofilipe) and [Rui Oliveira](https://github.com/ruioliveira02).
+Now all that is left to do is opening a Pull Request so your post can be published. If you don't know how to open a Pull Request, please refer to [this guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). **_Don't forget to select the reviewers_**. At least, you should put [Filipe Felício](https://github.com/feliciofilipe) and [Rui Oliveira](https://github.com/ruioliveira02).
 Once your PR is approved, your blog will be pushed to main and to production. Congratulations, you just contributed to the CoderDojo Braga's blog &#128077;.
 
 ## Previewing your work
@@ -121,5 +121,5 @@ git commit -m "Your commit message"
 git push
 ```
 
-Now all that is left to do is opening a Pull Request so your post can be published. If you don't know how to open a Pull Request, please refer to [this guide](https://docs.github.com/pt/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). **_Don't forget to select the reviewers_**. At least, you should put [Filipe Felício](https://github.com/feliciofilipe) and [Rui Oliveira](https://github.com/ruioliveira02).
+Now all that is left to do is opening a Pull Request so your post can be published. If you don't know how to open a Pull Request, please refer to [this guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). **_Don't forget to select the reviewers_**. At least, you should put [Filipe Felício](https://github.com/feliciofilipe) and [Rui Oliveira](https://github.com/ruioliveira02).
 Once your PR is approved, your blog will be pushed to main and to production. Congratulations, you just contributed to the CoderDojo Braga's blog &#128077;.

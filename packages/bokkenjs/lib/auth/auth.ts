@@ -76,7 +76,7 @@ export async function editUser(values: any) {
     }
   }
 
-  if (values["user[socials]"].length == 0) {
+  if (values["user[socials]"] && values["user[socials]"].length == 0) {
     data.append("user[socials]", "[]");
   }
 

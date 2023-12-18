@@ -1,0 +1,57 @@
+dictionaries:
+  - name: Label per file path
+    description: Labels to apply based on the path of the touched files
+    spec:
+      '**/app/**': '"app"'
+      '**/web/**': '"web"'
+      '**/blog/**': '"blog"'
+
+rules:
+  - name: Open PR state
+    spec: '!$isDraft() && $getState() == "open"'
+
+  - name: First run state
+    spec: $getEventType() == "opened" && $rule("Open PR state")
+
+workflows:
+  - name: Assign author
+    run:
+      - if: $rule("First run state")
+        then: $addAssignees([$getAuthor()])
+
+  - name: Add labels to PR
+    run:
+      - if: $rule("Open PR state")
+        then:
+          - forEach:
+              key: $filePattern
+              value: $label
+              in: $dictionary("Label per file path")
+              do:
+                - if: $containsFilePattern($filePattern)
+                  then:
+                    - $addLabel($label)
+
+  - name: Request review from maintainers
+    run:
+      - if: $rule("First run state")
+        then: $addReviewers($getTeamMembers("shuriken"))
+
+  - name: Base message and summary
+    run:
+      - if: $rule("First run state")
+        then:
+          - if: $countUserPullRequests($getAuthor()) == 1
+            then: $info("Thanks for your first contribution!")
+            else: $info("Thanks for your contribution!")
+          - $warn("Please make sure the CI is green before merging.")
+          - $summarize()
+
+  - name: Enforce conventional commits
+    run:
+      - if: $rule("Open PR state")
+        then: $titleLint()
+
+  - name: Enforce head branch deletion
+    always-run: true
+    run: $deleteHeadBranch()
