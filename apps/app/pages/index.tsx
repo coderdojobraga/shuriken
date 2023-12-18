@@ -9,6 +9,7 @@ import { EUser, getNinjas, notify_selected, notify_signup } from "bokkenjs";
 import Ninja from "~/components/Ninja";
 import { useEvents } from "~/hooks/events";
 import { notifyError, notifyInfo } from "~/components/Notification";
+import FeedbackModal from "~/components/FeedbackModal";
 import styles from "~/styles/Dashboard.module.css";
 import moment from "moment";
 
@@ -34,11 +35,36 @@ function Dashboard() {
     return sorted_events[0] != undefined ? sorted_events[0] : false;
   };
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const [tabsInfo, setTabsInfo] = useState([
+    { tabTitle: "None", info: "Sem informação" },
+  ]);
+
   const notify_signup_ninjas = () => {
     notify_signup()
       .then((response) => {
-        // setEmails_success(response.success);
-        // setEmails_fail(response.fail);
+        const successInfo = response.success || "Nenhuma informação a apresentar";
+        const failInfo = response.fail || "Nenhuma informação a apresentar";
+
+        setTabsInfo((prevTabsInfo) => [
+          {
+            tabTitle: "Enviados",
+            info: successInfo,
+          },
+          {
+            tabTitle: "Não enviados",
+            info: failInfo,
+          },
+        ]);
         notifyInfo("Enviado com successo!");
       })
       .catch((error) => {
@@ -49,8 +75,19 @@ function Dashboard() {
   const notify_selected_ninjas = () => {
     notify_selected()
       .then((response) => {
-        // setEmails_success(response.success);
-        // setEmails_fail(response.fail);
+        const successInfo = response.success || "Nenhuma informação a apresentar";
+        const failInfo = response.fail || "Nenhuma informação a apresentar";
+
+        setTabsInfo((prevTabsInfo) => [
+          {
+            tabTitle: "Enviados",
+            info:successInfo,
+          },
+          {
+            tabTitle: "Não enviados",
+            info: failInfo,
+          },
+        ]);
         notifyInfo("Enviado com successo!");
       })
       .catch((error) => {
@@ -84,7 +121,10 @@ function Dashboard() {
                   title="Tens a certeza que queres notificar?"
                   cancelText="Não"
                   okText="Sim"
-                  onConfirm={(_) => notify_signup_ninjas()}
+                  onConfirm={(_) => {
+                    notify_signup_ninjas(); 
+                    openModal();
+                  }}
                 >
                   <Button type="primary">Notificar abertura</Button>
                 </Popconfirm>
@@ -98,7 +138,10 @@ function Dashboard() {
                   title="Tens a certeza que queres notificar?"
                   cancelText="Não"
                   okText="Sim"
-                  onConfirm={(_) => notify_selected_ninjas()}
+                  onConfirm={(_) => {
+                    notify_selected_ninjas();
+                    openModal();
+                  }}
                 >
                   <Button type="primary">Notificar selecionados</Button>
                 </Popconfirm>
@@ -153,6 +196,7 @@ function Dashboard() {
           <></>
         )}
       </AppLayout>
+      <FeedbackModal visible={modalVisible} onClose={closeModal} tabsInfo={tabsInfo} modalTitle="Relatório de e-mails"/>
     </>
   );
 }
