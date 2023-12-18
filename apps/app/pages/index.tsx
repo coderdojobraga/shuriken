@@ -52,7 +52,8 @@ function Dashboard() {
   const notify_signup_ninjas = () => {
     notify_signup()
       .then((response) => {
-        const successInfo = response.success || "Nenhuma informação a apresentar";
+        const successInfo =
+          response.success || "Nenhuma informação a apresentar";
         const failInfo = response.fail || "Nenhuma informação a apresentar";
 
         setTabsInfo((prevTabsInfo) => [
@@ -75,13 +76,14 @@ function Dashboard() {
   const notify_selected_ninjas = () => {
     notify_selected()
       .then((response) => {
-        const successInfo = response.success || "Nenhuma informação a apresentar";
+        const successInfo =
+          response.success || "Nenhuma informação a apresentar";
         const failInfo = response.fail || "Nenhuma informação a apresentar";
 
         setTabsInfo((prevTabsInfo) => [
           {
             tabTitle: "Enviados",
-            info:successInfo,
+            info: successInfo,
           },
           {
             tabTitle: "Não enviados",
@@ -122,7 +124,7 @@ function Dashboard() {
                   cancelText="Não"
                   okText="Sim"
                   onConfirm={(_) => {
-                    notify_signup_ninjas(); 
+                    notify_signup_ninjas();
                     openModal();
                   }}
                 >
@@ -196,7 +198,12 @@ function Dashboard() {
           <></>
         )}
       </AppLayout>
-      <FeedbackModal visible={modalVisible} onClose={closeModal} tabsInfo={tabsInfo} modalTitle="Relatório de e-mails"/>
+      <FeedbackModal
+        visible={modalVisible}
+        onClose={closeModal}
+        tabsInfo={tabsInfo}
+        modalTitle="Relatório de e-mails"
+      />
     </>
   );
 }

@@ -1,5 +1,5 @@
-import { Modal, Tabs, Input } from "antd";
-import React, { useState, useEffect } from "react";
+import { Input, Modal, Tabs } from "antd";
+import React, { useEffect, useState } from "react";
 
 interface TabInfo {
   tabTitle: string;
@@ -13,7 +13,12 @@ interface DynamicTabsProps {
   modalTitle: string;
 }
 
-const FeedbackModal: React.FC<DynamicTabsProps> = ({ visible, onClose, tabsInfo, modalTitle }) => {
+const FeedbackModal: React.FC<DynamicTabsProps> = ({
+  visible,
+  onClose,
+  tabsInfo,
+  modalTitle,
+}) => {
   const [activeTab, setActiveTab] = useState<string>("");
   const [tabInfo, setTabInfo] = useState<string>("");
 
@@ -33,11 +38,21 @@ const FeedbackModal: React.FC<DynamicTabsProps> = ({ visible, onClose, tabsInfo,
   };
 
   return (
-    <Modal title={modalTitle} visible={visible} onCancel={onClose} footer={null}>
+    <Modal
+      title={modalTitle}
+      visible={visible}
+      onCancel={onClose}
+      footer={null}
+    >
       <Tabs activeKey={activeTab} onChange={handleTabChange}>
         {tabsInfo.map((tab) => (
           <Tabs.TabPane tab={tab.tabTitle} key={tab.tabTitle}>
-            <Input.TextArea value={tabInfo} disabled rows={25} style={{ resize: "none" }} />
+            <Input.TextArea
+              value={tabInfo}
+              disabled
+              rows={25}
+              style={{ resize: "none" }}
+            />
           </Tabs.TabPane>
         ))}
       </Tabs>
