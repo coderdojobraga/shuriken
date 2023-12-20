@@ -62,6 +62,7 @@ function Dashboard() {
             info: response.fail,
           },
         ]);
+        openModal();
         notifyInfo("Enviado com successo!");
       })
       .catch((error) => {
@@ -82,6 +83,7 @@ function Dashboard() {
             info: response.fail,
           },
         ]);
+        openModal();
         notifyInfo("Enviado com successo!");
       })
       .catch((error) => {
@@ -115,10 +117,7 @@ function Dashboard() {
                   title="Tens a certeza que queres notificar?"
                   cancelText="Não"
                   okText="Sim"
-                  onConfirm={(_) => {
-                    notify_signup_ninjas();
-                    openModal();
-                  }}
+                  onConfirm={(_) => notify_signup_ninjas()}
                 >
                   <Button type="primary">Notificar abertura</Button>
                 </Popconfirm>
@@ -132,10 +131,7 @@ function Dashboard() {
                   title="Tens a certeza que queres notificar?"
                   cancelText="Não"
                   okText="Sim"
-                  onConfirm={(_) => {
-                    notify_selected_ninjas();
-                    openModal();
-                  }}
+                  onConfirm={(_) => notify_selected_ninjas()}
                 >
                   <Button type="primary">Notificar selecionados</Button>
                 </Popconfirm>
