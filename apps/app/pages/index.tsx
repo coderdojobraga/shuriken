@@ -19,7 +19,7 @@ function Dashboard() {
   const role = user?.role;
 
   const [ninjas, setNinjas] = useState([]);
-  const { data: events, isLoading: isLoadingEvents } = useEvents();
+  const { data: events, isLoading: isLoadingEvents } = useEvents("desc");
   const { data: badges, isLoading: isLoadingBadges } = useBadges();
 
   const nextEvent = () => {
