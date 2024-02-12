@@ -31,22 +31,43 @@ function Files() {
         <Col>
           <Title level={2}>Os Meus Ficheiros</Title>
         </Col>
-        <Col>
-          <Link href="/files/new">
-            <Button type="primary">Novo</Button>
-          </Link>
-        </Col>
       </Row>
-      <Row justify="start" align="top">
-        {files.map((file) => (
-          <Document
-            key={file.id}
-            editable
-            onFileDeletion={onFileDeletion}
-            {...file}
-          />
-        ))}
-      </Row>
+      {files.length != 0 ? (
+        <Row justify="start" align="top">
+          {files.map((file) => (
+            <Document
+              key={file.id}
+              editable
+              onFileDeletion={onFileDeletion}
+              {...file}
+            />
+          ))}
+        </Row>
+      ) : (
+        <div class="mt-10 text-center">
+          <svg
+            class="mx-auto h-12 w-12 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              vector-effect="non-scaling-stroke"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+            />
+          </svg>
+          <h3 class="mt-2 text-sm font-semibold text-gray-900">Sem ficheiros</h3>
+          <div class="mt-6">
+            <Link href="/files/new">
+              <Button type="primary">Novo</Button>
+            </Link>
+          </div>
+        </div>
+      )}
     </AppLayout>
   );
 }
