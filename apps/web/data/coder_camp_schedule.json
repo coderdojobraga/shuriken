@@ -1,0 +1,172 @@
+[  
+    {
+        "name": "Segunda",
+        "activities":
+            [
+                {
+                    "title": "🧑‍💻 Projeto 🧑‍💻",
+                    "hours": "09h00 - 10h30"
+                },
+                {
+                    "title": "🥐 Lanche 🥐",
+                    "hours": "10h30 - 11h00"
+                },
+                {
+                    "title": "👩‍💻 Projeto 👩‍💻",
+                    "hours": "11h00 - 12h30"
+                },
+                {
+                    "title": "🍱 Almoço 🍱",
+                    "hours": "12h30 - 14h00"
+                },
+                {
+                    "title": "🤖 Torneio Lightbot IRL 🤖",
+                    "hours": "14h00 - 16h00"
+                },
+                {
+                    "title": "☕ Lanche ☕",
+                    "hours": "16h00 - 16h30"
+                },
+                {
+                    "title": "0️⃣ Circuitos Logicos 1️⃣",
+                    "hours": "16h30 - 17h30"
+                }
+            ]
+    },
+    {
+        "name": "Terça",
+        "activities":
+            [
+                {
+                    "title": "🧑‍💻 Projeto 🧑‍💻",
+                    "hours": "09h00 - 10h30"
+                },
+                {
+                    "title": "🥐 Lanche 🥐",
+                    "hours": "10h30 - 11h00"
+                },
+                {
+                    "title": "👩‍💻 Projeto 👩‍💻",
+                    "hours": "11h00 - 12h30"
+                },
+                {
+                    "title": "🍱 Almoço 🍱",
+                    "hours": "12h30 - 14h00"
+                },
+                {
+                    "title": "🧨 Conversa Antidetonante 🧨",
+                    "hours": "14h00 - 16h00"
+                },
+                {
+                    "title": "☕ Lanche ☕",
+                    "hours": "16h00 - 16h30"
+                },
+                {
+                    "title": "✂️ Origami ✂️",
+                    "hours": "16h30 - 17h30"
+                }
+            ]
+    },
+    {
+        "name": "Quarta",
+        "activities":
+            [
+                {
+                    "title": "🧑‍💻 Projeto 🧑‍💻",
+                    "hours": "09h00 - 10h30"
+                },
+                {
+                    "title": "🥐 Lanche 🥐",
+                    "hours": "10h30 - 11h00"
+                },
+                {
+                    "title": "👩‍💻 Projeto 👩‍💻",
+                    "hours": "11h00 - 12h30"
+                },
+                {
+                    "title": "🍱 Almoço 🍱",
+                    "hours": "12h30 - 14h00"
+                },
+                {
+                    "title": "📝 Peddy Paper 📝",
+                    "hours": "14h00 - 16h00"
+                },
+                {
+                    "title": "☕ Lanche ☕",
+                    "hours": "16h00 - 16h30"
+                },
+                {
+                    "title": "🎲 Jogos de Tabuleiro 🎲",
+                    "hours": "16h30 - 17h30"
+                }
+            ]
+    },
+    {
+        "name": "Quinta",
+        "activities":
+            [
+                {
+                    "title": "🧑‍💻 Projeto 🧑‍💻",
+                    "hours": "09h00 - 10h30"
+                },
+                {
+                    "title": "🥐 Lanche 🥐",
+                    "hours": "10h30 - 11h00"
+                },
+                {
+                    "title": "👩‍💻 Projeto 👩‍💻",
+                    "hours": "11h00 - 12h30"
+                },
+                {
+                    "title": "🍱 Almoço 🍱",
+                    "hours": "12h30 - 14h00"
+                },
+                {
+                    "title": "🐾 ScoobyDojo 🐾",
+                    "hours": "14h00 - 16h00"
+                },
+                {
+                    "title": "☕ Lanche ☕",
+                    "hours": "16h00 - 16h30"
+                },
+                {
+                    "title": "🃏 Ordena o Baralho 🃏",
+                    "hours": "16h30 - 17h30"
+                }
+            ]
+    },
+    {
+        "name": "Sexta",
+        "activities":
+            [
+                {
+                    "title": "🧑‍💻 Projeto 🧑‍💻",
+                    "hours": "09h00 - 10h30"
+                },
+                {
+                    "title": "🥐 Lanche 🥐",
+                    "hours": "10h30 - 11h00"
+                },
+                {
+                    "title": "👩‍💻 Projeto 👩‍💻",
+                    "hours": "11h00 - 12h30"
+                },
+                {
+                    "title": "🍱 Almoço 🍱",
+                    "hours": "12h30 - 14h00"
+                },
+                {
+                    "title": "🚀 Among Us 🚀",
+                    "hours": "14h00 - 16h00"
+                },
+                {
+                    "title": "☕ Lanche ☕",
+                    "hours": "16h00 - 16h30"
+                },
+                {
+                    "title": "⚙️ Linha de Montagem ⚙️",
+                    "hours": "16h30 - 17h30"
+                }
+            ]
+    }
+]

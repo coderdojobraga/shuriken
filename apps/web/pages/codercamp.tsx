@@ -2,6 +2,8 @@ import { Footer, Header } from "@coderdojobraga/ui";
 import { MessageFilled, ScheduleOutlined } from "@ant-design/icons";
 import Image from "next/image";
 
+import schedule from "../data/coder_camp_schedule.json"
+
 const CoderCamp = () => (
   <>
     <Header landing={true} />
@@ -48,11 +50,11 @@ const CoderCamp = () => (
         </div>
       </div>
     </section>
-    <section className="bg-primary mt-12 overflow-hidden">
+    <section className="bg-dark mt-12 overflow-hidden">
       <div className="container mx-auto mb-20">
         <div className="flex flex-wrap items-center justify-center">
           <div className="ml-auto mr-auto mt-20 w-full px-12 md:w-5/12 md:px-4">
-            <div className="text-primary mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white p-3 text-center shadow-lg">
+            <div className="text-dark mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white p-3 text-center shadow-lg">
               <MessageFilled style={{ fontSize: "150%" }} />
             </div>
             <h3 className="mb-2 text-3xl font-semibold leading-normal text-white">
@@ -76,11 +78,11 @@ const CoderCamp = () => (
         </div>
       </div>
     </section>
-    <section className="bg-dark overflow-hidden">
+    <section className="bg-primary overflow-hidden">
       <div className="container mx-auto mb-20 ">
         <div className="flex flex-wrap items-center justify-center">
-          <div className="ml-auto mr-auto mt-20 w-full px-12 md:w-5/12 md:px-4">
-            <div className="text-dark mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white p-3 text-center shadow-lg">
+          <div className="mx-auto mt-20 w-full px-12 md:w-5/12 md:px-4">
+            <div className="text-primary mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white p-3 text-center shadow-lg">
               <ScheduleOutlined style={{ fontSize: "150%" }} />
             </div>
             <h3 className="mb-2 text-3xl font-semibold leading-normal text-white">
@@ -92,18 +94,40 @@ const CoderCamp = () => (
             </p>
           </div>
           <div className="ml-auto mr-auto mt-20 w-full px-12 md:w-5/12 md:px-4">
-            <Image
-              alt="Coder Camp"
-              src="/img/codercamp_horario.png"
-              width={2000}
-              height={1000}
-              className=""
-            />
           </div>
+
+          <div className="mx-auto px-12 lg:px-4 lg:mt-12 w-full flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-4">
+            {schedule.map(day => (
+            <div className="w-full lg:w-1/5">
+              <p className="text-white text-2xl font-semibold">
+                {day.name}
+              </p>
+              <div className="mt-6 space-y-8 bg-white/20 px-4 py-14 text-center shadow-xl shadow-primary/5 backdrop-blur">
+
+              <ol role="list" className="px-6 text-center divide-y divide-white/20">
+                {day.activities.map(activity => (
+                  <li className="py-8">
+                    <h4 className="text-lg truncate uppercase font-semibold tracking-tight text-white/90">
+                      {activity.title}
+                    </h4>
+
+                    <p className="mt-1 font-mono text-sm text-white/60">
+                      <span>{activity.hours}</span>
+                    </p>
+                  </li>
+                ))}
+              </ol>
+                
+              </div>
+            </div>))}
+
+          </div>
+          
+        
         </div>
       </div>
     </section>
-    <Footer bgColor="dark" fgColor="white" />
+    <Footer bgColor="primary" fgColor="white" />
   </>
 );
 
