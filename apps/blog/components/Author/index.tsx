@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { IAuthor } from "~/lib/types";
+import Image from "next/image";
 
 export default function Author({ name, photo, username }: IAuthor) {
   return (
     <li className="flex items-center py-1">
       <Link href={`/author/${username}`}>
         <a className="flex items-center">
-          <img
+          <Image
             src={`/img/team/${photo}`}
             alt="avatar"
             className="mx-4 h-10 w-10 rounded-full object-cover"
