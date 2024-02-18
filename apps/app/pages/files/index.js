@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Button, Col, Row, Typography } from "antd";
+import { Button, Col, Row, Typography, Empty } from "antd";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import Document from "~/components/Document";
 import * as api from "bokkenjs";
 import { notifyError } from "~/components/Notification";
-import { Empty } from 'antd';
 
 const { Title } = Typography;
 
