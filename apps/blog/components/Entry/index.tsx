@@ -37,12 +37,14 @@ export default function Entry({
           <div>
             <Link href={`/author/${author?.username}`}>
               <a className="flex items-center">
-                <h1 className="text-dark font-bold hover:underline dark:text-white">
+                <h1 className="text-dark mr-7 font-bold hover:underline dark:text-white">
                   {author?.name}
                 </h1>
                 <Image
                   src={`/img/team/${author?.photo}`}
                   alt="avatar"
+                  width={40}
+                  height={40}
                   className="mx-4 hidden h-10 w-10 rounded-full object-cover sm:block"
                 />
               </a>

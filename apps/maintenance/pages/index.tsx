@@ -27,20 +27,9 @@ const MaintenancePage = () => {
                   Pedimos desculpa por qualquer inconveniente e obrigado pela
                   sua paciência.
                 </p>
-                <p className="hidden text-base font-light text-gray-900 dark:text-gray-400 md:block md:text-lg lg:text-xl">
-                  Clique no dinossauro e dê o seu melhor!
-                </p>
                 <p className="text-base font-light text-gray-900 dark:text-gray-400 md:text-lg lg:text-xl">
                   Estaremos de volta em breve!
                 </p>
-                <div className="pt-26">
-                  <iframe
-                    src="/chrome-dino-game/index.html"
-                    title="Chrome Dino Game"
-                    style={{ width: "100%", height: "300px", border: "none" }}
-                    className="hidden md:block"
-                  ></iframe>
-                </div>
               </div>
             </section>
           </div>
