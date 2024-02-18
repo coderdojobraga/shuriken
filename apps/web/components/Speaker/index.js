@@ -7,8 +7,8 @@ export default function Speaker({ picture, name, role }) {
         <Image
           alt={name}
           src={`/img/team/${picture}`}
-          width={150}
-          height={150}
+          width={200}
+          height={200}
           className="mx-auto h-52 w-52 rounded-full object-cover shadow-lg md:h-32 md:w-32"
         />
       </div>

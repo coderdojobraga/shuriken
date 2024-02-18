@@ -9,8 +9,8 @@ export default function Member({ name, picture, role }: ITeamMember) {
         <Image
           alt={name}
           src={`/img/team/${picture}`}
-          width={200}
-          height={200}
+          width={300}
+          height={300}
           className="mx-auto h-56 w-56 rounded-full object-cover shadow-lg md:h-48 md:w-48"
         />
       </div>

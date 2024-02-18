@@ -14,7 +14,7 @@ export default function Author({ name, photo, username }: IAuthor) {
             width={40}
             className="mx-4 h-10 w-10 rounded-full object-cover"
           />
-          <h1 className="x-1 ml-3 font-bold text-gray-700 hover:underline dark:text-white">
+          <h1 className="mx-1 ml-3 font-bold text-gray-700 hover:underline dark:text-white">
             {name}
           </h1>
         </a>
