@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useTheme } from "@coderdojobraga/ui";
+import Image from "next/image";
 
 export default function Entry({
   title,
@@ -39,7 +40,7 @@ export default function Entry({
                 <h1 className="text-dark font-bold hover:underline dark:text-white">
                   {author?.name}
                 </h1>
-                <img
+                <Image
                   src={`/img/team/${author?.photo}`}
                   alt="avatar"
                   className="mx-4 hidden h-10 w-10 rounded-full object-cover sm:block"
