@@ -28,6 +28,8 @@ export default function Featured({ title, author, date, topic, slug }: Props) {
               <Image
                 src={`/img/team/${author?.photo}`}
                 alt="avatar"
+                width={35}
+                height={35}
                 className="h-8 w-8 rounded-full object-cover"
               />
               <h1 className="mx-3 text-sm text-gray-700 hover:underline dark:text-white">
