@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import { Drawer } from "antd";
+import { Drawer, Menu } from "antd";
 import {
   BookOutlined,
   CrownOutlined,
@@ -14,8 +14,10 @@ import {
   TeamOutlined,
   MenuOutlined,
   CloseCircleOutlined,
+  DownOutlined
 } from "@ant-design/icons";
 import { ThemeToggle, useAuth, useTheme } from "@coderdojobraga/ui";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 import { MENU_ENTRIES } from "../config";
 import { getUserInitials } from "../utils";
@@ -32,6 +34,8 @@ const icons = {
   "/blog": <BookOutlined />,
 };
 
+const { SubMenu } = Menu;
+
 interface LoginButtonProps {
   isLoading: boolean;
   isDark: boolean;
@@ -42,9 +46,8 @@ const LoginButton = ({ isLoading, isDark }: LoginButtonProps) => (
     className={isLoading ? styles.loader : "hover:text-primary cursor-pointer"}
   >
     <div
-      className={`flex items-center justify-center gap-x-2 ${
-        isDark && "text-white"
-      }`}
+      className={`flex items-center justify-center gap-x-2 ${isDark && "text-white"
+        }`}
     >
       {!isLoading && <LoginOutlined />}
       <Link href="/dashboard/login">{!isLoading ? "LOGIN" : ""}</Link>
@@ -60,15 +63,29 @@ interface MenuDrawerProps {
 const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
   const { user, isLoading, logout } = useAuth();
   const { isDark } = useTheme();
+  const [openKeys, setOpenKeys] = useState<string[]>([]);
+
+  const handleOpenMenu = (key: string) => {
+    setOpenKeys([key]);
+  };
+
+  const handleCloseMenu = () => {
+    setOpenKeys([]);
+  };
 
   const onDrawerLogOut = () => {
     logout();
     setVisibleDrawer(false);
   };
+  const [eventosDropdownVisible, setEventosDropdownVisible] = useState(false);
+
+  const handleEventosDropdownVisibleChange = (visible:any) => {
+    setEventosDropdownVisible(visible);
+  };
 
   return (
     <Drawer
-      className="flex md:hidden"
+      className={`flex md:hidden ${isDark ? "dark-menu-drawer" : ""}`}
       placement="right"
       onClose={() => setVisibleDrawer(false)}
       open={isDrawerVisible}
@@ -81,36 +98,59 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
       }}
       closeIcon={
         <div
-          className={`flex items-center justify-center gap-x-2 ${
-            isDark && "text-white"
-          }`}
+          className={`flex items-center justify-center gap-x-2 ${isDark && "text-white"
+            }`}
         >
           <CloseCircleOutlined />
         </div>
       }
     >
-      <ul className="flex flex-col items-center gap-6 text-xl uppercase">
+      <ul
+        className={`flex flex-col items-center gap-6 text-xl uppercase ${isDark ? "dark-menu" : ""
+          }`}
+      >
         {MENU_ENTRIES.map(({ key, text }) => (
           <li className="hover:text-primary cursor-pointer">
             <div
-              className={`flex items-center justify-center gap-x-2 ${
-                isDark && "text-white"
-              }`}
+              className={`flex items-center justify-center gap-x-2 ${isDark && "text-white"
+                }`}
             >
               {icons[key as keyof typeof icons]}
               <Link href={key}>{text}</Link>
             </div>
           </li>
         ))}
-
+        
+        <Menu
+          className={`flex flex-col items-center text-xl uppercase ${isDark ? "dark-menu" : ""
+            }`}
+          mode="inline"
+          style={{ width: 256 ,marginTop: '-10px', marginBottom: '-14px'}}
+          openKeys={openKeys}
+          onOpenChange={(keys) => setOpenKeys(keys)}
+          
+        >
+          <SubMenu
+            className={`flex flex-col items-center text-xl uppercase ${isDark ? "dark-menu" : ""
+              }`}
+            title="Eventos"
+            popupClassName={isDark ? "dark-menu-submenu" : ""}
+          >
+            <Menu.Item key="1">
+              <Link href={"/web/dojocon"}>Dojo Con</Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link href={"/web/codercamp"}>Code Camp</Link>
+            </Menu.Item>
+          </SubMenu>
+        </Menu> 
         {user ? (
           <>
             <li className="hover:text-primary cursor-pointer">
               <Link href="/dashboard">
                 <div
-                  className={`flex items-center justify-center gap-x-2 ${
-                    isDark && "text-white"
-                  }`}
+                  className={`flex items-center justify-center gap-x-2 ${isDark && "text-white"
+                    }`}
                 >
                   <DashboardOutlined />
                   <p className="hover:text-primary cursor-pointer">Dashboard</p>
@@ -123,9 +163,8 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
               onClick={(_) => onDrawerLogOut()}
             >
               <div
-                className={`flex items-center justify-center gap-x-2 ${
-                  isDark && "text-white"
-                }`}
+                className={`flex items-center justify-center gap-x-2 ${isDark && "text-white"
+                  }`}
               >
                 <LogoutOutlined />
                 <p className="hover:text-primary cursor-pointer">SAIR</p>
@@ -176,6 +215,7 @@ function MobileNavBar({ landing = false }: { landing?: boolean }) {
         </>
       ) : (
         <>
+          Dashboard
           <button
             onClick={() => setVisibleDrawer(true)}
             type="button"
@@ -183,7 +223,6 @@ function MobileNavBar({ landing = false }: { landing?: boolean }) {
           >
             <MenuOutlined />
           </button>
-
           <MenuDrawer
             isDrawerVisible={isDrawerVisible}
             setVisibleDrawer={setVisibleDrawer}
