@@ -31,7 +31,7 @@ const UserDropDown = ({ logout }: UserDropDownProps) => (
   <ul>
     <li className="flex items-center justify-start gap-x-2 text-base">
       <DashboardOutlined />
-      <Link href="/dashboard">Dashboard</Link>
+      <Link href="/dashboard">Secretaria</Link>
     </li>
     <li className="flex items-center justify-start gap-x-2">
       <LogoutOutlined className="mt-2" />
@@ -78,8 +78,9 @@ function NavBar({ landing = true }: any) {
   if (screens.md) {
     return (
       <ul
-        className={`flex items-center gap-5 text-base uppercase text-${isDark ? "white" : "black"
-          } md:flex`}
+        className={`flex items-center gap-5 text-base uppercase text-${
+          isDark ? "white" : "black"
+        } md:flex`}
       >
         {MENU_ENTRIES.map(({ key, text }) => (
           <Entry href={key} text={text} />
@@ -91,15 +92,20 @@ function NavBar({ landing = true }: any) {
             closeUserDropdown();
           }}
         >
-          <span className={'flex items-center gap-1 hover:text-primary cursor-pointer dark:text-white'}>
+          <span
+            className={
+              "hover:text-primary flex cursor-pointer items-center gap-1 dark:text-white"
+            }
+          >
             Eventos
-            <ChevronDownIcon className="w-5 h-5" />
+            <ChevronDownIcon className="h-5 w-5" />
           </span>
           <div
-            className={`absolute z-10 mt-2 ${eventosDropdownVisible
-              ? "opacity-100"
-              : "invisible -translate-y-full opacity-0"
-              } -translate-x-1/4 transform px-4 py-2 transition-all duration-300`}
+            className={`absolute z-10 mt-2 ${
+              eventosDropdownVisible
+                ? "opacity-100"
+                : "invisible -translate-y-full opacity-0"
+            } -translate-x-1/4 transform px-4 py-2 transition-all duration-300`}
           >
             <ul>
               <li className="hover:text-primary cursor-pointer dark:text-white">
@@ -110,7 +116,6 @@ function NavBar({ landing = true }: any) {
               </li>
             </ul>
           </div>
-
         </li>
         {user ? (
           <li
@@ -134,10 +139,11 @@ function NavBar({ landing = true }: any) {
               </div>
             )}
             <div
-              className={`absolute z-10 mt-2 ${userDropdownVisible
-                ? "opacity-100"
-                : "invisible -translate-y-full opacity-0"
-                } -translate-x-1/4 transform px-4 py-2 transition-all duration-300`}
+              className={`absolute z-10 mt-2 ${
+                userDropdownVisible
+                  ? "opacity-100"
+                  : "invisible -translate-y-full opacity-0"
+              } -translate-x-1/4 transform px-4 py-2 transition-all duration-300`}
             >
               <UserDropDown logout={logout} />
             </div>
