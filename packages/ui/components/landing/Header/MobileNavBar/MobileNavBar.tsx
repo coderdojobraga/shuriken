@@ -14,10 +14,8 @@ import {
   TeamOutlined,
   MenuOutlined,
   CloseCircleOutlined,
-  DownOutlined,
 } from "@ant-design/icons";
 import { ThemeToggle, useAuth, useTheme } from "@coderdojobraga/ui";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 import { MENU_ENTRIES } from "../config";
 import { getUserInitials } from "../utils";
@@ -39,8 +37,6 @@ const events = {
   "/web/codercamp": { icon: <CalendarOutlined />, text: "Code Camp" },
   // Add more events here if needed
 };
-
-const { SubMenu } = Menu;
 
 interface LoginButtonProps {
   isLoading: boolean;
@@ -70,25 +66,12 @@ interface MenuDrawerProps {
 const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
   const { user, isLoading, logout } = useAuth();
   const { isDark } = useTheme();
-  const [openKeys, setOpenKeys] = useState<string[]>([]);
-
-  const handleOpenMenu = (key: string) => {
-    setOpenKeys([key]);
-  };
-
-  const handleCloseMenu = () => {
-    setOpenKeys([]);
-  };
 
   const onDrawerLogOut = () => {
     logout();
     setVisibleDrawer(false);
   };
-  const [eventosDropdownVisible, setEventosDropdownVisible] = useState(false);
 
-  const handleEventosDropdownVisibleChange = (visible: any) => {
-    setEventosDropdownVisible(visible);
-  };
   return (
     <Drawer
       className={`flex md:hidden ${isDark ? "dark-menu-drawer" : ""}`}
@@ -248,30 +231,3 @@ function MobileNavBar({ landing = false }: { landing?: boolean }) {
 }
 
 export default MobileNavBar;
-
-{
-  /* <Menu
-          className={`flex flex-col items-center text-xl uppercase ${isDark ? "dark-menu" : ""
-            }`}
-          mode="inline"
-          style={{ width: 256, marginTop: '-10px', marginBottom: '-14px' }}
-          openKeys={openKeys}
-          onOpenChange={(keys) => setOpenKeys(keys)}
-
-        >
-          <SubMenu
-            className={`flex flex-col items-center text-xl uppercase ${isDark ? "dark-menu" : ""
-              }`}
-            title="Eventos"
-            popupClassName={isDark ? "dark-menu-submenu" : ""}
-          >
-            <Menu.Item key="1">
-              <Link href="/web/dojocon">Dojo Con</Link>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Link href="/web/codercamp">Code Camp</Link>
-            </Menu.Item>
-
-          </SubMenu>
-        </Menu>  */
-}
