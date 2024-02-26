@@ -9,7 +9,7 @@ import styles from "~/styles/Dashboard.module.css";
 const { Title } = Typography;
 
 function Events() {
-  const { data: events, isLoading } = useEvents();
+  const { data: events, isLoading } = useEvents("desc");
 
   return (
     <AppLayout>

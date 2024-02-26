@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Button, Col, Row, Typography } from "antd";
+import { Button, Col, Empty, Row, Typography } from "antd";
 import { withAuth } from "~/components/Auth";
 import AppLayout from "~/layouts/AppLayout";
 import Document from "~/components/Document";
@@ -31,22 +31,28 @@ function Files() {
         <Col>
           <Title level={2}>Os Meus Ficheiros</Title>
         </Col>
-        <Col>
-          <Link href="/files/new">
-            <Button type="primary">Novo</Button>
-          </Link>
-        </Col>
       </Row>
-      <Row justify="start" align="top">
-        {files.map((file) => (
-          <Document
-            key={file.id}
-            editable
-            onFileDeletion={onFileDeletion}
-            {...file}
-          />
-        ))}
-      </Row>
+      {files.length != 0 ? (
+        <Row justify="start" align="top">
+          {files.map((file) => (
+            <Document
+              key={file.id}
+              editable
+              onFileDeletion={onFileDeletion}
+              {...file}
+            />
+          ))}
+        </Row>
+      ) : (
+        <div className="mt-10 text-center">
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          <div className="mt-6">
+            <Link href="/files/new">
+              <Button type="primary">Novo</Button>
+            </Link>
+          </div>
+        </div>
+      )}
     </AppLayout>
   );
 }

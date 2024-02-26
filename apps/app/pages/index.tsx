@@ -19,7 +19,7 @@ function Dashboard() {
   const role = user?.role;
 
   const [ninjas, setNinjas] = useState([]);
-  const { data: events, isLoading: isLoadingEvents } = useEvents();
+  const { data: events, isLoading: isLoadingEvents } = useEvents("desc");
   const { data: badges, isLoading: isLoadingBadges } = useBadges();
 
   const nextEvent = () => {
@@ -68,81 +68,88 @@ function Dashboard() {
   }, [role]);
 
   return (
-    <AppLayout>
-      <Title level={2}>Painel Principal</Title>
-      <Row justify="space-between" gutter={8}>
-        <Title level={3}>Próximo Evento</Title>
-        <Row gutter={[8, 8]}>
-          <Col>
-            {role === EUser.Organizer ? (
-              <Popconfirm
-                title="Tens a certeza que queres notificar?"
-                cancelText="Não"
-                okText="Sim"
-                onConfirm={(_) => notify_signup_ninjas()}
-              >
-                <Button type="primary">Notificar abertura</Button>
-              </Popconfirm>
-            ) : (
-              <></>
-            )}
-          </Col>
-          <Col>
-            {role === EUser.Organizer ? (
-              <Popconfirm
-                title="Tens a certeza que queres notificar?"
-                cancelText="Não"
-                okText="Sim"
-                onConfirm={(_) => notify_selected_ninjas()}
-              >
-                <Button type="primary">Notificar selecionados</Button>
-              </Popconfirm>
-            ) : (
-              <></>
-            )}
-          </Col>
-        </Row>
-      </Row>
-      <Row className={styles.row} align="top" justify="space-between">
-        {events?.length > 0 && nextEvent() ? (
-          <Event
-            event={nextEvent()}
-            collapsed={false}
-            isLoading={isLoadingEvents}
-          />
-        ) : (
-          <Typography>Aguarda que o próximo evento seja divulgado</Typography>
-        )}
-      </Row>
-      <Title level={3}>Eventos</Title>
-      <Row className={styles.row} align="top" justify="start" gutter={[16, 16]}>
-        {events?.slice(0, 3).map((event: any) => (
-          <Col key={event.id}>
-            <Event event={event} isLoading={isLoadingEvents} />
-          </Col>
-        ))}
-      </Row>
-      {role === EUser.Guardian ? (
-        <>
-          <Title level={3}>Ninjas</Title>
-          <Row
-            className={styles.row}
-            align="top"
-            justify="start"
-            gutter={[16, 16]}
-          >
-            {ninjas &&
-              ninjas.slice(0, 5).map((ninja: any) => (
-                <Col key={ninja.id}>
-                  <Ninja {...ninja} />
-                </Col>
-              ))}
+    <>
+      <AppLayout>
+        <Title level={2}>Painel Principal</Title>
+        <Row justify="space-between" gutter={8}>
+          <Title level={3}>Próximo Evento</Title>
+          <Row gutter={[8, 8]}>
+            <Col>
+              {role === EUser.Organizer ? (
+                <Popconfirm
+                  title="Tens a certeza que queres notificar?"
+                  cancelText="Não"
+                  okText="Sim"
+                  onConfirm={(_) => notify_signup_ninjas()}
+                >
+                  <Button type="primary">Notificar abertura</Button>
+                </Popconfirm>
+              ) : (
+                <></>
+              )}
+            </Col>
+            <Col>
+              {role === EUser.Organizer ? (
+                <Popconfirm
+                  title="Tens a certeza que queres notificar?"
+                  cancelText="Não"
+                  okText="Sim"
+                  onConfirm={(_) => notify_selected_ninjas()}
+                >
+                  <Button type="primary">Notificar selecionados</Button>
+                </Popconfirm>
+              ) : (
+                <></>
+              )}
+            </Col>
           </Row>
-        </>
-      ) : (
-        <></>
-      )}
-    </AppLayout>
+        </Row>
+        <Row className={styles.row} align="top" justify="space-between">
+          {events?.length > 0 && nextEvent() ? (
+            <Event
+              event={nextEvent()}
+              collapsed={false}
+              isLoading={isLoadingEvents}
+            />
+          ) : (
+            <Typography>Aguarda que o próximo evento seja divulgado</Typography>
+          )}
+        </Row>
+        <Title level={3}>Eventos</Title>
+        <Row
+          className={styles.row}
+          align="top"
+          justify="start"
+          gutter={[16, 16]}
+        >
+          {events?.slice(0, 3).map((event: any) => (
+            <Col key={event.id}>
+              <Event event={event} isLoading={isLoadingEvents} />
+            </Col>
+          ))}
+        </Row>
+        {role === EUser.Guardian ? (
+          <>
+            <Title level={3}>Ninjas</Title>
+            <Row
+              className={styles.row}
+              align="top"
+              justify="start"
+              gutter={[16, 16]}
+            >
+              {ninjas &&
+                ninjas.slice(0, 5).map((ninja: any) => (
+                  <Col key={ninja.id}>
+                    <Ninja {...ninja} />
+                  </Col>
+                ))}
+            </Row>
+          </>
+        ) : (
+          <></>
+        )}
+      </AppLayout>
+    </>
   );
 }
 

@@ -96,6 +96,21 @@ function Register({ cities }: any) {
           <Title level={3} style={{ margin: 0 }}>
             Basta preencheres o formulário abaixo para terminares o registo
           </Title>
+          {user?.role == EUser.Guardian && (
+            <Title
+              level={5}
+              style={{ margin: 0, marginTop: 10, textAlign: "center" }}
+            >
+              <Emoji label="Party Popper Emoji" style={{ margin: 4 }}>
+                ⚠️
+              </Emoji>
+              Deves preencher este formulário com as informações do tutor legal
+              da criança
+              <Emoji label="Party Popper Emoji" style={{ margin: 4 }}>
+                ⚠️
+              </Emoji>
+            </Title>
+          )}
         </Col>
       </Row>
 
@@ -142,14 +157,14 @@ function Register({ cities }: any) {
               rules={[
                 {
                   required: true,
-                  pattern: /^\+3519[12356]\d{7}$/,
+                  pattern: /^\9[12356]\d{7}$/,
                   message: "Não é um número de telemóvel válido",
                 },
               ]}
             >
               <Input
                 addonBefore={<CountrySelect />}
-                placeholder="+3519x0011222"
+                placeholder="9x0011222"
                 type="tel"
               />
             </Form.Item>
