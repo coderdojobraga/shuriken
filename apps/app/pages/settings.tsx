@@ -343,7 +343,15 @@ function Settings() {
                                 key={item}
                                 value={item.toLocaleLowerCase()}
                               >
-                                {getIcon(item)} {item}
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "5px",
+                                  }}
+                                >
+                                  {getIcon(item)} {item}
+                                </div>
                               </Option>
                             ))}
                           </Select>
