@@ -26,7 +26,7 @@ function Lectures() {
       .catch((error) => {
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível atualizar os dados da sessão"
+          "Não foi possível atualizar os dados da sessão",
         );
       });
   };

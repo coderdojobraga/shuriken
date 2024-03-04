@@ -19,7 +19,7 @@ export function getPosts(): IPost[] {
 
   // sort posts by date in descending order
   return posts.sort((post1: IPost, post2: IPost) =>
-    post1.date > post2.date ? -1 : 1
+    post1.date > post2.date ? -1 : 1,
   );
 }
 

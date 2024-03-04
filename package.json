@@ -30,5 +30,8 @@
     "npm": ">=7.0.0",
     "node": ">=16 <17"
   },
-  "packageManager": "npm@8.15.0"
+  "packageManager": "npm@8.15.0",
+  "dependencies": {
+    "@ant-design/icons": "^5.3.1"
+  }
 }
