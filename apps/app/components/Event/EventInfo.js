@@ -7,6 +7,7 @@ import {
   CloseCircleOutlined,
   EnvironmentOutlined,
   HomeOutlined,
+  TeamOutlined,
 } from "@ant-design/icons";
 
 function EventInfo({
@@ -17,6 +18,7 @@ function EventInfo({
   notes,
   enrollments_open,
   enrollments_close,
+  spots_available,
   breakpoints = { xs: 1, sm: 1, md: 1, lg: 1, xl: 1, xxl: 6 },
 }) {
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)", maxWidth: "30vw" };
@@ -51,6 +53,28 @@ function EventInfo({
         labelStyle={labelStyle}
         label={
           <span>
+            <AlignLeftOutlined /> Notas
+          </span>
+        }
+        span={5}
+      >
+        {notes}
+      </Descriptions.Item>
+      <Descriptions.Item
+        labelStyle={labelStyle}
+        label={
+          <span>
+            <TeamOutlined /> Limite de Vagas
+          </span>
+        }
+        span={2}
+      >
+        {spots_available}
+      </Descriptions.Item>
+      <Descriptions.Item
+        labelStyle={labelStyle}
+        label={
+          <span>
             <EnvironmentOutlined /> Localização
           </span>
         }
@@ -72,7 +96,6 @@ function EventInfo({
           minute: "numeric",
         })}
       </Descriptions.Item>
-
       <Descriptions.Item
         labelStyle={labelStyle}
         label={
@@ -97,17 +120,6 @@ function EventInfo({
         span={2}
       >
         {team?.name}
-      </Descriptions.Item>
-      <Descriptions.Item
-        labelStyle={labelStyle}
-        label={
-          <span>
-            <AlignLeftOutlined /> Notas
-          </span>
-        }
-        span={5}
-      >
-        {notes}
       </Descriptions.Item>
       <Descriptions.Item
         labelStyle={labelStyle}
