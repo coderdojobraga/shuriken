@@ -213,7 +213,6 @@ function EventPage() {
       registerMentorOnEvent(value);
     }
   };
-
   return (
     <AppLayout>
       <Title level={2}>Detalhes do evento</Title>
@@ -223,6 +222,7 @@ function EventPage() {
           collapsed={false}
           details={true}
           isLoading={isLoading}
+          enrolledNinjas={enrolledNinjas.length}
         />
       </Row>
       <Col>

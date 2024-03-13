@@ -11,22 +11,17 @@ import {
 } from "@ant-design/icons";
 
 function EventInfo({
-  start_time,
-  end_time,
-  location,
-  team,
-  notes,
-  enrollments_open,
-  enrollments_close,
-  spots_available,
+  event,
+  enrolledNinjas,
   breakpoints = { xs: 1, sm: 1, md: 1, lg: 1, xl: 1, xxl: 6 },
 }) {
+  enrolledNinjas = typeof enrolledNinjas !== "undefined" ? enrolledNinjas : 0;
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)", maxWidth: "30vw" };
 
   const timeForEnrollmentsClose = () => {
-    const enrollmentsClose = new Date(enrollments_close).getTime();
+    const enrollmentsClose = new Date(event.enrollments_close).getTime();
     const nowDate = new Date().getTime();
-    const timeDiff = (enrollmentsClose - nowDate) / (1000 * 60 * 60 * 24);
+    const timeDiff = (event.enrollmentsClose - nowDate) / (1000 * 60 * 60 * 24);
 
     return timeDiff > 0 && timeDiff < 1; // Difference of less than a day
   };
@@ -42,7 +37,7 @@ function EventInfo({
         }
         span={2}
       >
-        {new Date(start_time).toLocaleString("pt", {
+        {new Date(event.start_time).toLocaleString("pt", {
           weekday: "long",
           year: "numeric",
           month: "long",
@@ -58,7 +53,7 @@ function EventInfo({
         }
         span={5}
       >
-        {notes}
+        {event.notes}
       </Descriptions.Item>
       <Descriptions.Item
         labelStyle={labelStyle}
@@ -69,7 +64,7 @@ function EventInfo({
         }
         span={2}
       >
-        {spots_available}
+        {enrolledNinjas} / {event.spots_available}
       </Descriptions.Item>
       <Descriptions.Item
         labelStyle={labelStyle}
@@ -80,7 +75,7 @@ function EventInfo({
         }
         span={5}
       >
-        {location?.name}
+        {event.location?.name}
       </Descriptions.Item>
       <Descriptions.Item
         labelStyle={labelStyle}
@@ -91,7 +86,7 @@ function EventInfo({
         }
         span={2}
       >
-        {new Date(start_time).toLocaleString("pt", {
+        {new Date(event.start_time).toLocaleString("pt", {
           hour: "numeric",
           minute: "numeric",
         })}
@@ -105,7 +100,7 @@ function EventInfo({
         }
         span={5}
       >
-        {new Date(end_time).toLocaleString("pt", {
+        {new Date(event.end_time).toLocaleString("pt", {
           hour: "numeric",
           minute: "numeric",
         })}
@@ -119,7 +114,7 @@ function EventInfo({
         }
         span={2}
       >
-        {team?.name}
+        {event.team?.name}
       </Descriptions.Item>
       <Descriptions.Item
         labelStyle={labelStyle}
@@ -130,7 +125,7 @@ function EventInfo({
         }
         span={2}
       >
-        {new Date(enrollments_open).toLocaleDateString("pt", {
+        {new Date(event.enrollments_open).toLocaleDateString("pt", {
           year: "numeric",
           month: "long",
           day: "numeric",
@@ -153,7 +148,7 @@ function EventInfo({
         }
         span={2}
       >
-        {new Date(enrollments_close).toLocaleDateString("pt", {
+        {new Date(event.enrollments_close).toLocaleDateString("pt", {
           year: "numeric",
           month: "long",
           day: "numeric",
