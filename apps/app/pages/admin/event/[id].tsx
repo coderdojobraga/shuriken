@@ -56,6 +56,7 @@ function EventPage() {
           collapsed={false}
           details={true}
           isLoading={isLoading}
+          enrolledNinjas={0}
         />
       </Row>
       <Divider />

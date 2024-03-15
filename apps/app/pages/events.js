@@ -17,7 +17,7 @@ function Events() {
       <Row className={styles.row} align="top" justify="start" gutter={[16, 16]}>
         {events?.map((info) => (
           <Col key={info.id}>
-            <Event event={info} loading={isLoading} />
+            <Event event={info} loading={isLoading} enrolledNinjas={0} />
           </Col>
         ))}
       </Row>

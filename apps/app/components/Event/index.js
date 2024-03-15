@@ -17,6 +17,7 @@ const Event = ({
   collapsed = true,
   details = false,
   isLoading = false,
+  enrolledNinjas,
 }) => {
   const { user } = useAuth();
   const role = user?.role;
@@ -119,7 +120,7 @@ const Event = ({
                 </Descriptions.Item>
               </Descriptions>
             ) : (
-              <EventInfo {...event} />
+              <EventInfo event={event} enrolledNinjas={enrolledNinjas} />
             )}
             {role === EUser.Organizer ? (
               <>
