@@ -15,7 +15,7 @@ export function Header({ landing = false }: Props) {
     <section className={isDark && !landing ? "dark" : "light"}>
       <div className="dark:bg-dark">
         <header className="container mx-auto">
-          <nav className="mx-2 flex flex-row items-center justify-between pb-3 pt-7 lg:mx-12 xl:mx-20">
+          <nav className="mx-2 flex flex-row items-center justify-between pb-3 pt-7">
             <div className="cursor-pointer py-2">
               <Link href="/web">
                 <Image
