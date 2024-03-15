@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Descriptions } from "antd";
 import {
   AlignLeftOutlined,
@@ -9,14 +10,25 @@ import {
   HomeOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
+import { getEnrolledNinjas } from "bokkenjs";
 
 function EventInfo({
   event,
-  enrolledNinjas,
   breakpoints = { xs: 1, sm: 1, md: 1, lg: 1, xl: 1, xxl: 6 },
 }) {
-  enrolledNinjas = typeof enrolledNinjas !== "undefined" ? enrolledNinjas : 0;
   const labelStyle = { color: "rgba(0, 0, 0, 0.45)", maxWidth: "30vw" };
+  const [enrolledNinjas, setEnrolledNinjas] = useState([]);
+
+  useEffect(() => {
+    getEnrolledNinjas(event.id)
+      .then((response) => setEnrolledNinjas(response.data))
+      .catch((error) => {
+        notifyError(
+          "Ocorreu um erro",
+          "Não foi possível obter os ninjas inscritos"
+        );
+      });
+  }, [event.id]);
 
   const timeForEnrollmentsClose = () => {
     const enrollmentsClose = new Date(event.enrollments_close).getTime();
@@ -31,7 +43,7 @@ function EventInfo({
       <Descriptions.Item
         labelStyle={labelStyle}
         label={
-          <span>
+          <span className="flex items-center gap-x-1">
             <CalendarOutlined /> Data
           </span>
         }
@@ -47,7 +59,7 @@ function EventInfo({
       <Descriptions.Item
         labelStyle={labelStyle}
         label={
-          <span>
+          <span className="flex items-center gap-x-1">
             <AlignLeftOutlined /> Notas
           </span>
         }
@@ -58,18 +70,18 @@ function EventInfo({
       <Descriptions.Item
         labelStyle={labelStyle}
         label={
-          <span>
+          <span className="flex items-center gap-x-1">
             <TeamOutlined /> Limite de Vagas
           </span>
         }
         span={2}
       >
-        {enrolledNinjas} / {event.spots_available}
+        {enrolledNinjas.length} / {event.spots_available}
       </Descriptions.Item>
       <Descriptions.Item
         labelStyle={labelStyle}
         label={
-          <span>
+          <span className="flex items-center gap-x-1">
             <EnvironmentOutlined /> Localização
           </span>
         }
@@ -80,7 +92,7 @@ function EventInfo({
       <Descriptions.Item
         labelStyle={labelStyle}
         label={
-          <span>
+          <span className="flex items-center gap-x-1">
             <ClockCircleOutlined /> Início
           </span>
         }
@@ -94,7 +106,7 @@ function EventInfo({
       <Descriptions.Item
         labelStyle={labelStyle}
         label={
-          <span>
+          <span className="flex items-center gap-x-1">
             <ClockCircleOutlined /> Fim
           </span>
         }
@@ -108,7 +120,7 @@ function EventInfo({
       <Descriptions.Item
         labelStyle={labelStyle}
         label={
-          <span>
+          <span className="flex items-center gap-x-1">
             <HomeOutlined /> Turma
           </span>
         }
@@ -119,7 +131,7 @@ function EventInfo({
       <Descriptions.Item
         labelStyle={labelStyle}
         label={
-          <span>
+          <span className="flex items-center gap-x-1">
             <CheckCircleOutlined /> Abertura das inscrições
           </span>
         }
@@ -137,11 +149,11 @@ function EventInfo({
         labelStyle={labelStyle}
         label={
           timeForEnrollmentsClose() ? (
-            <span className="animate-bounce text-yellow-600">
+            <span className="flex animate-bounce items-center gap-x-1 text-yellow-600">
               <CloseCircleOutlined /> Fecho das inscrições
             </span>
           ) : (
-            <span>
+            <span className="flex items-center gap-x-1">
               <CloseCircleOutlined /> Fecho das inscrições
             </span>
           )

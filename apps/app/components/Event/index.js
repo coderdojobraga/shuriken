@@ -17,7 +17,6 @@ const Event = ({
   collapsed = true,
   details = false,
   isLoading = false,
-  enrolledNinjas,
 }) => {
   const { user } = useAuth();
   const role = user?.role;
@@ -59,7 +58,7 @@ const Event = ({
                 <Descriptions.Item
                   labelStyle={labelStyle}
                   label={
-                    <span>
+                    <span className="flex items-center gap-x-1">
                       <CalendarOutlined /> Data
                     </span>
                   }
@@ -74,7 +73,7 @@ const Event = ({
                 <Descriptions.Item
                   labelStyle={labelStyle}
                   label={
-                    <span>
+                    <span className="flex items-center gap-x-1">
                       <EnvironmentOutlined /> Localização
                     </span>
                   }
@@ -85,7 +84,7 @@ const Event = ({
                 <Descriptions.Item
                   labelStyle={labelStyle}
                   label={
-                    <span>
+                    <span className="flex items-center gap-x-1">
                       <ClockCircleOutlined /> Início
                     </span>
                   }
@@ -98,7 +97,7 @@ const Event = ({
                 <Descriptions.Item
                   labelStyle={labelStyle}
                   label={
-                    <span>
+                    <span className="flex items-center gap-x-1">
                       <ClockCircleOutlined /> Fim
                     </span>
                   }
@@ -111,7 +110,7 @@ const Event = ({
                 <Descriptions.Item
                   labelStyle={labelStyle}
                   label={
-                    <span>
+                    <span className="flex items-center gap-x-1">
                       <HomeOutlined /> Turma
                     </span>
                   }
@@ -120,7 +119,7 @@ const Event = ({
                 </Descriptions.Item>
               </Descriptions>
             ) : (
-              <EventInfo event={event} enrolledNinjas={enrolledNinjas} />
+              <EventInfo event={event} />
             )}
             {role === EUser.Organizer ? (
               <>
