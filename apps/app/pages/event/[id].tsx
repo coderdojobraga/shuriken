@@ -222,7 +222,6 @@ function EventPage() {
           collapsed={false}
           details={true}
           isLoading={isLoading}
-          enrolledNinjas={enrolledNinjas.length}
         />
       </Row>
       <Col>

@@ -110,7 +110,6 @@ function Dashboard() {
               event={nextEvent()}
               collapsed={false}
               isLoading={isLoadingEvents}
-              enrolledNinjas={0}
             />
           ) : (
             <Typography>Aguarda que o próximo evento seja divulgado</Typography>
@@ -125,11 +124,7 @@ function Dashboard() {
         >
           {events?.slice(0, 3).map((event: any) => (
             <Col key={event.id}>
-              <Event
-                event={event}
-                isLoading={isLoadingEvents}
-                enrolledNinjas={0}
-              />
+              <Event event={event} isLoading={isLoadingEvents} />
             </Col>
           ))}
         </Row>
