@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Alert } from "antd";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAuth } from "@coderdojobraga/ui";
@@ -161,8 +162,7 @@ function EventPage() {
       .then(() =>
         notifyInfo(
           "Info",
-          `A tua inscrição foi recebida com sucesso - ${
-            is_available ? "disponível" : "não disponível"
+          `A tua inscrição foi recebida com sucesso - ${is_available ? "disponível" : "não disponível"
           }`
         )
       )
@@ -190,8 +190,7 @@ function EventPage() {
           .then(() =>
             notifyInfo(
               "Info",
-              `A tua inscrição foi atualizada com sucesso - ${
-                is_available ? "disponível" : "não disponível"
+              `A tua inscrição foi atualizada com sucesso - ${is_available ? "disponível" : "não disponível"
               }`
             )
           )
@@ -215,6 +214,13 @@ function EventPage() {
   };
   return (
     <AppLayout>
+      <Alert
+        message="O número total de vagas para a sessão do dia 23 de março foi atingida."
+        type="warning"
+        showIcon
+        closable
+        style={{ marginBottom: "1rem" }}
+      />
       <Title level={2}>Detalhes do evento</Title>
       <Row align="top" justify="space-between" style={{ marginBottom: "8px" }}>
         <Event

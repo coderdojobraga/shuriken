@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Popconfirm, Row, Typography } from "antd";
+import { Alert, Button, Col, Popconfirm, Row, Typography } from "antd";
 import { useAuth } from "@coderdojobraga/ui";
 import { withAuth } from "~/components/Auth/withAuth";
 import AppLayout from "~/layouts/AppLayout";
@@ -70,6 +70,13 @@ function Dashboard() {
   return (
     <>
       <AppLayout>
+        <Alert
+          message="O número total de vagas para a sessão do dia 23 de março foi atingido."
+          type="warning"
+          showIcon
+          closable
+          style={{ marginBottom: "1rem" }}
+        />
         <Title level={2}>Painel Principal</Title>
         <Row justify="space-between" gutter={8}>
           <Title level={3}>Próximo Evento</Title>
