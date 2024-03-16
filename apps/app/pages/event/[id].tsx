@@ -1,9 +1,6 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { useAuth } from "@coderdojobraga/ui";
-import { withAuth } from "~/components/Auth";
 import {
+  Alert,
   Avatar,
   Button,
   Col,
@@ -15,6 +12,10 @@ import {
   Select,
   Typography,
 } from "antd";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useAuth } from "@coderdojobraga/ui";
+import { withAuth } from "~/components/Auth";
 import { useEvent } from "~/hooks/events";
 import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
@@ -215,6 +216,13 @@ function EventPage() {
   };
   return (
     <AppLayout>
+      <Alert
+        message="O número total de vagas para a sessão do dia 23 de março foi atingida."
+        type="warning"
+        showIcon
+        closable
+        style={{ marginBottom: "1rem" }}
+      />
       <Title level={2}>Detalhes do evento</Title>
       <Row align="top" justify="space-between" style={{ marginBottom: "8px" }}>
         <Event
