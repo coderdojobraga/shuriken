@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Popconfirm, Row, Typography } from "antd";
+import { Button, Col, Modal, Popconfirm, Row, Typography } from "antd";
 import { useAuth } from "@coderdojobraga/ui";
 import { withAuth } from "~/components/Auth/withAuth";
 import AppLayout from "~/layouts/AppLayout";
@@ -9,6 +9,7 @@ import { EUser, getNinjas, notify_selected, notify_signup } from "bokkenjs";
 import Ninja from "~/components/Ninja";
 import { useEvents } from "~/hooks/events";
 import { notifyError, notifyInfo } from "~/components/Notification";
+import FeedbackModal from "~/components/FeedbackModal";
 import styles from "~/styles/Dashboard.module.css";
 import moment from "moment";
 
@@ -34,10 +35,35 @@ function Dashboard() {
     return sorted_events[0] != undefined ? sorted_events[0] : false;
   };
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const [tabsInfo, setTabsInfo] = useState([
+    { tabTitle: "None", info: "Sem informação" },
+  ]);
+
   const notify_signup_ninjas = () => {
     notify_signup()
-      .then(() => {
-        notifyInfo("Enviado com sucesso!");
+      .then((response) => {
+        setTabsInfo((prevTabsInfo) => [
+          {
+            tabTitle: "Enviados",
+            info: response.success,
+          },
+          {
+            tabTitle: "Não enviados",
+            info: response.fail,
+          },
+        ]);
+        openModal();
+        notifyInfo("Enviado com successo!");
       })
       .catch((error) => {
         notifyError("Não foi enviado!");
@@ -46,8 +72,19 @@ function Dashboard() {
 
   const notify_selected_ninjas = () => {
     notify_selected()
-      .then(() => {
-        notifyInfo("Enviado com sucesso!");
+      .then((response) => {
+        setTabsInfo((prevTabsInfo) => [
+          {
+            tabTitle: "Enviados",
+            info: response.success,
+          },
+          {
+            tabTitle: "Não enviados",
+            info: response.fail,
+          },
+        ]);
+        openModal();
+        notifyInfo("Enviado com successo!");
       })
       .catch((error) => {
         notifyError("Não foi enviado!");
@@ -149,6 +186,12 @@ function Dashboard() {
           <></>
         )}
       </AppLayout>
+      <FeedbackModal
+        visible={modalVisible}
+        onClose={closeModal}
+        tabsInfo={tabsInfo}
+        modalTitle="Relatório de e-mails"
+      />
     </>
   );
 }
