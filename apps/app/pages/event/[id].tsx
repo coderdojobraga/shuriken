@@ -1,10 +1,6 @@
 import Link from "next/link";
-import { Alert } from "antd";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { useAuth } from "@coderdojobraga/ui";
-import { withAuth } from "~/components/Auth";
 import {
+  Alert,
   Avatar,
   Button,
   Col,
@@ -16,6 +12,10 @@ import {
   Select,
   Typography,
 } from "antd";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useAuth } from "@coderdojobraga/ui";
+import { withAuth } from "~/components/Auth";
 import { useEvent } from "~/hooks/events";
 import AppLayout from "~/layouts/AppLayout";
 import Event from "~/components/Event";
@@ -162,7 +162,8 @@ function EventPage() {
       .then(() =>
         notifyInfo(
           "Info",
-          `A tua inscrição foi recebida com sucesso - ${is_available ? "disponível" : "não disponível"
+          `A tua inscrição foi recebida com sucesso - ${
+            is_available ? "disponível" : "não disponível"
           }`
         )
       )
@@ -190,7 +191,8 @@ function EventPage() {
           .then(() =>
             notifyInfo(
               "Info",
-              `A tua inscrição foi atualizada com sucesso - ${is_available ? "disponível" : "não disponível"
+              `A tua inscrição foi atualizada com sucesso - ${
+                is_available ? "disponível" : "não disponível"
               }`
             )
           )
