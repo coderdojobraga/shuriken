@@ -8,6 +8,7 @@ import {
   DatePicker,
   Form,
   Input,
+  Modal,
   Row,
   Select,
   Space,
@@ -20,7 +21,7 @@ import * as api from "bokkenjs";
 import { notifyError, notifyInfo } from "~/components/Notification";
 const { Title } = Typography;
 
-export default function NinjaForm({ id }) {
+export default function NinjaForm({ id, reloadNinjas }) {
   const router = useRouter();
   const [form] = Form.useForm();
 
@@ -29,6 +30,8 @@ export default function NinjaForm({ id }) {
   const [userSkills, setUserSkills] = useState([]);
   const [skills, setSkills] = useState([]);
   const [selectedSkills, setSelectedSkills] = useState([]);
+
+  const [isModalVisible, setIsModalVisible] = useState(true);
 
   const getAllSkills = () => {
     api
@@ -105,12 +108,13 @@ export default function NinjaForm({ id }) {
         .then(() => {
           changeSkills(id);
           notifyInfo("O ninja foi editado com sucesso");
-          router.push("/ninjas");
+          //reloadNinjas(); // Does not work because of invalid date, the data from the response returns undefined in ninja.birthday
+          router.reload(); // This works for now, but it is not the best solution, we need to fix the invalid date
         })
         .catch((error) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível atualizar os dados do ninja"
+            "Não foi possível atualizar os dados do ninja" + error
           );
         });
     } else {
@@ -118,7 +122,8 @@ export default function NinjaForm({ id }) {
         .createNinja(values)
         .then((response) => {
           changeSkills(response.data.id);
-          router.push("/ninjas");
+          notifyInfo("O ninja foi criado com sucesso");
+          reloadNinjas();
         })
         .catch((error) => {
           notifyError("Ocorreu um erro", "Não foi possível criar o ninja");
@@ -133,95 +138,93 @@ export default function NinjaForm({ id }) {
     xxl: 6,
   };
 
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <>
-      <Row justify="space-between">
-        <Title level={2}>
-          {id && ninja
-            ? ninja.first_name + " " + ninja.last_name
-            : "Novo Ninja"}
-        </Title>
-        <Space>
-          <Link href="/ninjas">
-            <Button
-              danger
-              shape="circle"
-              size="large"
-              icon={<CloseOutlined />}
-            />
-          </Link>
-          <Button
-            shape="circle"
-            type="primary"
-            size="large"
-            icon={<SaveOutlined />}
-            onClick={() => form.submit()}
-          />
-        </Space>
-      </Row>
-      <Row align="middle">
-        <Col xs={24} sm={24} md={20} lg={16} xl={12}>
-          <Form
-            {...{
-              labelCol: { span: 8 },
-              wrapperCol: { span: 16 },
-            }}
-            initialValues={ninja}
-            form={form}
-            onFinish={onFinish}
-          >
-            <Form.Item
-              label="Nome"
-              name="ninja[first_name]"
-              rules={[{ required: true }]}
-              initialValue={ninja ? ninja.first_name : null}
+      <Modal
+        title={id ? "Editar Ninja" : "Criar Novo Ninja"}
+        open={isModalVisible}
+        onCancel={handleCancel}
+        onOk={() => {
+          form.submit();
+          setIsModalVisible(false);
+        }}
+        width={700}
+      >
+        <Row justify="center">
+          <Title level={2}>
+            {id && ninja
+              ? ninja.first_name + " " + ninja.last_name
+              : "Novo Ninja"}
+          </Title>
+        </Row>
+        <Row justify="center" align="middle">
+          <Col xs={24} sm={24} md={20} lg={16} xl={12}>
+            <Form
+              {...{
+                labelCol: { span: 8 },
+                wrapperCol: { span: 16 },
+              }}
+              initialValues={ninja}
+              form={form}
+              onFinish={onFinish}
             >
-              <Input placeholder="Linus" />
-            </Form.Item>
-            <Form.Item
-              label="Apelido"
-              name="ninja[last_name]"
-              rules={[{ required: true }]}
-              initialValue={id && ninja ? ninja.last_name : ""}
-            >
-              <Input placeholder="Torvalds" />
-            </Form.Item>
-            <Form.Item
-              label="Aniversário"
-              name="ninja[birthday]"
-              rules={[{ required: true }]}
-              initialValue={
-                id && ninja ? moment(ninja.birthday, "YYYY-MM-DD") : null
-              }
-            >
-              <DatePicker />
-            </Form.Item>
-
-            <Form.Item label="Quer aprender">
-              <Select
-                mode="multiple"
-                placeholder="Adicionar linguagem"
-                onChange={setSelectedSkills}
-                value={selectedSkills}
-                style={{ minWidth: "200px" }}
+              <Form.Item
+                label="Nome"
+                name="ninja[first_name]"
+                rules={[{ required: true }]}
+                initialValue={ninja ? ninja.first_name : null}
               >
-                {skills.map((s) => (
-                  <Select.Option key={s.id} value={s.id}>
-                    {s.name}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Row justify="center">
-              <Link href="/blog/posts/choosing-first-language">
-                <Button type="secondary">
-                  Como escolher a linguagem para o ninja aprender?
-                </Button>
-              </Link>
-            </Row>
-          </Form>
-        </Col>
-      </Row>
+                <Input placeholder="Linus" />
+              </Form.Item>
+              <Form.Item
+                label="Apelido"
+                name="ninja[last_name]"
+                rules={[{ required: true }]}
+                initialValue={id && ninja ? ninja.last_name : ""}
+              >
+                <Input placeholder="Torvalds" />
+              </Form.Item>
+              <Form.Item
+                label="Aniversário"
+                name="ninja[birthday]"
+                rules={[{ required: true }]}
+                initialValue={
+                  moment() // for now I choosed always the current date so that it's easier to use //id && ninja ? moment(ninja.birthday, "YYYY-MM-DD") : null
+                }
+              >
+                <DatePicker />
+              </Form.Item>
+
+              <Form.Item label="Quer aprender">
+                <Select
+                  mode="multiple"
+                  placeholder="Adicionar linguagem"
+                  onChange={setSelectedSkills}
+                  value={selectedSkills}
+                  style={{ minWidth: "200px" }}
+                >
+                  {skills.map((s) => (
+                    <Select.Option key={s.id} value={s.id}>
+                      {s.name}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+              <Row justify="center">
+                <Link href="/blog/posts/choosing-first-language">
+                  <Button type="secondary">
+                    Como escolher a linguagem para o ninja aprender?
+                  </Button>
+                </Link>
+              </Row>
+            </Form>
+          </Col>
+        </Row>
+      </Modal>
     </>
   );
 }
