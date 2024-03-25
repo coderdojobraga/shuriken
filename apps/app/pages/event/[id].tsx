@@ -66,7 +66,7 @@ function EventPage() {
         .catch((_error) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível obter os mentores disponíveis"
+            "Não foi possível obter os mentores disponíveis",
           );
         });
     }
@@ -78,14 +78,14 @@ function EventPage() {
         .then((response: any) =>
           setEnrolledNinjas(
             response.data.filter(
-              (entity: any) => entity?.ninja.guardian_id === user?.guardian_id!
-            )
-          )
+              (entity: any) => entity?.ninja.guardian_id === user?.guardian_id!,
+            ),
+          ),
         )
         .catch((_error) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível obter os ninjas inscritos"
+            "Não foi possível obter os ninjas inscritos",
           );
         });
     }
@@ -98,7 +98,7 @@ function EventPage() {
         .catch((_error) => {
           notifyError(
             "Ocorreu um erro",
-            "Não foi possível obter os seus ninjas"
+            "Não foi possível obter os seus ninjas",
           );
         });
     }
@@ -106,14 +106,14 @@ function EventPage() {
 
   const intersectNinjaData = () => {
     const enrolledNinjasIDs = enrolledNinjas.map(
-      (entity: any) => entity?.ninja.id
+      (entity: any) => entity?.ninja.id,
     );
 
     return ninjas.map((ninja: any) => {
       enrolledNinjasIDs.map((id: any) => {
         if (ninja.id === id) {
           setNinjas((state) =>
-            state.filter((element: any) => element.id != ninja.id)
+            state.filter((element: any) => element.id != ninja.id),
           );
         }
       });
@@ -127,8 +127,8 @@ function EventPage() {
         .then(() =>
           notifyInfo(
             "Info",
-            `O Ninja ${parsedNinja.first_name} ${parsedNinja.last_name} foi inscrito com sucesso`
-          )
+            `O Ninja ${parsedNinja.first_name} ${parsedNinja.last_name} foi inscrito com sucesso`,
+          ),
         )
         .then(() => router.push("/events"))
         .catch((_error) => {
@@ -157,21 +157,21 @@ function EventPage() {
       user?.mentor_id!,
       event_id as string,
       is_available,
-      notes
+      notes,
     )
       .then(() =>
         notifyInfo(
           "Info",
           `A tua inscrição foi recebida com sucesso - ${
             is_available ? "disponível" : "não disponível"
-          }`
-        )
+          }`,
+        ),
       )
       .then(() => router.push("/events"))
       .catch((_error) => {
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível inscrever-te na sessão"
+          "Não foi possível inscrever-te na sessão",
         );
       });
   };
@@ -186,21 +186,21 @@ function EventPage() {
           user?.mentor_id!,
           event_id as string,
           is_available,
-          notes
+          notes,
         )
           .then(() =>
             notifyInfo(
               "Info",
               `A tua inscrição foi atualizada com sucesso - ${
                 is_available ? "disponível" : "não disponível"
-              }`
-            )
+              }`,
+            ),
           )
           .then(() => router.push("/events"))
           .catch((_error) => {
             notifyError(
               "Ocorreu um erro",
-              "Não foi possível atualizar a tua inscrição"
+              "Não foi possível atualizar a tua inscrição",
             );
           });
       }

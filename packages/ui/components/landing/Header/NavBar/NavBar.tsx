@@ -3,14 +3,12 @@ import Link from "next/link";
 import { Grid } from "antd";
 
 import { DashboardOutlined, LogoutOutlined } from "@ant-design/icons";
-
-import { ThemeToggle, useAuth } from "@coderdojobraga/ui";
+import { ThemeToggle, useAuth, useTheme } from "@coderdojobraga/ui";
 import MobileNavBar from "../MobileNavBar/MobileNavBar";
-
 import { MENU_ENTRIES } from "../config";
 import { getUserInitials } from "../utils";
-
 import styles from "./style.module.css";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 const { useBreakpoint } = Grid;
 
@@ -31,9 +29,9 @@ interface UserDropDownProps {
 
 const UserDropDown = ({ logout }: UserDropDownProps) => (
   <ul>
-    <li className="flex items-center justify-start gap-x-2">
+    <li className="flex items-center justify-start gap-x-2 text-base">
       <DashboardOutlined />
-      <Link href="/dashboard">Dashboard</Link>
+      <Link href="/dashboard">Secretaria</Link>
     </li>
     <li className="flex items-center justify-start gap-x-2">
       <LogoutOutlined className="mt-2" />
@@ -66,18 +64,66 @@ function NavBar({ landing = true }: any) {
   const { user, isLoading, logout } = useAuth();
 
   const [userDropdownVisible, setUserDropdownVisible] = useState(false);
+  const [eventosDropdownVisible, setEventosDropdownVisible] = useState(false);
+  const { isDark } = useTheme();
+
+  const closeEventsDropdown = () => {
+    setEventosDropdownVisible(false);
+  };
+
+  const closeUserDropdown = () => {
+    setUserDropdownVisible(false);
+  };
 
   if (screens.md) {
     return (
-      <ul className="flex items-center gap-8 text-sm uppercase text-black md:flex">
+      <ul
+        className={`flex items-center gap-5 text-base uppercase text-${
+          isDark ? "white" : "black"
+        } md:flex`}
+      >
         {MENU_ENTRIES.map(({ key, text }) => (
           <Entry href={key} text={text} />
         ))}
-
+        <li
+          className="cursor-pointer text-base "
+          onClick={() => {
+            setEventosDropdownVisible(!eventosDropdownVisible);
+            closeUserDropdown();
+          }}
+        >
+          <span
+            className={
+              "hover:text-primary flex cursor-pointer items-center gap-1 dark:text-white"
+            }
+          >
+            Eventos
+            <ChevronDownIcon className="h-5 w-5" />
+          </span>
+          <div
+            className={`absolute z-10 mt-2 ${
+              eventosDropdownVisible
+                ? "opacity-100"
+                : "invisible -translate-y-full opacity-0"
+            } -translate-x-1/4 transform px-4 py-2 transition-all duration-300`}
+          >
+            <ul>
+              <li className="hover:text-primary cursor-pointer dark:text-white">
+                <Link href="/web/dojocon">Dojo Con</Link>
+              </li>
+              <li className="hover:text-primary cursor-pointer dark:text-white">
+                <Link href="/codercamp">Code Camp</Link>
+              </li>
+            </ul>
+          </div>
+        </li>
         {user ? (
           <li
-            className="text-bold cursor-pointer"
-            onClick={() => setUserDropdownVisible(!userDropdownVisible)}
+            className="cursor-pointer text-xl"
+            onClick={() => {
+              setUserDropdownVisible(!userDropdownVisible);
+              closeEventsDropdown();
+            }}
           >
             {user.photo ? (
               /* eslint-disable @next/next/no-img-element */
@@ -105,7 +151,6 @@ function NavBar({ landing = true }: any) {
         ) : (
           <LoginButton isLoading={isLoading} />
         )}
-
         <li>
           <ThemeToggle visible={!landing} />
         </li>

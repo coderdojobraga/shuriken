@@ -9,7 +9,7 @@ export async function getEnrolledNinjas(event_id: string) {
 export async function createEnrollment(
   ninja_id: string,
   event_id: string,
-  accepted: boolean
+  accepted: boolean,
 ) {
   const response = await API.post(`/api/events/${event_id}/enrollments`, {
     enrollment: {

@@ -72,7 +72,7 @@ function Register({ cities }: any) {
         setErrors(error?.data?.errors);
         notifyError(
           "Não foi possível completar o registo",
-          "Tente novamente mais tarde"
+          "Tente novamente mais tarde",
         );
       })
       .finally(() => setLoading(false));

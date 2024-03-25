@@ -116,14 +116,14 @@ function Users() {
               ...user,
               key: user.id,
             };
-          })
+          }),
         );
       })
       .catch((_error: any) =>
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível obter os dados dos utilizadores"
-        )
+          "Não foi possível obter os dados dos utilizadores",
+        ),
       );
   }, [editingKey]);
 
@@ -158,8 +158,8 @@ function Users() {
     updateUserAsAdmin(key, user).catch((_error: any) =>
       notifyError(
         "Ocorreu um erro",
-        "Não foi possível atualizar os dados do utilizador"
-      )
+        "Não foi possível atualizar os dados do utilizador",
+      ),
     );
 
     cancel();
@@ -168,7 +168,7 @@ function Users() {
   const handleSearch = (
     selectedKeys: string[],
     confirm: (param?: FilterConfirmProps) => void,
-    dataIndex: string
+    dataIndex: string,
   ) => {
     confirm();
     setSearchText(selectedKeys[0]);

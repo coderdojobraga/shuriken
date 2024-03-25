@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import { Drawer } from "antd";
+import { Drawer, Menu, Divider } from "antd";
 import {
   BookOutlined,
   CrownOutlined,
@@ -30,6 +30,12 @@ const icons = {
   "/web/faqs": <QuestionCircleOutlined />,
   "/web/codercamp": <CalendarOutlined />,
   "/blog": <BookOutlined />,
+};
+
+const events = {
+  "/web/dojocon": { icon: <CalendarOutlined />, text: "Dojo Con" },
+  "/web/codercamp": { icon: <CalendarOutlined />, text: "Code Camp" },
+  // Add more events here if needed
 };
 
 interface LoginButtonProps {
@@ -68,7 +74,7 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
 
   return (
     <Drawer
-      className="flex md:hidden"
+      className={`flex md:hidden ${isDark ? "dark-menu-drawer" : ""}`}
       placement="right"
       onClose={() => setVisibleDrawer(false)}
       open={isDrawerVisible}
@@ -89,7 +95,11 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
         </div>
       }
     >
-      <ul className="flex flex-col items-center gap-6 text-xl uppercase">
+      <ul
+        className={`flex flex-col items-center gap-6 text-xl uppercase ${
+          isDark ? "dark-menu" : ""
+        }`}
+      >
         {MENU_ENTRIES.map(({ key, text }) => (
           <li className="hover:text-primary cursor-pointer">
             <div
@@ -102,10 +112,24 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
             </div>
           </li>
         ))}
+        <Divider style={{ marginTop: "-10px", marginBottom: "-14px" }} />
 
+        {Object.entries(events).map(([key, event]) => (
+          <li key={key} className="hover:text-primary cursor-pointer">
+            <div
+              className={`flex items-center justify-center gap-x-2 ${
+                isDark && "text-white"
+              }`}
+            >
+              {event.icon}
+              <Link href={key}>{event.text}</Link>
+            </div>
+          </li>
+        ))}
+        <Divider style={{ marginTop: "-10px", marginBottom: "-14px" }} />
         {user ? (
           <>
-            <li className="hover:text-primary cursor-pointer">
+            <li className="hover:text-primary cursor-pointer ">
               <Link href="/dashboard">
                 <div
                   className={`flex items-center justify-center gap-x-2 ${
@@ -113,7 +137,10 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
                   }`}
                 >
                   <DashboardOutlined />
-                  <p className="hover:text-primary cursor-pointer">Dashboard</p>
+                  <p className="hover:text-primary cursor-pointer">
+                    {" "}
+                    Secretaria
+                  </p>
                 </div>
               </Link>
             </li>
@@ -121,6 +148,11 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
             <button
               className="hover:text-primary cursor-pointer"
               onClick={(_) => onDrawerLogOut()}
+              style={{
+                position: "absolute",
+                bottom: "0",
+                marginBottom: "30px",
+              }}
             >
               <div
                 className={`flex items-center justify-center gap-x-2 ${
@@ -133,9 +165,13 @@ const MenuDrawer = ({ isDrawerVisible, setVisibleDrawer }: MenuDrawerProps) => {
             </button>
           </>
         ) : (
-          <Link href="/dashboard/login">
-            <LoginButton isLoading={isLoading} isDark={isDark} />
-          </Link>
+          <div
+            style={{ position: "absolute", bottom: "0", marginBottom: "40px" }}
+          >
+            <Link href="/dashboard/login">
+              <LoginButton isLoading={isLoading} isDark={isDark} />
+            </Link>
+          </div>
         )}
       </ul>
     </Drawer>
@@ -176,6 +212,7 @@ function MobileNavBar({ landing = false }: { landing?: boolean }) {
         </>
       ) : (
         <>
+          Dashboard
           <button
             onClick={() => setVisibleDrawer(true)}
             type="button"
@@ -183,7 +220,6 @@ function MobileNavBar({ landing = false }: { landing?: boolean }) {
           >
             <MenuOutlined />
           </button>
-
           <MenuDrawer
             isDrawerVisible={isDrawerVisible}
             setVisibleDrawer={setVisibleDrawer}

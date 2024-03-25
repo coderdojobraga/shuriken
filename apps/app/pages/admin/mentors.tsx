@@ -123,14 +123,14 @@ function Mentors() {
               name: `${mentor.first_name} ${mentor.last_name}`,
               key: mentor.id,
             };
-          })
+          }),
         );
       })
       .catch((_error) =>
         notifyError(
           "Ocorreu um erro",
-          "Não foi possível obter os dados dos mentores"
-        )
+          "Não foi possível obter os dados dos mentores",
+        ),
       );
   }, [editingKey]);
 
@@ -176,8 +176,8 @@ function Mentors() {
     updateMentorAsAdmin(key, data).catch((_error) =>
       notifyError(
         "Ocorreu um erro",
-        "Não foi possível atualizar os dados do mentor"
-      )
+        "Não foi possível atualizar os dados do mentor",
+      ),
     );
 
     cancel();
@@ -186,7 +186,7 @@ function Mentors() {
   const handleSearch = (
     selectedKeys: string[],
     confirm: (param?: FilterConfirmProps) => void,
-    dataIndex: string
+    dataIndex: string,
   ) => {
     confirm();
     setSearchText(selectedKeys[0]);
