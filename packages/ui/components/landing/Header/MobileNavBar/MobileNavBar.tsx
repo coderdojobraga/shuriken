@@ -28,7 +28,6 @@ const icons = {
   "/web/team": <TeamOutlined />,
   "/web/hall-of-fame": <CrownOutlined />,
   "/web/faqs": <QuestionCircleOutlined />,
-  "/web/codercamp": <CalendarOutlined />,
   "/blog": <BookOutlined />,
 };
 
