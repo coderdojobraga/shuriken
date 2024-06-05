@@ -13,8 +13,10 @@ import {
   Typography,
   Upload,
 } from "antd";
+import ImgCrop from "antd-img-crop";
 import moment from "moment";
 import {
+  ConsoleSqlOutlined,
   MinusCircleOutlined,
   PlusOutlined,
   UploadOutlined,
@@ -24,6 +26,7 @@ import { useAuth } from "@coderdojobraga/ui";
 import { notifyError, notifyInfo } from "~/components/Notification";
 import { getIcon } from "~/lib/utils";
 import {
+  API_URL,
   EUser,
   addMentorSkills,
   addNinjaSkills,
@@ -62,8 +65,8 @@ function Settings() {
   const { user, edit_user, isLoading } = useAuth();
   const [formPersonal] = Form.useForm();
   const [formPassword] = Form.useForm();
-  const [avatar, setAvatar] = useState<undefined | string>();
-
+  const [avatar, setAvatar] = useState<null | File | string>();
+  const [avatarPreview, setAvatarPreview] = useState<null | string>();
   const [userSkills, setUserSkills] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<any[]>([]);
@@ -77,6 +80,22 @@ function Settings() {
     "Discord",
     "Slack",
   ]);
+
+  if (
+    !avatarPreview &&
+    typeof avatar === "string" &&
+    avatar.startsWith("/uploads/")
+  ) {
+    setAvatarPreview(API_URL + avatar);
+  }
+
+  const onSubmit = (values: any) => {
+    if (avatar) {
+      values["user[photo]"] = avatar;
+    }
+
+    edit_user(values);
+  };
 
   const getAllSkills = () => {
     getSkills()
@@ -210,7 +229,9 @@ function Settings() {
   }, [user?.role, user?.mentor_id, formPersonal]);
 
   useEffect(() => {
-    setAvatar(user?.photo);
+    if (user?.photo) {
+      setAvatar(user?.photo);
+    }
     getUserSkills();
     getAllSkills();
   }, [user, getUserSkills]);
@@ -252,22 +273,27 @@ function Settings() {
           </Space>
         </Col>
       </Row>
-      <Form form={formPersonal} onFinish={edit_user} layout="vertical">
+      <Form form={formPersonal} onFinish={onSubmit} layout="vertical">
         <Section title="Foto de Perfil" />
         <Space>
-          <Avatar size={100} src={avatar} />
+          <Avatar size={100} src={avatarPreview} />
           <Form.Item name="user[photo]">
-            <Upload
-              accept="image/*"
-              maxCount={1}
-              beforeUpload={(file) => {
-                getBase64(file, (imageUrl: any) => setAvatar(imageUrl));
-                return false;
-              }}
-              onRemove={() => setAvatar(user?.photo)}
-            >
-              <Button icon={<UploadOutlined />}>Upload</Button>
-            </Upload>
+            <ImgCrop>
+              <Upload
+                accept="image/*"
+                maxCount={1}
+                beforeUpload={(file: File) => {
+                  setAvatar(file);
+                  getBase64(file, (result: string) => {
+                    setAvatarPreview(result);
+                  });
+                  return false;
+                }}
+                onRemove={() => setAvatar(user?.photo)}
+              >
+                <Button icon={<UploadOutlined />}>Upload</Button>
+              </Upload>
+            </ImgCrop>
           </Form.Item>
         </Space>
         <Section title="Informações Pessoais" />
