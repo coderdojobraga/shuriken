@@ -125,9 +125,8 @@ function Signup() {
       </Form.Item>
 
       <Form.Item
-        className={styles.button}
         validateStatus={errors && "error"}
-        help={errors || "Email já registado"}
+        help={!errors || "Email já registado"}
       >
         <Button
           type="primary"
