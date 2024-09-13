@@ -8,6 +8,7 @@ const Home = () => (
   <div style={{ overflow: "hidden" }}>
     <Header landing={true} />
     <Hero />
+
     <div className="container mx-auto">
       <section className="relative mx-2 md:mt-28 lg:mx-12 xl:mx-20">
         <div className="container my-8 flex w-11/12 flex-col items-start py-2 sm:w-10/12 lg:w-4/6">
@@ -32,7 +33,7 @@ const Home = () => (
     </div>
 
     <div className="container mx-auto">
-      <section className="relative mx-2 my-12 flex justify-end text-white lg:mx-12 xl:mx-20">
+      <section className="relative mx-2 flex justify-end text-white lg:mx-12 xl:mx-20">
         <div className="container my-8 flex w-11/12 flex-col items-end py-2 sm:w-10/12 lg:w-4/6">
           <h2 className="gap-1 py-2 text-2xl font-semibold text-white sm:text-3xl">
             Como funciona o Dojo?
@@ -48,30 +49,28 @@ const Home = () => (
       </section>
     </div>
 
-    <div className="container mx-auto pb-96"></div>
-    <div className="bg-dark">
-      <div className="container mx-auto">
-        <section className="relative mx-2 py-10 text-white lg:mx-12 xl:mx-20">
-          <div className="container mx-auto">
-            <hr className="mx-auto w-6/12 border-purple-500 py-2 text-center lg:w-3/12" />
-            <div className="m-4 mx-auto w-9/12 text-center text-2xl md:w-8/12">
-              O CoderDojo Braga pretende dar a todas as crianças e jovens da
-              região minhota a oportunidade de aprenderem a programar num
-              ambiente amigável e divertido.
-            </div>
-            <div className="mx-auto mt-12 w-24">
-              <Image
-                layout="fixed"
-                width={80}
-                height={80}
-                src="/img/logo-draw-white.svg"
-                alt="CoderDojo Braga Draw Logo"
-              />
-            </div>
+    <div className="container mx-auto">
+      <section className="relative mx-2 mb-8 mt-1 text-white md:mt-28 lg:mx-12 xl:mx-20">
+        <div className="container mx-auto">
+          <hr className="mx-auto w-6/12 border-purple-500 py-2 text-center lg:w-3/12" />
+          <div className="m-4 mx-auto w-9/12 text-center text-2xl md:w-8/12">
+            O CoderDojo Braga pretende dar a todas as crianças e jovens da
+            região minhota a oportunidade de aprenderem a programar num ambiente
+            amigável e divertido.
           </div>
-        </section>
-      </div>
+          <div className="mx-auto mt-12 w-24">
+            <Image
+              layout="fixed"
+              width={80}
+              height={80}
+              src="/img/logo-draw-white.svg"
+              alt="CoderDojo Braga Draw Logo"
+            />
+          </div>
+        </div>
+      </section>
     </div>
+
     <Footer bgColor="dark" fgColor="white" />
   </div>
 );
