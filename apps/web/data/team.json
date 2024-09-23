@@ -1,17 +1,17 @@
 [
   {
-    "picture": "guardapedropereira.jpg",
-    "name": "Pedro Pereira",
+    "picture": "heldergomes.jpg",
+    "name": "Hélder Gomes",
     "role": "Champion"
-  },
-  {
-    "picture": "juliopinto.jpg",
-    "name": "Júlio Pinto",
-    "role": "Co-Champion"
   },
   {
     "picture": "martasilva.jpg",
     "name": "Marta Silva",
+    "role": "Co-Champion"
+  },
+  {
+    "picture": "guardapedropereira.jpg",
+    "name": "Pedro Pereira",
     "role": "Co-Champion"
   },
   {
@@ -20,38 +20,48 @@
     "role": "Co-Champion"
   },
   {
-    "picture": "afonsodionisio.jpg",
-    "name": "Afonso Dionísio",
-    "role": "Responsável Tecnologia e Desenvolvimento"
-  },
-    {
-    "picture": "danielpereira.jpg",
-    "name": "Daniel Pereira",
-    "role": "Responsável Tecnologia e Desenvolvimento"
-  },
-  {
-    "picture": "adrianafrazao.png",
-    "name": "Adriana Frazão",
+    "picture": "eduardofaria.png",
+    "name": "Eduardo Faria",
     "role": "Responsável Comunicação e Marketing"
   },
   {
-    "picture": "ritacamacho.png",
-    "name": "Rita Camacho",
+    "picture": "martarodrigues.png",
+    "name": "Marta Rodrigues",
     "role": "Responsável Comunicação e Marketing"
   },
   {
-    "picture": "gustavocastro.png",
-    "name": "Gustavo Castro",
-    "role": "Responsável Recrutamento e Formação"
+    "picture": "zitaduarte.jpg",
+    "name": "Zita Duarte",
+    "role": "Responsável Comunicação e Marketing"
   },
   {
     "picture": "martagoncalves.jpg",
     "name": "Marta Gonçalves",
-    "role": "Responsável Recrutamento e Formação"
+    "role": "Responsável Recrutamento"
   },
   {
-    "picture": "mariorodrigues.jpg",
-    "name": "Mário Rodrigues",
+    "picture": "afonsocarpinteiro.jpg",
+    "name": "Afonso Carpinteiro",
+    "role": "Responsável Currículo e Material"
+  },
+  {
+    "picture": "eduardoreis.png",
+    "name": "Eduardo Reis",
+    "role": "Responsável Currículo e Material"
+  },
+  {
+    "picture": "goncalocosta.jpg",
+    "name": "Gonçalo Costa",
+    "role": "Responsável Currículo e Material"
+  },
+  {
+    "picture": "jessicafernandes.jpg",
+    "name": "Jéssica Fernandes",
+    "role": "Responsável Currículo e Material"
+  },
+  {
+    "picture": "luispereira.jpg",
+    "name": "Luís Pereira",
     "role": "Responsável Currículo e Material"
   },
   {
@@ -60,23 +70,8 @@
     "role": "Responsável Currículo e Material"
   },
   {
-    "picture": "heldergomes.jpg",
-    "name": "Hélder Gomes",
-    "role": "Responsável Dojo Care"
-  },
-  {
-    "picture": "jessicafernandes.jpg",
-    "name": "Jéssica Fernandes",
-    "role": "Responsável Dojo Care"
-  },
-    {
-    "picture": "lararegina.jpg",
-    "name": "Lara Regina",
-    "role": "Responsável Dojo Care"
-  },
-  {
-    "picture": "afonsocarpinteiro.jpg",
-    "name": "Afonso Carpinteiro",
+    "picture": "afonsodionisio.jpg",
+    "name": "Afonso Dionísio",
     "role": "Mentor"
   },
   {
@@ -120,6 +115,11 @@
     "role": "Mentora"
   },
   {
+    "picture": "danielpereira.jpg",
+    "name": "Daniel Pereira",
+    "role": "Mentor"
+  },
+  {
     "picture": "diogolameira.png",
     "name": "Diogo Lameira",
     "role": "Mentor"
@@ -132,16 +132,6 @@
   {
     "picture": "diogoneto.png",
     "name": "Diogo Neto",
-    "role": "Mentor"
-  },
-  {
-    "picture": "eduardofaria.png",
-    "name": "Eduardo Faria",
-    "role": "Mentor"
-  },
-  {
-    "picture": "eduardoreis.png",
-    "name": "Eduardo Reis",
     "role": "Mentor"
   },
   {
@@ -160,13 +150,13 @@
     "role": "Mentora"
   },
   {
-    "picture": "goncalocosta.jpg",
-    "name": "Gonçalo Costa",
+    "picture": "guilhermevara.png",
+    "name": "Guilherme Vara",
     "role": "Mentor"
   },
   {
-    "picture": "guilhermevara.png",
-    "name": "Guilherme Vara",
+    "picture": "gustavocastro.png",
+    "name": "Gustavo Castro",
     "role": "Mentor"
   },
   {
@@ -240,13 +230,18 @@
     "role": "Mentor"
   },
   {
-    "picture": "luisfelicio.jpg",
-    "name": "Luis Felício",
+    "picture": "juliopinto.jpg",
+    "name": "Júlio Pinto",
     "role": "Mentor"
   },
   {
-    "picture": "luispereira.jpg",
-    "name": "Luís Pereira",
+    "picture": "lararegina.jpg",
+    "name": "Lara Regina",
+    "role": "Mentora"
+  },
+  {
+    "picture": "luisfelicio.jpg",
+    "name": "Luis Felício",
     "role": "Mentor"
   },
   {
@@ -260,18 +255,13 @@
     "role": "Mentora"
   },
   {
-    "picture": "martarodrigues.png",
-    "name": "Marta Rodrigues",
-    "role": "Mentora"
+    "picture": "mariorodrigues.jpg",
+    "name": "Mário Rodrigues",
+    "role": "Mentor"
   },
   {
     "picture": "martimferreira.jpg",
     "name": "Martim Ferreira",
-    "role": "Mentor"
-  },
-  {
-    "picture": "ninja.jpg",
-    "name": "Miguel Freitas",
     "role": "Mentor"
   },
   {
@@ -305,6 +295,11 @@
     "role": "Mentor"
   },
   {
+    "picture": "ritacamacho.png",
+    "name": "Rita Camacho",
+    "role": "Mentora"
+  },
+  {
     "picture": "rodrigopereira.jpg",
     "name": "Rodrigo Pereira",
     "role": "Mentor"
@@ -320,6 +315,11 @@
     "role": "Mentor"
   },
   {
+    "picture": "sarasilva.jpg",
+    "name": "Sara Silva",
+    "role": "Mentora"
+  },
+  {
     "picture": "tales.png",
     "name": "Tales Machado",
     "role": "Mentor"
@@ -333,10 +333,5 @@
     "picture": "vitorlelis.jpg",
     "name": "Vitor Lelis",
     "role": "Mentor"
-  },
-  {
-    "picture": "zitaduarte.jpg",
-    "name": "Zita Duarte",
-    "role": "Mentora"
   }
 ]
