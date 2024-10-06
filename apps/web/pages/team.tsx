@@ -18,9 +18,9 @@ export default function Team({ team }: { team: ITeamMember[] }) {
         <p className="mx-2 mt-4 mb-4 text-center text-2xl leading-relaxed text-black lg:mx-12">
           A equipa do CoderDojo Braga é composta por alunos voluntários de
           vários cursos dedicados e apaixonados pelo projeto e por tecnologia.
-          Cada uma traz o seu contributo único para criar uma experiencia
+          Cada um traz o seu contributo único para criar uma experiencia
           incrível para os Ninjas e todos envolvidos com o projeto. Mais do que
-          uma equipa, todos aqueles que decidem se envolver connosco encontram
+          uma equipa, todos aqueles que se decidem envolver connosco encontram
           uma família.
         </p>
       </div>
