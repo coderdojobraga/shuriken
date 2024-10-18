@@ -12,7 +12,7 @@ const Hero = () => (
         </h2>
       </div>
       <div className="-mt-4 flex flex-col gap-12 sm:flex-row">
-        <a href="https://forms.gle/nLncTginKWFTpTQv7">
+        <a href="https://forms.gle/wLfmRqPDcoHr5XXs9">
           <button className="bg-primary m-auto block transform rounded-3xl px-4 py-2 text-white duration-300 hover:scale-110">
             Quero ser Ninja
           </button>
