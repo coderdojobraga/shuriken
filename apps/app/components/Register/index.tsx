@@ -27,7 +27,7 @@ import Emoji from "~/components/Emoji";
 
 import styles from "./style.module.css";
 import { useState } from "react";
-import { EUser } from "bokkenjs";
+import { API_URL, EUser } from "bokkenjs";
 import { notifyError, notifyInfo } from "~/components/Notification";
 
 import { getIcon } from "~/lib/utils";
@@ -48,7 +48,8 @@ function Register({ cities }: any) {
   const { user } = useAuth();
   const [isLoading, setLoading] = useState(false);
   const [errors, setErrors] = useState();
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState<void | File | string>();
+  const [avatarPreview, setAvatarPreview] = useState<null | string>();
   const [socials] = useState([
     "Scratch",
     "Codewars",
@@ -60,7 +61,8 @@ function Register({ cities }: any) {
   ]);
 
   const onFinish = (values: any) => {
-    console.log(values);
+    values["user[photo]"] = avatar;
+
     setLoading(true);
     api
       .registerUser(values)
@@ -77,6 +79,17 @@ function Register({ cities }: any) {
       })
       .finally(() => setLoading(false));
   };
+
+  let avatarSrc;
+  if (
+    !avatarPreview &&
+    typeof user?.photo === "string" &&
+    user?.photo.startsWith("/uploads/")
+  ) {
+    avatarSrc = `${API_URL}${user.photo}`;
+  } else {
+    avatarSrc = user?.photo;
+  }
 
   return (
     <>
@@ -115,7 +128,7 @@ function Register({ cities }: any) {
       </Row>
 
       <Row justify="center">
-        <Avatar src={avatar} size={70} icon={<UserOutlined />} />
+        <Avatar src={avatarPreview} size={90} icon={<UserOutlined />} />
       </Row>
 
       <Row justify="center">
@@ -220,24 +233,22 @@ function Register({ cities }: any) {
               label="Foto de perfil"
               valuePropName="avatar"
             >
-              <Upload
-                name="avatar"
-                accept="image/*"
-                beforeUpload={(file) => {
-                  getBase64(file, (imageUrl: any) => setAvatar(imageUrl));
-                  return false;
-                }}
-                onRemove={() => setAvatar(null)}
-                multiple={false}
-                maxCount={1}
-                showUploadList={{
-                  showDownloadIcon: false,
-                  showPreviewIcon: false,
-                  showRemoveIcon: true,
-                }}
-              >
-                <Button icon={<UploadOutlined />}>Selecionar</Button>
-              </Upload>
+              <ImgCrop>
+                <Upload
+                  accept="image/*"
+                  maxCount={1}
+                  beforeUpload={(file: File) => {
+                    setAvatar(file);
+                    getBase64(file, (result: string) => {
+                      setAvatarPreview(result);
+                    });
+                    return false;
+                  }}
+                  onRemove={() => setAvatar(user?.photo)}
+                >
+                  <Button icon={<UploadOutlined />}>Upload</Button>
+                </Upload>
+              </ImgCrop>
             </Form.Item>
             {user?.role == EUser.Mentor && (
               <Form.Item name="user[socials]" label="Redes Sociais">

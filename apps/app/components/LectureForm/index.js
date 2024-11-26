@@ -52,6 +52,7 @@ export default function LectureForm({ id }) {
   }, []);
 
   const [ninjas, setNinjas] = useState([]);
+
   const fetchData = useCallback(() => {
     let promise;
 
@@ -72,7 +73,7 @@ export default function LectureForm({ id }) {
         )
       );
     });
-  }, [fetchData]);
+  }, [fetchData, events]);
 
   const [filteredNinjas, setFilteredNinjas] = useState([]);
   const handleEventChange = useCallback(

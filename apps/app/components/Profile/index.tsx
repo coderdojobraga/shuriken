@@ -20,7 +20,7 @@ import * as api from "bokkenjs";
 import * as socials from "~/lib/social";
 import { notifyError, notifyInfo } from "~/components/Notification";
 import styles from "./style.module.css";
-import { EUser } from "bokkenjs";
+import { API_URL, EUser } from "bokkenjs";
 
 import { BsFileEarmarkPersonFill } from "react-icons/bs";
 
@@ -40,7 +40,7 @@ function Profile({ id, role }: Props) {
   const [projects, setProjects] = useState<any[]>([]);
   const [skills, setSkills] = useState<any[]>([]);
   const [date, setDate] = useState<String>("");
-
+  const [avatarPreview] = useState<null | string>();
   useEffect(() => {
     api
       .getUserByRole({ id, role })
@@ -99,6 +99,16 @@ function Profile({ id, role }: Props) {
     setDate(moment(info.since).format("DD/MM/YYYY"));
   }, [info]);
 
+  let avatarSrc;
+  if (
+    !avatarPreview &&
+    typeof info?.photo === "string" &&
+    info?.photo.startsWith("/uploads/")
+  ) {
+    avatarSrc = `${API_URL}${info.photo}`;
+  } else {
+    avatarSrc = info?.photo;
+  }
   return (
     <>
       <Row justify="center" align="middle">
@@ -112,7 +122,7 @@ function Profile({ id, role }: Props) {
               xl: 200,
               xxl: 200,
             }}
-            src={info?.photo}
+            src={avatarSrc}
             icon={<UserOutlined />}
           />
           <Row justify="center" align="middle">
